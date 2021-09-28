@@ -3,7 +3,7 @@ const idCards = async (req,res)=>{
     try{
         if (id) {
             var detallecard= await card.findOne({where: {id}, include: categories});
-            var pokemonDeId={
+            var cardDeId={
             id: detallecard.id,
             marca:detallecard.marca,
             name:detallecard.name,
@@ -12,7 +12,7 @@ const idCards = async (req,res)=>{
             category:detallecard.category,
             features:detallecard.features
             }
-            res.status(200).send(pokemonDeId)
+            res.status(200).send(cardDeId)
         }
     }catch(error){
         res.status(404).send(error)
