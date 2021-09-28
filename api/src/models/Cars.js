@@ -14,9 +14,8 @@ const CarsSchema = new Schema({
         type : [String],
         required: true
     },
-    category : String ,
     features : [String],
-    categories : [
+    category : [
         {type: mongoose.Schema.Types.ObjectId,ref:'Categories'}
     ]
 })

@@ -1,5 +1,5 @@
 //Traer base de datos (card y categories)
-const { Car } = require('../models/index')
+const { Car } = require('../models/Cars')
 
 
 const idCars = async (req,res)=>{
