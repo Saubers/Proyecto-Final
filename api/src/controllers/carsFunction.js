@@ -1,6 +1,7 @@
 //Traer base de datos (card y categories)
 const { Car } = require('../models/index')
 
+
 const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
@@ -20,6 +21,22 @@ const idCars = async (req,res)=>{
     }catch(error){
         res.status(404).send(error)
     }
+}
+
+const GetAllCards = async (req,res,next) => {
+    try {
+        const GetAll = await card.findAll({
+            include:{
+                model:Card,
+                atributes:["name","marca"]
+            }
+        })
+        return res.status(200).json([GetAll]);
+        
+    }catch(error){
+        res.status(404).send(error)
+    }
+    
 }
 
 module.exports = {
