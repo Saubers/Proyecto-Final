@@ -1,13 +1,14 @@
 //Traer base de datos (card y categories)
+const { Car } = require('../models/index')
 
 const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await card.findOne({where: {id}, include: categories});
+            let carDetail= await Car.findOne({where: {id}, include: categories});
             let carId ={
             id: carDetail.id,
-            marca:carDetail.marca,
+            marca:carDetail.brand,
             name:carDetail.name,
             description:carDetail.description,
             img:carDetail.img,

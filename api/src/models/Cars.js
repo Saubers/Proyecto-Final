@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose'
 
 const CarsSchema = new Schema({
-    marca:{
+    brand:{
         type: String,
         required: true
     },

@@ -8,7 +8,7 @@ const UserSchema = new Schema({
     mail : String,
     password : String,
     status : [String]
-})
+    })
 
 
 module.exports = model('User', UserSchema)

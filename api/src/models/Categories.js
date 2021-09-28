@@ -1,4 +1,5 @@
-const {Schema ,model} = require('mongoose')
+const {Schema ,model} = require('mongoose');
+
 
 const CategoriesSchema = new Schema({
     name :{

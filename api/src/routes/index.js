@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {idCars} = require('../../controllers/carsFunction');
+const {idCars} = require('../controllers/carsFunction');
 
 
 module.exports = app => {
