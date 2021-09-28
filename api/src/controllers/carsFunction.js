@@ -28,7 +28,7 @@ const GetAllCards = async (req,res,next) => {
         const GetAll = await card.findAll({
             include:{
                 model:Cars,
-                atributes:["name","marca"]
+                atributes:["name","marca","description"]
             }
         })
         return res.status(200).json([GetAll]);
@@ -38,6 +38,7 @@ const GetAllCards = async (req,res,next) => {
     }
     
 }
+
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
@@ -57,6 +58,22 @@ const CreateProduct = async (req,res,next) => {
     }
 }
 
+//Buscar un producto por nombre exacto 
+//FALTA IMPLEMENTAR FILTER CON INCLUDE
+const ProductByName = async (req,res,next) => {
+    const {name} = req.query;
+    try {
+        const ProductDB = await Card.findOne({where: {name:name}})
+        if(ProductDB !== null){
+            res.status(200).json(ProductDB)
+        }
+    }catch(error){
+        next(error);
+    }
+}
 module.exports = {
     idCars,
+    CreateProduct,
+    ProductByName,
+    GetAllCards
   }
