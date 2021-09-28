@@ -1,3 +1,5 @@
+//Traer base de datos (card y categories)
+
 const idCards = async (req,res)=>{
     const {id} =req.params;
     try{
@@ -18,3 +20,7 @@ const idCards = async (req,res)=>{
         res.status(404).send(error)
     }
 }
+
+module.exports = {
+    idCards,
+  }
