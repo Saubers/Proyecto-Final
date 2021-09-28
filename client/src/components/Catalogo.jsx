@@ -57,6 +57,7 @@ return (
     <select onChange = {ev => hadleFiltroKm(evento)} >
         <option value ='All'>Todos</option>
         <option value ='0'>0Km</option>
+        <option value='0-10'>0km - 10km</option>
         <option value='10-40'>10km - 40km</option>
         <option value='40-80'>40km - 80km</option>
         <option value='80-110'>80km - 110</option>
