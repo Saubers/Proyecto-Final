@@ -1,13 +1,15 @@
 import {Route,Switch} from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Catalogo from './components/Catalogo'
 
 
 function App() {
   return (
-    <Route>
+    <Router>
       <Switch>
-        <Route>
+        <Route path="/home" component={Catalogo}/>
       </Switch>
-    </Route>
+    </Router>
   );
 }
 
