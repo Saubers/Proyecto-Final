@@ -10,5 +10,6 @@ const app = config(express())
 
 //starting server
 app.listen(app.get('port'), () => {
+    connectDB()
     console.log('Server on port', app.get('port'))
 })

@@ -1,6 +1,7 @@
 const initialState = {
-    cars = [],
-    allCars = []
+    cars: [],
+    allCars: [],
+    carDetail:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -11,44 +12,51 @@ function rootReducer (state = initialState, action) {
             cars: action.payload,
             allCars : action.payload
         }
+    case 'GET_CAR_DETAIL':
+        return{
+            ...state,
+            carDetail: action.payload
+        }
     case 'FILTER_BY_ENGINE':
         const filterState = action.payload === 'All' ? state.cars : state.cars.filter(el => el.engine === action.payload)
         return{
             ...state,
-            cars = filterState
+            cars: filterState
         }
     case 'FILTER_BY_KM':
         if(action.payload === 'all'){
-        const km = cars
-        }
+        let km = state.cars
+        
         if(action.payload === '0'){
-            const km = cars.filter(el => el.features.milage === 0 )
+            const km = state.cars.filter(el => el.features.milage === 0 )
         }
         if(action.payload === '0-10'){
-            const km = cars.filter(el => 0< el.features.milage <= 10000 )
+
+            const km = state.cars.filter(el => 0< el.features.milage <= 10000 )
         }
         if(action.payload === '10-40'){
-            const km = cars.filter(el => 10000 < el.features.milage <= 40000 )
+            const km = state.cars.filter(el => 10000 < el.features.milage <= 40000 )
         }
         if(action.payload === '40-80'){
-            const km = cars.filter(el => 40000< el.features.milage <= 80000 )
+            const km = state.cars.filter(el => 40000< el.features.milage <= 80000 )
         }
         if(action.payload === '80-110'){
-            const km = cars.filter(el => 80000< el.features.milage <= 110000 )
+            const km = state.cars.filter(el => 80000< el.features.milage <= 110000 )
         }
         if(action.payload === '110-150'){
-            const km = cars.filter(el => 110000< el.features.milage <= 150000 )
+            const km = state.cars.filter(el => 110000< el.features.milage <= 150000 )
         }
         if(action.payload === '+150'){
-            const km = cars.filter(el => 150000< el.features.milage)
+            const km = state.cars.filter(el => 150000< el.features.milage)
         }
         return{
             ...state,
             cars: km
         }
+    }
     case 'FILTER_BY_PRICE':
         if(action.payload === 'all'){
-            const price = cars
+            const price = state.cars
             }
             const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
             state.cars.sort((a,b) => b.price - a.price)
@@ -64,3 +72,5 @@ function rootReducer (state = initialState, action) {
 default:
     return state;
 }}
+
+export default rootReducer;

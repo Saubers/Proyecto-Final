@@ -1,4 +1,4 @@
-const {Schema ,model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 
 const CategoriesSchema = new Schema({
@@ -8,7 +8,7 @@ const CategoriesSchema = new Schema({
     },
     description : String,
     cars : [
-        {type: mongoose.Schema.Types.ObjectId,ref:'Car'}
+        {type: Schema.Types.ObjectId,ref:'Car'}
     ]
 })
 

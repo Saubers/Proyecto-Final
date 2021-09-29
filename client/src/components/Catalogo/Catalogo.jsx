@@ -56,10 +56,11 @@ function handleFilterAge(evento){
 return (
 <div className ='container'>
     <NavBar/>
-    {/* BOTON VOLVER */}
-    <Link to = '/home'><button className = 'home'>Volver</button></Link>
     {/* SEARCHBAR */}
     <SearchBar/>
+    {/* BOTON VOLVER */}
+    <Link to = '/home'><button className = 'home'>Volver</button></Link>
+    
     {/* SELECT DE MOTOR*/}
     <select onChange = {ev => handleFitroEngine(ev)} >
         <option value ='All'>All</option>
