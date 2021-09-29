@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/home" component={Catalogo}/>
+        <Route path="/" component={Catalogo}/>
       </Switch>
     </Router>
   );
