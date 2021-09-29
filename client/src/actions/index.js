@@ -9,6 +9,14 @@ export function getCars() {
             payload: json.data
 })}}
 
+export function getRecipeDetail(id){
+    return async function (dispatch){
+            var json= await axios.get("http://localhost:3001/cars/" + id);
+            return dispatch({
+                type: "GET_CAR_DETAIL",
+                payload: json.data
+})}}
+
 export function filterEngine(payload) {
     return{
         type:'FILTER_BY_ENGINE',
