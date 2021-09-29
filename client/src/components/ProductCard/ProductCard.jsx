@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductCard = ({name,marca,img}) =>{
+const ProductCard = ({name,marca,img,id}) =>{
     return(
     <div>
         <div>
@@ -8,7 +8,9 @@ const ProductCard = ({name,marca,img}) =>{
             <h3>{marca}</h3>
         </div>
         <div>
+        <Link to= {"/home/" + id}>
             <img src={img} alt="img" />
+        </Link>
         </div>
     </div>
     );
