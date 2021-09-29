@@ -20,6 +20,8 @@
         "express-handlebars": "^5.3.4",
         "fs-extra": "^10.0.0",
         "md5": "^2.3.0",
+        "mogoose": "0.0.1-security",
+        "mongod": "^2.0.0",
         "mongodb": "^4.1.2",
         "mongoose": "^6.0.8",
         "morgan": "^1.10.0",
