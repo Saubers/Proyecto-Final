@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
+import NavBar from '../NavBar/NavBar'
 // import {filtradoMotor} from '../actions';
 // import Card from './Card';
 // import Paginado from "./Paginado";
@@ -12,11 +13,11 @@ import ProductCard from '../ProductCard/ProductCard'
 export default function Catalogo(){
  const dispatch = useDispatch()
  const AllProducts = useSelector((state) => state.allCars)
- const [order , setOrder] = useState("")
 
 //PIGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(4)//productos por pagina
+const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
 const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
@@ -54,6 +55,7 @@ function handleFilterAge(evento){
 }
 return (
 <div className ='container'>
+    <NavBar/>
     {/* BOTON VOLVER */}
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
     {/* SEARCHBAR */}
@@ -134,11 +136,11 @@ return (
     
 </div>
 )
-    {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
+  //  {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
 
-{/* MOSTRAMOS CARDS y link para que muestre los detalles de cada auto
+/* MOSTRAMOS CARDS y link para que muestre los detalles de cada auto
     <Link to= {'/home/' + el.id}>
     <Card marca={el.marca} name ={el.name} imagen={el.img} description={el.description}
     features={el.features} categories={el.categories}  />
-</Link> */}
-}
+</Link> */
+    }

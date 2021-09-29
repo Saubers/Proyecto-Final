@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {idCars} = require('../controllers/carsFunction');
+const {idCars, GetAllCars, CreateProduct} = require('../controllers/carsFunction');
 
 
 module.exports = app => {
@@ -15,9 +15,9 @@ module.exports = app => {
 
     router.get('/products/:id', idCars);
     
-    router.get('/products');
+    router.get('/products', GetAllCars);
     
-    router.post('/products');
+    router.post('/products', CreateProduct);
 
     router.delete('/products');
 
