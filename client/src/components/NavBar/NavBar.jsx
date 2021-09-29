@@ -10,7 +10,7 @@ const NavBar = () => {
         
                 <div>
                     <li><a href="# ">Home</a></li>
-                    <li><a href="# ">Crear Pokemon</a></li>
+                    <li><a href="# ">Crear</a></li>
                 </div>
             </nav>
         </div>
