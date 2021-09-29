@@ -17,7 +17,7 @@ function hadleFiltroKm(evento){
     dispatch (/*filtradoKm actions de filtrado km*/(evento.target.value))
 }
 function handleFilterPrice(evento){
-    ev.preventDefault();
+    evento.preventDefault();
     dispatch(/*filtradoPrecio actions de filtrado Precio*/(evento.target.value))
     setcurrentPage(1);
     setOrder(`Ordenado ${evento.target.value}`)
@@ -73,8 +73,9 @@ return (
     {/* SELECT DE TRACCION */}
     <select onChange = {ev => handleFilterTraction(evento)} >
         <option value ='All'>All</option>
-        <option value ='4x2'>4x2</option>
-        <option value ='4x4'>4x4</option>
+        <option value ='FWD'>FWD</option>
+        <option value ='RWD'>RWD</option>
+        <option value ='AWD'>AWD</option>
     </select>
     {/* SELECT DE TRANSMISION */}
     <select onChange = {ev => handleFilterTransmission(evento)} >
@@ -90,7 +91,7 @@ return (
         <option value ='2006-2010'>2006-2010</option>
         <option value ='2011-2015'>2011-2015</option>
         <option value ='2016-2020'>2016-2020</option>
-        <option value ='2021+'>+2021</option>
+        <option value ='+2021'>+2021</option>
     </select>
 </div>
 )
