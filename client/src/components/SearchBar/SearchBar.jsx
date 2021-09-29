@@ -14,7 +14,7 @@ function handleInputChange(e){
 
 function handleSubmit(e){
     e.preventDefault()
-    dispatch(getByName(name))
+    
     setName("") 
 }
 

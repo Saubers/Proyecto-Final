@@ -15,6 +15,7 @@ export default function Catalogo(){
 //PIGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(4)//productos por pagina
+const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
 const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
@@ -31,22 +32,22 @@ function hadleFiltroKm(evento){
 function handleFilterPrice(evento){
     evento.preventDefault();
     dispatch(/*filtradoPrecio actions de filtrado Precio*/(evento.target.value))
-    setcurrentPage(1);
+    setPage(1);
     setOrder(`Ordenado ${evento.target.value}`)
 } 
 function handleFilterTraction(evento){
     dispatch (/*filtradoTraccion actions de filtrado Traccion*/(evento.target.value))
-    setcurrentPage(1);
+    setPage(1);
     setOrder(`Ordenado ${evento.target.value}`)
 }
 function handleFilterTransmission(evento){
     dispatch (/*filtradoTransmision actions de filtrado Transmision*/(evento.target.value))
-    setcurrentPage(1);
+    setPage(1);
     setOrder(`Ordenado ${evento.target.value}`)
 }
 function handleFilterAge(evento){
     dispatch (/*filtradoAño actions de filtrado Año*/(evento.target.value))
-    setcurrentPage(1);
+    setPage(1);
     setOrder(`Ordenado ${evento.target.value}`)
 }
 return (
@@ -56,7 +57,7 @@ return (
     {/* SEARCHBAR */}
     <SearchBar/>
     {/* SELECT DE MOTOR*/}
-    <select onChange = {ev => handleFitroEngine(evento)} >
+    <select onChange = {ev => handleFitroEngine(ev)} >
         <option value ='All'>All</option>
         <option value ='1.6'>1.6</option>
         <option value ='1.8T'>1.8T</option>
@@ -66,7 +67,7 @@ return (
         <option value ='3.0'>3.0</option>
     </select>
     {/* SELECT DE KM*/}
-    <select onChange = {ev => hadleFiltroKm(evento)} >
+    <select onChange = {ev => hadleFiltroKm(ev)} >
         <option value ='All'>All</option>
         <option value ='0'>0Km</option>
         <option value ='0-10'>0km - 10km</option>
@@ -77,26 +78,26 @@ return (
         <option value ='+150'>+150km</option>
     </select>
     {/* SELECT DE PRECIO*/}
-    <select onChange = {ev => handleFilterPrice(evento)} >
+    <select onChange = {ev => handleFilterPrice(ev)} >
         <option value ='All'>None</option>
         <option value ='max'>$$++</option>
         <option value ='min'>$$--</option>
     </select>
     {/* SELECT DE TRACCION */}
-    <select onChange = {ev => handleFilterTraction(evento)} >
+    <select onChange = {ev => handleFilterTraction(ev)} >
         <option value ='All'>All</option>
         <option value ='FWD'>FWD</option>
         <option value ='RWD'>RWD</option>
         <option value ='AWD'>AWD</option>
     </select>
     {/* SELECT DE TRANSMISION */}
-    <select onChange = {ev => handleFilterTransmission(evento)} >
+    <select onChange = {ev => handleFilterTransmission(ev)} >
         <option value ='All'>All</option>
         <option value ='Manual'>Manual</option>
         <option value ='Automatic'>Automatic</option>
     </select>
     {/* SELECT DE AÑO */}
-    <select onChange = {ev => handleFilterAge(evento)} >
+    <select onChange = {ev => handleFilterAge(ev)} >
         <option value ='All'>All</option>
         <option value ='-2000'>-2000</option>
         <option value ='2000-2005'>2000-2005</option>
@@ -131,11 +132,11 @@ return (
     
 </div>
 )
-    {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
+  //  {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
 
-{/* MOSTRAMOS CARDS y link para que muestre los detalles de cada auto
+/* MOSTRAMOS CARDS y link para que muestre los detalles de cada auto
     <Link to= {'/home/' + el.id}>
     <Card marca={el.marca} name ={el.name} imagen={el.img} description={el.description}
     features={el.features} categories={el.categories}  />
-</Link> */}
-}
+</Link> */
+    }
