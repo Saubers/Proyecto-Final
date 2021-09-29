@@ -6,8 +6,8 @@ const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await Car.find({"_id" : id}).populate('Categories');
-            console.log(carDetail)
+            let carDetail= await Car.findById(id).populate('Categories');
+            console.log('esto es car detail',carDetail)
             let carId ={
             id: carDetail.id,
             marca:carDetail.brand,
@@ -27,7 +27,7 @@ const idCars = async (req,res)=>{
 const GetAllCars = async (req,res,next) => {
     try {
         const GetAll = await Car.find()
-        console.log(GetAll)
+        //console.log(GetAll)
         return res.status(200).send(GetAll);
         
     }catch(error){
