@@ -5,7 +5,7 @@ const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await Car.find({"_id" : id}).populate('Categories');
+            let carDetail= await Cars.find({"_id" : id}).populate('Categories');
             let carId ={
             id: carDetail.id,
             marca:carDetail.brand,
@@ -24,8 +24,8 @@ const idCars = async (req,res)=>{
 
 const GetAllCars = async (req,res,next) => {
     try {
-        const GetAll = await Car.find({})
-        return res.status(200).json([GetAll]);
+        const GetAll = await Cars.findAll()
+        return res.status(200).json(GetAll);
         
     }catch(error){
         res.status(404).send(error)
@@ -37,7 +37,7 @@ const CreateProduct = async (req,res,next) => {
     try{
         const {name,brand, model,description,img,category,features} = req.body;
 
-        const NewProduct = new Car({
+        const NewProduct = new Cars({
             name,
             brand,
             model,
@@ -58,7 +58,7 @@ const CreateProduct = async (req,res,next) => {
 const ProductByName = async (req,res,next) => {
     const {name} = req.query;
     try {
-        const ProductDB = await Card.findOne({"name" : name})
+        const ProductDB = await Cars.findOne({"name" : name})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
