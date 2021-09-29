@@ -23,12 +23,12 @@ const idCars = async (req,res)=>{
     }
 }
 
-const GetAllCards = async (req,res,next) => {
+const GetAllCars = async (req,res,next) => {
     try {
-        const GetAll = await card.findAll({
+        const GetAll = await Car.findAll({
             include:{
                 model:Cars,
-                atributes:["name","marca","description"]
+                atributes:["name","brand","description"]
             }
         })
         return res.status(200).json([GetAll]);
@@ -42,11 +42,11 @@ const GetAllCards = async (req,res,next) => {
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
-        const {name,marca,description,img,category,feature} = req.body;
+        const {name,brand,description,img,category,feature} = req.body;
 
         const NewProduct = await Cars.create({
             name,
-            marca,
+            brand,
             description,
             img,
             category,
@@ -75,5 +75,5 @@ module.exports = {
     idCars,
     CreateProduct,
     ProductByName,
-    GetAllCards
+    GetAllCars
   }

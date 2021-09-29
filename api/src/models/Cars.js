@@ -10,6 +10,10 @@ const CarsSchema = new Schema({
         type : String,
         required: true
     },
+    model:{
+        type: Number,
+        required: true
+    },
     description : String,
     img : {
         type : [String],
