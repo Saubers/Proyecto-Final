@@ -1,6 +1,7 @@
 const initialState = {
     cars: [],
-    allCars: []
+    allCars: [],
+    carDetail:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -10,6 +11,11 @@ function rootReducer (state = initialState, action) {
             ...state,
             cars: action.payload,
             allCars : action.payload
+        }
+    case 'GET_CAR_DETAIL':
+        return{
+            ...state,
+            carDetail: action.payload
         }
     case 'FILTER_BY_ENGINE':
         const filterState = action.payload === 'All' ? state.cars : state.cars.filter(el => el.engine === action.payload)

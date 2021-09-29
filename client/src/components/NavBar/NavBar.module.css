@@ -1,0 +1,17 @@
+.container{
+    background-color: #007ee5;
+    color: white;
+}
+.navstyle{ 
+    display:flex;
+}
+.divli{
+    display:flex;
+    list-style: none;
+    align-items: center;
+}
+.styleA{
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
