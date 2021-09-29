@@ -1,6 +1,5 @@
 //Traer base de datos (card y categories)
-const { Car } = require('../models/Cars')
-
+const Cars = require('../models/Cars');
 
 const idCars = async (req,res)=>{
     const {id} =req.params;
@@ -25,33 +24,29 @@ const idCars = async (req,res)=>{
 
 const GetAllCars = async (req,res,next) => {
     try {
-        const GetAll = await Car.findAll({
-            include:{
-                model:Cars,
-                atributes:["name","brand","description"]
-            }
-        })
+        const GetAll = await Car.find({})
         return res.status(200).json([GetAll]);
         
     }catch(error){
         res.status(404).send(error)
     }
-    
 }
 
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
-        const {name,brand,description,img,category,feature} = req.body;
+        const {name,brand, model,description,img,category,features} = req.body;
 
         const NewProduct = await Cars.create({
             name,
             brand,
+            model,
             description,
             img,
             category,
-            feature
+            features
         });
+        await NewProduct.save()
         res.status(200).json(NewProduct)
     }catch(error){
         next(error);
@@ -63,7 +58,7 @@ const CreateProduct = async (req,res,next) => {
 const ProductByName = async (req,res,next) => {
     const {name} = req.query;
     try {
-        const ProductDB = await Card.findOne({where: {name:name}})
+        const ProductDB = await Cars.findOne({where: {name:name}})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
