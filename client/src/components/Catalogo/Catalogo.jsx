@@ -13,7 +13,6 @@ import NavBar from '../NavBar/NavBar'
 export default function Catalogo(){
  const dispatch = useDispatch()
  const AllProducts = useSelector((state) => state.allCars)
- const [order , setOrder] = useState("")
 
 //PIGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
