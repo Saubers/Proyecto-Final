@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
+import NavBar from '../NavBar/NavBar'
 // import {filtradoMotor} from '../actions';
 // import Card from './Card';
 // import Paginado from "./Paginado";
@@ -54,6 +55,7 @@ function handleFilterAge(evento){
 }
 return (
 <div className ='container'>
+    <NavBar/>
     {/* BOTON VOLVER */}
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
     {/* SEARCHBAR */}
