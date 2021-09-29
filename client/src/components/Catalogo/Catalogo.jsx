@@ -2,14 +2,26 @@ import React from "react";
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
-import SearchBar from "./SearchBar";
+import SearchBar from "../SearchBar/SearchBar";
+import Paginado from '../Paginado/Paginado'
+import ProductCard from '../ProductCard/ProductCard'
 // import {filtradoMotor} from '../actions';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
  const dispatch = useDispatch()
+ const AllProducts = useSelector((state) => state.allCars)
+//PIGINADO
+const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
+const [productsXpage] = useState(4)//productos por pagina
+const EndProduct = page * productsXpage;
+const StartProduct = EndProduct - productsXpage;
+const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
 
+const paginado = (NumberPage) => {
+    setPage(NumberPage);
+}
 function handleFitroEngine(evento){
     dispatch(/*filtradoMotor* actions de filtradomotor */(evento.target.value))
 }
@@ -93,6 +105,30 @@ return (
         <option value ='2016-2020'>2016-2020</option>
         <option value ='+2021'>+2021</option>
     </select>
+    <div>
+        <Paginado
+            AllProducts={AllProducts.length}
+            paginado={paginado}//const paginado linea °n 21
+            productsXpage={productsXpage}
+        />
+    </div>
+
+    <div>
+        {
+            ProductViewsXPage && ProductViewsXPage.map(el => {
+                return(
+                    <div>
+                        <ProductCard
+                            name={el.name}
+                            img={el.img}
+                            marca={el.marca}
+                        />
+                    </div>
+                )
+            })
+        }
+    </div>
+    
 </div>
 )
     {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
