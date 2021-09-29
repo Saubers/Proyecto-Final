@@ -12,6 +12,8 @@ import ProductCard from '../ProductCard/ProductCard'
 export default function Catalogo(){
  const dispatch = useDispatch()
  const AllProducts = useSelector((state) => state.allCars)
+ const [order , setOrder] = useState("")
+
 //PIGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(4)//productos por pagina
@@ -23,6 +25,7 @@ const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
 const paginado = (NumberPage) => {
     setPage(NumberPage);
 }
+
 function handleFitroEngine(evento){
     dispatch(/*filtradoMotor* actions de filtradomotor */(evento.target.value))
 }

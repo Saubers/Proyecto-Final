@@ -19,7 +19,40 @@ const CarsSchema = new Schema({
         type : [String],
         required: true
     },
-    features : [String],
+    features : {
+        price: {
+            type: Number,
+            required: true
+        },
+        doors:{
+            type: Number,
+            required: true
+        },
+        engine:{
+            petrol:{
+                type : [String]
+            },
+            diesel:{
+                type : [String]
+            }
+        },
+        transmission:{
+            manual:{
+                type : String
+            },
+            automatic:{
+                type : String
+            }
+        },
+        traction: {
+            type : String,
+            required: true
+        },
+        mileage: {
+            type: Number,
+            required: true
+        }
+    },
     category : [
         {type: Schema.Types.ObjectId,ref:'Categories'}
     ]
