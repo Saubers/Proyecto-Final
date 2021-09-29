@@ -1,4 +1,5 @@
-import { Schema, model } from 'mongoose'
+const { Schema, model } = require('mongoose')
+
 
 const CarsSchema = new Schema({
     brand:{
@@ -16,9 +17,9 @@ const CarsSchema = new Schema({
     },
     features : [String],
     category : [
-        {type: mongoose.Schema.Types.ObjectId,ref:'Categories'}
+        {type: Schema.Types.ObjectId,ref:'Categories'}
     ]
 })
 
 
-export default model('Car', CarsSchema)
+module.exports =model('Car', CarsSchema)
