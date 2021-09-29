@@ -1,11 +1,10 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
 
 const basename = path.basename(__filename);
-
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(
@@ -24,8 +23,9 @@ const connectDB = async () => {
       require(path.join(__dirname, '/models', file))
     });
     
-    //console.log(`MongoDB connected: ${conn.connection.host}`);
+  console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
+   // console.log(error)
     console.error(`Error: ${error.message}`);
     throw new Error(error?.message);
   }
