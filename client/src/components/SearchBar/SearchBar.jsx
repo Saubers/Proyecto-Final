@@ -1,8 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-
-
 //import { getByName } from "../actions";
 export default function SearchBar(){
 const dispatch = useDispatch()
@@ -16,7 +14,7 @@ function handleInputChange(e){
 
 function handleSubmit(e){
     e.preventDefault()
-    // dispatch(getByName(name))
+    
     setName("") 
 }
 

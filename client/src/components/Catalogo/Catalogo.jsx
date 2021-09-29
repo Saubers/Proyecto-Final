@@ -18,6 +18,7 @@ export default function Catalogo(){
 //PIGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(4)//productos por pagina
+const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
 const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
@@ -136,11 +137,11 @@ return (
     
 </div>
 )
-    {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
+  //  {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
 
-{/* MOSTRAMOS CARDS y link para que muestre los detalles de cada auto
+/* MOSTRAMOS CARDS y link para que muestre los detalles de cada auto
     <Link to= {'/home/' + el.id}>
     <Card marca={el.marca} name ={el.name} imagen={el.img} description={el.description}
     features={el.features} categories={el.categories}  />
-</Link> */}
-}
+</Link> */
+    }

@@ -1,9 +1,10 @@
 const express = require('express')
+const connectDB = require('./db.js')
 
 const config = require('./server/config.js')
 
 //database
-require('./db')
+
 
 const app = config(express())
 
