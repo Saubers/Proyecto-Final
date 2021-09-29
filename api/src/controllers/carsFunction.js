@@ -6,7 +6,7 @@ const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await Car.findOne({where: {id}, include: categories});
+            let carDetail= await Car.find({"_id" : id}).populate('Categories');
             let carId ={
             id: carDetail.id,
             marca:carDetail.brand,
@@ -25,12 +25,7 @@ const idCars = async (req,res)=>{
 
 const GetAllCars = async (req,res,next) => {
     try {
-        const GetAll = await Car.findAll({
-            include:{
-                model:Cars,
-                atributes:["name","brand","description"]
-            }
-        })
+        const GetAll = await await Car.find({}).populate('Categories')
         return res.status(200).json([GetAll]);
         
     }catch(error){
@@ -44,15 +39,16 @@ const CreateProduct = async (req,res,next) => {
     try{
         const {name,brand,description,img,category,feature} = req.body;
 
-        const NewProduct = await Cars.create({
+        const NewProduct = new Car({
             name,
-            brand,
+            marca,
             description,
             img,
             category,
             feature
         });
-        res.status(200).json(NewProduct)
+      await NewProduct.save()
+        res.status(200).json('Creado correctamente')
     }catch(error){
         next(error);
     }
@@ -63,7 +59,7 @@ const CreateProduct = async (req,res,next) => {
 const ProductByName = async (req,res,next) => {
     const {name} = req.query;
     try {
-        const ProductDB = await Card.findOne({where: {name:name}})
+        const ProductDB = await Card.findOne({"name" : name})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
