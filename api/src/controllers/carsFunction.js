@@ -1,6 +1,7 @@
 //Traer base de datos (card y categories)
 const Car = require('../models/Cars.js');
 require('../db.js')
+
 const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
@@ -38,7 +39,7 @@ const GetAllCars = async (req,res,next) => {
 const CreateProduct = async (req,res,next) => {
     try{
         const {name,brand, model,description,img,category,features,doors,engine,petrol
-            ,diesel,price,transmission,manual,automatic,traction,mileage} = req.body;
+            ,diesel,price,manual,automatic,traction,mileage} = req.body;
 
         const NewProduct = new Car({
             name,
