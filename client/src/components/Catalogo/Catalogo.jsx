@@ -21,15 +21,15 @@ export default function Catalogo(){
 
 const AllProducts = useSelector((state) => state.cars)
 //select MOTORES
-const engines = AllProducts.map(el => el.features.engine.petrol.map(el => el.name))
-const nameEngines = []
-engines.forEach(function(element) {
-   element.forEach(function(element2){
-    if (element2 !== undefined) {
-    console.log(element2);
-    nameEngines.push(element2)   
-}})})
-const unicosNameEngines = [... new Set(nameEngines)];
+// const engines = AllProducts.map(el => el.features.engine.petrol.map(el => el.name))
+// const nameEngines = []
+// engines.forEach(function(element) {
+//    element.forEach(function(element2){
+//     if (element2 !== undefined) {
+//     console.log(element2);
+//     nameEngines.push(element2)   
+// }})})
+// const unicosNameEngines = [... new Set(nameEngines)];
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(5)//productos por pagina
@@ -80,10 +80,10 @@ return (
     {/* SELECT DE MOTOR*/}
     <select onChange = {ev => handleFitroEngine(ev)} >
     <option value = ''> </option>
-    {unicosNameEngines.map((ev)=>(
+    {/* {unicosNameEngines.map((ev)=>(
         <option value ={ev} > {ev} </option>
         
-    ))}
+    ))} */}
     </select>
     {/* SELECT DE KM*/}
     <select onChange = {ev => hadleFiltroKm(ev)} >

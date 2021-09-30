@@ -64,12 +64,23 @@ const CreateProduct = async (req,res,next) => {
 
 //Buscar un producto por nombre exacto 
 //FALTA IMPLEMENTAR FILTER CON INCLUDE
-
+const SearchCars = async (req,res,next) =>{
+    const { name } = req.query;
+    try {
+        const ProductDB = await Car.findOne({where: {name:name}})
+        console.log(ProductDB)
+        if(ProductDB !== null){
+            return res.status(200).json([ProductDB])
+        }
+    }catch(error){
+        next(error);
+    }
+}
 
 const DeleteCar = async (req,res,next) =>{
     const { id } = req.params;
     try {
-        const ProductDB = await Cars.findOne({"name" : name})
+        const ProductDB = await Cars.findOne({"_id" : id})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
@@ -95,6 +106,7 @@ module.exports = {
     idCars,
     CreateProduct,
     GetAllCars,
+    SearchCars,
     DeleteCar,
     ModifiCar
   }

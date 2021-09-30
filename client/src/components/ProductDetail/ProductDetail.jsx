@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCarDetail } from "../actions/index.js";
 import { useEffect } from "react";
 
-export default function Detail(props){
+export default function Detail({img}){
     const dispatch= useDispatch()
 
     useEffect(()=> {
@@ -20,7 +20,7 @@ export default function Detail(props){
                 <div>
                     <h1>{MyCar.marca} {MyCar.name}</h1>
                     <h3>{MyCar.category}</h3>
-                    <img src= {MyCar.img} alt= "image not found" width="600px" height="400px"/>
+                    <img src= {img} alt= "image not found" width="600px" height="400px"/>
                     <h3>Price: {MyCar.price}</h3>
                     <h3>Stock: {MyCar.stock}</h3>
                     <h3>Features: {MyCar.features}</h3>
