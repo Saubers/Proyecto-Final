@@ -38,37 +38,39 @@ function rootReducer (state = initialState, action) {
             //     ...state,
             //     cars: filterState
             // }
-        case 'FILTER_BY_KM':
-            if(action.payload === 'all'){
-            let km = state.cars
+            case 'FILTER_BY_KM':
+                let km = []
+                if(action.payload === 'All'){
+                     km = state.allCars
+                }
             
             if(action.payload === '0'){
-                const km1 = state.cars.filter(el => el.features.milage === 0 )
+                 km = state.allCars.filter(el => el.features.mileage === 0 )
             }
             if(action.payload === '0-10'){
 
-                const km2 = state.cars.filter(el => 0< el.features.milage <= 10000 )
+                 km = state.allCars.filter(el =>(el.features.mileage < 0 && el.features.mileage <= 10000 ))
             }
             if(action.payload === '10-40'){
-                const km3 = state.cars.filter(el => 10000 < el.features.milage <= 40000 )
+                 km = state.allCars.filter(el =>( el.features.mileage < 10000  && el.features.mileage <= 40000 ))
             }
             if(action.payload === '40-80'){
-                const km4 = state.cars.filter(el => 40000< el.features.milage <= 80000 )
+                 km = state.allCars.filter(el =>(el.features.mileage <  40000 && el.features.mileage <= 80000 ))
             }
             if(action.payload === '80-110'){
-                const km5 = state.cars.filter(el => 80000< el.features.milage <= 110000 )
+                 km = state.allCars.filter(el => ( el.features.mileage < 80000 && el.features.mileage <= 110000 ))
             }
             if(action.payload === '110-150'){
-                const km6 = state.cars.filter(el => 110000< el.features.milage <= 150000 )
+                 km = state.allCars.filter(el =>( el.features.mileage <110000 && el.features.mileage <= 150000 ))
             }
+            //(a && b) || c || d
             if(action.payload === '+150'){
-                const km7 = state.cars.filter(el => 150000< el.features.milage)
+                 km = state.allCars.filter(el =>  el.features.mileage > 150000)
             }
             return{
                 ...state,
                 cars: km
             }
-        }
         case 'FILTER_BY_PRICE':
             let money = action.payload === "max" ?
                 state.allCars.sort((a,b)=>{
