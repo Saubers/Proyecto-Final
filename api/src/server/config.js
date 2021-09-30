@@ -1,10 +1,9 @@
-const path = require('path')
-
-const morgan = require('morgan')
-
-const multer = require('multer')
-const express = require('express')
-const errorHandler = require('errorhandler')
+const path = require('path');
+const cors = require('cors');
+const morgan = require('morgan');
+const multer = require('multer');
+const express = require('express');
+const errorHandler = require('errorhandler');
 
 const routes = require('../routes/index')
 
@@ -19,6 +18,7 @@ module.exports = app => {
     app.use(multer({dest: path.join(__dirname, '../public/upload/temp')}).single('image'));
     app.use(express.urlencoded({extended: false}));
     app.use(express.json());
+    app.use(cors())
 
      //routes
     routes(app);

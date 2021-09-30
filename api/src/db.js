@@ -16,18 +16,17 @@ const connectDB = async () => {
         // useFindAndModify: false
       }
     );
-    // console.log('conn en db.js',conn)
+     console.log('conn en db.js',conn.models)
     fs.readdirSync(path.join(__dirname, '/models'))
     .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
     .forEach((file) => {
       require(path.join(__dirname, '/models', file))
     });
-    
-  console.log(`MongoDB connected: ${conn.connection.host}`);
+  console.log(`MongoDB connected: ${conn.connection.host}`);  
   } catch (error) {
    // console.log(error)
     console.error(`Error: ${error.message}`);
-    throw new Error(error?.message);
+    throw new Error(error.message);
   }
 };
 

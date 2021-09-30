@@ -1,22 +1,38 @@
-import React from "react";
-import {useState, useEffect} from 'react'
+import React,{useEffect} from "react";
+import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
 import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
+import { getCars } from "../../actions/index";
 // import {filtradoMotor} from '../actions';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
- const dispatch = useDispatch()
- const AllProducts = useSelector((state) => state.allCars)
 
-//PIGINADO
+ const dispatch = useDispatch()
+
+ useEffect(()=>{
+    dispatch(getCars())
+},[dispatch])
+
+const AllProducts = useSelector((state) => state.cars)
+//select MOTORES
+// const engines = AllProducts.map(el => el.features.engine.petrol.map(el => el.name))
+// const nameEngines = []
+// engines.forEach(function(element) {
+//    element.forEach(function(element2){
+//     if (element2 !== undefined) {
+//     console.log(element2);
+//     nameEngines.push(element2)   
+// }})})
+// const unicosNameEngines = [... new Set(nameEngines)];
+//PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
-const [productsXpage] = useState(4)//productos por pagina
+const [productsXpage] = useState(5)//productos por pagina
 const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
@@ -63,13 +79,11 @@ return (
     
     {/* SELECT DE MOTOR*/}
     <select onChange = {ev => handleFitroEngine(ev)} >
-        <option value ='All'>All</option>
-        <option value ='1.6'>1.6</option>
-        <option value ='1.8T'>1.8T</option>
-        <option value ='2.0'>2.0</option>
-        <option value ='2.0T'>2.0T</option>
-        <option value ='2.5'>2.5</option>
-        <option value ='3.0'>3.0</option>
+    <option value = ''> </option>
+    {/* {unicosNameEngines.map((ev)=>(
+        <option value ={ev} > {ev} </option>
+        
+    ))} */}
     </select>
     {/* SELECT DE KM*/}
     <select onChange = {ev => hadleFiltroKm(ev)} >
@@ -121,17 +135,23 @@ return (
 
     <div>
         {
+            
             ProductViewsXPage && ProductViewsXPage.map(el => {
                 return(
                     <div>
+                        <Link to= {'/home/' + el._id}>
                         <ProductCard
                             name={el.name}
                             img={el.img}
-                            marca={el.marca}
-                        />
+                            model={el.model}
+                            brand={el.brand}
+                            description={el.description}
+                            price={el.price}
+                        /></Link>
                     </div>
                 )
             })
+            
         }
     </div>
     

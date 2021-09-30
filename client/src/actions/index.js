@@ -3,8 +3,9 @@ import axios from 'axios';
 //Traemos al payload todos los autos
 export function getCars() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/cars");
+        var json = await axios.get("http://localhost:3002/products");
         return dispatch({
+          
             type:'GET_CARS',
             payload: json.data
 })}}
@@ -52,3 +53,20 @@ export function filterAge(payload) {
         type:'FILTER_BY_AGE',
         payload
 }}
+
+export function getNameCars(name){
+    return async function(dispatch){
+        try{
+            var json = await axios.get("http://localhost:3002/searchCars?name=" + name,{
+
+            });
+            return dispatch({
+                type:"GET_NAME_CARS",
+                payload: json.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    };
+    
+} 

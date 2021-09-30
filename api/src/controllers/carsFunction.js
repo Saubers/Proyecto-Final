@@ -1,11 +1,13 @@
 //Traer base de datos (card y categories)
-const Cars = require('../models/Cars');
+const Car = require('../models/Cars.js');
+
+require('../db.js')
 
 const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await Car.find({"_id" : id}).populate('Categories');
+            let carDetail= await Cars.find({"_id" : id}).populate('Categories');
             let carId ={
             id: carDetail.id,
             marca:carDetail.brand,
@@ -16,35 +18,42 @@ const idCars = async (req,res)=>{
             features:carDetail.features
             }
             res.status(200).send(carId)
+        }else {
+            res.status(400).send("Id Undefine");
         }
     }catch(error){
         res.status(404).send(error)
     }
 }
 
+
 const GetAllCars = async (req,res,next) => {
-    try {
-        const GetAll = await Car.find({})
-        return res.status(200).json([GetAll]);
-        
-    }catch(error){
-        res.status(404).send(error)
+        try {
+            const GetAll = await Car.find()
+            //console.log(GetAll)
+            return res.status(200).send(GetAll);
+            
+        }catch(error){
+            //console.log(error)
+            res.status(404).send(error)
+        }
     }
-}
+
+
 
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
         const {name,brand, model,description,img,category,features} = req.body;
 
-        const NewProduct = new Car({
+        const NewProduct = new Cars({
             name,
             brand,
             model,
-            description,
             img,
+            description,
+            features,
             category,
-            features
         });
         await NewProduct.save()
         res.status(200).json(NewProduct)
@@ -55,10 +64,23 @@ const CreateProduct = async (req,res,next) => {
 
 //Buscar un producto por nombre exacto 
 //FALTA IMPLEMENTAR FILTER CON INCLUDE
-const ProductByName = async (req,res,next) => {
-    const {name} = req.query;
+const SearchCars = async (req,res,next) =>{
+    const { name } = req.query;
     try {
-        const ProductDB = await Card.findOne({"name" : name})
+        const ProductDB = await Car.findOne({where: {name:name}})
+        console.log(ProductDB)
+        if(ProductDB !== null){
+            return res.status(200).json([ProductDB])
+        }
+    }catch(error){
+        next(error);
+    }
+}
+
+const DeleteCar = async (req,res,next) =>{
+    const { id } = req.params;
+    try {
+        const ProductDB = await Cars.findOne({"_id" : id})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
@@ -67,9 +89,24 @@ const ProductByName = async (req,res,next) => {
     }
 }
 
+const ModifiCar = async(req,res) =>{
+    const { id } = req.params;
+    const updates = req.body;
+    console.log(updates)
+    try {
+    await Car.findByIdAndUpdate(id,updates)
+    res.send("Auto actualizado correctamente");
+} catch (error) {
+    console.log(error)
+}
+}
+
+
 module.exports = {
     idCars,
     CreateProduct,
-    ProductByName,
-    GetAllCars
+    GetAllCars,
+    SearchCars,
+    DeleteCar,
+    ModifiCar
   }
