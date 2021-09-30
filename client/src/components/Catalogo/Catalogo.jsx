@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
-import { getCars } from "../../actions/index";
+import { getCars, getEngine } from "../../actions/index";
 import {filterEngine} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
@@ -17,6 +17,10 @@ export default function Catalogo(){
 
  useEffect(()=>{
     dispatch(getCars())
+},[dispatch])
+
+useEffect(()=>{
+    dispatch(getEngine())
 },[dispatch])
 
 const AllProducts = useSelector((state) => state.cars)
