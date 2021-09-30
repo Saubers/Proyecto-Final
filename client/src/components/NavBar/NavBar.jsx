@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <div className={styleNav.container}>
         <nav>
-         <div class="logo">
+         <div className={styleNav.logo}>
             Car Shop
          </div>
          <input type="checkbox" id="click"/>
@@ -15,7 +15,7 @@ const NavBar = () => {
          </label>
          <ul>
             <li><a href="# ">Contacts</a></li>
-            <li><a href="# ">Our Catalog</a></li>
+            <li><a href="/home/catalogo ">Our Catalog</a></li>
             <li><a href="# ">Payment Method</a></li>
             <li><a href="# ">Branch Office</a></li>
          </ul>
