@@ -4,7 +4,6 @@ import axios from 'axios';
 export function getCars() {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/products");
-        console.log(json);
         return dispatch({
           
             type:'GET_CARS',
