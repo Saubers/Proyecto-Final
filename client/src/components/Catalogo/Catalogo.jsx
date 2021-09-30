@@ -25,14 +25,14 @@ const engines = AllProducts.map(el => el.features.engine.petrol.map(el => el.nam
 const nameEngines = []
 engines.forEach(function(element) {
    element.forEach(function(element2){
-    if (!undefined) {
+    if (element2 !== undefined) {
     console.log(element2);
     nameEngines.push(element2)   
 }})})
 const unicosNameEngines = [... new Set(nameEngines)];
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
-const [productsXpage] = useState(1)//productos por pagina
+const [productsXpage] = useState(5)//productos por pagina
 const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
