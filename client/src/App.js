@@ -6,12 +6,12 @@ import Home from './components/Home/Home';
 
 
 function App() {
+  
   return (
     <Router>
       <Switch>
         <Route exact path="/home" component={Home}/>
         <Route path = "/home/:id" component= {ProductCard}/>
-        <Route path="/" component={Catalogo}/>
       </Switch>
     </Router>
   );

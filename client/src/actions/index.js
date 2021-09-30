@@ -3,7 +3,7 @@ import axios from 'axios';
 //Traemos al payload todos los autos
 export function getCars() {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3001/cars");
+        var json = await axios.get("http://localhost:3002/products");
         return dispatch({
             type:'GET_CARS',
             payload: json.data

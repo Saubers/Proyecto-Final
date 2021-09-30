@@ -4,35 +4,30 @@ const Car = require('../models/Cars.js');
 require('../db.js')
 
 const idCars = async (req,res)=>{
-const { id } = req.params
-if (id) {
-    try {
-        const getCarDetail = await Car.findById(id)
-        res.status(200).send(getCarDetail)
-    } catch (error) {
-        console.log(error)
+    const {id} =req.params;
+    try{
+        if (id) {
+            let carDetail= await Cars.find({"_id" : id}).populate('Categories');
+            let carId ={
+            id: carDetail.id,
+            marca:carDetail.brand,
+            name:carDetail.name,
+            description:carDetail.description,
+            img:carDetail.img,
+            category:carDetail.category,
+            features:carDetail.features
+            }
+            res.status(200).send(carId)
+        }else {
+            res.status(400).send("Id Undefine");
+        }
+    }catch(error){
+        res.status(404).send(error)
     }
-} else {
-    res.status(400).send("Id Undefine");
-}
 }
 
+
 const GetAllCars = async (req,res,next) => {
-    const {name} = req.query;
-    console.log('name', name)
-  // si hay query name
-    if(name){
-        try {
-            const CarByName = await Car.findOne({ "name": name })
-            console.log('car by name',CarByName)
-            if(CarByName !== null){
-                res.status(200).json(CarByName)
-            }
-        }catch(error){
-            next(error);
-        }
-    }
-    else{
         try {
             const GetAll = await Car.find()
             //console.log(GetAll)
@@ -44,14 +39,14 @@ const GetAllCars = async (req,res,next) => {
         }
     }
 
-}
+
 
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
         const {name,brand, model,description,img,category,features} = req.body;
 
-        const NewProduct = new Car({
+        const NewProduct = new Cars({
             name,
             brand,
             model,
@@ -74,11 +69,13 @@ const CreateProduct = async (req,res,next) => {
 const DeleteCar = async (req,res,next) =>{
     const { id } = req.params;
     try {
-    await Car.findByIdAndDelete(id)
-    res.send("Auto eliminado correctamente");
-} catch (error) {
-    console.log(error)
-}
+        const ProductDB = await Cars.findOne({"name" : name})
+        if(ProductDB !== null){
+            res.status(200).json(ProductDB)
+        }
+    }catch(error){
+        next(error);
+    }
 }
 
 const ModifiCar = async(req,res) =>{

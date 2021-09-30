@@ -1,18 +1,25 @@
-import React from "react";
-import {useState, useEffect} from 'react'
+import React,{useEffect} from "react";
+import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom';
 import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
+import { getCars } from "../../actions/index";
 // import {filtradoMotor} from '../actions';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
+
  const dispatch = useDispatch()
- const AllProducts = useSelector((state) => state.allCars)
+
+ useEffect(()=>{
+    dispatch(getCars())
+},[dispatch])
+
+const AllProducts = useSelector((state) => state.cars)
 
 //PIGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
