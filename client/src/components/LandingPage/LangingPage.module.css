@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
 .landing{
-min-height: 100%;
-background: #0F2027;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    min-height: 100vh;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-size: 100%;
 
 }
 .title{
@@ -16,15 +23,18 @@ justify-content: center;
 }
 
 .button {
-    font-family: 'Anton', sans-serif;
-    color: floralwhite;
-    background-color: skyblue;
-    width: 90px;
-    height: 55px;
-    cursor: pointer;
-    position:relative;
-    left:545px;
-    top: -25px
-
-    
-}
+    color: #318aac !important;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 0.5em 1.2em;
+    background: rgba(0,0,0,0);
+    border: 2px solid;
+    border-color: #318aac;
+    transition: all 1s ease;
+    position: relative;
+    left: 469px;
+  }
+  .button:hover {
+    background: #318aac;
+    color: #fff !important;
+  }
