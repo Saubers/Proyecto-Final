@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.landing{
+min-height: 100%;
+background: #0F2027;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.title{
+font-family: 'Anton', sans-serif;
+font-size: 50px;
+color: darkcyan;
+display: flex;
+justify-content: center;
+}
+
+.button {
+    font-family: 'Anton', sans-serif;
+    color: floralwhite;
+    background-color: skyblue;
+    width: 90px;
+    height: 55px;
+    cursor: pointer;
+    position:relative;
+    left:545px;
+    top: -25px
+
+    
+}
