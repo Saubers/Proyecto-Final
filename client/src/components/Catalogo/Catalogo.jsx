@@ -139,6 +139,7 @@ return (
                             model={el.model}
                             brand={el.brand}
                             description={el.description}
+                            price={el.price}
                         /></Link>
                     </div>
                 )
