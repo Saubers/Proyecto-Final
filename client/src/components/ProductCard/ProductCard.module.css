@@ -2,6 +2,8 @@
     width: 400px;
 }
 .containerproduct{
-    border: 1px solid gray;
-    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
