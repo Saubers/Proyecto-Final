@@ -32,7 +32,7 @@ engines.forEach(function(element) {
     if (element2 !== undefined) {
     nameEngines.push(element2)   
 }})})
-const unicosNameEngines = [... new Set(nameEngines)];
+const unicosNameEngines = [...new Set(nameEngines)];
 
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1

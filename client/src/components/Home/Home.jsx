@@ -9,7 +9,6 @@ export default function Home(){
 return(
 <div className = {styleHome.container}>
     <NavBar/>
-    <SearchBar/>
     <h1>Buy your first car</h1>
     <div>
         <h5>New 0km models</h5>
