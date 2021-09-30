@@ -3,14 +3,16 @@ import styleCars from '../ProductCard/ProductCard.module.css';
 
 const ProductCard = ({name,img,model,brand,price}) =>{
 
+const ProductCard = ({name,marca,img,id}) =>{
     return(
     <div className={styleCars.containerproduct}>
         <div>
             <img className={styleCars.imgstyle} src={img} alt="img" />
         </div>
         <div>
-            <p>{price}</p>
-            <h1>{model}{brand}{name}</h1>
+        <Link to= {"/home/" + id}>
+            <img src={img} alt="img" />
+        </Link>
         </div>
     </div>
     );
