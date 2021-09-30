@@ -14,6 +14,7 @@ const NavBar = () => {
          <i class="fas fa-bars"></i>
          </label>
          <ul>
+             <li><a href="/home">Home</a></li>
             <li><a href="/contactos">Contacts</a></li>
             <li><a href="/home/catalogo ">Our Catalog</a></li>
             <li><a href="# ">Payment Method</a></li>
