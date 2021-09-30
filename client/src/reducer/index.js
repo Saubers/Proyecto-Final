@@ -23,7 +23,9 @@ function rootReducer (state = initialState, action) {
                 carDetail: action.payload
             }
         case 'FILTER_BY_ENGINE':
-            const filterState = action.payload === 'All' ? state.cars : state.cars.filter(el => el.engine === action.payload)
+            const filterState = action.payload === 'All' ? state.allCars :
+            state.allCars.filter(el => el.features.engine.map(element => element.name) === action.payload)
+            console.log(filterState);
             return{
                 ...state,
                 cars: filterState

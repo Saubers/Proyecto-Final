@@ -7,7 +7,7 @@ import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
 import { getCars } from "../../actions/index";
-// import {filtradoMotor} from '../actions';
+import {filterEngine} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
@@ -21,15 +21,15 @@ export default function Catalogo(){
 
 const AllProducts = useSelector((state) => state.cars)
 //select MOTORES
-// const engines = AllProducts.map(el => el.features.engine.petrol.map(el => el.name))
-// const nameEngines = []
-// engines.forEach(function(element) {
-//    element.forEach(function(element2){
-//     if (element2 !== undefined) {
-//     console.log(element2);
-//     nameEngines.push(element2)   
-// }})})
-// const unicosNameEngines = [... new Set(nameEngines)];
+const engines = AllProducts.map(el => el.features.engine.map(el => el.name))
+const nameEngines = []
+engines.forEach(function(element) {
+   element.forEach(function(element2){
+    if (element2 !== undefined) {
+    nameEngines.push(element2)   
+}})})
+const unicosNameEngines = [... new Set(nameEngines)];
+
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(5)//productos por pagina
@@ -43,7 +43,7 @@ const paginado = (NumberPage) => {
 }
 
 function handleFitroEngine(evento){
-    dispatch(/*filtradoMotor* actions de filtradomotor */(evento.target.value))
+    dispatch(filterEngine(evento.target.value))
 }
 function hadleFiltroKm(evento){
     dispatch (/*filtradoKm actions de filtrado km*/(evento.target.value))
@@ -80,10 +80,10 @@ return (
     {/* SELECT DE MOTOR*/}
     <select onChange = {ev => handleFitroEngine(ev)} >
     <option value = ''> </option>
-    {/* {unicosNameEngines.map((ev)=>(
+    {unicosNameEngines.map((ev)=>(
         <option value ={ev} > {ev} </option>
         
-    ))} */}
+    ))}
     </select>
     {/* SELECT DE KM*/}
     <select onChange = {ev => hadleFiltroKm(ev)} >
