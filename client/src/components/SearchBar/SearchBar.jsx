@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 //import { getByName } from "../actions";
 import styleSearch from '../SearchBar/SearchBar.module.css';
+import {getNameCars} from '../../actions/index'
+
 export default function SearchBar(){
 const dispatch = useDispatch()
 const [name,setName] = useState("")
@@ -10,12 +12,12 @@ const [name,setName] = useState("")
 function handleInputChange(e){
     e.preventDefault();
     setName(e.target.value)
-    console.log(name)
+ 
 }
 
 function handleSubmit(e){
     e.preventDefault()
-    
+    dispatch(getNameCars(name))
     setName("") 
 }
 
@@ -31,6 +33,7 @@ return(
                     type ="text"
                     placeholder ='Busqueda por nombre'
                     onChange ={e=> handleInputChange(e)}
+                    value={name}
                     />
                     <button className={styleSearch.btn} type = 'submit'> Buscar</button>
                 </div>

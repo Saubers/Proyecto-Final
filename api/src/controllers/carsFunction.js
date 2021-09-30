@@ -7,10 +7,10 @@ const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await Cars.find({"_id" : id}).populate('Categories');
+            let carDetail= await Car.findById(id).populate('category');
             let carId ={
             id: carDetail.id,
-            marca:carDetail.brand,
+            brand:carDetail.brand,
             name:carDetail.name,
             description:carDetail.description,
             img:carDetail.img,
@@ -30,7 +30,8 @@ const idCars = async (req,res)=>{
 const GetAllCars = async (req,res,next) => {
         try {
             const GetAll = await Car.find()
-            //console.log(GetAll)
+            .populate('category')
+            // console.log('getall',GetAll)
             return res.status(200).send(GetAll);
             
         }catch(error){
@@ -44,18 +45,21 @@ const GetAllCars = async (req,res,next) => {
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
-        const {name,brand, model,description,img,category,features} = req.body;
+        const {name,brand,price,model,description,img,category,features} = req.body;
 
-        const NewProduct = new Cars({
+        const NewProduct = new Car({
             name,
             brand,
             model,
             img,
+            price,
             description,
             features,
             category,
         });
-        await NewProduct.save()
+        await NewProduct.save((err)=> {
+            if(err) return res.status(400).json(err)
+        })
         res.status(200).json(NewProduct)
     }catch(error){
         next(error);
@@ -64,12 +68,23 @@ const CreateProduct = async (req,res,next) => {
 
 //Buscar un producto por nombre exacto 
 //FALTA IMPLEMENTAR FILTER CON INCLUDE
-
+const SearchCars = async (req,res,next) =>{
+    const { name } = req.query;
+    try {
+        const ProductDB = await Car.findOne({where: {name:name}})
+        console.log(ProductDB)
+        if(ProductDB !== null){
+            return res.status(200).json([ProductDB])
+        }
+    }catch(error){
+        next(error);
+    }
+}
 
 const DeleteCar = async (req,res,next) =>{
     const { id } = req.params;
     try {
-        const ProductDB = await Cars.findOne({"name" : name})
+        const ProductDB = await Cars.findOne({"_id" : id})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
@@ -95,6 +110,7 @@ module.exports = {
     idCars,
     CreateProduct,
     GetAllCars,
+    SearchCars,
     DeleteCar,
     ModifiCar
   }

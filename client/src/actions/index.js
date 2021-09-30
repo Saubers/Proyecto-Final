@@ -9,10 +9,17 @@ export function getCars() {
             type:'GET_CARS',
             payload: json.data
 })}}
+export function getEngine() {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/products");
+        return dispatch({
+            type:'GET_ENGINE',
+            payload: json.data.map(el => el.features.engine)
+})}}
 
-export function getRecipeDetail(id){
+export function getCarDetail(id){
     return async function (dispatch){
-            var json= await axios.get("http://localhost:3001/cars/" + id);
+            var json= await axios.get("http://localhost:3001/cars/"+id);
             return dispatch({
                 type: "GET_CAR_DETAIL",
                 payload: json.data
@@ -53,3 +60,20 @@ export function filterAge(payload) {
         type:'FILTER_BY_AGE',
         payload
 }}
+
+export function getNameCars(name){
+    return async function(dispatch){
+        try{
+            var json = await axios.get("http://localhost:3002/searchCars?name=" + name,{
+
+            });
+            return dispatch({
+                type:"GET_NAME_CARS",
+                payload: json.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    };
+    
+} 

@@ -9,9 +9,9 @@ const CategoriesSchema = new Schema({
     description : {
         type: String
     },
-    cars : [
-        {type: Schema.Types.ObjectId,ref:'Car'}
-    ]
+    cars : {
+        type: Schema.Types.ObjectId,ref:'Car'
+    }
 })
 
 

@@ -1,7 +1,8 @@
 const initialState = {
     cars: [],
     allCars: [],
-    carDetail:[]
+    carDetail:[],
+    engine:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -10,7 +11,17 @@ function rootReducer (state = initialState, action) {
             return{
                 ...state,
                 cars: action.payload,
-                allCars : action.payload
+                allCars : action.payload,
+            }
+        case 'GET_ENGINE':
+            return{
+                ...state,
+                engine: action.payload
+            }
+        case 'GET_NAME_CARS':
+            return{
+                ...state,
+                cars:action.payload,
             }
         case 'GET_CAR_DETAIL':
             return{
@@ -18,11 +29,15 @@ function rootReducer (state = initialState, action) {
                 carDetail: action.payload
             }
         case 'FILTER_BY_ENGINE':
-            const filterState = action.payload === 'All' ? state.cars : state.cars.filter(el => el.engine === action.payload)
-            return{
-                ...state,
-                cars: filterState
-            }
+            // const prueba = state.engine
+            // console.log('action', action.payload);
+            // const filterState = action.payload === 'All' ? state.allCars :
+            // state.engine.filter(filtrarPorName())
+            // console.log(filterState);
+            // return{
+            //     ...state,
+            //     cars: filterState
+            // }
         case 'FILTER_BY_KM':
             if(action.payload === 'all'){
             let km = state.cars
@@ -55,15 +70,40 @@ function rootReducer (state = initialState, action) {
             }
         }
         case 'FILTER_BY_PRICE':
-            if(action.payload === 'all'){
-                const price = state.cars
-                }
-                const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
-                state.cars.sort((a,b) => b.price - a.price)
-                return{
+            let money = action.payload === "max" ?
+                state.allCars.sort((a,b)=>{
+                    if(a.name > b.name){
+                        return 1;
+                    }
+                    if(a.name < b.name){
+                        return -1;
+                    }
+                    return 0;
+                }) :
+                state.allCars.sort((a,b)=>{
+                    if(a.name > b.name){
+                        return -1;
+                    }
+                    if(a.name < b.name){
+                        return 1;
+                    }
+                    return 0;
+                })
+                return {
                     ...state,
-                    cars: price
+                    allCars: money
+                
                 }
+            
+            // if(action.payload === 'all'){
+            //     const price = state.cars
+            //     }
+            //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
+            //     state.cars.sort((a,b) => b.price - a.price)
+            //     return{
+            //         ...state,
+            //         cars: price
+            //     }
 
         case 'FILTER_BY_TRACTION':
         case 'FILTER_BY_TRANSMISSION':

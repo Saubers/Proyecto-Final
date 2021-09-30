@@ -21,23 +21,16 @@ const CarsSchema = new Schema({
         type : [String],
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    },
     features : {
-        price: {
-            type: Number,
-            required: true
-        },
         doors:{
             type: Number,
             required: true
         },
-        engine:{
-            petrol:{
-                type : [Object]
-            },
-            diesel:{
-                type : [Object]
-            }
-        },
+        engine:[{type: Object}],
         transmission:{
             manual:{
                 type : String
