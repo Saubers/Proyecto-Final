@@ -34,10 +34,10 @@ function rootReducer (state = initialState, action) {
             // const filterState = action.payload === 'All' ? state.allCars :
             // state.engine.filter(filtrarPorName())
             // console.log(filterState);
-            return{
-                ...state,
-                cars: filterState
-            }
+            // return{
+            //     ...state,
+            //     cars: filterState
+            // }
         case 'FILTER_BY_KM':
             if(action.payload === 'all'){
             let km = state.cars
