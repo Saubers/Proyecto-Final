@@ -2,6 +2,7 @@ import {Route,Switch} from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Catalogo from './components/Catalogo/Catalogo'
 import ProductCard from './components/ProductCard/ProductCard'
+import Home from './components/Home/Home';
 
 
 function App() {

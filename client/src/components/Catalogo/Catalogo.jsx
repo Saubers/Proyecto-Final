@@ -128,17 +128,21 @@ return (
 
     <div>
         {
+            
             ProductViewsXPage && ProductViewsXPage.map(el => {
                 return(
                     <div>
+                        <Link to= {'/home/' + el._id}>
                         <ProductCard
                             name={el.name}
                             img={el.img}
                             marca={el.marca}
-                        />
+                        
+                        /></Link>
                     </div>
                 )
             })
+            
         }
     </div>
     
