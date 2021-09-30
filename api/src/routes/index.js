@@ -1,32 +1,33 @@
 const express = require('express');
 const router = express.Router();
-const {idCars, GetAllCars, CreateProduct, ProductByName} = require('../controllers/carsFunction');
-
+const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar} = require('../controllers/carsFunction');
+const { CreateCategory, DeleteCategory, ModifiCategory} = require('../controllers/categoriesFunction.js')
 
 module.exports = app => {
     router.get('/', function(req, res){
         res.send("index")
     });
-    router.post('/categories');
+    //Categories
+    router.post('/categories',CreateCategory);
+    
+    router.delete('/categories',DeleteCategory);
+    
+    router.put('/categories',ModifiCategory);
 
-    router.delete('/categories');
-
-    router.put('/categories');
+    router.get('/products/:categories');
+    
+    //Productssss
 
     router.get('/products/:id', idCars);
     
     router.get('/products', GetAllCars);
-    
-    router.get('/products', ProductByName);
 
+    router.post('/products', CreateProduct );
 
-    router.post('/products', );
+    router.delete('/productsDelete/:id',DeleteCar);
 
-    router.delete('/products');
+    router.put('/productsPut/:id',ModifiCar);
 
-    router.put('/products');
-
-    router.get('/products/:categories');
 
 
 
