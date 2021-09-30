@@ -18,7 +18,7 @@ export default function Detail(props){
             { 
                 MyCar.length>0 ?
                 <div>
-                    <h1>{MyCar.marca} {MyCar.name}</h1>
+                    <h1>{MyCar.brand} {MyCar.name}</h1>
                     <h3>{MyCar.category}</h3>
                     {/* <img src= {} alt= "image not found" width="600px" height="400px"/> */}
                     <h3>Price: {MyCar.price}</h3>

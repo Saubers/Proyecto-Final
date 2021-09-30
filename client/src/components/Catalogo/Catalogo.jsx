@@ -7,7 +7,7 @@ import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
 import { getCars, getEngine } from "../../actions/index";
-import {filterEngine} from '../../actions/index';
+import {filterEngine , filterPrice} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
@@ -38,6 +38,7 @@ const unicosNameEngines = [... new Set(nameEngines)];
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(5)//productos por pagina
 const [order, setOrder] = useState("")
+const [engine , setEngine] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
 const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
@@ -46,17 +47,19 @@ const paginado = (NumberPage) => {
     setPage(NumberPage);
 }
 
-function handleFitroEngine(evento){
-    dispatch(filterEngine(evento.target.value))
+function handleFitroEngine(e){
+    dispatch(filterEngine(e.target.value))
+    setPage(1)
+    setEngine(e.target.value)
 }
 function hadleFiltroKm(evento){
     dispatch (/*filtradoKm actions de filtrado km*/(evento.target.value))
 }
-function handleFilterPrice(evento){
-    evento.preventDefault();
-    dispatch(/*filtradoPrecio actions de filtrado Precio*/(evento.target.value))
+function handleFilterPrice(e){
+    e.preventDefault();
+    dispatch(filterPrice(e.target.value))
     setPage(1);
-    setOrder(`Ordenado ${evento.target.value}`)
+    setOrder(e.target.value)
 } 
 function handleFilterTraction(evento){
     dispatch (/*filtradoTraccion actions de filtrado Traccion*/(evento.target.value))
@@ -101,8 +104,7 @@ return (
         <option value ='+150'>+150km</option>
     </select>
     {/* SELECT DE PRECIO*/}
-    <select onChange = {ev => handleFilterPrice(ev)} >
-        <option value ='All'>None</option>
+    <select onChange = {e => handleFilterPrice(e)} >
         <option value ='max'>$$++</option>
         <option value ='min'>$$--</option>
     </select>

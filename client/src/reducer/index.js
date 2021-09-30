@@ -70,15 +70,40 @@ function rootReducer (state = initialState, action) {
             }
         }
         case 'FILTER_BY_PRICE':
-            if(action.payload === 'all'){
-                const price = state.cars
-                }
-                const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
-                state.cars.sort((a,b) => b.price - a.price)
-                return{
+            let money = action.payload === "max" ?
+                state.allCars.sort((a,b)=>{
+                    if(a.name > b.name){
+                        return 1;
+                    }
+                    if(a.name < b.name){
+                        return -1;
+                    }
+                    return 0;
+                }) :
+                state.allCars.sort((a,b)=>{
+                    if(a.name > b.name){
+                        return -1;
+                    }
+                    if(a.name < b.name){
+                        return 1;
+                    }
+                    return 0;
+                })
+                return {
                     ...state,
-                    cars: price
+                    allCars: money
+                
                 }
+            
+            // if(action.payload === 'all'){
+            //     const price = state.cars
+            //     }
+            //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
+            //     state.cars.sort((a,b) => b.price - a.price)
+            //     return{
+            //         ...state,
+            //         cars: price
+            //     }
 
         case 'FILTER_BY_TRACTION':
         case 'FILTER_BY_TRANSMISSION':
