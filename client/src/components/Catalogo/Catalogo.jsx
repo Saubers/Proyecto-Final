@@ -21,7 +21,7 @@ export default function Catalogo(){
 
 const AllProducts = useSelector((state) => state.cars)
 //select MOTORES
-const engines = AllProducts.map(el => el.features.engine.petrol.data.map(el => el.name))
+const engines = AllProducts.map(el => el.features.engine.petrol.map(el => el.name))
 const nameEngines = []
 engines.forEach(function(element) {
    element.forEach(function(element2){
