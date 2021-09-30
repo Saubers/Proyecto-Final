@@ -5,9 +5,18 @@ const UserSchema = new Schema({
         type : String,
         required: true
     },
-    mail : String,
-    password : String,
-    status : [String]
+    mail : {
+        type : String,
+        required: true
+    },
+    password : {
+        type : String,
+        required: true
+    },
+    status : {
+        type : String,
+        required: true
+    },
     })
 
 

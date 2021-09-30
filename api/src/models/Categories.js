@@ -6,7 +6,9 @@ const CategoriesSchema = new Schema({
         type : String,
         required: true
     },
-    description : String,
+    description : {
+        type: String
+    },
     cars : [
         {type: Schema.Types.ObjectId,ref:'Car'}
     ]

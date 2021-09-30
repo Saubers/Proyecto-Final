@@ -14,7 +14,9 @@ const CarsSchema = new Schema({
         type: Number,
         required: true
     },
-    description : String,
+    description : {
+        type: String
+    },
     img : {
         type : [String],
         required: true
@@ -53,9 +55,9 @@ const CarsSchema = new Schema({
             required: true
         }
     },
-    category : [
-        {type: Schema.Types.ObjectId,ref:'Categories'}
-    ]
+    category : {
+        type: Schema.Types.ObjectId,ref:'Categories'
+    }
 })
 
 
