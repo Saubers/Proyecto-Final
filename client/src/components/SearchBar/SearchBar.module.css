@@ -7,6 +7,7 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
 }
 .btn{
     background-color:#699706;
+    cursor: pointer;
     width: 100px;
     height: 43px;
     padding: 14px;
