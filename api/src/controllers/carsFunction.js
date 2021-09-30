@@ -7,10 +7,10 @@ const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
         if (id) {
-            let carDetail= await Cars.find({"_id" : id}).populate('Categories');
+            let carDetail= await Car.findById(id).populate('category');
             let carId ={
             id: carDetail.id,
-            marca:carDetail.brand,
+            brand:carDetail.brand,
             name:carDetail.name,
             description:carDetail.description,
             img:carDetail.img,
@@ -45,13 +45,14 @@ const GetAllCars = async (req,res,next) => {
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
-        const {name,brand, model,description,img,category,features} = req.body;
+        const {name,brand,price,model,description,img,category,features} = req.body;
 
         const NewProduct = new Car({
             name,
             brand,
             model,
             img,
+            price,
             description,
             features,
             category,

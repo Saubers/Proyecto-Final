@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
-import { getCars, getEngine } from "../../actions/index";
+import { getCars, getEngine,filterKm } from "../../actions/index";
 import {filterEngine , filterPrice} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
@@ -32,7 +32,7 @@ engines.forEach(function(element) {
     if (element2 !== undefined) {
     nameEngines.push(element2)   
 }})})
-const unicosNameEngines = [... new Set(nameEngines)];
+const unicosNameEngines = [...new Set(nameEngines)];
 
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
@@ -53,7 +53,7 @@ function handleFitroEngine(e){
     setEngine(e.target.value)
 }
 function hadleFiltroKm(evento){
-    dispatch (/*filtradoKm actions de filtrado km*/(evento.target.value))
+    dispatch (filterKm(evento.target.value))
 }
 function handleFilterPrice(e){
     e.preventDefault();
@@ -145,6 +145,7 @@ return (
             ProductViewsXPage && ProductViewsXPage.map(el => {
                 return(
                     <div>
+                    <Link to= {'/home/' + el._id}>
                         <ProductCard
                             name={el.name}
                             img={el.img}
@@ -152,7 +153,7 @@ return (
                             brand={el.brand}
                             description={el.description}
                             price={el.price}
-                        />
+                    /></Link>
                     </div>
                 )
             })

@@ -1,16 +1,12 @@
 import React from 'react';
 import styleCars from '../ProductCard/ProductCard.module.css';
 
-const ProductCard = ({name,brand,img,id}) =>{
+const ProductCard = ({name,brand,img,_id}) =>{
     return(
     <div className={styleCars.containerproduct}>
         <div>
-            <img className={styleCars.imgstyle} src={img} alt="img" />
-        </div>
-        <div>
-        <Link to= {"/home/" + id}>
-            <img src={img} alt="img" />
-        </Link>
+            <h3>{brand} , {name}</h3>
+            <img className={styleCars.imgstyle} src={img} alt="img" /> 
         </div>
     </div>
     );

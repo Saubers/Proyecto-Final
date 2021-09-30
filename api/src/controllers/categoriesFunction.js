@@ -11,7 +11,9 @@ const CreateCategory = async (req,res,next) => {
             description,
             cars
         });
-        await NewCat.save()
+        await NewCat.save((err)=> {
+            if(err) return res.status(400).json(err)
+        })
         res.status(200).json(NewCat)
     }catch(error){
         next(error);

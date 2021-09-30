@@ -14,7 +14,7 @@ module.exports = app => {
     
     router.put('/categories',ModifiCategory);
 
-    router.get('/products/:categories', getByCategory);
+    router.get('/categories/:categories', getByCategory);
     
     //Productssss
 
@@ -35,3 +35,4 @@ module.exports = app => {
 
     app.use(router);
 }
+

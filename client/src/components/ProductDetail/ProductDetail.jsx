@@ -15,21 +15,16 @@ export default function Detail(props){
     console.log(MyCar);
     return (
         <div>
-            { 
-                MyCar.length>0 ?
                 <div>
-                    <h1>{MyCar.brand} {MyCar.name}</h1>
-                    <h3>{MyCar.category}</h3>
-                    {/* <img src= {} alt= "image not found" width="600px" height="400px"/> */}
-                    <h3>Price: {MyCar.price}</h3>
-                    <h3>Features: {MyCar.features}</h3>
-                    <p>Description: {MyCar.description}</p>
-                </div> 
-                        
-                        : <div>
-                            <h1>Loading...</h1>
-                            </div>
-            }
+                    <h1>{MyCar.brand}</h1>
+                     {/* <h3>{MyCar.category.name}</h3> */}
+                    <img src= {MyCar.img} alt= "image not found" width="600px" height="400px"/>
+                    <h2>Features</h2>
+                    {/* <h3>Price: {MyCar.features.price}</h3>
+                    <h3>Stock: {MyCar.features.stock}</h3>
+                    <h3>traction: {MyCar.features.traction}</h3>
+                    <h3>Description: {MyCar.description}</h3> */}
+                </div>
             <Link to= "/home">
                 <button>Back</button>
             </Link>
