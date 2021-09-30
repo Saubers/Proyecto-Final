@@ -6,7 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
-import { getCars, getEngine } from "../../actions/index";
+import { getCars, getEngine,filterKm } from "../../actions/index";
 import {filterEngine , filterPrice} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
@@ -53,7 +53,7 @@ function handleFitroEngine(e){
     setEngine(e.target.value)
 }
 function hadleFiltroKm(evento){
-    dispatch (/*filtradoKm actions de filtrado km*/(evento.target.value))
+    dispatch (filterKm(evento.target.value))
 }
 function handleFilterPrice(e){
     e.preventDefault();
