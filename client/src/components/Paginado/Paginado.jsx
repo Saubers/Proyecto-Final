@@ -1,4 +1,5 @@
 import React from 'react';
+import stylePaginado from '../Paginado/Paginado.module.css';
 
 const Paginado = ({AllProducts,productsXpage, paginado}) => {
     const NumberPage = []
@@ -9,10 +10,10 @@ const Paginado = ({AllProducts,productsXpage, paginado}) => {
 
     return(
         <div>
-            <ul>
+            <ul className={stylePaginado.ul}>
                 {
                     NumberPage && NumberPage.map(num => (
-                        <li>
+                        <li className={stylePaginado.li}>
                             <a href="# " onClick={()=> paginado(num)}>{num}</a>
                         
                         </li>
