@@ -17,9 +17,9 @@ export function getEngine() {
             payload: json.data.map(el => el.features.engine)
 })}}
 
-export function getRecipeDetail(id){
+export function getCarDetail(id){
     return async function (dispatch){
-            var json= await axios.get("http://localhost:3001/cars/" + id);
+            var json= await axios.get("http://localhost:3001/cars/"+id);
             return dispatch({
                 type: "GET_CAR_DETAIL",
                 payload: json.data
