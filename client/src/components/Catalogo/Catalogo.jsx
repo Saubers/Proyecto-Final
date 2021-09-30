@@ -79,8 +79,10 @@ return (
     
     {/* SELECT DE MOTOR*/}
     <select onChange = {ev => handleFitroEngine(ev)} >
+    <option value = ''> </option>
     {unicosNameEngines.map((ev)=>(
         <option value ={ev} > {ev} </option>
+        
     ))}
     </select>
     {/* SELECT DE KM*/}
@@ -144,6 +146,7 @@ return (
                             model={el.model}
                             brand={el.brand}
                             description={el.description}
+                            price={el.price}
                         /></Link>
                     </div>
                 )
