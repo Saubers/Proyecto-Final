@@ -30,7 +30,8 @@ const idCars = async (req,res)=>{
 const GetAllCars = async (req,res,next) => {
         try {
             const GetAll = await Car.find()
-            //console.log(GetAll)
+            .populate('category')
+            // console.log('getall',GetAll)
             return res.status(200).send(GetAll);
             
         }catch(error){
@@ -46,7 +47,7 @@ const CreateProduct = async (req,res,next) => {
     try{
         const {name,brand, model,description,img,category,features} = req.body;
 
-        const NewProduct = new Cars({
+        const NewProduct = new Car({
             name,
             brand,
             model,
@@ -55,7 +56,9 @@ const CreateProduct = async (req,res,next) => {
             features,
             category,
         });
-        await NewProduct.save()
+        await NewProduct.save((err)=> {
+            if(err) return res.status(400).json(err)
+        })
         res.status(200).json(NewProduct)
     }catch(error){
         next(error);
