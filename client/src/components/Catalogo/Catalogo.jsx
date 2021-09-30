@@ -32,7 +32,7 @@ engines.forEach(function(element) {
     if (element2 !== undefined) {
     nameEngines.push(element2)   
 }})})
-const unicosNameEngines = [... new Set(nameEngines)];
+const unicosNameEngines = [...new Set(nameEngines)];
 
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
@@ -145,7 +145,7 @@ return (
             ProductViewsXPage && ProductViewsXPage.map(el => {
                 return(
                     <div>
-                        <Link to= {'/home/' + el._id}>
+                    <Link to= {'/home/' + el._id}>
                         <ProductCard
                             name={el.name}
                             img={el.img}
@@ -153,7 +153,7 @@ return (
                             brand={el.brand}
                             description={el.description}
                             price={el.price}
-                        /></Link>
+                    /></Link>
                     </div>
                 )
             })

@@ -19,7 +19,8 @@ export function getEngine() {
 
 export function getCarDetail(id){
     return async function (dispatch){
-            var json= await axios.get("http://localhost:3001/cars/"+id);
+            var json= await axios.get("http://localhost:3002/products/"+id);
+            console.log('hola',json.data);
             return dispatch({
                 type: "GET_CAR_DETAIL",
                 payload: json.data

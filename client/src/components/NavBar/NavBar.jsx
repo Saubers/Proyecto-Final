@@ -5,16 +5,22 @@ import logo from '../image/logo.png';
 const NavBar = () => {
     return (
         <div className={styleNav.container}>
-            <nav className={styleNav.navstyle}>
-                <div>
-                    <img src={logo} alt="logo" width="50px"/>
-                </div>
-              
-                <div className={styleNav.divli}>
-                    <li><a className={styleNav.styleA} href="# ">New Cars</a></li>
-                    <li><a className={styleNav.styleA}href="# ">Use Cars</a></li>
-                </div>
-            </nav>
+        <nav>
+         <div class="logo">
+            Car Shop
+         </div>
+         <input type="checkbox" id="click"/>
+         <label for="click" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         </label>
+         <ul>
+            <li><a class="active" href="# ">Home</a></li>
+            <li><a href="# ">About</a></li>
+            <li><a href="# ">Services</a></li>
+            <li><a href="# ">Gallery</a></li>
+            <li><a href="# ">Feedback</a></li>
+         </ul>
+      </nav>
         </div>
     );
 };
