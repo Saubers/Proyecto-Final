@@ -38,16 +38,16 @@ function rootReducer (state = initialState, action) {
                 const km3 = state.cars.filter(el => 10000 < el.features.milage <= 40000 )
             }
             if(action.payload === '40-80'){
-                const km = state.cars.filter(el => 40000< el.features.milage <= 80000 )
+                const km4 = state.cars.filter(el => 40000< el.features.milage <= 80000 )
             }
             if(action.payload === '80-110'){
-                const km4 = state.cars.filter(el => 80000< el.features.milage <= 110000 )
+                const km5 = state.cars.filter(el => 80000< el.features.milage <= 110000 )
             }
             if(action.payload === '110-150'){
-                const km5 = state.cars.filter(el => 110000< el.features.milage <= 150000 )
+                const km6 = state.cars.filter(el => 110000< el.features.milage <= 150000 )
             }
             if(action.payload === '+150'){
-                const km6 = state.cars.filter(el => 150000< el.features.milage)
+                const km7 = state.cars.filter(el => 150000< el.features.milage)
             }
             return{
                 ...state,
