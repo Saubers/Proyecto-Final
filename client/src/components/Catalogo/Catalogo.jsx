@@ -32,7 +32,7 @@ engines.forEach(function(element) {
 const unicosNameEngines = [... new Set(nameEngines)];
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
-const [productsXpage] = useState(4)//productos por pagina
+const [productsXpage] = useState(1)//productos por pagina
 const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
@@ -141,8 +141,9 @@ return (
                         <ProductCard
                             name={el.name}
                             img={el.img}
-                            marca={el.marca}
-                        
+                            model={el.model}
+                            brand={el.brand}
+                            description={el.description}
                         /></Link>
                     </div>
                 )
