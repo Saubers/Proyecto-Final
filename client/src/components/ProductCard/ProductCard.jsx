@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ProductCard = ({name,marca,img}) =>{
+
     return(
     <div>
         <div>

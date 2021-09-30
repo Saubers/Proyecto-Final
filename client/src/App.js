@@ -5,12 +5,12 @@ import ProductCard from './components/ProductCard/ProductCard'
 
 
 function App() {
+  
   return (
     <Router>
       <Switch>
         <Route exact path="/home" component={Catalogo}/>
         <Route path = "/home/:id" component= {ProductCard}/>
-        <Route path="/" component={Catalogo}/>
       </Switch>
     </Router>
   );
