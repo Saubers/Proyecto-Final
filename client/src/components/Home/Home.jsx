@@ -14,7 +14,7 @@ return(
     <div>
         <h5>New 0km models</h5>
         {/*imagenes de autos 0km*/}
-        <Link to = '/'><h6>Catalogo</h6></Link>
+        <Link to = '/home/catalogo'><h6>Catalogo</h6></Link>
         <h6>Payment Methods</h6>
         {/*imagenes de visa mastercard y tatata*/}
         <h6>Branch offices</h6>
