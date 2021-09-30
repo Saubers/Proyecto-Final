@@ -145,7 +145,6 @@ return (
             ProductViewsXPage && ProductViewsXPage.map(el => {
                 return(
                     <div>
-                        <Link to= {'/home/' + el._id}>
                         <ProductCard
                             name={el.name}
                             img={el.img}
@@ -153,7 +152,7 @@ return (
                             brand={el.brand}
                             description={el.description}
                             price={el.price}
-                        /></Link>
+                        />
                     </div>
                 )
             })

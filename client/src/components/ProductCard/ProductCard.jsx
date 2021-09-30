@@ -1,9 +1,7 @@
 import React from 'react';
 import styleCars from '../ProductCard/ProductCard.module.css';
 
-const ProductCard = ({name,img,model,brand,price}) =>{
-
-const ProductCard = ({name,marca,img,id}) =>{
+const ProductCard = ({name,brand,img,id}) =>{
     return(
     <div className={styleCars.containerproduct}>
         <div>

@@ -22,7 +22,6 @@ export default function Detail({img}){
                     <h3>{MyCar.category}</h3>
                     <img src= {img} alt= "image not found" width="600px" height="400px"/>
                     <h3>Price: {MyCar.price}</h3>
-                    <h3>Stock: {MyCar.stock}</h3>
                     <h3>Features: {MyCar.features}</h3>
                     <p>Description: {MyCar.description}</p>
                 </div> 
