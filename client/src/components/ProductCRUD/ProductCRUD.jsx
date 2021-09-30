@@ -5,6 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 export default function ProductCRUD(){
 
+    const dispatch= useDispatch();
+
     const [input, setInput]= useState({
         brand:"",
         name:"",
@@ -18,6 +20,17 @@ export default function ProductCRUD(){
             ...input,
             [e.target.name]: e.target.value
         })};
+
+    function handleSubmit(e){
+        e.preventDefault(e);
+        dispatch(postRecipe(input))
+        alert("¡PRODUCT ADDED!")
+        setInput({
+            brand:"",
+            name:"",
+            img:"",
+            features:{}
+        })}
         
     return(
         <div>
@@ -106,10 +119,3 @@ export default function ProductCRUD(){
         </div>
     )
 }
-
-"transmission": {
-    "manual":"5-6 speed",
-     "automatic" : "6-7 speed DSG"
-      },
- "traction" : "FWD",
-  "milage": 14500
