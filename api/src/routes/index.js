@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar} = require('../controllers/carsFunction');
-const { CreateCategory, DeleteCategory, ModifiCategory} = require('../controllers/categoriesFunction.js')
+const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory} = require('../controllers/categoriesFunction.js')
 
 module.exports = app => {
     router.get('/', function(req, res){
@@ -14,7 +14,7 @@ module.exports = app => {
     
     router.put('/categories',ModifiCategory);
 
-    router.get('/products/:categories');
+    router.get('/products/:categories', getByCategory);
     
     //Productssss
 

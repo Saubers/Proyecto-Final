@@ -1,4 +1,5 @@
 require('../db.js')
+const Cars = require('../models/Cars.js');
 const Categories = require('../models/Categories.js');
 
 const CreateCategory = async (req,res,next) => {
@@ -39,8 +40,23 @@ const ModifiCategory = async(req,res) =>{
 }
 }
 
+const getByCategory = async (req, res, next) => {
+   if(Categories = req.query){
+       try {
+    const carByCategories = await Cars.find({"category": Categories})
+    console.log(carByCategories);
+    if(carByCategories !== null || carByCategories.length > 0){
+      res.status(200).json(carByCategories);
+    }
+       } catch(error) {
+    next(error)
+       }
+   }
+}
+
 module.exports = {
     CreateCategory,
     DeleteCategory,
-    ModifiCategory
+    ModifiCategory,
+    getByCategory
 }
