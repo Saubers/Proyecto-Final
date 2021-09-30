@@ -1,7 +1,6 @@
 import React from 'react';
 import styleCars from '../ProductCard/ProductCard.module.css';
-
-const ProductCard = ({name,img,model,brand,price}) =>{
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({name,marca,img,id}) =>{
     return(
