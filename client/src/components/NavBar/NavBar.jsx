@@ -14,11 +14,10 @@ const NavBar = () => {
          <i class="fas fa-bars"></i>
          </label>
          <ul>
-            <li><a class="active" href="# ">Home</a></li>
-            <li><a href="# ">About</a></li>
-            <li><a href="# ">Services</a></li>
-            <li><a href="# ">Gallery</a></li>
-            <li><a href="# ">Feedback</a></li>
+            <li><a href="# ">Contacts</a></li>
+            <li><a href="# ">Our Catalog</a></li>
+            <li><a href="# ">Payment Method</a></li>
+            <li><a href="# ">Branch Office</a></li>
          </ul>
       </nav>
         </div>

@@ -5,24 +5,26 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 } 
+
+nav .logo{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    font-size: 35px;
+    font-weight: 600;
+  }
 nav{
   display: flex;
   height: 80px;
   width: 100%;
   background: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   align-items: center;
   justify-content: space-between;
   padding: 0 50px 0 100px;
   flex-wrap: wrap;
 }
-nav .logo{
-  color: #fff;
-  font-size: 35px;
-  font-weight: 600;
-}
+
 nav ul{
   display: flex;
   flex-wrap: wrap;
