@@ -9,6 +9,13 @@ export function getCars() {
             type:'GET_CARS',
             payload: json.data
 })}}
+export function getEngine() {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/products");
+        return dispatch({
+            type:'GET_ENGINE',
+            payload: json.data.map(el => el.features.engine)
+})}}
 
 export function getRecipeDetail(id){
     return async function (dispatch){

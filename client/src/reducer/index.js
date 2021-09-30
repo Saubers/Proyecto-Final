@@ -1,7 +1,8 @@
 const initialState = {
     cars: [],
     allCars: [],
-    carDetail:[]
+    carDetail:[],
+    engine:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -10,7 +11,12 @@ function rootReducer (state = initialState, action) {
             return{
                 ...state,
                 cars: action.payload,
-                allCars : action.payload
+                allCars : action.payload,
+            }
+        case 'GET_ENGINE':
+            return{
+                ...state,
+                engine: action.payload
             }
         case 'GET_NAME_CARS':
             return{
@@ -23,9 +29,11 @@ function rootReducer (state = initialState, action) {
                 carDetail: action.payload
             }
         case 'FILTER_BY_ENGINE':
-            const filterState = action.payload === 'All' ? state.allCars :
-            state.allCars.filter(el => el.features.engine.map(element => element.name) === action.payload)
-            console.log(filterState);
+            // const prueba = state.engine
+            // console.log('action', action.payload);
+            // const filterState = action.payload === 'All' ? state.allCars :
+            // state.engine.filter(filtrarPorName())
+            // console.log(filterState);
             return{
                 ...state,
                 cars: filterState
