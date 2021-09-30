@@ -30,14 +30,7 @@ const CarsSchema = new Schema({
             type: Number,
             required: true
         },
-        engine:{
-            petrol:{
-                type : [Object]
-            },
-            diesel:{
-                type : [Object]
-            }
-        },
+        engine:[{type: Object}],
         transmission:{
             manual:{
                 type : String
