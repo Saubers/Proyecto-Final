@@ -11,21 +11,22 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
     width: 110px;
     height: 44px;
     position: relative;
-    top: 4px;
-    color: #20BF7E;
+    top: 2px;
+    color: #007CC2; 
+    border-radius: 4px;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
     text-decoration: none;
     padding: 10px 20px 10px 20px;
-    border: solid #20BF7E 4px;
+    border: solid #007CC2 2px;
     text-decoration: none;
     cursor: pointer;
     transition: background-color .3s, color .3s;
   }
   
   .btn:hover {
-    background-color: #20BF7E;
+    background-color: #007CC2;
     color: white;
   }
 .inputbusqueda{
