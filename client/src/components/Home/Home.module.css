@@ -1,4 +1,14 @@
 .container{
     justify-content: center;
-    
+    background-image: url(../image/2.jpg);
+}
+
+.div2{
+    background-image: url(../image/1366-2000-2.jpg);
+    width: 80%;
+    height: 720px;
+    margin: 150px;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
 }
