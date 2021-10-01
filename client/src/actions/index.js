@@ -27,7 +27,7 @@ export function getCarDetail(id){
 })}}
 
 export function postProduct(payload){
-    return async function (_dispatch){
+    return async function (dispatch){
         const response= await axios.post("http://localhost:3002/products", payload);
         return response;
     }

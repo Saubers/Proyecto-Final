@@ -162,7 +162,7 @@ export default function ProductCRUD(){
  */}
             <button type= "submit">Add Product</button>
 
-                <Link to= "/products">
+                <Link to= "/home">
                     <button>Back</button>
                 </Link>
 
