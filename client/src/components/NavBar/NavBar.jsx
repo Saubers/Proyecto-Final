@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <div className={styleNav.container}>
         <nav>
-         <div class="logo">
+         <div className={styleNav.logo}>
             Car Shop
          </div>
          <input type="checkbox" id="click"/>
@@ -14,11 +14,11 @@ const NavBar = () => {
          <i class="fas fa-bars"></i>
          </label>
          <ul>
-            <li><a class="active" href="# ">Home</a></li>
-            <li><a href="# ">About</a></li>
-            <li><a href="# ">Services</a></li>
-            <li><a href="# ">Gallery</a></li>
-            <li><a href="# ">Feedback</a></li>
+             <li><a href="/home">Home</a></li>
+            <li><a href="/contactos">Contacts</a></li>
+            <li><a href="/home/catalogo ">Our Catalog</a></li>
+            <li><a href="# ">Payment Method</a></li>
+            <li><a href="# ">Branch Office</a></li>
          </ul>
       </nav>
         </div>

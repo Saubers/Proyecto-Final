@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import {postProduct, getCars} from "../actions/index.js";
+import {postProduct} from "../actions/index.js";
 import {useDispatch, useSelector} from "react-redux";
 
 export default function ProductCRUD(){
@@ -23,7 +23,7 @@ export default function ProductCRUD(){
 
     function handleSubmit(e){
         e.preventDefault(e);
-        dispatch(postRecipe(input))
+        dispatch(postProduct(input))
         alert("¡PRODUCT ADDED!")
         setInput({
             brand:"",
