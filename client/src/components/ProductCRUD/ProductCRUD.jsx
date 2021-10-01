@@ -11,7 +11,10 @@ export default function ProductCRUD(){
         brand:"",
         name:"",
         img:"",
-        features:{}
+        category:"",
+        description:"",
+        features:{},
+        price:""
     });
     
     
@@ -26,11 +29,14 @@ export default function ProductCRUD(){
         dispatch(postProduct(input))
         alert("¡PRODUCT ADDED!")
         setInput({
-            brand:"",
-            name:"",
-            img:"",
-            features:{}
-        })}
+        brand:"",
+        name:"",
+        img:"",
+        category:"",
+        description:"",
+        features:{},
+        price:""
+    })};
         
     return(
         <div>
@@ -70,11 +76,41 @@ export default function ProductCRUD(){
                 </div>
 
                 <div>
+                    <label>Category: </label>
+                    <input
+                    type="text"
+                    value= {input.category}
+                    name= "category"
+                    onChange= {(e)=> handleChange(e)}
+                    />
+                </div>
+
+                <div>
+                    <label>Description: </label>
+                    <input
+                    type="text"
+                    value= {input.description}
+                    name= "description"
+                    onChange= {(e)=> handleChange(e)}
+                    />
+                </div>
+
+                <div>
                     <label>Features: </label>
                     <input
                     type="text"
                     value= {input.features}
                     name= "features"
+                    onChange= {(e)=> handleChange(e)}
+                    />
+                </div>
+
+                <div>
+                    <label>Price: </label>
+                    <input
+                    type="number"
+                    value= {input.price}
+                    name= "price"
                     onChange= {(e)=> handleChange(e)}
                     />
                 </div>
@@ -124,7 +160,7 @@ export default function ProductCRUD(){
                     />
                 </div>
  */}
-            <button className={Styles.button} type= "submit">Add Product</button>
+            <button type= "submit">Add Product</button>
 
                 <Link to= "/products">
                     <button>Back</button>
