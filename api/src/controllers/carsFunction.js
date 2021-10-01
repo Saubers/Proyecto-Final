@@ -72,10 +72,7 @@ const SearchCars = async (req,res,next) =>{
     const { name } = req.query;
     try {
         const ProductDB = await Car.findOne({name:name})
-<<<<<<< HEAD
         console.log(ProductDB)
-=======
->>>>>>> f1ae7cae16a577544098c8fc77c476f247c5a0fe
         if(ProductDB !== null){
             return res.status(200).send([ProductDB])
         }
