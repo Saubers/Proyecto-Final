@@ -35,7 +35,7 @@ return(
                     onChange ={e=> handleInputChange(e)}
                     value={name}
                     />
-                    <button className={styleSearch.btn} type = 'submit'> Buscar</button>
+                    <button className={styleSearch.btn} type = 'submit'>Search</button>
                 </div>
                 
             </div>
