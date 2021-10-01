@@ -71,10 +71,9 @@ const CreateProduct = async (req,res,next) => {
 const SearchCars = async (req,res,next) =>{
     const { name } = req.query;
     try {
-        const ProductDB = await Car.findOne({where: {name:name}})
-        console.log(ProductDB)
+        const ProductDB = await Car.findOne({name:name})
         if(ProductDB !== null){
-            return res.status(200).json([ProductDB])
+            return res.status(200).send(ProductDB)
         }
     }catch(error){
         next(error);
