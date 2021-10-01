@@ -49,19 +49,19 @@ function rootReducer (state = initialState, action) {
             }
             if(action.payload === '0-10'){
 
-                 km = state.allCars.filter(el =>(el.features.mileage < 0 && el.features.mileage <= 10000 ))
+                 km = state.allCars.filter(el =>(el.features.mileage > 0 && el.features.mileage <= 10000 ))
             }
             if(action.payload === '10-40'){
-                 km = state.allCars.filter(el =>( el.features.mileage < 10000  && el.features.mileage <= 40000 ))
+                 km = state.allCars.filter(el =>( el.features.mileage > 10000  && el.features.mileage <= 40000 ))
             }
             if(action.payload === '40-80'){
-                 km = state.allCars.filter(el =>(el.features.mileage <  40000 && el.features.mileage <= 80000 ))
+                 km = state.allCars.filter(el =>(el.features.mileage >  40000 && el.features.mileage <= 80000 ))
             }
             if(action.payload === '80-110'){
-                 km = state.allCars.filter(el => ( el.features.mileage < 80000 && el.features.mileage <= 110000 ))
+                 km = state.allCars.filter(el => ( el.features.mileage> 80000 && el.features.mileage <= 110000 ))
             }
             if(action.payload === '110-150'){
-                 km = state.allCars.filter(el =>( el.features.mileage <110000 && el.features.mileage <= 150000 ))
+                 km = state.allCars.filter(el =>( el.features.mileage >110000 && el.features.mileage <= 150000 ))
             }
             //(a && b) || c || d
             if(action.payload === '+150'){
