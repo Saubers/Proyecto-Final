@@ -1,5 +1,5 @@
 import React from 'react';
-import stylePaginado from '../Paginado/Paginado.module.css';
+import style from '../Paginado/Paginado.module.css';
 
 const Paginado = ({AllProducts,productsXpage, paginado}) => {
     const NumberPage = []
@@ -9,17 +9,15 @@ const Paginado = ({AllProducts,productsXpage, paginado}) => {
     }
 
     return(
-        <div>
-            <ul className={stylePaginado.ul}>
+        <div className={style.pagination}>
+      
                 {
-                    NumberPage && NumberPage.map(num => (
-                        <li className={stylePaginado.li}>
-                            <a href="# " onClick={()=> paginado(num)}>{num}</a>
-                        
-                        </li>
+                    NumberPage.length === 1 ? null : NumberPage.map(num => (
+                        <button className={style.button} onClick={()=> paginado(num)}>{num} </button> 
+                        // <a href="# " className={style.button} onClick={()=> paginado(num)}>{num}</a>
                     ))
                 }
-            </ul>
+        
         </div>
     );
 };

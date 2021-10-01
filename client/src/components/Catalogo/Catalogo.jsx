@@ -87,7 +87,7 @@ return (
     {/* SEARCHBAR */}
     <div>
     <SearchBar/>
-<button className="button2"  onClick={e=>handleClick(e)}>Volver a cargar autos</button>
+<button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
     </div>
     {/* BOTON VOLVER */}
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
@@ -145,7 +145,7 @@ return (
         <option value ='2016-2020'>2016-2020</option>
         <option value ='+2021'>+2021</option>
     </select>
-    <div>
+    <div >
         <Paginado
             AllProducts={AllProducts.length}
             paginado={paginado}//const paginado linea °n 21
