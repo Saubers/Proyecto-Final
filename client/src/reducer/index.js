@@ -95,19 +95,19 @@ function rootReducer (state = initialState, action) {
             let money = action.payload === "max" ?
                 state.allCars.sort((a,b)=>{
                     if(a.price > b.price){
-                        return 1;
+                        return -1;
                     }
                     if(a.price < b.price){
-                        return -1;
+                        return 1;
                     }
                     return 0;
                 }) :
                 state.allCars.sort((a,b)=>{
                     if(a.price > b.price){
-                        return -1;
+                        return 1;
                     }
                     if(a.price < b.price){
-                        return 1;
+                        return -1;
                     }
                     return 0;
                 })

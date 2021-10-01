@@ -6,6 +6,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
+import styleCatalogo from '../Catalogo/Catalogo.module.css';
 import { getCars, getEngine } from "../../actions/index";
 import {filterEngine , filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
 // import Card from './Card';
@@ -153,12 +154,12 @@ return (
         />
     </div>
 
-    <div>
+    <div className={styleCatalogo.containerdiv}>
         {
             
             ProductViewsXPage && ProductViewsXPage.map(el => {
                 return(
-                    <div>
+                    <div className={styleCatalogo.containercar}>
                     <Link to= {'/home/' + el._id}>
                         <ProductCard
                             name={el.name}
@@ -167,6 +168,7 @@ return (
                             brand={el.brand}
                             description={el.description}
                             price={el.price}
+                            mileage={el.features.mileage}
                     /></Link>
                     </div>
                 )

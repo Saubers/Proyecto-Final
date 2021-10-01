@@ -1,0 +1,9 @@
+.containerdiv{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+ 
+}
+.containercar{
+    padding: 10px;
+}
