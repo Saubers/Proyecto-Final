@@ -168,6 +168,7 @@ return (
                             brand={el.brand}
                             description={el.description}
                             price={el.price}
+                            mileage={el.features.mileage}
                     /></Link>
                     </div>
                 )
