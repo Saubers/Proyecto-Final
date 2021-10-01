@@ -29,62 +29,84 @@ function rootReducer (state = initialState, action) {
                 carDetail: action.payload
             }
         case 'FILTER_BY_ENGINE':
-            // const prueba = state.engine
-            // console.log('action', action.payload);
-            // const filterState = action.payload === 'All' ? state.allCars :
-            // state.engine.filter(filtrarPorName())
-            // console.log(filterState);
-            // return{
-            //     ...state,
-            //     cars: filterState
-            // }
-        case 'FILTER_BY_KM':
-            if(action.payload === 'all'){
-            let km = state.cars
+            let filterEngine = []
+            // console.log(action.payload)
+            // const engines = state.allCars.map(el => el.features.engine.map(el => el.name))
+            // const nameEngines = []
+            // engines.forEach(function(element) {
+            //    element.forEach(function(element2){
+            //     if (element2 !== undefined) {
+            //     nameEngines.push(element2)   
+            // }})})
+        //     if(action.payload === 'All'){
+               filterEngine =   state.allCars 
+        //    }
+        //    /////////////////////////////////
+        //    let i = 0
+        //     do {
+        //     if(nameEngines[i] === action.payload ){
+        //         filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
+        //     }
+        //     i++
+        //  while (nameEngines[i] !== action.payload){
+        //      if(nameEngines[i] === action.payload){
+        //          filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
+        //     }
+        //     i = i+ 1
+        // }
+            return{
+                 ...state,
+                cars: filterEngine
+             }
+            case 'FILTER_BY_KM':
+                let km = []
+                if(action.payload === 'All'){
+                     km = state.allCars
+                }
             
             if(action.payload === '0'){
-                const km1 = state.cars.filter(el => el.features.milage === 0 )
+                 km = state.allCars.filter(el => el.features.mileage === 0 )
             }
             if(action.payload === '0-10'){
 
-                const km2 = state.cars.filter(el => 0< el.features.milage <= 10000 )
+                 km = state.allCars.filter(el =>(el.features.mileage > 0 && el.features.mileage <= 10000 ))
             }
             if(action.payload === '10-40'){
-                const km3 = state.cars.filter(el => 10000 < el.features.milage <= 40000 )
+                 km = state.allCars.filter(el =>( el.features.mileage > 10000  && el.features.mileage <= 40000 ))
             }
             if(action.payload === '40-80'){
-                const km4 = state.cars.filter(el => 40000< el.features.milage <= 80000 )
+                 km = state.allCars.filter(el =>(el.features.mileage >  40000 && el.features.mileage <= 80000 ))
             }
             if(action.payload === '80-110'){
-                const km5 = state.cars.filter(el => 80000< el.features.milage <= 110000 )
+                 km = state.allCars.filter(el => ( el.features.mileage > 80000 && el.features.mileage <= 110000 ))
             }
             if(action.payload === '110-150'){
-                const km6 = state.cars.filter(el => 110000< el.features.milage <= 150000 )
+                 km = state.allCars.filter(el =>( el.features.mileage >110000 && el.features.mileage <= 150000 ))
             }
+            //(a && b) || c || d
             if(action.payload === '+150'){
-                const km7 = state.cars.filter(el => 150000< el.features.milage)
+                 km = state.allCars.filter(el =>  el.features.mileage > 150000)
             }
             return{
                 ...state,
                 cars: km
             }
-        }
         case 'FILTER_BY_PRICE':
             let money = action.payload === "max" ?
                 state.allCars.sort((a,b)=>{
-                    if(a.name > b.name){
+                    if(a.price > b.price){
                         return 1;
                     }
-                    if(a.name < b.name){
+                    if(a.price < b.price){
                         return -1;
                     }
                     return 0;
                 }) :
                 state.allCars.sort((a,b)=>{
-                    if(a.name > b.name){
+                    if(a.price > b.price){
                         return -1;
                     }
-                    if(a.name < b.name){
+                    if(a.price < b.price){
                         return 1;
                     }
                     return 0;
@@ -106,8 +128,73 @@ function rootReducer (state = initialState, action) {
             //     }
 
         case 'FILTER_BY_TRACTION':
+        let filterTraction = []
+        if(action.payload === 'All'){
+        filterTraction = state.allCars
+        }
+        if(action.payload === 'FWD'){
+        filterTraction = state.allCars.filter(el => el.features.traction === 'FWD')
+        }
+        if(action.payload === 'RWD'){
+        filterTraction = state.allCars.filter(el => el.features.traction === 'RWD')
+        }
+        if(action.payload === 'AWD'){
+        filterTraction = state.allCars.filter(el => el.features.traction === 'AWD')
+        }
+        return{
+        ...state,
+        cars: filterTraction
+    }
         case 'FILTER_BY_TRANSMISSION':
+            let filterTransmission = []
+            console.log(action.payload)
+            
+            if(action.payload === 'All')
+            filterTransmission = state.allCars
+            if(action.payload === 'manual'){
+                filterTransmission = state.allCars.filter(el => el.features.transmission.hasOwnProperty('manual'))
+            }
+            if(action.payload === 'automatic'){
+                filterTransmission = state.allCars.filter(el => el.features.transmission.hasOwnProperty('automatic'))
+            }
+            return{
+                ...state,
+                cars: filterTransmission
+            }
         case 'FILTER_BY_AGE':
+            let modelFilter = []
+            if(action.payload === 'All'){
+                modelFilter = state.allCars
+            }
+        
+        if(action.payload === '2000'){
+            modelFilter = state.allCars.filter(el => el.features.model >= 2000 )
+        }
+        if(action.payload === '-2000'){
+
+            modelFilter = state.allCars.filter(el =>(el.features.model > 2000 && el.features.model <= 2005 ))
+        }
+        if(action.payload === '2000-2005'){
+            modelFilter = state.allCars.filter(el =>( el.features.mileage > 2006  && el.features.mileage <= 2010 ))
+        }
+        if(action.payload === '2006-2010'){
+            modelFilter = state.allCars.filter(el =>(el.features.mileage >  2011 && el.features.mileage <= 2015 ))
+        }
+        if(action.payload === '2011-2015'){
+            modelFilter = state.allCars.filter(el => ( el.features.mileage > 2016 && el.features.mileage <= 2021 ))
+        }
+        if(action.payload === '2016-2020'){
+            modelFilter = state.allCars.filter(el =>( el.features.mileage  <= 2021 ))
+        }
+        if(action.payload === '+2021'){
+            modelFilter = state.allCars.filter(el =>( el.features.mileage  > 2021 ))
+        }
+        //(a && b) || c || d
+
+        return{
+            ...state,
+            cars: modelFilter
+        }
 
     default:
         return state;

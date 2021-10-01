@@ -6,8 +6,8 @@ import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
-import { getCars, getEngine,filterKm } from "../../actions/index";
-import {filterEngine , filterPrice} from '../../actions/index';
+import { getCars, getEngine } from "../../actions/index";
+import {filterEngine , filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
@@ -47,6 +47,11 @@ const paginado = (NumberPage) => {
     setPage(NumberPage);
 }
 
+function handleClick(e){
+    e.preventDefault();
+    dispatch(getCars())
+    setPage(1)
+}
 function handleFitroEngine(e){
     dispatch(filterEngine(e.target.value))
     setPage(1)
@@ -62,37 +67,42 @@ function handleFilterPrice(e){
     setOrder(e.target.value)
 } 
 function handleFilterTraction(evento){
-    dispatch (/*filtradoTraccion actions de filtrado Traccion*/(evento.target.value))
+    dispatch (filterTraction(evento.target.value))
     setPage(1);
-    setOrder(`Ordenado ${evento.target.value}`)
+    setOrder(order,`Ordenado ${evento.target.value}`)
 }
 function handleFilterTransmission(evento){
-    dispatch (/*filtradoTransmision actions de filtrado Transmision*/(evento.target.value))
+    dispatch (filterTransmission(evento.target.value))
     setPage(1);
-    setOrder(`Ordenado ${evento.target.value}`)
+    setOrder(order,`Ordenado ${evento.target.value}`)
 }
 function handleFilterAge(evento){
-    dispatch (/*filtradoAño actions de filtrado Año*/(evento.target.value))
+    dispatch (filterAge(evento.target.value))
     setPage(1);
-    setOrder(`Ordenado ${evento.target.value}`)
+    setOrder(order,`Ordenado ${evento.target.value}`)
 }
 return (
 <div className ='container'>
     <NavBar/>
     {/* SEARCHBAR */}
+    <div>
     <SearchBar/>
+<button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
+    </div>
     {/* BOTON VOLVER */}
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
     
     {/* SELECT DE MOTOR*/}
+    <label>MOTOR</label>
     <select onChange = {ev => handleFitroEngine(ev)} >
     <option value = ''> </option>
-    {unicosNameEngines.map((ev)=>(
-        <option value ={ev} > {ev} </option>
+    {unicosNameEngines.map((eng)=>(
+        <option value ={eng} > {eng} </option>
         
     ))}
     </select>
     {/* SELECT DE KM*/}
+    <label>KILOMETRAJE</label>
     <select onChange = {ev => hadleFiltroKm(ev)} >
         <option value ='All'>All</option>
         <option value ='0'>0Km</option>
@@ -104,11 +114,13 @@ return (
         <option value ='+150'>+150km</option>
     </select>
     {/* SELECT DE PRECIO*/}
+        <label>PRECIO</label>
     <select onChange = {e => handleFilterPrice(e)} >
         <option value ='max'>$$++</option>
         <option value ='min'>$$--</option>
     </select>
     {/* SELECT DE TRACCION */}
+        <label>TRACCION</label>
     <select onChange = {ev => handleFilterTraction(ev)} >
         <option value ='All'>All</option>
         <option value ='FWD'>FWD</option>
@@ -116,12 +128,14 @@ return (
         <option value ='AWD'>AWD</option>
     </select>
     {/* SELECT DE TRANSMISION */}
+    <label>TRANSMISION</label>
     <select onChange = {ev => handleFilterTransmission(ev)} >
         <option value ='All'>All</option>
-        <option value ='Manual'>Manual</option>
-        <option value ='Automatic'>Automatic</option>
+        <option value ='manual'>Manual</option>
+        <option value ='automatic'>Automatic</option>
     </select>
     {/* SELECT DE AÑO */}
+    <label>AÑO</label>
     <select onChange = {ev => handleFilterAge(ev)} >
         <option value ='All'>All</option>
         <option value ='-2000'>-2000</option>
@@ -131,7 +145,7 @@ return (
         <option value ='2016-2020'>2016-2020</option>
         <option value ='+2021'>+2021</option>
     </select>
-    <div>
+    <div >
         <Paginado
             AllProducts={AllProducts.length}
             paginado={paginado}//const paginado linea °n 21
