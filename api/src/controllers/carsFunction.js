@@ -73,7 +73,7 @@ const SearchCars = async (req,res,next) =>{
     try {
         const ProductDB = await Car.findOne({name:name})
         if(ProductDB !== null){
-            return res.status(200).send(ProductDB)
+            return res.status(200).send([ProductDB])
         }
     }catch(error){
         next(error);
