@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import {postProduct} from "../actions/index.js";
+import {postProduct} from '../../actions/index'
 import {useDispatch, useSelector} from "react-redux";
 
 export default function ProductCRUD(){
