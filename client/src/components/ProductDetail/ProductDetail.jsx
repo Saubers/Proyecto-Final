@@ -25,7 +25,7 @@ export default function Detail(props){
                     <h3>traction: {MyCar.features.traction}</h3>
                     <h3>Description: {MyCar.description}</h3> */}
                 </div>
-            <Link to= "/home">
+            <Link to= "/home/catalogo">
                 <button>Back</button>
             </Link>
         </div>

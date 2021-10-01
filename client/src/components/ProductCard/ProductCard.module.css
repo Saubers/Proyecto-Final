@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
 .imgstyle{
     width: 400px;
+}
+
+.name{
+font-family: 'Poppins', sans-serif;
+color:rgb(0, 0, 0);
 }
 .containerproduct{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+   
 }
