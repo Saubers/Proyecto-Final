@@ -35,7 +35,7 @@ export default function ProductCRUD(){
     return(
         <div>
 
-            <h1>Enter new Car</h1>
+            <h1>Enter New Car information</h1>
 
             <form onSubmit= {(e)=> handleSubmit(e)}>
 
@@ -70,6 +70,16 @@ export default function ProductCRUD(){
                 </div>
 
                 <div>
+                    <label>Features: </label>
+                    <input
+                    type="text"
+                    value= {input.features}
+                    name= "features"
+                    onChange= {(e)=> handleChange(e)}
+                    />
+                </div>
+
+{/*                 <div>
                     <h3>Features</h3>
                     
                     <h4>Engine</h4>
@@ -113,6 +123,12 @@ export default function ProductCRUD(){
                     name= "features"
                     />
                 </div>
+ */}
+            <button className={Styles.button} type= "submit">Add Product</button>
+
+                <Link to= "/products">
+                    <button>Back</button>
+                </Link>
 
             </form>
 

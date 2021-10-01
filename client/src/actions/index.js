@@ -26,6 +26,13 @@ export function getCarDetail(id){
                 payload: json.data
 })}}
 
+export function postProduct(payload){
+    return async function (_dispatch){
+        const response= await axios.post("http://localhost:3002/products", payload);
+        return response;
+    }
+}
+
 export function filterEngine(payload) {
     return{
         type:'FILTER_BY_ENGINE',

@@ -28,6 +28,10 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 carDetail: action.payload
             }
+        case 'POST_PRODUCT':
+            return{
+                ...state,
+            }
         case 'FILTER_BY_ENGINE':
             let filterEngine = []
             // console.log(action.payload)
