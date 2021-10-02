@@ -37,7 +37,7 @@ const unicosNameEngines = [...new Set(nameEngines)];
 
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
-const [productsXpage] = useState(5)//productos por pagina
+const [productsXpage] = useState(6)//productos por pagina
 const [order, setOrder] = useState("")
 const [engine , setEngine] = useState("")
 const EndProduct = page * productsXpage;
@@ -94,58 +94,79 @@ return (
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
     
     {/* SELECT DE MOTOR*/}
-    <label>MOTOR</label>
-    <select onChange = {ev => handleFitroEngine(ev)} >
-    <option value = ''> </option>
-    {unicosNameEngines.map((eng)=>(
-        <option value ={eng} > {eng} </option>
+    <div className = {styleCatalogo.divcontainer}>
+        <div className={styleCatalogo.divfilter}>
+            <label>MOTOR</label>
+            <select onChange = {ev => handleFitroEngine(ev)} className={styleCatalogo.btnfilter}>
+            <option value = ''> </option>
+            {unicosNameEngines.map((eng)=>(
+                <option value ={eng} > {eng} </option>
+                
+            ))}
+            </select>
+        </div>
         
-    ))}
-    </select>
-    {/* SELECT DE KM*/}
-    <label>KILOMETRAJE</label>
-    <select onChange = {ev => hadleFiltroKm(ev)} >
-        <option value ='All'>All</option>
-        <option value ='0'>0Km</option>
-        <option value ='0-10'>0km - 10km</option>
-        <option value ='10-40'>10km - 40km</option>
-        <option value ='40-80'>40km - 80km</option>
-        <option value ='80-110'>80km - 110</option>
-        <option value ='110-150'>110km - 150km</option>
-        <option value ='+150'>+150km</option>
-    </select>
-    {/* SELECT DE PRECIO*/}
-        <label>PRECIO</label>
-    <select onChange = {e => handleFilterPrice(e)} >
-        <option value ='max'>$$++</option>
-        <option value ='min'>$$--</option>
-    </select>
-    {/* SELECT DE TRACCION */}
-        <label>TRACCION</label>
-    <select onChange = {ev => handleFilterTraction(ev)} >
-        <option value ='All'>All</option>
-        <option value ='FWD'>FWD</option>
-        <option value ='RWD'>RWD</option>
-        <option value ='AWD'>AWD</option>
-    </select>
-    {/* SELECT DE TRANSMISION */}
-    <label>TRANSMISION</label>
-    <select onChange = {ev => handleFilterTransmission(ev)} >
-        <option value ='All'>All</option>
-        <option value ='manual'>Manual</option>
-        <option value ='automatic'>Automatic</option>
-    </select>
-    {/* SELECT DE AÑO */}
-    <label>AÑO</label>
-    <select onChange = {ev => handleFilterAge(ev)} >
-        <option value ='All'>All</option>
-        <option value ='-2000'>-2000</option>
-        <option value ='2000-2005'>2000-2005</option>
-        <option value ='2006-2010'>2006-2010</option>
-        <option value ='2011-2015'>2011-2015</option>
-        <option value ='2016-2020'>2016-2020</option>
-        <option value ='+2021'>+2021</option>
-    </select>
+        {/* SELECT DE KM*/}
+        <div className={styleCatalogo.divfilter}>
+            <label>KILOMETRAJE</label>
+            <select onChange = {ev => hadleFiltroKm(ev)} className={styleCatalogo.btnfilter}>
+                <option value ='All'>All</option>
+                <option value ='0'>0Km</option>
+                <option value ='0-10'>0km - 10km</option>
+                <option value ='10-40'>10km - 40km</option>
+                <option value ='40-80'>40km - 80km</option>
+                <option value ='80-110'>80km - 110</option>
+                <option value ='110-150'>110km - 150km</option>
+                <option value ='+150'>+150km</option>
+            </select>
+        </div>
+        
+        {/* SELECT DE PRECIO*/}
+        <div className={styleCatalogo.divfilter}>
+            <label>PRECIO</label>
+            <select onChange = {e => handleFilterPrice(e)} className={styleCatalogo.btnfilter}>
+                <option value ='max'>$$++</option>
+                <option value ='min'>$$--</option>
+            </select>
+        </div>
+            
+        {/* SELECT DE TRACCION */}
+        <div className={styleCatalogo.divfilter}>
+            <label>TRACCION</label>
+            <select onChange = {ev => handleFilterTraction(ev)} className={styleCatalogo.btnfilter}>
+                <option value ='All'>All</option>
+                <option value ='FWD'>FWD</option>
+                <option value ='RWD'>RWD</option>
+                <option value ='AWD'>AWD</option>
+            </select>
+        </div>
+        
+        {/* SELECT DE TRANSMISION */}
+        <div className={styleCatalogo.divfilter}>
+            <label>TRANSMISION</label>
+            <select onChange = {ev => handleFilterTransmission(ev)} className={styleCatalogo.btnfilter}>
+                <option value ='All'>All</option>
+                <option value ='manual'>Manual</option>
+                <option value ='automatic'>Automatic</option>
+            </select>
+        </div>
+        
+        {/* SELECT DE AÑO */}
+        <div className={styleCatalogo.divfilter}>
+            <label>AÑO</label>
+            <select onChange = {ev => handleFilterAge(ev)} className={styleCatalogo.btnfilter}>
+                <option value ='All'>All</option>
+                <option value ='-2000'>-2000</option>
+                <option value ='2000-2005'>2000-2005</option>
+                <option value ='2006-2010'>2006-2010</option>
+                <option value ='2011-2015'>2011-2015</option>
+                <option value ='2016-2020'>2016-2020</option>
+                <option value ='+2021'>+2021</option>
+            </select>
+        </div>
+    </div>
+    
+    
     <div >
         <Paginado
             AllProducts={AllProducts.length}
