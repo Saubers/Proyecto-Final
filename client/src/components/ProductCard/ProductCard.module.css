@@ -32,4 +32,10 @@
 .btn{
     margin-right: 10px;
     width: 70px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color:#007CC2;
+    color :white;
+
 }

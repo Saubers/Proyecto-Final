@@ -10,3 +10,20 @@
 .link{
     text-decoration-line: none;
 }
+.btnfilter{
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color:#007CC2;
+    color :white;
+    width:100px;
+}
+.divfilter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130px;
+}
+.divcontainer{
+    display: flex;
+    justify-content: space-around;
+}
