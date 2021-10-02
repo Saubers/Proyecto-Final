@@ -13,6 +13,7 @@
     height: 40px;
     background: none;
     border: 1px solid gainsboro;
+    cursor: pointer;
 }
 .button:hover{
     color: #fff;
