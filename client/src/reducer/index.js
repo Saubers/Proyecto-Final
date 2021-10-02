@@ -171,7 +171,7 @@ function rootReducer (state = initialState, action) {
         case 'FILTER_BY_AGE':
             let modelFilter = []
             if(action.payload === 'All'){
-                modelFilter = state.allCars
+                modelFilter = state.cars
             }
         
         if(action.payload === '2000'){
