@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
-import {postProduct} from '../../actions/index'
+import {getCarDetail, postProduct} from '../../actions/index'
 import {useDispatch, useSelector} from "react-redux";
 
 export default function ProductCRUD(){
@@ -38,6 +38,10 @@ export default function ProductCRUD(){
         price:""
     })};
         
+    useEffect(() => {
+        dispatch(getCarDetail());
+      }, []);
+
     return(
         <div>
 
@@ -46,17 +50,17 @@ export default function ProductCRUD(){
             <form onSubmit= {(e)=> handleSubmit(e)}>
 
                 <div>
-                    <label>Brand: </label>
+                    <label>Brand:</label>
                     <input
                     type="text"
                     value= {input.brand}
                     name= "brand"
-                    onChange= {(e)=> handleChange(e)}
+                    onChange={(e)=> handleChange(e)}
                     />
                 </div>
 
                 <div>
-                    <label>Name: </label>
+                    <label>Name:</label>
                     <input
                     type="text"
                     value= {input.name}
@@ -78,20 +82,25 @@ export default function ProductCRUD(){
                 <div>
                     <label>Category: </label>
                     <input
+                    onChange= {(e)=>{
+                         handleChange(e)
+                        }}
+                    required
                     type="text"
-                    value= {input.category}
-                    name= "category"
-                    onChange= {(e)=> handleChange(e)}
+                    name="image"
+                    value={input.category}
                     />
                 </div>
 
                 <div>
                     <label>Description: </label>
                     <input
+                    onChange= {(e)=> handleChange(e)}
+                    required
                     type="text"
                     value= {input.description}
                     name= "description"
-                    onChange= {(e)=> handleChange(e)}
+                
                     />
                 </div>
 
