@@ -1,8 +1,6 @@
 .containerSearch{
     height:100px;
-    background: #bdc3c7;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #485482;  /* fallback for old browsers */
 
 }
 
@@ -12,21 +10,21 @@ background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, F
     height: 44px;
     position: relative;
     top: 2px;
-    color: #007CC2; 
+    color: #000000; 
     border-radius: 4px;
     font-size: 20px;
     font-family: Arial;
     text-align: center;
     text-decoration: none;
     padding: 10px 20px 10px 20px;
-    border: solid #007CC2 2px;
+    border: solid #000000 2px;
     text-decoration: none;
     cursor: pointer;
     transition: background-color .3s, color .3s;
   }
   
   .btn:hover {
-    background-color: #007CC2;
+    background-color: #000000;
     color: white;
   }
 .inputbusqueda{

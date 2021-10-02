@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import SearchBar from "../SearchBar/SearchBar";
 import NavBar from '../NavBar/NavBar'
 import styleHome from '../Home/Home.module.css'
 
@@ -12,6 +10,7 @@ return(
     <div className= {styleHome.div2}>
     <h1>Concessionaire</h1>
     <h4>You are looking for a 0km car, we will advise you to tell us your budget $-$</h4>
+    
     </div>
 </div>
 

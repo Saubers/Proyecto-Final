@@ -12,18 +12,19 @@ export default function Detail(props){
     },[dispatch, props.match.params.id])
 
     const MyCar= useSelector ((state)=> state.carDetail)
+    /* const carCategories = useSelector((state) => state.categories) */
     console.log(MyCar);
     return (
         <div>
                 <div>
-                    <h1>{MyCar.brand}</h1>
-                     {/* <h3>{MyCar.category.name}</h3> */}
-                    <img src= {MyCar.img} alt= "image not found" width="600px" height="400px"/>
-                    <h2>Features</h2>
-                    {/* <h3>Price: {MyCar.features.price}</h3>
-                    <h3>Stock: {MyCar.features.stock}</h3>
-                    <h3>traction: {MyCar.features.traction}</h3>
-                    <h3>Description: {MyCar.description}</h3> */}
+                    <h1>{MyCar.brand} {MyCar.name}</h1>
+                    {/* <h3>{carCategories.name}</h3> */}
+                    <img src= {MyCar.img} alt= "not found" width="600px" height="400px"/>
+                    <h3>Information</h3>
+                    <h6>Mileage: {MyCar.features?.mileage}</h6>
+                     <h6>Price: {MyCar.price}</h6>
+                    <h6>traction: {MyCar.features?.traction}</h6>
+                    <h6>Description: {MyCar.description}</h6>
                 </div>
             <Link to= "/home/catalogo">
                 <button>Back</button>
