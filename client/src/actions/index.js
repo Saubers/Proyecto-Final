@@ -20,7 +20,6 @@ export function getEngine() {
 export function getCarDetail(id){
     return async function (dispatch){
             var json= await axios.get("http://localhost:3002/products/"+id);
-            console.log('hola',json.data);
             return dispatch({
                 type: "GET_CAR_DETAIL",
                 payload: json.data
@@ -29,7 +28,6 @@ export function getCarDetail(id){
 export function postProduct(payload){
     return async function(dispatch){   
         const json =  await axios.post("http://localhost:3002/products", payload);
-        console.log('response', json)
         return dispatch({
             type: 'POST_ACTITY',
             payload : json

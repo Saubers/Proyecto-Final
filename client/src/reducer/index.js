@@ -151,8 +151,6 @@ function rootReducer (state = initialState, action) {
     }
         case 'FILTER_BY_TRANSMISSION':
             let filterTransmission = []
-            console.log(action.payload)
-            
             if(action.payload === 'All')
             filterTransmission = state.allCars
             if(action.payload === 'manual'){
