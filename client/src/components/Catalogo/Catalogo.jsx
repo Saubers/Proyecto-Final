@@ -7,7 +7,7 @@ import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
 import styleCatalogo from '../Catalogo/Catalogo.module.css';
-import { getCars, getEngine } from "../../actions/index";
+import { getCars } from "../../actions/index";
 import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
@@ -20,9 +20,9 @@ export default function Catalogo(){
     dispatch(getCars())
 },[dispatch])
 
-useEffect(()=>{
-    dispatch(getEngine())
-},[dispatch])
+// useEffect(()=>{
+//     dispatch(getEngine())
+// },[dispatch])
 
 const AllProducts = useSelector((state) => state.cars)
 //select MOTORES
@@ -60,6 +60,7 @@ function handleClick(e){
 // }
 function hadleFiltroKm(evento){
     dispatch (filterKm(evento.target.value))
+
 }
 function handleFilterPrice(e){
     e.preventDefault();
@@ -73,6 +74,7 @@ function handleFilterTraction(evento){
     setOrder(order,`Ordenado ${evento.target.value}`)
 }
 function handleFilterTransmission(evento){
+    evento.preventDefault();
     dispatch (filterTransmission(evento.target.value))
     setPage(1);
     setOrder(order,`Ordenado ${evento.target.value}`)
@@ -93,9 +95,8 @@ return (
     {/* BOTON VOLVER */}
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
     
-    
-    <div className = {styleCatalogo.divcontainer}>
     {/* SELECT DE MOTOR*/}
+    <div className = {styleCatalogo.divcontainer}>
         {/* <div className={styleCatalogo.divfilter}>
             <label>MOTOR</label>
             <select onChange = {ev => handleFitroEngine(ev)} className={styleCatalogo.btnfilter}>
@@ -105,7 +106,7 @@ return (
                 
             ))}
             </select>
-    </div> */}
+        </div> */}
         
         {/* SELECT DE KM*/}
         <div className={styleCatalogo.divfilter}>
