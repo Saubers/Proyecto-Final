@@ -2,3 +2,7 @@
 api/src/controllers/carsFunction.js
 api/src/controllers/carsFunction.js
 *.js
+
+node_modules /
+.env /
+package-lock.json
