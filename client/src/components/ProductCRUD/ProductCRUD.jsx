@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
 import {getCarDetail, postProduct} from '../../actions/index'
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 
 export default function ProductCRUD(){
 
@@ -40,7 +40,7 @@ export default function ProductCRUD(){
         
     useEffect(() => {
         dispatch(getCarDetail());
-      }, []);
+      }, [dispatch]);
 
     return(
         <div>

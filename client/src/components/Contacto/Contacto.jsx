@@ -7,9 +7,6 @@ return(
 <div >
     <NavBar/>
     <h1>Contact us in:</h1>
-    <div>
-    <h2></h2>
-    </div>
 </div>
 
 )

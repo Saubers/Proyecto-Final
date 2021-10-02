@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'nuka-carousel';
 
 export default function Component() {
- {
+ 
     return (
         <div>
       <Carousel>
@@ -16,4 +16,3 @@ export default function Component() {
       </div>
     );
   }
-}
