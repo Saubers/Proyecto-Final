@@ -48,7 +48,7 @@ const CarsSchema = new Schema({
             required: true
         }
     },
-    category : {
+    category: {
         type: Schema.Types.ObjectId,ref:'Categories'
     }
 })
