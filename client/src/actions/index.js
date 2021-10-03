@@ -27,11 +27,11 @@ export function getCarDetail(id){
 })}}
 
 export function postProduct(payload){
+    console.log(payload)
     return async function(dispatch){   
         const json =  await axios.post("http://localhost:3002/products", payload);
-        console.log('response', json)
         return dispatch({
-            type: 'POST_ACTITY',
+            type: 'POST_PRODUCT',
             payload : json
         })
     }

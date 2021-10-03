@@ -69,27 +69,27 @@ function rootReducer (state = initialState, action) {
                 }
             
             if(action.payload === '0'){
-                 km = state.allCars.filter(el => el.features.mileage === 0 )
+                 km = state.cars.filter(el => el.features.mileage === 0 )
             }
             if(action.payload === '0-10'){
 
-                 km = state.allCars.filter(el =>(el.features.mileage > 0 && el.features.mileage <= 10000 ))
+                 km = state.cars.filter(el =>(el.features.mileage > 0 && el.features.mileage <= 10000 ))
             }
             if(action.payload === '10-40'){
-                 km = state.allCars.filter(el =>( el.features.mileage > 10000  && el.features.mileage <= 40000 ))
+                 km = state.cars.filter(el =>( el.features.mileage > 10000  && el.features.mileage <= 40000 ))
             }
             if(action.payload === '40-80'){
-                 km = state.allCars.filter(el =>(el.features.mileage >  40000 && el.features.mileage <= 80000 ))
+                 km = state.cars.filter(el =>(el.features.mileage >  40000 && el.features.mileage <= 80000 ))
             }
             if(action.payload === '80-110'){
-                 km = state.allCars.filter(el => ( el.features.mileage > 80000 && el.features.mileage <= 110000 ))
+                 km = state.cars.filter(el => ( el.features.mileage > 80000 && el.features.mileage <= 110000 ))
             }
             if(action.payload === '110-150'){
-                 km = state.allCars.filter(el =>( el.features.mileage >110000 && el.features.mileage <= 150000 ))
+                 km = state.cars.filter(el =>( el.features.mileage >110000 && el.features.mileage <= 150000 ))
             }
             //(a && b) || c || d
             if(action.payload === '+150'){
-                 km = state.allCars.filter(el =>  el.features.mileage > 150000)
+                 km = state.cars.filter(el =>  el.features.mileage > 150000)
             }
             return{
                 ...state,
@@ -97,7 +97,7 @@ function rootReducer (state = initialState, action) {
             }
         case 'FILTER_BY_PRICE':
             let money = action.payload === "max" ?
-                state.allCars.sort((a,b)=>{
+                state.cars.sort((a,b)=>{
                     if(a.price > b.price){
                         return -1;
                     }
@@ -106,7 +106,7 @@ function rootReducer (state = initialState, action) {
                     }
                     return 0;
                 }) :
-                state.allCars.sort((a,b)=>{
+                state.cars.sort((a,b)=>{
                     if(a.price > b.price){
                         return 1;
                     }
@@ -117,7 +117,7 @@ function rootReducer (state = initialState, action) {
                 })
                 return {
                     ...state,
-                    allCars: money
+                    cars: money
                 
                 }
             
@@ -137,13 +137,13 @@ function rootReducer (state = initialState, action) {
         filterTraction = state.allCars
         }
         if(action.payload === 'FWD'){
-        filterTraction = state.allCars.filter(el => el.features.traction === 'FWD')
+        filterTraction = state.cars.filter(el => el.features.traction === 'FWD')
         }
         if(action.payload === 'RWD'){
-        filterTraction = state.allCars.filter(el => el.features.traction === 'RWD')
+        filterTraction = state.cars.filter(el => el.features.traction === 'RWD')
         }
         if(action.payload === 'AWD'){
-        filterTraction = state.allCars.filter(el => el.features.traction === 'AWD')
+        filterTraction = state.cars.filter(el => el.features.traction === 'AWD')
         }
         return{
         ...state,
@@ -156,10 +156,10 @@ function rootReducer (state = initialState, action) {
             if(action.payload === 'All')
             filterTransmission = state.allCars
             if(action.payload === 'manual'){
-                filterTransmission = state.allCars.filter(el => el.features.transmission.hasOwnProperty('manual'))
+                filterTransmission = state.cars.filter(el => el.features.transmission.hasOwnProperty('manual'))
             }
             if(action.payload === 'automatic'){
-                filterTransmission = state.allCars.filter(el => el.features.transmission.hasOwnProperty('automatic'))
+                filterTransmission = state.cars.filter(el => el.features.transmission.hasOwnProperty('automatic'))
             }
             return{
                 ...state,
@@ -172,26 +172,26 @@ function rootReducer (state = initialState, action) {
             }
         
         if(action.payload === '2000'){
-            modelFilter = state.allCars.filter(el => el.features.model >= 2000 )
+            modelFilter = state.cars.filter(el => el.model >= 2000 )
         }
         if(action.payload === '-2000'){
 
-            modelFilter = state.allCars.filter(el =>(el.features.model > 2000 && el.features.model <= 2005 ))
+            modelFilter = state.cars.filter(el =>(el.model > 2000 && el.model <= 2005 ))
         }
         if(action.payload === '2000-2005'){
-            modelFilter = state.allCars.filter(el =>( el.features.mileage > 2006  && el.features.mileage <= 2010 ))
+            modelFilter = state.cars.filter(el =>( el.mileage > 2006  && el.mileage <= 2010 ))
         }
         if(action.payload === '2006-2010'){
-            modelFilter = state.allCars.filter(el =>(el.features.mileage >  2011 && el.features.mileage <= 2015 ))
+            modelFilter = state.cars.filter(el =>(el.mileage >  2011 && el.mileage <= 2015 ))
         }
         if(action.payload === '2011-2015'){
-            modelFilter = state.allCars.filter(el => ( el.features.mileage > 2016 && el.features.mileage <= 2021 ))
+            modelFilter = state.cars.filter(el => ( el.mileage > 2016 && el.mileage <= 2021 ))
         }
         if(action.payload === '2016-2020'){
-            modelFilter = state.allCars.filter(el =>( el.features.mileage  <= 2021 ))
+            modelFilter = state.cars.filter(el =>( el.mileage  <= 2021 ))
         }
         if(action.payload === '+2021'){
-            modelFilter = state.allCars.filter(el =>( el.features.mileage  > 2021 ))
+            modelFilter = state.cars.filter(el =>( el.features.mileage  > 2021 ))
         }
         //(a && b) || c || d
 

@@ -45,21 +45,50 @@ const GetAllCars = async (req,res,next) => {
 //S25 Crear ruta para crear/agregar Producto
 const CreateProduct = async (req,res,next) => {
     try{
-        const {name,brand,price,model,description,img,category,features} = req.body;
+        const {brand,
+        name,
+        img,
+        model,
+        category,
+        description,
+        features_doors,
+        features_engine_name,
+        features_engine_cv,
+        features_engine_torque,
+        features_engine_combustion,
+        features_transmission_manual,
+        features_transmission_automatic,
+        features_traction,
+        features_mileage,
+        price} = req.body;
 
         const NewProduct = new Car({
-            name,
-            brand,
-            model,
-            img,
-            price,
-            description,
-            features,
-            category,
+            brand       : brand,
+            name        :name,
+            model       : model,
+            img         :img,
+            category   :category,
+            description :description,
+            features:{
+                doors       : features_doors,
+                engine  : [
+                    {
+                        name        : features_engine_name, 
+                        cv          : features_engine_cv,
+                        torque      : features_engine_torque,
+                        combustion  : features_engine_combustion,
+                    }
+                ],
+                transmission: {
+                    manual      : features_transmission_manual,
+                    automatic   : features_transmission_automatic,
+                },
+                traction    : features_traction,
+                mileage     : features_mileage,
+            },
+            price       :price
         });
-        await NewProduct.save((err)=> {
-            if(err) return res.status(400).json(err)
-        })
+        await NewProduct.save()
         res.status(200).json(NewProduct)
     }catch(error){
         next(error);
