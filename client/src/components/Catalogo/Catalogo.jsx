@@ -7,8 +7,8 @@ import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
 import styleCatalogo from '../Catalogo/Catalogo.module.css';
-import { getCars, getEngine } from "../../actions/index";
-import {filterEngine , filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
+import { getCars } from "../../actions/index";
+import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
@@ -20,26 +20,26 @@ export default function Catalogo(){
     dispatch(getCars())
 },[dispatch])
 
-useEffect(()=>{
-    dispatch(getEngine())
-},[dispatch])
+// useEffect(()=>{
+//     dispatch(getEngine())
+// },[dispatch])
 
 const AllProducts = useSelector((state) => state.cars)
 //select MOTORES
-const engines = AllProducts.map(el => el.features.engine.map(el => el.name))
-const nameEngines = []
-engines.forEach(function(element) {
-   element.forEach(function(element2){
-    if (element2 !== undefined) {
-    nameEngines.push(element2)   
-}})})
-const unicosNameEngines = [...new Set(nameEngines)];
+// const engines = AllProducts.map(el => el.features.engine.map(el => el.name))
+// const nameEngines = []
+// engines.forEach(function(element) {
+//    element.forEach(function(element2){
+//     if (element2 !== undefined) {
+//     nameEngines.push(element2)   
+// }})})
+// const unicosNameEngines = [...new Set(nameEngines)];
 
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
 const [productsXpage] = useState(6)//productos por pagina
 const [order, setOrder] = useState("")
-const [engine , setEngine] = useState("")
+// const [engine , setEngine] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
 const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
@@ -53,13 +53,14 @@ function handleClick(e){
     dispatch(getCars())
     setPage(1)
 }
-function handleFitroEngine(e){
-    dispatch(filterEngine(e.target.value))
-    setPage(1)
-    setEngine(e.target.value)
-}
+// function handleFitroEngine(e){
+//     dispatch(filterEngine(e.target.value))
+//     setPage(1)
+//     setEngine(e.target.value)
+// }
 function hadleFiltroKm(evento){
     dispatch (filterKm(evento.target.value))
+
 }
 function handleFilterPrice(e){
     e.preventDefault();
@@ -73,6 +74,7 @@ function handleFilterTraction(evento){
     setOrder(order,`Ordenado ${evento.target.value}`)
 }
 function handleFilterTransmission(evento){
+    evento.preventDefault();
     dispatch (filterTransmission(evento.target.value))
     setPage(1);
     setOrder(order,`Ordenado ${evento.target.value}`)
@@ -95,7 +97,7 @@ return (
     
     {/* SELECT DE MOTOR*/}
     <div className = {styleCatalogo.divcontainer}>
-        <div className={styleCatalogo.divfilter}>
+        {/* <div className={styleCatalogo.divfilter}>
             <label>MOTOR</label>
             <select onChange = {ev => handleFitroEngine(ev)} className={styleCatalogo.btnfilter}>
             <option value = ''> </option>
@@ -104,7 +106,7 @@ return (
                 
             ))}
             </select>
-        </div>
+        </div> */}
         
         {/* SELECT DE KM*/}
         <div className={styleCatalogo.divfilter}>
