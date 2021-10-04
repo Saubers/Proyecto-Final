@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCarDetail } from "../../actions/index";
 import { useEffect } from "react";
-
+import NavBar from '../NavBar/NavBar'
 export default function Detail(props){
     const dispatch= useDispatch()
 
@@ -16,7 +16,10 @@ export default function Detail(props){
     /* const carCategories = useSelector((state) => state.categories) */
     console.log(MyCar);
     return (
+        
         <div className={styles.container}>
+            <NavBar/>
+        
                 <div>
                     <h1 className={styles.name}>{MyCar.brand} {MyCar.name}</h1>
                     {/* <h3>{carCategories.name}</h3> */}
