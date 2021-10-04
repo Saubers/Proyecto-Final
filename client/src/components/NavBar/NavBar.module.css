@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+
 *{
   margin: 0;
   padding: 0;
@@ -7,9 +9,9 @@
 } 
 
 nav .logo{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Crimson Text', serif;
     color: rgb(230, 240, 240);
-    font-size: 35px;
+    font-size: 45px;
     font-weight: 600;
   }
 nav{

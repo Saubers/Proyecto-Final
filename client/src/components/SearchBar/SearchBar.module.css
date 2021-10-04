@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
+
 .containerSearch{
     height:100px;
     background: #485482;  /* fallback for old browsers */
@@ -51,4 +54,8 @@
 .h2{
     color: white;
     margin: 0;
+    font-family: 'Klee One', cursive;
+    font-size: 15px;
+    position: relative;
+    top:15px
 }

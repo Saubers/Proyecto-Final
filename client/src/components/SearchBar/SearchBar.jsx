@@ -26,7 +26,7 @@ return(
         <form onSubmit={e => handleSubmit(e)} className={styleSearch.styleform}>
             <div className={styleSearch.divprin}>
                 <div className={styleSearch.divsecu}>
-                    <h2 className={styleSearch.h2}>Find your favorite car</h2>
+                    <h2 className={styleSearch.h2}>Search for your ideal car</h2>
                 </div>
                 <div>
                     <input className={styleSearch.inputbusqueda}
