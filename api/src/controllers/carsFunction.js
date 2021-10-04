@@ -95,12 +95,25 @@ const CreateProduct = async (req,res,next) => {
     }
 }
 
+const carBrands = async (req, res, next) =>{
+    const { brand } = req.query;
+    try {
+        const productBrand = await Car.find({brand: brand})
+        console.log(productBrand)
+        if(productBrand !== null){
+            return res.status(200).send([productBrand])
+        }
+    } catch(error){
+        next(error)
+    }
+} 
+
 //Buscar un producto por nombre exacto 
 //FALTA IMPLEMENTAR FILTER CON INCLUDE
 const SearchCars = async (req,res,next) =>{
-    const { name } = req.query;
+    const { name, brand } = req.query;
     try {
-        const ProductDB = await Car.findOne({name:name})
+        const ProductDB = await Car.find({name:name})
         console.log(ProductDB)
         if(ProductDB !== null){
             return res.status(200).send([ProductDB])
@@ -142,5 +155,6 @@ module.exports = {
     GetAllCars,
     SearchCars,
     DeleteCar,
-    ModifiCar
+    ModifiCar,
+    carBrands
   }
