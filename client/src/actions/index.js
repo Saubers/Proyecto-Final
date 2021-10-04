@@ -39,7 +39,14 @@ export function postProduct(payload){
 
 
 */
-
+export function DeleteCar(id){
+    
+    return async function (dispatch){
+            var json= await axios.delete("http://localhost:3002/productsDelete/:id" + id);
+            return dispatch({
+                type: "DELETE_CAR",
+                payload: json
+})}}
 export function filterEngine(payload) {
     return{
         type:'FILTER_BY_ENGINE',
@@ -84,6 +91,20 @@ export function getNameCars(name){
             });
             return dispatch({
                 type:"GET_NAME_CARS",
+                payload: json.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    };
+    
+} 
+export function getCategories(){
+    return async function(dispatch){
+        try{
+            var json = await axios.get("http://localhost:3002/categories");
+            return dispatch({
+                type:"GET_CATEGORIES",
                 payload: json.data
             })
         }catch(err){

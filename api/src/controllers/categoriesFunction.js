@@ -56,9 +56,22 @@ const getByCategory = async (req, res, next) => {
    }
 }
 
+
+const GetAllCategories = async (req,res,next) => {
+    try {
+        const GetAll = await Categories.find()
+        // console.log('getall',GetAll)
+        return res.status(200).send(GetAll);
+    }catch(error){
+        //console.log(error)
+        res.status(404).send(error)
+    }
+}
+
 module.exports = {
     CreateCategory,
     DeleteCategory,
     ModifiCategory,
-    getByCategory
+    getByCategory,
+    GetAllCategories
 }

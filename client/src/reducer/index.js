@@ -3,7 +3,8 @@ const initialState = {
     allCars: [],
     carDetail:[],
     engine:[],
-    kilometraje:[]
+    kilometraje:[],
+    allcategories:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -169,10 +170,15 @@ function rootReducer (state = initialState, action) {
             if(action.payload === 'automatic'){
                 filterTransmission = state.kilometraje.filter(el => el.features.transmission.hasOwnProperty('automatic'))
             }
+            return{
+                ...state,
+                cars :filterTransmission
+            }
             case 'FILTER_BY_AGE':
             let modelFilter = []
             if(action.payload === 'All'){
                 modelFilter = state.cars
+            }
         if(action.payload === '2000'){
             modelFilter = state.kilometraje.filter(el => el.features.model >= 2000 )
         }
@@ -200,7 +206,15 @@ function rootReducer (state = initialState, action) {
             ...state,
             cars: modelFilter
         }
-    }
+        case 'GET_CATEGORIES':
+        return{
+            ...state,
+            allcategories : action.payload
+        }
+       case "DELETE_CAR": 
+            return{
+            ...state,
+        }
     default:
         return state;
 }}

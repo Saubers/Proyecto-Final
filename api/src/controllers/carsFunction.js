@@ -111,9 +111,10 @@ const SearchCars = async (req,res,next) =>{
 }
 
 const DeleteCar = async (req,res,next) =>{
-    const { id } = req.params;
+    const { id } = req.params.id;
+    console.log(id)
     try {
-        const ProductDB = await Cars.findOne({"_id" : id})
+        const ProductDB = await Car.findByIdAndDelete(id)
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
