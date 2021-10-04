@@ -127,40 +127,6 @@ function rootReducer (state = initialState, action) {
                             ...state,
                         }
                 }
-            // let km = []
-            //     if(action.payload === 'All'){
-            //          km = state.allCars
-            //     }
-            
-            // if(action.payload === '0'){
-            //      km = state.cars.filter(el => el.features.mileage === 0 )
-            // }
-            // if(action.payload === '0-10'){
-
-            //      km = state.cars.filter(el =>(el.features.mileage > 0 && el.features.mileage <= 10000 ))
-            // }
-            // if(action.payload === '10-40'){
-            //      km = state.cars.filter(el =>( el.features.mileage > 10000  && el.features.mileage <= 40000 ))
-            // }
-            // if(action.payload === '40-80'){
-            //      km = state.cars.filter(el =>(el.features.mileage >  40000 && el.features.mileage <= 80000 ))
-            // }
-            // if(action.payload === '80-110'){
-            //      km = state.cars.filter(el => ( el.features.mileage > 80000 && el.features.mileage <= 110000 ))
-            // }
-            // if(action.payload === '110-150'){
-            //      km = state.cars.filter(el =>( el.features.mileage >110000 && el.features.mileage <= 150000 ))
-            // }
-            // //(a && b) || c || d
-            // if(action.payload === '+150'){
-            //      km = state.cars.filter(el =>  el.features.mileage > 150000)
-            // }
-            
-            return{
-                ...state,
-                kilometraje: stateafiltrar,
-                
-            }
         case 'FILTER_BY_PRICE':
             
             let money = action.payload === "max" ?
@@ -186,37 +152,38 @@ function rootReducer (state = initialState, action) {
                     ...state,
                     cars: money
                 }
-            
-            // if(action.payload === 'all'){
-            //     const price = state.cars
-            //     }
-            //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
-            //     state.cars.sort((a,b) => b.price - a.price)
-            //     return{
-            //         ...state,
-            //         cars: price
-            //     }
 
         case 'FILTER_BY_TRACTION':
-        let filterTraction = []
-        console.log(state.kilometraje)
-        if(action.payload === 'All'){
-        filterTraction = state.kilometraje
-        }
-        if(action.payload === 'FWD'){
-        
-        filterTraction = state.kilometraje.filter(el => el.features.traction === 'FWD')
-        }
-        if(action.payload === 'RWD'){
-        filterTraction = state.kilometraje.filter(el => el.features.traction === 'RWD')
-        }
-        if(action.payload === 'AWD'){
-        filterTraction = state.kilometraje.filter(el => el.features.traction === 'AWD')
-        }
-        return{
-        ...state,
-        cars: filterTraction
-    }
+            const filterTraction = state.allCars
+            switch(action.payload){
+                case "All":
+                    return{
+                        ...state,
+                        cars:filterTraction
+                    }
+                case "FWD":
+                    const filter1 = filterTraction.filter(el => el.features.traction === "FWD")
+                    return{
+                        ...state,
+                        cars:filter1
+                    }
+                case "RWD":
+                    const filter2 = filterTraction.filter(el => el.features.traction === "RWD")
+                    return{
+                        ...state,
+                        cars:filter2
+                    }
+                case "AWD":
+                    const filter3 = filterTraction.filter(el => el.features.traction === "AWD")
+                    return{
+                        ...state,
+                        cars:filter3
+                    }
+                default:
+                    return {
+                        ...state,
+                    }
+            }
         case 'FILTER_BY_TRANSMISSION':
             let filterTransmission = []
             if(action.payload === 'All')
