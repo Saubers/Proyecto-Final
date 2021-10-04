@@ -25,6 +25,11 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 cars:action.payload,
             }
+            case 'GET_BRAND_CARS':
+                return{
+                    ...state,
+                    cars:action.payload,
+                }
         case 'GET_CAR_DETAIL':
             return{
                 ...state,

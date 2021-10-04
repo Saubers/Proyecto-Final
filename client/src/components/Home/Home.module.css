@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
 
 .container{
     justify-content: center;
@@ -8,11 +8,17 @@ background: linear-gradient(to right, #E2E2E2, #C9D6FF); /* W3C, IE 10+/ Edge, F
 
 }
 
+.text {
+    font-family: 'Klee One', cursive;
+    background-color: #485482;
+    color: ghostwhite;
+}
+
 .div2{
-    background-color: #272a4d;
+    background-color: #485482;
     width: 80%;
-    height: 720px;
-    margin: 150px;
+    height: 600px;
+    margin: auto;
     align-items: center;
     text-align: center;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);

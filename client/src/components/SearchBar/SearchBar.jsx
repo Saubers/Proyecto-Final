@@ -5,13 +5,16 @@ import { useDispatch } from "react-redux";
 import styleSearch from '../SearchBar/SearchBar.module.css';
 import {getNameCars} from '../../actions/index'
 
+
 export default function SearchBar(){
 const dispatch = useDispatch()
 const [name,setName] = useState("")
 
+
 function handleInputChange(e){
     e.preventDefault();
     setName(e.target.value)
+    
  
 }
 
@@ -19,7 +22,9 @@ function handleSubmit(e){
     e.preventDefault()
     dispatch(getNameCars(name))
     setName("") 
+     
 }
+
 
 return(
     <div className={styleSearch.containerSearch}>
@@ -33,7 +38,7 @@ return(
                     type ="text"
                     placeholder ='Busqueda por nombre'
                     onChange ={e=> handleInputChange(e)}
-                    value={name}
+                    value={name} 
                     />
                     <button className={styleSearch.btn} type = 'submit'>Search</button>
                 </div>

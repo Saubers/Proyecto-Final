@@ -99,6 +99,24 @@ export function getNameCars(name){
     };
     
 } 
+
+export function getBrandCars(name){
+    return async function(dispatch){
+        try{
+            var json = await axios.get("http://localhost:3002/searchbrand?brand=" + name,{
+
+            });
+            return dispatch({
+                type:"GET_BRAND_CARS",
+                payload: json.data
+            })
+        }catch(err){
+            console.log(err)
+        }
+    };
+    
+} 
+
 export function getCategories(){
     return async function(dispatch){
         try{

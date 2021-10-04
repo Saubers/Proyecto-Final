@@ -1,4 +1,5 @@
 import React from "react";
+import styles from '../ProductDetail/ProductDetail.module.css'
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCarDetail } from "../../actions/index";
@@ -15,19 +16,18 @@ export default function Detail(props){
     /* const carCategories = useSelector((state) => state.categories) */
     console.log(MyCar);
     return (
-        <div>
+        <div className={styles.container}>
                 <div>
-                    <h1>{MyCar.brand} {MyCar.name}</h1>
+                    <h1 className={styles.name}>{MyCar.brand} {MyCar.name}</h1>
                     {/* <h3>{carCategories.name}</h3> */}
-                    <img src= {MyCar.img} alt= "not found" width="600px" height="400px"/>
-                    <h3>Information</h3>
-                    <h6>Mileage: {MyCar.features?.mileage}</h6>
-                     <h6>Price: {MyCar.price}</h6>
-                    <h6>traction: {MyCar.features?.traction}</h6>
-                    <h6>Description: {MyCar.description}</h6>
+                    <img className={styles.img} src={MyCar.img} alt= "not found"/>
+                    <h3 className={styles.title}>About the car</h3>
+                    <h6 className={styles.details}>Mileage: {MyCar.features?.mileage}km</h6>
+                    <h6 className={styles.details}>traction: {MyCar.features?.traction}</h6>
+                    <h6 className={styles.details}>Description: {MyCar.description}</h6>
                 </div>
             <Link to= "/home/catalogo">
-                <button>Back</button>
+                <button className={styles.button}>Back</button>
             </Link>
         </div>
     )

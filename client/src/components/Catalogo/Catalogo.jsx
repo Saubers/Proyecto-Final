@@ -192,7 +192,7 @@ return (
                             brand={el.brand}
                             description={el.description}
                             price={el.price}
-                            mileage={el.features.mileage}
+                            mileage={el.features?.mileage}
                             _id={el._id}
                             />
                     </div>
