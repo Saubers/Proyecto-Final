@@ -170,39 +170,53 @@ function rootReducer (state = initialState, action) {
                 cars: filterTransmission
             }
         case 'FILTER_BY_AGE':
-            let modelFilter = []
-            if(action.payload === 'All'){
-                modelFilter = state.kilometraje
-            }
-        
-        if(action.payload === '2000'){
-            modelFilter = state.kilometraje.filter(el => el.features.model >= 2000 )
-        }
-        if(action.payload === '-2000'){
-
-            modelFilter = state.kilometraje.filter(el =>(el.features.model > 2000 && el.features.model <= 2005 ))
-        }
-        if(action.payload === '2000-2005'){
-            modelFilter = state.kilometraje.filter(el =>( el.features.mileage > 2006  && el.features.mileage <= 2010 ))
-        }
-        if(action.payload === '2006-2010'){
-            modelFilter = state.kilometraje.filter(el =>(el.features.mileage >  2011 && el.features.mileage <= 2015 ))
-        }
-        if(action.payload === '2011-2015'){
-            modelFilter = state.kilometraje.filter(el => ( el.features.mileage > 2016 && el.features.mileage <= 2021 ))
-        }
-        if(action.payload === '2016-2020'){
-            modelFilter = state.kilometraje.filter(el =>( el.features.mileage  <= 2021 ))
-        }
-        if(action.payload === '+2021'){
-            modelFilter = state.kilometraje.filter(el =>( el.features.mileage  > 2021 ))
-        }
-        //(a && b) || c || d
-
-        return{
-            ...state,
-            cars: modelFilter
-        }
+            switch(action.payload){
+                    case "All":
+                        return{
+                            ...state,
+                            cars: state.kilometraje
+                        }
+                    case "2000-2005":
+                        const filterage1 = state.kilometraje.filter(el => el.model > 2000 && el.model <= 2005 )
+                        return{
+                            ...state,
+                            cars:filterage1
+                        }
+                    case "2006-2010":
+                        const filterage2 = state.kilometraje.filter(el => el.model > 2005 && el.model <= 2010 )
+                            return{
+                            ...state,
+                            cars:filterage2
+                        }
+                    case "2011-2015":
+                        const filterage3 = state.kilometraje.filter(el => el.model > 2010 && el.model <= 2015 )
+                            return{
+                            ...state,
+                            cars:filterage3
+                            }
+                    case "2016-2020":
+                        const filterage4 = state.kilometraje.filter(el => el.model > 2015 && el.model <= 2020 )
+                            return{
+                            ...state,
+                            cars:filterage4
+                        }
+                    case "+2021":
+                        const filterage5 = state.kilometraje.filter(el => el.model > 2020 )
+                            return{
+                            ...state,
+                            cars:filterage5
+                            }
+                    case "-2000":
+                        const filterage6 = state.kilometraje.filter(el => el.model < 2000 )
+                            return{
+                            ...state,
+                            cars:filterage6
+                        }
+                    default:
+                        return {
+                            ...state,
+                        }
+                    }
 
     default:
         return state;
