@@ -11,7 +11,6 @@ import firebaseConfig from './firebase-config';
 ReactDOM.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
   <Provider store={store}>
-    
     <React.StrictMode>
       <BrowserRouter>
         <App />

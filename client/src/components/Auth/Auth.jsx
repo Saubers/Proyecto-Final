@@ -4,7 +4,7 @@ import { useFirebaseApp } from 'reactfire'
 
 require('firebase/auth')
 
-export default (props) => {
+export default function Auth (props) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
