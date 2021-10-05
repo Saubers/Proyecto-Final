@@ -15,7 +15,7 @@ module.exports = app => {
 
      //middlewares
     app.use(morgan('dev'));
-    app.use(multer({dest: path.join(__dirname, '../public/upload/temp')}).single('image'));
+    app.use(multer({dest: path.join(__dirname, '../public/uploads')}).fields('image'));
     app.use(express.urlencoded({extended: false}));
     app.use(express.json());
     app.use(cors())

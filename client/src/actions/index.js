@@ -99,6 +99,20 @@ export function getNameCars(name){
     
 } 
 
+export function postImage(){
+    return async function(dispatch){
+        try{
+            let json = axios.get('http://localhost:3002/uploadFiles');
+            return dispatch({
+                type:"POST_IMAGE",
+                payload: json.data
+            })
+        } catch(err){
+            console.error(err)
+        }
+    }
+}
+
 export function getBrandCars(name){
     return async function(dispatch){
         try{

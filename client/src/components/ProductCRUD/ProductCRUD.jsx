@@ -341,8 +341,8 @@ function validate(input) {
                 </div>
                 </fieldset>
                 {
-               errors.ok && (
-                   <button className={styleCrudPost.button3}type='submit' >Publicar</button>
+               errors && (
+                   <button className={styleCrudPost.button3} type='submit'>Publicar</button>
                    ) 
                 }
                 <Link to= "/home">

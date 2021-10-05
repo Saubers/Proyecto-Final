@@ -20,7 +20,7 @@
    
 }
 .styledescri{
-    border-left: 5px solid #007CC2;
+    border-left: 5px solid #485482;
     height: 98px;
 }
 
@@ -35,7 +35,7 @@
     height: 30px;
     border: 1px solid gray;
     border-radius: 5px;
-    background-color:#007CC2;
+    background-color:#485482;
     color :white;
     cursor: pointer;
 }

@@ -66,7 +66,6 @@ const CreateProduct = async (req,res,next) => {
             brand       : brand,
             name        :name,
             model       : model,
-            img         :img,
             category   :category,
             description :description,
             features:{
@@ -88,11 +87,16 @@ const CreateProduct = async (req,res,next) => {
             },
             price       :price
         });
+        console.log(req.file)
         await NewProduct.save()
         res.status(200).json(NewProduct)
     }catch(error){
         next(error);
     }
+}
+
+const uploadFile = async (req, res, next) => {
+    console.log(req.file)
 }
 
 const carBrands = async (req, res, next) =>{
@@ -156,5 +160,6 @@ module.exports = {
     SearchCars,
     DeleteCar,
     ModifiCar,
-    carBrands
+    carBrands,
+    uploadFile
   }
