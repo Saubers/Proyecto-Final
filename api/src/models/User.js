@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 //const bcrypt = require("bcryptjs");
-const userSchema = new Schema(
+const UserSchema = new Schema(
   {
     name: {
       type: String,
@@ -22,10 +22,6 @@ const userSchema = new Schema(
       unique: true,
     },
     ban: {
-      type: Boolean,
-      default: false,
-    },
-    promoted: {
       type: Boolean,
       default: false,
     },
@@ -52,4 +48,4 @@ const userSchema = new Schema(
     timestamps: true, // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
   }
 );
-module.exports = model("User", userSchema);
+module.exports = model("User", UserSchema);
