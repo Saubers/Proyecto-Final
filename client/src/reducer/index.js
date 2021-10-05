@@ -137,7 +137,6 @@ function rootReducer (state = initialState, action) {
 
         case 'FILTER_BY_TRACTION':
         let filterTraction = []
-        console.log(state.kilometraje)
         if(action.payload === 'All'){
         filterTraction = state.kilometraje
         }
@@ -173,32 +172,27 @@ function rootReducer (state = initialState, action) {
             let modelFilter = []
             if(action.payload === 'All'){
                 modelFilter = state.kilometraje
-            }
-        
-        if(action.payload === '2000'){
-            modelFilter = state.kilometraje.filter(el => el.model >= 2000 )
-        }
+            }   
         if(action.payload === '-2000'){
 
-            modelFilter = state.kilometraje.filter(el =>(el.model > 2000 && el.model <= 2005 ))
+            modelFilter = state.kilometraje.filter(el =>(el.model < 2000))
         }
         if(action.payload === '2000-2005'){
-            modelFilter = state.kilometraje.filter(el =>( el.model > 2006  && el.model <= 2010 ))
+            modelFilter = state.kilometraje.filter(el =>( el.model >= 2000 && el.model <= 2005 ))
         }
         if(action.payload === '2006-2010'){
-            modelFilter = state.kilometraje.filter(el =>(el.model >  2011 && el.model <= 2015 ))
+            modelFilter = state.kilometraje.filter(el =>(el.model >=  2006 && el.model <= 2010))
         }
         if(action.payload === '2011-2015'){
-            modelFilter = state.kilometraje.filter(el => ( el.model > 2016 && el.model <= 2021 ))
+            modelFilter = state.kilometraje.filter(el => ( el.model >=  2011 && el.model <= 2015 ))
         }
         if(action.payload === '2016-2020'){
-            modelFilter = state.kilometraje.filter(el =>( el.model  <= 2021 ))
+            modelFilter = state.kilometraje.filter(el =>(  el.model >= 2016 && el.model <= 2020 ))
         }
         if(action.payload === '+2021'){
-            modelFilter = state.kilometraje.filter(el =>( el.features.model  > 2021 ))
+            modelFilter = state.kilometraje.filter(el =>( el.model  >= 2021 ))
         }
         //(a && b) || c || d
-
         return{
             ...state,
             cars: modelFilter
@@ -206,6 +200,6 @@ function rootReducer (state = initialState, action) {
 
     default:
         return state;
-}}
-
+    }
+}
 export default rootReducer;
