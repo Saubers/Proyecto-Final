@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import 'firebase/auth';
+import 'firebase/auth'
 import { useFirebaseApp } from 'reactfire'
 
-export default function Auth(){
+require('firebase/auth')
+
+export default (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const submit = () => {
-        console.log(email)
+    const firebase = useFirebaseApp
+
+    const submit = async () => {
+       await firebase.auth().creatUserWithEmailAndPassword(email, password)
     }
 
     return (

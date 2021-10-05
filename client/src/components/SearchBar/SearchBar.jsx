@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 //import { getByName } from "../actions";
 import styleSearch from '../SearchBar/SearchBar.module.css';
-import {getCarDetail, getNameCars} from '../../actions/index'
+import { getNameCars } from '../../actions/index'
 import { getBrandCars } from "../../actions/index";
 
 export default function SearchBar(){
