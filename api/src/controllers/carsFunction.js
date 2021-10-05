@@ -66,6 +66,7 @@ const CreateProduct = async (req,res,next) => {
             brand       : brand,
             name        :name,
             model       : model,
+            img         : img,
             category   :category,
             description :description,
             features:{
