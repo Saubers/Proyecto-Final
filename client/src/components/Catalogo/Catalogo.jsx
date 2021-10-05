@@ -180,7 +180,9 @@ return (
     <div className={styleCatalogo.containerdiv}>
         {
             
-            ProductViewsXPage && ProductViewsXPage.map(el => {
+            ProductViewsXPage.length === 0 ?
+            <h2>No hay autos que cumplan su criterio de busqueda</h2>            
+            :  ProductViewsXPage.map(el => {
                 return(
                     
                     <div className={styleCatalogo.containercar}>

@@ -50,8 +50,12 @@ const CarsSchema = new Schema({
     },
     category: {
         type: Schema.Types.ObjectId,ref:'Categories'
-    }
-})
+    },
+    
+},
+  {
+    timestamps: true, // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
+  });
 
 
 module.exports =model('Car', CarsSchema)

@@ -35,7 +35,7 @@ const ModifiCategory = async(req,res) =>{
     const updates = req.body;
     console.log(updates)
     try {
-    await Car.findByIdAndUpdate(id,updates)
+    await Cars.findByIdAndUpdate(id,updates)
     res.send("Categoria actualizada correctamente");
 } catch (error) {
     console.log(error)
