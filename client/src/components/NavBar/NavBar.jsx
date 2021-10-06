@@ -18,6 +18,7 @@ const NavBar = () => {
             <li><a href="/home/catalogo ">Our Catalog</a></li>
             <li><a href="# ">Payment Methods</a></li>
             <li><a href="# ">Branch Office</a></li>
+            <li><a href="/home/Catalogo/compra">Carrito</a></li>
          </ul>
       </nav>
         </div>

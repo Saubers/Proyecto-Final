@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {useDispatch} from 'react-redux'
 import StyleLogin from '../../Auth/login/Logon.module.css';
 import {authUser} from '../../../actions/index'
+import { Link } from 'react-router-dom'
 const Login = () => {
     const dispatch = useDispatch()
     const [mail,setMail] = useState("")
@@ -29,6 +30,9 @@ const Login = () => {
                     </div>
                     <div>
                         <button type="submit">Login</button>
+                        <Link to = '/'> 
+                            <button > back </button>
+                        </Link>
                     </div>
                 </form>
             </div>
