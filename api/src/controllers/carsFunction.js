@@ -104,7 +104,7 @@ const carBrands = async (req, res, next) =>{
     const { brand } = req.query;
     try {
         const productBrand = await Car.find({brand: brand})
-       
+        console.log(productBrand)
         if(productBrand !== null){
             return res.status(200).send(productBrand)
         }
