@@ -1,12 +1,7 @@
 const { Schema, model } = require("mongoose");
-const bcrypt = require("bcryptjs");
 const UserSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    lastName: {
+    fullname: {
       type: String,
       required: true,
     },
@@ -26,43 +21,13 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    state: {
-      type: String,
-      required: true,
-    },
-    reported: {
-      type: Boolean,
-      default: false,
-    },
+    date:{
+      type:Date,
+      default:Date.now
+    }
 
 }
 );
 
-UserSchema.pre('save', function(next){
-  if(this.isNew || this.isModified('password')){
-
-  const document = this;
-
-  bcrypt.hash(document.password, saltRounds, (err, hashedPassword) => {
-   if(err){
-    next(err);
-  } else {
-    document.password = hashedPassword;
-  }
-  })
-}else{
-  next();
-}
-})
-
-UserSchema.methods.isCorrectPassword = function(password, callback){
-bcrypt.compare(password, this.password, function(err, same){
-if(err){
-  callback(err)
-} else {
-  callback(err, same)
-}
-});
-}
 
 module.exports = model("User", UserSchema);

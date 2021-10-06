@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const multer = require('multer');
 const express = require('express');
 const errorHandler = require('errorhandler');
-const bodyParser = require('body-parser')
+const dotenv = require('dotenv')
 
 
 
@@ -17,9 +17,7 @@ module.exports = app => {
     
 
      //middlewares
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: false}))
-
+    dotenv.config()
     app.use(morgan('dev'));
     app.use(multer({dest: path.join(__dirname, '../public/uploads')}).fields('image'));
     app.use(express.urlencoded({extended: false}));
