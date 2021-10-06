@@ -46,7 +46,7 @@ module.exports = app => {
     
     router.post('/register', createUser);
 
-    router.post('/authenticate', authUsers)
+    router.get('/authenticate', authUsers)
 
     router.get("/alluser",getAllUser)
 

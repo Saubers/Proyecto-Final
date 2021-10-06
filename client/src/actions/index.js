@@ -46,7 +46,6 @@ export function postProduct(payload){
 // }
 
 export function userRegister(payload){
-    console.log("ACAAAA",payload)
 return async function (dispatch){
     const json = await axios.post('http://localhost:3002/register',payload);
     return dispatch({

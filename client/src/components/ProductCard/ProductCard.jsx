@@ -17,7 +17,7 @@ const ProductCard = ({name,brand,img,price,model,mileage,_id}) =>{
             <img className={styleCars.imgstyle} src={img} alt="img" /> 
         </div>
         <div className={styleCars.styledescri}>
-            <p>${price}</p>
+            <p>USD${price}</p>
             <p>{model}-{mileage}km</p>
             <h3 className={styleCars.name}>{brand} {name} 
                 <Link to= {'/home/' + _id}>

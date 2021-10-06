@@ -29,27 +29,35 @@ const createUser = async ( req, res ,next) => {
 
 }
 
-const authUsers = async (req,res)=>{
+const authUsers = async (req,res,next)=>{
 
-const {reported, name, lastName, phone, mail, ban, password, state} = req.body
-
-User.findOne({mail}, (err, user) =>{
-    if(err){
-        res.send(500).send('ERROR AL AUTENTICAR USUARIO')
-    } else if (!user){
-        res.send(500).send('EL USUARIO NO EXISTE')
-    } else {
-        user.isCorrectPassword(password, (err, result) => {
-            if(err){
-                res.send(500).send('ERROR AL AUTENTICAR USUARIO')
-            } else if(result){
-                res.status(200).send("USUARIO AUTENTICADO CORRECTAMENTE! :)")
-            } else {
-                res.send(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA')
-            }
-        });
+const {mail, password} = req.body
+try{
+    const email = await User.findOne({mail:mail})
+    if(email){
+        return console.log("ok")
     }
-})
+    // User.findOne({mail}, (err, user) =>{
+    //     if(err){
+    //         res.status(500).send('ERROR AL AUTENTICAR USUARIO')
+    //     } else if (!user){
+    //         res.status(500).send('EL USUARIO NO EXISTE')
+    //     } else {
+    //         user.isCorrectPassword(password, (err, result) => {
+    //             if(err){
+    //                 res.status(500).send('ERROR AL AUTENTICAR USUARIO')
+    //             } else if(result){
+    //                 res.status(200).send("USUARIO AUTENTICADO CORRECTAMENTE! :)")
+    //             } else {
+    //                 res.status(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA')
+    //             }
+    //         });
+    //     }
+    // })
+}catch(err) {
+    next(err);
+}
+
 
 }
 
