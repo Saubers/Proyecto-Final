@@ -3,14 +3,14 @@ const UserSchema = new Schema(
   {
     fullname: {
       type: String,
-      required: true,
+      // required: true,
     },
     phone: {
       type: String,
     },
     mail: {
       type: String,
-      required: true,
+      // required: true,
       unique: true,
     },
     ban: {
@@ -19,7 +19,7 @@ const UserSchema = new Schema(
     },
     password: {
       type: String,
-      required: true,
+      // required: true,
     },
     date:{
       type:Date,

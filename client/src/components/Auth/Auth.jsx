@@ -6,6 +6,7 @@ import NavBar from '../NavBar/NavBar'
 import styles from '../Auth/Auth.module.css'
 
 export default function Register () {
+    const user = useSelector((state) => state.user);
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [name, setName] = useState('')
@@ -14,33 +15,30 @@ export default function Register () {
 
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-       dispatch(userRegister())
-   },[dispatch])
-
-   const user =useSelector((state) => state.user)
-
-    const submit = async () => {
-       
+    function handleSubmit(e){
+        e.preventDefault()
+        dispatch(userRegister(email,password,name,phone,lastName))
+        console.log("creado")
     }
 
+   
     return (
         <div>
             <NavBar />
             <div className={styles.login}>
-                <form action="/register" method="POST">
-            <label htmlFor='name'>Nombre</label>
-                <input required type="name" id="name" onChange={(e) => setName(e.target.value)} />
-                <label htmlFor='lastname'>Apellido</label>
-                <input required type="lastname" id="lastname" onChange={(e) => setlastName(e.target.value)} />
-                <label  htmlFor='email'>Correo electrónico</label>
-                <input required type="email" id="email" onChange={(e) => setEmail(e.target.value)} />
-                <label htmlFor='password'>Contraseña</label>
-                <input required type="password" id="password" onChange={(e) => setPassword(e.target.value)} />
-                <label htmlFor='phone'>Telefono</label>
-                <input required type="phone" id="phone" onChange={(e) => setPhone(e.target.value)} />
-                </form>
-                <button type="submit" onClick={submit}>Registrar</button>
+                <form action="/register" method="POST" onSubmit={handleSubmit} >
+                    <label htmlFor='name'>Nombre</label>
+                    <input type="name" name="name"  value={name} onChange={(e) => setName(e.target.value)} />
+                    <label htmlFor='lastname'>Apellido</label>
+                    <input  type="lastname" name="lastName"  value={lastName} onChange={(e) => setlastName(e.target.value)} />
+                    <label  htmlFor='email'>Correo electrónico</label>
+                    <input  type="email" name="email"  value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <label htmlFor='password'>Contraseña</label>
+                    <input type="password" name="password"  value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <label htmlFor='phone'>Telefono</label>
+                    <input type="phone" name="phone" value={phone}  onChange={(e) => setPhone(e.target.value)} />
+                    <button type="submit" >Registrar</button>
+                    </form>
             </div>
         </div>
     )
