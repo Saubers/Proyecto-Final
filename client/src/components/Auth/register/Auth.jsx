@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom';
-import { userRegister } from '../../actions';
-import NavBar from '../NavBar/NavBar'
-import styles from '../Auth/Auth.module.css'
+import React, { useState} from 'react';
+import {useDispatch} from 'react-redux'
+import { userRegister } from '../../../actions';
+import NavBar from '../../NavBar/NavBar'
+import styles from '../register/Auth.module.css';
 
 export default function Register () {
     const dispatch = useDispatch()
@@ -22,6 +21,12 @@ export default function Register () {
         e.preventDefault()
         dispatch(userRegister(user))
         console.log(user)
+        setUser({
+            fullname: '',
+            mail: '',
+            phone: '',
+            password: ''
+        })
     }
 
     function handleChange(e){
