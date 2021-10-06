@@ -14,6 +14,9 @@ return(
         <Link to ='/user/login'>
             <button className={styles.button}>LOGIN</button>
         </Link>
+        <Link to='/user/register'>
+            <button className={styles.button}>REGISTER</button>
+        </Link>
        </div>
        
       )
