@@ -3,15 +3,16 @@ const UserSchema = new Schema(
   {
     fullname: {
       type: String,
-      // required: true,
+      
     },
     phone: {
       type: String,
+      
+
     },
     mail: {
       type: String,
-      // required: true,
-      unique: true,
+      
     },
     ban: {
       type: Boolean,
@@ -19,7 +20,7 @@ const UserSchema = new Schema(
     },
     password: {
       type: String,
-      // required: true,
+      
     },
     date:{
       type:Date,
@@ -30,4 +31,4 @@ const UserSchema = new Schema(
 );
 
 
-module.exports = model("User", UserSchema);
+module.exports = model("Use", UserSchema);

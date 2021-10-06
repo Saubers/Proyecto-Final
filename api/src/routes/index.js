@@ -3,7 +3,7 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser} = require('../controllers/cartFunctions')
-const { createUser, authUsers } = require('../controllers/userFunction');
+const { createUser, authUsers,getAllUser } = require('../controllers/userFunction');
 
 // const {getUsers, createUser} = require('../controllers/userFunction')
 module.exports = app => {
@@ -44,9 +44,11 @@ module.exports = app => {
 
    // USERS
     
-     router.post('/register', createUser);
+    router.post('/register', createUser);
 
     router.post('/authenticate', authUsers)
+
+    router.get("/alluser",getAllUser)
 
 
 

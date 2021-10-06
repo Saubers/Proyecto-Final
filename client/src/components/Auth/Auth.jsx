@@ -6,34 +6,45 @@ import NavBar from '../NavBar/NavBar'
 import styles from '../Auth/Auth.module.css'
 
 export default function Register () {
-    const user = useSelector((state) => state.user);
-    const [mail, setMail] = useState('')
-    const [password, setPassword] = useState('')
-    const [fullname, setFullname] = useState('')
-    const [phone, setPhone] = useState('')
-
     const dispatch = useDispatch()
+
+    const [user, setUser] = useState({
+        fullname: '',
+        mail: '',
+        phone: '',
+        password: ''
+    })
+    
+
+
 
     function handleSubmit(e){
         e.preventDefault()
-        dispatch(userRegister(mail,password,fullname,phone))
-        console.log(mail,password,fullname,phone)
+        dispatch(userRegister(user))
+        console.log(user)
     }
 
+    function handleChange(e){
+        setUser({
+            ...user,
+            [e.target.name] : e.target.value
+        })
+
+    }
    
     return (
         <div>
             <NavBar />
             <div className={styles.login}>
-                <form action="/register" method="POST" onSubmit={handleSubmit} >
+                <form action="/register" method="POST" onSubmit={(e) =>handleSubmit(e)} >
                     <label htmlFor='name'>Nombre completo</label>
-                    <input type="name" name="fullname"  value={fullname} onChange={(e) => setFullname(e.target.value)} />
+                    <input type="name" name="fullname"  value={user.fullname} onChange={(e) => handleChange(e)} />
                     <label  htmlFor='email'>Correo electrónico</label>
-                    <input  type="email" name="mail"  value={mail} onChange={(e) => setMail(e.target.value)} />
+                    <input  type="email" name="mail"  value={user.mail} onChange={(e) => handleChange(e)} />
                     <label htmlFor='password'>Contraseña</label>
-                    <input type="password" name="password"  value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" name="password"  value={user.password} onChange={(e) => handleChange(e)} />
                     <label htmlFor='phone'>Telefono</label>
-                    <input type="phone" name="phone" value={phone}  onChange={(e) => setPhone(e.target.value)} />
+                    <input type="phone" name="phone" value={user.phone}  onChange={(e) => handleChange(e)} />
                     <button type="submit" >Registrar</button>
                     </form>
             </div>

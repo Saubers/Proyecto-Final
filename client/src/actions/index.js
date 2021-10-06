@@ -26,7 +26,6 @@ export function getCarDetail(id){
 })}}
 
 export function postProduct(payload){
-    console.log(payload)
     return async function(dispatch){   
         const json =  await axios.post("http://localhost:3002/products", payload);
         return dispatch({
@@ -36,9 +35,10 @@ export function postProduct(payload){
     }
 }
 
-export function userRegister(){
+export function userRegister(payload){
+    console.log("ACAAAA",payload)
 return async function (dispatch){
-    const json = await axios.post('http://localhost:3002/register');
+    const json = await axios.post('http://localhost:3002/register',payload);
     return dispatch({
         type: 'USER_REGISTER',
         payload: json

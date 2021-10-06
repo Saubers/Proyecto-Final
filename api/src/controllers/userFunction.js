@@ -2,20 +2,26 @@ const User = require('../models/User')
 require('../db.js')
 const bcrypt = require('bcrypt')
 
+const getAllUser = async (req, res, next) => {
+    try {
+        const alluser = await User.find()
+        return res.status(200).json([alluser])
+    }catch(err) {
+        next(err)
+    }
+}
+
 const createUser = async ( req, res ,next) => {
+    const {fullname, mail,password,phone} = req.body;
  try{
-    const saltPassword = await bcrypt.genSalt(10)
-    const securePassword = await bcrypt.hash(req.body.password, saltPassword, null)
- 
     const user = new User({ 
-    fullname:req.body.fullname, 
-    phone:req.body.phone, 
-    mail:req.body.mail, 
-    password:securePassword
+    fullname:fullname,  
+    phone: phone, 
+    mail: mail, 
+    password: password
 })
-    console.log("ACCAAAA",user)
- await user.save()
- res.status(200).json(user)
+    await user.save()
+    res.status(200).send(user)
  }catch(err){
      next(err)
  }
@@ -50,5 +56,6 @@ User.findOne({mail}, (err, user) =>{
 
 module.exports = {
     createUser,
-    authUsers
+    authUsers,
+    getAllUser
 }
