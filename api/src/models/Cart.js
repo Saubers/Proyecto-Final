@@ -6,10 +6,15 @@ const CartSchema = new Schema(
             type: Schema.Types.ObjectId,ref:'Users',
             require : true
         },
-        publication : {
-            type: Schema.Types.ObjectId,ref:'Cars',
+        publication : [
+        {   type: Schema.Types.ObjectId,ref:'Cars',
             require : true
-        },
+        }
+        ],
+        price:{
+            type: Number,
+            required: true
+        } ,
         state :{
             type : String,
         }
