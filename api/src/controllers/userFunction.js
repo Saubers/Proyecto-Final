@@ -2,18 +2,16 @@ const User = require('../models/User')
 require('../db.js')
 
 
-const createUser = async (req,res,next) => {
- const { reported, name, lastName, phone, mail, ban, password, state } = req.body
-
- const user = new User({reported, name, lastName, phone, mail, ban, password, state})
-
- user.save(err => {
-     if(err){
-         res.status(500).send('ERROR AL REGISTRAR USUARIO :(')
-     } else {
-         res.status(200).send("USUARIO REGISTRADO! :)")
-     }
- })
+const createUser = async ( req, res ) => {
+ const user = new User({ 
+    fullname:req.body.fullname, 
+    phone:req.body.phone, 
+    mail:req.body.mail, 
+    password:req.body.password
+})
+console.log(user)
+ await user.save()
+ res.status(200).json("USER CREATED")
 
 }
 
