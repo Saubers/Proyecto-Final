@@ -18,7 +18,7 @@ export default function Register () {
        dispatch(userRegister())
    },[dispatch])
 
-   const user =useSelector((state) => state.user)
+   const user = useSelector((state) => state.user)
 
     const submit = async () => {
        
