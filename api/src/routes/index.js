@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
-const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
-// const {getUsers, createUser} = require('../controllers/userFunction')
+const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js');
+const { createUser, authUsers } = require('../controllers/userFunction');
+
+
 module.exports = app => {
     router.get('/', function(req, res){
         res.send("index")
@@ -39,11 +41,11 @@ module.exports = app => {
 
 
 
-    /////////////USERS
+   // USERS
     
-    // router.get('users',getUsers);
+     router.post('/register', createUser);
 
-    // router.post('/users',createUser)
+    router.post('/authenticate', authUsers)
 
 
 
