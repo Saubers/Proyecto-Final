@@ -3,7 +3,8 @@ const initialState = {
     allCars: [],
     carDetail:[],
     engine:[],
-    kilometraje:[]
+    kilometraje:[],
+    allcategories:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -202,7 +203,15 @@ function rootReducer (state = initialState, action) {
             ...state,
             cars: modelFilter
         }
-
+        case 'GET_CATEGORIES':
+            return{
+                ...state,
+                allcategories : action.payload
+            }
+           case "DELETE_CAR": 
+                return{
+                ...state,
+            }
     default:
         return state;
     }

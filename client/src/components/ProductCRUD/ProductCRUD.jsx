@@ -38,6 +38,7 @@ function validate(input) {
     const dispatch= useDispatch();
     
     const cars = useSelector(state => state.allcategories)
+    
     useEffect(()=>{
         dispatch(getCategories());
     },[dispatch])
