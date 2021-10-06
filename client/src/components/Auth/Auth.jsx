@@ -17,7 +17,7 @@ export default function Register () {
     function handleSubmit(e){
         e.preventDefault()
         dispatch(userRegister(mail,password,fullname,phone))
-        console.log("creado")
+        console.log(mail,password,fullname,phone)
     }
 
    
