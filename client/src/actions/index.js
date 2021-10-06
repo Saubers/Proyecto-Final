@@ -35,10 +35,27 @@ export function postProduct(payload){
         })
     }
 }
-/*
 
+export function userRegister(){
+return async function (dispatch){
+    const json = await axios.post('http://localhost:3002/register');
+    return dispatch({
+        type: 'USER_REGISTER',
+        payload: json
+    })
+}
+}
 
-*/
+export function authUser(){
+    return async function (dispatch){
+        const json = await axios.post('http://localhost:3002/authenticate');
+        return dispatch({
+            type: 'USER_AUTH',
+            payload: json
+        })
+    }
+}
+
 export function DeleteCar(id){
     
     return async function (dispatch){
@@ -99,19 +116,6 @@ export function getNameCars(name){
     
 } 
 
-export function postImage(){
-    return async function(dispatch){
-        try{
-            let json = axios.get('http://localhost:3002/uploadFiles');
-            return dispatch({
-                type:"POST_IMAGE",
-                payload: json.data
-            })
-        } catch(err){
-            console.error(err)
-        }
-    }
-}
 
 export function getBrandCars(name){
     return async function(dispatch){

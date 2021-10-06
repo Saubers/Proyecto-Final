@@ -7,12 +7,9 @@ import Home from './components/Home/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import ProductCRUD from './components/ProductCRUD/ProductCRUD';
 import ProductCRUDDELETE from './components/ProductCRUD/ProductCRUDDELETE';
-import Auth from './components/Auth/Auth'
-import { useFirebaseApp } from 'reactfire';
+import Register from './components/Auth/Auth';
 
 function App() {
-  const firebase = useFirebaseApp;
-  console.log(firebase)
   return (
     <Router>
       <Switch>
@@ -22,7 +19,7 @@ function App() {
         <Route exact path= "/home/:id" component= {ProductDetail}/>
         <Route exact path= '/home/Catalogo/CRUD' component= {ProductCRUD}/>
         <Route exact path= '/home/Catalogo/CRUD/DELETE' component= {ProductCRUDDELETE}/>
-        <Route exact path= '/home/login' component= {Auth}/>
+        <Route exact path= '/user/register' component= {Register}/>
         <Route path = "/contactos" component= {Contact}/>
       </Switch>
     </Router>

@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-//const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const UserSchema = new Schema(
   {
     name: {
@@ -9,9 +9,6 @@ const UserSchema = new Schema(
     lastName: {
       type: String,
       required: true,
-    },
-    image: {
-      type: String, // todavia falta deducir como mandan la foto desde el front
     },
     phone: {
       type: String,
@@ -25,15 +22,9 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    userName: {
-      type: String,
-      required: true,
-      unique: true,
-    },
     password: {
       type: String,
       required: true,
-       unique: true
     },
     state: {
       type: String,
@@ -43,9 +34,35 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
-},
-  {
-    timestamps: true, // timestamps para que nos cargue fecha de ser creado y de actualizado si las hay
-  }
+
+}
 );
+
+UserSchema.pre('save', function(next){
+  if(this.isNew || this.isModified('password')){
+
+  const document = this;
+
+  bcrypt.hash(document.password, saltRounds, (err, hashedPassword) => {
+   if(err){
+    next(err);
+  } else {
+    document.password = hashedPassword;
+  }
+  })
+}else{
+  next();
+}
+})
+
+UserSchema.methods.isCorrectPassword = function(password, callback){
+bcrypt.compare(password, this.password, function(err, same){
+if(err){
+  callback(err)
+} else {
+  callback(err, same)
+}
+});
+}
+
 module.exports = model("User", UserSchema);

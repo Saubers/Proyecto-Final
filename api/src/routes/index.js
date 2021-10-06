@@ -3,6 +3,8 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser} = require('../controllers/cartFunctions')
+const { createUser, authUsers } = require('../controllers/userFunction');
+
 // const {getUsers, createUser} = require('../controllers/userFunction')
 module.exports = app => {
     router.get('/', function(req, res){
@@ -40,11 +42,11 @@ module.exports = app => {
 
 
 
-    /////////////USERS
+   // USERS
     
-    // router.get('users',getUsers);
+     router.post('/register', createUser);
 
-    // router.post('/users',createUser)
+    router.post('/authenticate', authUsers)
 
 
 
