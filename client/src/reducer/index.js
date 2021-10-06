@@ -3,7 +3,8 @@ const initialState = {
     allCars: [],
     carDetail:[],
     engine:[],
-    kilometraje:[]
+    kilometraje:[],
+    users:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -38,6 +39,16 @@ function rootReducer (state = initialState, action) {
         case 'POST_PRODUCT':
             return{
                 ...state,
+            }
+        case 'USER_REGISTER':
+            return{
+                ...state,
+                users: action.payload
+            }
+        case 'USER_AUTH':
+            return{
+                ...state,
+                users: action.payload
             }
         case 'FILTER_BY_ENGINE':
             let filterEngine = []
