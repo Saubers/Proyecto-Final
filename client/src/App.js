@@ -8,6 +8,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import ProductCRUD from './components/ProductCRUD/ProductCRUD';
 import ProductCRUDDELETE from './components/ProductCRUD/ProductCRUDDELETE';
 import Register from './components/Auth/Auth';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path= '/home/Catalogo/CRUD' component= {ProductCRUD}/>
         <Route exact path= '/home/Catalogo/CRUD/DELETE' component= {ProductCRUDDELETE}/>
         <Route exact path= '/user/register' component= {Register}/>
+        <Route exact path= '/home/Catalogo/compra' component= {Cart}/>
         <Route path = "/contactos" component= {Contact}/>
       </Switch>
     </Router>

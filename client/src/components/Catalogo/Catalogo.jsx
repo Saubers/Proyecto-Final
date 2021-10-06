@@ -13,27 +13,11 @@ import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
-
- const dispatch = useDispatch()
-
+    const dispatch = useDispatch()
+    const AllProducts = useSelector((state) => state.cars)
  useEffect(()=>{
     dispatch(getCars())
 },[dispatch])
-
-// useEffect(()=>{
-//     dispatch(getEngine())
-// },[dispatch])
-
-const AllProducts = useSelector((state) => state.cars)
-//select MOTORES
-// const engines = AllProducts.map(el => el.features.engine.map(el => el.name))
-// const nameEngines = []
-// engines.forEach(function(element) {
-//    element.forEach(function(element2){
-//     if (element2 !== undefined) {
-//     nameEngines.push(element2)   
-// }})})
-// const unicosNameEngines = [...new Set(nameEngines)];
 
 //PAGINADO
 const [ page, setPage ] = useState(1);//La pagina actual arranca en 1
@@ -53,14 +37,9 @@ function handleClick(e){
     dispatch(getCars())
     setPage(1)
 }
-// function handleFitroEngine(e){
-//     dispatch(filterEngine(e.target.value))
-//     setPage(1)
-//     setEngine(e.target.value)
-// }
+
 function hadleFiltroKm(evento){
     dispatch (filterKm(evento.target.value))
-
 }
 function handleFilterPrice(e){
     e.preventDefault();
@@ -95,19 +74,8 @@ return (
     {/* BOTON VOLVER */}
     <Link to = '/home'><button className = 'home'>Volver</button></Link>
     
-    {/* SELECT DE MOTOR*/}
     <div className = {styleCatalogo.divcontainer}>
-        {/* <div className={styleCatalogo.divfilter}>
-            <label>MOTOR</label>
-            <select onChange = {ev => handleFitroEngine(ev)} className={styleCatalogo.btnfilter}>
-            <option value = ''> </option>
-            {unicosNameEngines.map((eng)=>(
-                <option value ={eng} > {eng} </option>
-                
-            ))}
-            </select>
-        </div> */}
-        
+
         {/* SELECT DE KM*/}
         <div className={styleCatalogo.divfilter}>
             <label>KILOMETRAJE</label>
