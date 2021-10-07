@@ -1,6 +1,7 @@
 const User = require('../models/User')
 require('../db.js')
 const bcrypt = require('bcrypt')
+const passport = require('../controllers/passport')
 
 const getAllUser = async (req, res, next) => {
     try {
@@ -12,58 +13,50 @@ const getAllUser = async (req, res, next) => {
 }
 
 const createUser = async ( req, res ,next) => {
-    const {fullname, mail,password,phone} = req.body;
- try{
-    const user = new User({ 
+    const errors = [];
+    const {fullname, mail ,password, confirm_password, phone} = req.body;
+    const emailUser = await User.findOne({mail: mail});
+    if(emailUser) {
+        req.flash('error_msg', 'The email is already in use...')
+    } 
+    if(password != confirm_password){
+        req.flash('error_msg', 'Both passwords should be the same')
+    }else{
+    const user = await new User({ 
     fullname:fullname,  
     phone: phone, 
     mail: mail, 
-    password: password
+    password: password,
+    confirm_password: confirm_password
 })
+user.password = await user.encryptPassword(password);
     await user.save()
+    req.flash('succes_msg', 'You are registered!')
     res.status(200).send(user)
- }catch(err){
-     next(err)
- }
-   
+ 
+}
 
 }
 
-const authUsers = async (req,res,next)=>{
-
-const {mail, password} = req.body
-try{
-    const email = await User.findOne({mail:mail})
-    if(email){
-        return console.log("ok")
-    }
-    // User.findOne({mail}, (err, user) =>{
-    //     if(err){
-    //         res.status(500).send('ERROR AL AUTENTICAR USUARIO')
-    //     } else if (!user){
-    //         res.status(500).send('EL USUARIO NO EXISTE')
-    //     } else {
-    //         user.isCorrectPassword(password, (err, result) => {
-    //             if(err){
-    //                 res.status(500).send('ERROR AL AUTENTICAR USUARIO')
-    //             } else if(result){
-    //                 res.status(200).send("USUARIO AUTENTICADO CORRECTAMENTE! :)")
-    //             } else {
-    //                 res.status(500).send('USUARIO Y/O CONTRASEÑA INCORRECTA')
-    //             }
-    //         });
-    //     }
-    // })
-}catch(err) {
-    next(err);
+const logout = async (req, res, next) => {
+    req.logout();
+    req.flash('succes_msg', 'You are logged out now')
+    res.redirect('/user/login')
 }
 
+const loginUser = async (req,res,next) => passport.authenticate('local', {
+    failureRedirect: '/user /login',
+    succesRedirect: '/home',
+    failureFlash: true
 
-}
+})
+
+
 
 
 module.exports = {
     createUser,
-    authUsers,
-    getAllUser
+    loginUser,
+    getAllUser,
+    logout
 }
