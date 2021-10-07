@@ -3,11 +3,11 @@ const { Schema, model } = require("mongoose");
 const CartSchema = new Schema(
     {
         user : {
-            type: Schema.Types.ObjectId,ref:'Use',
+            type: Schema.Types.ObjectId,ref:'Users',
             require : true
         },
         publication : [
-        {   type: Schema.Types.ObjectId,ref:'Car',
+        {   type: Schema.Types.ObjectId,ref:'Cars',
             require : true
         }
         ],
@@ -21,5 +21,5 @@ const CartSchema = new Schema(
     }
 )
 
-module.exports = model("Cart", CartSchema);
+module.exports = model("CartSchema", CartSchema);
  

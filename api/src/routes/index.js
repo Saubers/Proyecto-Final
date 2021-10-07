@@ -71,13 +71,12 @@ module.exports = app => {
 
     //Orden en particular 
     router.get('/orders/:id',cartOrderId)
-    
+
     //Ordener de usuario
     router.get('/users/:id/orders', OrdenesByUsuario)
-    
+
     //Vaciar carrito
     router.get('/users/:idUser/cart/',deleteCart)
-    
 
     app.use(router);
 }

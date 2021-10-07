@@ -6,8 +6,7 @@ const initialState = {
     kilometraje:[],
     users:[],
     allcategories:[],
-    cart:[],
-    idCar:[]
+    cart:[]
 }
 
 function rootReducer (state = initialState, action) {
@@ -29,25 +28,12 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 cars:action.payload,
             }
-
-        //CARRITO
-        case 'POST_CART':
+        case 'LIST_CARD':
+            console.log('CART',action.payload);
             return{
                 ...state,
+                cart: action.payload
             }
-        case 'GET_USER_ORDER':
-            return{
-                ...state,
-                cart: newCar
-            }
-        case 'ID_CAR':
-            const newCar = state.allCars.find(el => el._id === action.payload)
-            console.log('ACA',newCar);
-            return{
-                ...state,
-                idCar: newCar
-            }
-
         case 'GET_BRAND_CARS':
             return{
                 ...state,
@@ -62,6 +48,10 @@ function rootReducer (state = initialState, action) {
             return{
                 ...state,
             }
+        case 'POST_CART':
+            return{
+                ...state
+            }
         case 'USER_REGISTER':
             return{
                 ...state,
@@ -72,7 +62,37 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 users: action.payload
             }
-        case 'FILTER_BY_KM':
+        case 'FILTER_BY_ENGINE':
+            let filterEngine = []
+            // console.log(action.payload)
+            // const engines = state.allCars.map(el => el.features.engine.map(el => el.name))
+            // const nameEngines = []
+            // engines.forEach(function(element) {
+            //    element.forEach(function(element2){
+            //     if (element2 !== undefined) {
+            //     nameEngines.push(element2)   
+            // }})})
+        //     if(action.payload === 'All'){
+               filterEngine =   state.allCars 
+        //    }
+        //    /////////////////////////////////
+        //    let i = 0
+        //     do {
+        //     if(nameEngines[i] === action.payload ){
+        //         filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
+        //     }
+        //     i++
+        //  while (nameEngines[i] !== action.payload){
+        //      if(nameEngines[i] === action.payload){
+        //          filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
+        //     }
+        //     i = i+ 1
+        // }
+            return{
+                 ...state,
+                cars: filterEngine
+             }
+            case 'FILTER_BY_KM':
             let km = []
                 if(action.payload === 'All'){
                      km = state.allCars
@@ -132,6 +152,17 @@ function rootReducer (state = initialState, action) {
                     ...state,
                     cars: money
                 }
+            
+            // if(action.payload === 'all'){
+            //     const price = state.cars
+            //     }
+            //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
+            //     state.cars.sort((a,b) => b.price - a.price)
+            //     return{
+            //         ...state,
+            //         cars: price
+            //     }
+
         case 'FILTER_BY_TRACTION':
         let filterTraction = []
         if(action.payload === 'All'){
