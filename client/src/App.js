@@ -7,7 +7,8 @@ import Home from './components/Home/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import ProductCRUD from './components/ProductCRUD/ProductCRUD';
 import ProductCRUDDELETE from './components/ProductCRUD/ProductCRUDDELETE';
-import Register from './components/Auth/Auth';
+/* import Register from './components/Auth/Auth'; */
+import Register from './components/Auth/register/Auth';
 import Cart from './components/Cart/Cart';
 
 function App() {
