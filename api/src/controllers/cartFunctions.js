@@ -3,9 +3,9 @@ const Cart = require('../models/Cart');
 
 const agregarOrden = async function(req,res){
     let {idUser} = req.params
-    let {idItem,price,state} = req.boddy
+    let {idItem,price,state} = req.body
     try{    
-        const cart = new CarT({
+        const cart = new Cart({
         user: idUser,
         publication:idItem,
         price : price,
@@ -24,7 +24,7 @@ const CartUser = async function(req,res){
     try {
         const userOrder = await Cart.find({user : idUser})
         if(userOrder){
-            res.status(200).send(user)
+            res.status(200).send(userOrder)
         }else{
             res.status(404).send('Id invalida')
         }
@@ -86,7 +86,7 @@ const cartOrderId = async function(req,res) {
 
 const putCart = async function(req,res){
     let idOrder = req.params
-    let {idItem,idUsuario,price,state} = req.boddy
+    let {idItem,idUsuario,price,state} = req.body
     try{    
         const cart =  Cart.findByIdAndUpdate(idOrder,{
         user: idUsuario,
