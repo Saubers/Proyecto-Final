@@ -22,9 +22,9 @@ const agregarOrden = async function(req,res){
 const CartUser = async function(req,res){
     let {idUser} = req.params
     try {
-        const userOrder = await Cart.findOne({user : idUser})
+        const userOrder = await Cart.find({user : idUser})
         if(userOrder){
-            res.status(200).send(user)
+            res.status(200).send(userOrder)
         }else{
             res.status(404).send('Id invalida')
         }
