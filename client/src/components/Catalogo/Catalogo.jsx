@@ -165,7 +165,7 @@ return (
                     
                         <ProductCard
                             name={el.name}
-                            img={el.img}
+                            img={el.img[0]}
                             model={el.model}
                             brand={el.brand}
                             description={el.description}
