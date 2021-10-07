@@ -29,6 +29,7 @@ nav ul{
   display: flex;
   flex-wrap: wrap;
   list-style: none;
+  align-items: center;
 }
 nav ul li{
   margin: 0 5px;

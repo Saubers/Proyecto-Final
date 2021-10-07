@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector,  } from "react-redux";
-
+import CartProduct from '../Cart/CartProduct/CartProduct'
 import { useEffect, useState } from "react";
 import { postCart, getUserOrder } from "../../actions";
 import {useLocalStorage} from '../../useStorage/useLocalStorage'
@@ -15,7 +15,7 @@ export default function Cart(props){
     console.log("ACA",idCar);
 
 
-    const [idAuto, setIdAuto] = useLocalStorage('idItem',[])
+    const [idAuto, setIdAuto] = useLocalStorage('idItem',{})
 
     console.log(idAuto)
 
@@ -41,14 +41,15 @@ export default function Cart(props){
     return(
         <div>
             {/* <button onChange= {(e)=> handleSubmit(e)}>Comprar</button> */}
-            <h3>PRODUCTOS</h3>
-                {idAuto.map(el => {
+            <h1>Compras</h1>
+                {idAuto && idAuto.map(el => {
                 return(
                     <div>
-                        <h1>{el?.brand},{el?.name}</h1>
-                        <h2>{el?.price}</h2>
+                        <CartProduct name={el.name} price={el.price} img={el.img} brand={el.brand}/>
+                        {/* <h1>{el?.brand},{el?.name}</h1>
+                        <h2>{el?.price}</h2> */}
                          {/*<img src={el.img[0]} alt='Erorr' width="200x" height="200px"></img>*/}
-                        <h4>{priceTotal = priceTotal + el?.price}</h4>
+                        {/* <h4>{priceTotal = priceTotal + el?.price}</h4> */}
                         <button onClick={()=> handleDelete(el)}>Boorar</button>
 
                     </div>

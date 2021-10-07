@@ -1,0 +1,8 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border: 1px solid darkgray;
+    width: 800px;
+    align-items: center;
+}

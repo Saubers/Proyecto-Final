@@ -1,6 +1,6 @@
 import React from 'react';
 import styleNav from '../NavBar/NavBar.module.css';
-
+import logocarrito from '../image/carrito.png';
 const NavBar = () => {
     return (
         <div className={styleNav.container}>
@@ -18,7 +18,7 @@ const NavBar = () => {
             <li><a href="/home/catalogo ">Our Catalog</a></li>
             <li><a href="# ">Payment Methods</a></li>
             <li><a href="# ">Branch Office</a></li>
-            <li><a href="/home/Catalogo/compra">Carrito</a></li>
+            <a href="/home/Catalogo/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
          </ul>
       </nav>
         </div>
