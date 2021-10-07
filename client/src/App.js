@@ -21,7 +21,7 @@ function App() {
         <Route exact path= '/home/Catalogo/CRUD' component= {ProductCRUD}/>
         <Route exact path= '/home/Catalogo/CRUD/DELETE' component= {ProductCRUDDELETE}/>
         <Route exact path= '/user/register' component= {Register}/>
-        <Route exact path= '/home/Catalogo/compra' component= {Cart}/>
+        <Route exact path= '/home/:idUser/compra' component= {Cart}/>
         <Route path = "/contactos" component= {Contact}/>
       </Switch>
     </Router>

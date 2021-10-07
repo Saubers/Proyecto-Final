@@ -2,13 +2,13 @@ import React from 'react';
 import styleCars from '../ProductCard/ProductCard.module.css';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
-import {listCart} from '../../actions/index';
+import {idCar} from '../../actions/index';
 
 const ProductCard = ({name,brand,img,price,model,mileage,_id}) =>{
     const dispatch = useDispatch()
 
     function addToCart(_id){
-        dispatch (listCart(_id))
+        dispatch (idCar(_id))
     }
 
     return(

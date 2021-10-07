@@ -31,19 +31,29 @@ export function postProduct(payload){
         return dispatch({
             type: 'POST_PRODUCT',
             payload : json
+})}}
+
+//ACTIONS CARRITO
+export function getUserOrder(idUser){
+    console.log(idUser);
+    return async function (distpatch){
+        const json = await axios("http://localhost:3002/users"+idUser+'/cart')
+        console.log("json",json);
+        return distpatch({
+            type: 'GET_USER_ORDER',
+            payload: json
         })
-    }
-}
-// export function postCart(idUser, payload){
-//     console.log("id", idUser, 'payload' , payload);
-//     return async function (dispatch){
-//         const json = await axios.post ("http://localhost:3002/users/"+ idUser + "/cart" , payload);
-//         return dispatch({
-//             type: 'POST_CART',
-//             payload: json
-//         })
-//     }
-// }
+}}
+export function postCart(payload, idUser){
+    console.log("id", idUser, 'payload' , payload);
+    return async function (dispatch){
+        const json = await axios.post ("http://localhost:3002/users/"+idUser+"/cart" , payload);
+        return dispatch({
+            type: 'POST_CART',
+            payload: json
+})}}
+
+
 
 export function userRegister(payload){
 return async function (dispatch){
@@ -51,9 +61,7 @@ return async function (dispatch){
     return dispatch({
         type: 'USER_REGISTER',
         payload: json
-    })
-}
-}
+})}}
 
 export function authUser(){
     return async function (dispatch){
@@ -84,9 +92,10 @@ export function filterKm(payload) {
         type:'FILTER_BY_KM',
         payload
 }}
-export function listCart(payload){
+export function idCar(payload){
+    console.log('actions', payload);
     return{
-        type:'LIST_CARD',
+        type:'ID_CAR',
         payload
 }}
 export function filterPrice(payload) {
