@@ -2,15 +2,19 @@ import React from 'react';
 import styleCars from '../ProductCard/ProductCard.module.css';
 import {Link} from 'react-router-dom';
 import {useDispatch} from 'react-redux'
-import {idCar} from '../../actions/index';
+import {getCarDetail} from '../../actions/index';
+import {useLocalStorage} from '../../useStorage/useLocalStorage'
 
 const ProductCard = ({name,brand,img,price,model,mileage,_id}) =>{
     const dispatch = useDispatch()
-
-    function addToCart(_id){
-        dispatch (idCar(_id))
+    const [idAuto, setIdAuto] = useLocalStorage('idItem',[])
+    
+   async function addToCart(id){
+      const idItem = await dispatch(getCarDetail(id))
+     // console.log(idItem.payload)
+      setIdAuto([...idAuto , idItem.payload])
+        console.log('idItem en prdcard',idAuto)
     }
-
     return(
     <div className={styleCars.containerproduct}>
         <div className={styleCars.divimg}>

@@ -15,7 +15,8 @@ const idCars = async (req,res)=>{
             description:carDetail.description,
             img:carDetail.img,
             category:carDetail.category,
-            features:carDetail.features
+            features:carDetail.features,
+            price : carDetail.price,
             }
             res.status(200).send(carId)
         }else {

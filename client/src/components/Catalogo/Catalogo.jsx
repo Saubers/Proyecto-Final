@@ -9,13 +9,16 @@ import NavBar from '../NavBar/NavBar'
 import styleCatalogo from '../Catalogo/Catalogo.module.css';
 import { getCars } from "../../actions/index";
 import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
+
 // import Card from './Card';
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
-    const dispatch = useDispatch()
-    const AllProducts = useSelector((state) => state.cars)
- useEffect(()=>{
+const dispatch = useDispatch()
+const AllProducts = useSelector((state) => state.cars)
+
+
+useEffect(()=>{
     dispatch(getCars())
 },[dispatch])
 
@@ -27,6 +30,11 @@ const [order, setOrder] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
 const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
+
+
+/////
+
+
 
 const paginado = (NumberPage) => {
     setPage(NumberPage);
