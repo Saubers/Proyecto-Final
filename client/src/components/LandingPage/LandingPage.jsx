@@ -1,9 +1,18 @@
 import styles from '../LandingPage/LangingPage.module.css'
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom'
 
 
 export default function LandingPage() {
+
+    // useEffect(() => {
+    //     const userInfo = localStorage.getItem('userInfo');
+        
+    //     if(userInfo) {
+    //         history.push('/')
+    //     }
+    // }, [history])
+
 return(
     
        <div className={styles.landing}>
