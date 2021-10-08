@@ -32,16 +32,13 @@ function CategoryCreate() {
 
     return (
         <div>
-
             <NavBar />
-
             <div>
-                <h1>Enter the new category information</h1>
+                <h1 align="center">Enter the new category information</h1>
             </div>
-
             <form onSubmit={(e) => HandleSubmit(e)}>
-                <fieldset>
-                    <legend>categoria</legend>
+                <fieldset align="center">
+                    <legend>Categoria</legend>
                     <div>
                         <label>Nombre:</label>
                         <input name="name"
@@ -50,8 +47,8 @@ function CategoryCreate() {
                             onChange={(e) => handleChange(e)}
                             required />
                     </div>
-
                     <div>
+                        <p>Descripcion</p>
                         <textarea name="description"
                             value={input.description}
                             cols="80" rows="6"
@@ -60,10 +57,10 @@ function CategoryCreate() {
                             required></textarea>
                     </div>
                 </fieldset>
+                <Link to="/home">
+                    <button>Volver</button>
+                </Link>
             </form>
-            <Link to="/home">
-                <button>Volver</button>
-            </Link>
         </div>
     )
 }
