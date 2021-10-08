@@ -7,14 +7,15 @@ import {useLocalStorage} from '../../useStorage/useLocalStorage'
 
 const ProductCard = ({name,brand,img,price,model,mileage,_id}) =>{
     const dispatch = useDispatch()
-    const [idAuto, setIdAuto] = useLocalStorage('idItem',[])
-    
-   async function addToCart(id){
-      const idItem = await dispatch(getCarDetail(id))
-     // console.log(idItem.payload)
-      setIdAuto([...idAuto , idItem.payload])
-        console.log('idItem en prdcard',idAuto)
-    }
+
+        // localStorage.setItem('auto',[])
+        // let array = []
+        // async function addToCart(_id){
+        //  const idItem = await dispatch(getCarDetail(_id))
+        // array.push(idItem.payload)
+        // localStorage.setItem('auto',array)
+        // console.log(array)
+        // }
     return(
     <div className={styleCars.containerproduct}>
         <div className={styleCars.divimg}>
@@ -27,7 +28,6 @@ const ProductCard = ({name,brand,img,price,model,mileage,_id}) =>{
                 <Link to= {'/home/' + _id}>
                     <button className={styleCars.btn}>Detalle</button>
                 </Link>
-                <button onClick = {() => addToCart(_id)}>Comprar</button> 
             </h3>
             
         </div>

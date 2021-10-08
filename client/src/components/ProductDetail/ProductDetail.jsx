@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from '../ProductDetail/ProductDetail.module.css'
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +6,7 @@ import { getCarDetail } from "../../actions/index";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
+import {useLocalStorage} from '../../useStorage/useLocalStorage'
 
 export default function Detail(props){
     const dispatch= useDispatch()
@@ -13,10 +14,19 @@ export default function Detail(props){
     useEffect(()=> {
         dispatch(getCarDetail(props.match.params.id));
     },[dispatch, props.match.params.id])
-
+    
+    
     const MyCar= useSelector ((state)=> state.carDetail)
+    const [Isbotton,setIsButton]  = useState(false)
+    var ternario = false
+    const [idAuto, setIdAuto] = useLocalStorage('auto',[])
+    async function addToCart(){
+    //  si idAuto === 0 es array vacio se salta anashe
+    setIsButton(true)
+    setIdAuto([...idAuto , MyCar])
+}
+    console.log('idAutoo ',idAuto)
     /* const carCategories = useSelector((state) => state.categories) */
-    console.log(MyCar);
     return (
         <div>
             <NavBar />
@@ -38,6 +48,15 @@ export default function Detail(props){
             <Link to= "/home/catalogo">
                 <button className={styles.button}>Back</button>
             </Link>
+            
+            {console.log(ternario),
+               Isbotton === true ? <div>
+                   Orden agregada al <Link to="/home/Catalogo/compra">carrito</Link>
+                   </div>
+               :
+                <button  onClick={()=>addToCart(MyCar.id)} >Comprar</button>
+               
+            }           
         </div>
         </div>
     ) 

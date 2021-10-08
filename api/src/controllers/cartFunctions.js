@@ -3,7 +3,7 @@ const Cart = require('../models/Cart');
 
 const agregarOrden = async function(req,res){
     let {idUser} = req.params
-    let {idItem,price,state} = req.boddy
+    let {idItem,price,state} = req.body
     try{    
         const cart = new CarT({
         user: idUser,
