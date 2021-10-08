@@ -34,6 +34,15 @@ export function postProduct(payload){
         })
     }
 }
+export function postCategory(payload){
+    return async function(dispatch){   
+        const json =  await axios.post("http://localhost:3002/categories", payload);
+        return dispatch({
+            type: 'POST_CATEGORY',
+            payload : json
+        })
+    }
+}
 export function postCart(idUser, payload){
     console.log("id", idUser, 'payload' , payload);
     return async function (dispatch){

@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {getCarDetail, postProduct, getCategories} from '../../actions/index'
 import {useDispatch,useSelector} from "react-redux";
 import styleCrudPost from '../ProductCRUD/ProductCRUD.module.css';
+import NavBar from "../NavBar/NavBar";
 
 
 function validate(input) {
@@ -85,7 +86,7 @@ function validate(input) {
         console.log(input)
         e.preventDefault(e);
         dispatch(postProduct(input))
-        alert("¡PRODUCT ADDED!")
+        alert("¡PRODUCTO AÑADIDO!")
         setInput({
             brand:"",
             name:"",
@@ -114,6 +115,8 @@ function validate(input) {
 
     return(
         <div className={styleCrudPost.General}>
+
+            <NavBar/>
 
         <h1>Enter New Car information</h1>
 
