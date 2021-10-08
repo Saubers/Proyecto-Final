@@ -46,7 +46,7 @@ module.exports = app => {
     
     router.post('/register', createUser);
 
-    router.get('/login', loginUser)
+    router.post('/login', loginUser)
 
     router.get('/logout', logout)
 

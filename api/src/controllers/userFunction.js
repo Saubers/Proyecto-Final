@@ -1,7 +1,5 @@
 const User = require('../models/User')
 require('../db.js')
-const bcrypt = require('bcrypt')
-const passport = require('../controllers/passport')
 
 const getAllUser = async (req, res, next) => {
     try {
@@ -15,11 +13,15 @@ const getAllUser = async (req, res, next) => {
 const createUser = async ( req, res ,next) => {
     const {fullname, mail ,password, confirm_password, phone} = req.body;
     const emailUser = await User.findOne({mail: mail});
+    const userPhone = await User.findOne({phone: phone});
     if(emailUser) {
-        req.flash('error_msg', 'The email is already in use...')
+       return res.status(400).send('Email is already taken')
+    }
+    if(userPhone){
+        return res.status(400).send('That phone number is already taken')
     } 
     if(password != confirm_password){
-        req.flash('error_msg', 'Both passwords should be the same')
+       return res.status(400).send('Both passwords should be the same')
     }else{
     const user = await new User({ 
     fullname:fullname,  
@@ -37,12 +39,18 @@ user.password = await user.encryptPassword(password);
 
 }
 
-const loginUser = async (req,res,next) => passport.authenticate('local', {
-    failureRedirect: '/user /login',
-    succesRedirect: '/home',
-    failureFlash: true
+const loginUser = async (req,res,next) => {
+    const { mail, password } = req.body;
+    
+    const user = await User.findOne({ mail });
 
-})
+    if(user && (await user.matchPassword(password))) {
+        res.status(200).send('User login succesfully!')
+    } else {
+        res.status(400).send('Invalid mail or password')
+    }
+}
+ 
 
 const logout = async (req, res, next) => {
     req.logout();
