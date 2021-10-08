@@ -10,7 +10,7 @@ export default function Cart(props){
     // const carrito = useSelector ((state)=> state.cart)
     // console.log("ACA",idCar);
 
-
+    const [price,setPrice] = useState(0)
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const [cantidad,setCantidad] = useState(0)
     console.log(idAuto)
@@ -20,12 +20,12 @@ export default function Cart(props){
         setCantidad(sumar)
     }
 
-    function handleSelect(e) {
+    function handleSelect(e,precio) {
+        console.log('precio', precio)
         setCantidad(
           e.target.value
         )
     }
-    let unitario = 0;
     let priceTotal = 0;
     return(
         <div>
@@ -38,10 +38,10 @@ export default function Cart(props){
                 return(
                     <div key={el.id}>
                         <h1>{el?.brand},{el?.name}</h1>
-                        <h2>{el?.price * cantidad}</h2>
+                        <h2>{el?.price}</h2>
                          {<img src={el.img} alt='Erorr' width="200x" height="200px"></img>}
                         <h4>{priceTotal = priceTotal +( el?.price * cantidad )}</h4>
-                        <select onChange={(e)=>handleSelect(e)}> 
+                        <select onChange={(e)=>handleSelect(e,el.price)}> 
                         Cantidad
                         <option value={1}>1</option>
                         <option value={2}>2</option>

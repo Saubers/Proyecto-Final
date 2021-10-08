@@ -13,19 +13,28 @@ export default function Detail(props){
 
     useEffect(()=> {
         dispatch(getCarDetail(props.match.params.id));
+
     },[dispatch, props.match.params.id])
     
-    
     const MyCar= useSelector ((state)=> state.carDetail)
-    const [Isbotton,setIsButton]  = useState(false)
-    var ternario = false
+    // const [Isbotton,setIsButton]  = useState(false)
+    //ar ternario = false
+    
+    
+    let IdButton = props.match.params.id
+    
+    
     const [idAuto, setIdAuto] = useLocalStorage('auto',[])
+    
+    
+    const [Isbotton, setIsButton] = useLocalStorage('button',[])
+        
     async function addToCart(){
-    //  si idAuto === 0 es array vacio se salta anashe
-    setIsButton(true)
-    setIdAuto([...idAuto , MyCar])
+        setIdAuto([...idAuto , MyCar])
+        setIsButton([...Isbotton,MyCar.id])
 }
-    console.log('idAutoo ',idAuto)
+    const found = Isbotton.find(element => element === IdButton)
+    console.log('Fopund ',found)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>
@@ -49,8 +58,8 @@ export default function Detail(props){
                 <button className={styles.button}>Back</button>
             </Link>
             
-            {console.log(ternario),
-               Isbotton === true ? <div>
+            {
+               found === IdButton ? <div>
                    Orden agregada al <Link to="/home/Catalogo/compra">carrito</Link>
                    </div>
                :

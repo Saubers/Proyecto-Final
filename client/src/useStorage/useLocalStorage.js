@@ -11,11 +11,11 @@ export function useLocalStorage (key,initialValue){
             return initialValue
         }
     })
-   // console.log('storedValue',storedValue)
-    //  function borrar() {
-    //     window.localStorage.clear();
-    // }
-    //  borrar()  
+//    console.log('storedValue',storedValue)
+//      function borrar() {
+//         window.localStorage.clear();
+//     }
+//      borrar()  
     const setValue = value =>{
         console.log('setvalu',value)
         try {
