@@ -64,11 +64,11 @@ return async function (dispatch){
 }
 }
 
-export function authUser(){
+export function loginUser(){
     return async function (dispatch){
-        const json = await axios.post('http://localhost:3002/authenticate');
+        const json = await axios.post('http://localhost:3002/login');
         return dispatch({
-            type: 'USER_AUTH',
+            type: 'USER_LOGIN',
             payload: json
         })
     }
