@@ -23,8 +23,8 @@ function App() {
         <Route exact path="/home/Catalogo/CrearCategoria" component={CategoryCreate} />
         <Route exact path='/home/Catalogo/CRUD' component={ProductCRUD} />
         <Route exact path='/home/Catalogo/CRUD/DELETE' component={ProductCRUDDELETE} />
-        <Route exact path='/user/register' component={Register} />
-        <Route exact path="/user/login" component={Login} />
+        <Route  path='/user/register' component={Register} />
+        <Route  path="/user/login" component={Login} />
         <Route exact path='/home/Catalogo/compra' component={Cart} />
         <Route exact path="/contactos" component={Contact} />
       </Switch>
