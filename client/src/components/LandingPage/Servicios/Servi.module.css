@@ -1,0 +1,20 @@
+.containerprin{
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: whitesmoke;
+    
+}
+.containersecu{
+    display: flex;
+    flex-direction: row;
+}
+.cajas{
+
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
