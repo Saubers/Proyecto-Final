@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {useDispatch} from 'react-redux'
 import StyleLogin from '../../Auth/login/Logon.module.css';
-import {authUser} from '../../../actions/index'
+import {loginUser} from '../../../actions/index'
 import { Link } from 'react-router-dom'
 const Login = () => {
     const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const Login = () => {
     
     const handleSubmit =(e) => {
         e.preventDefault();
-        dispatch(authUser(mail, password))
+        dispatch(loginUser(mail, password))
 
     }
     return(
@@ -19,7 +19,7 @@ const Login = () => {
                 <div>
                     <img src="" alt="" srcset="" />
                 </div>
-                <form actions="/authenticate" onSubmit={(e)=> handleSubmit(e)}>
+                <form actions="/login" onSubmit={(e)=> handleSubmit(e)}>
                     <div>
                         <label>Email</label>
                         <input type="mail" name="mail" value={mail} onChange={(e) => setMail(e.target.value)}></input>
@@ -29,9 +29,13 @@ const Login = () => {
                         <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
                     <div>
+                    <label>Password</label>
+                        <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    </div>
+                    <div>
                         <button type="submit">Login</button>
                         <Link to = '/'> 
-                            <button > back </button>
+                            <button > Back </button>
                         </Link>
                     </div>
                 </form>

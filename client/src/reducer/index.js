@@ -48,6 +48,10 @@ function rootReducer (state = initialState, action) {
             return{
                 ...state,
             }
+            case 'POST_CATEGORY':
+            return{
+                ...state,
+            }
         case 'POST_CART':
             return{
                 ...state
@@ -57,7 +61,7 @@ function rootReducer (state = initialState, action) {
                 ...state,
                 users: action.payload
             }
-        case 'USER_AUTH':
+        case 'USER_LOGIN':
             return{
                 ...state,
                 users: action.payload

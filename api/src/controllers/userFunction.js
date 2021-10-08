@@ -13,7 +13,6 @@ const getAllUser = async (req, res, next) => {
 }
 
 const createUser = async ( req, res ,next) => {
-    const errors = [];
     const {fullname, mail ,password, confirm_password, phone} = req.body;
     const emailUser = await User.findOne({mail: mail});
     if(emailUser) {
@@ -38,18 +37,20 @@ user.password = await user.encryptPassword(password);
 
 }
 
-const logout = async (req, res, next) => {
-    req.logout();
-    req.flash('succes_msg', 'You are logged out now')
-    res.redirect('/user/login')
-}
-
 const loginUser = async (req,res,next) => passport.authenticate('local', {
     failureRedirect: '/user /login',
     succesRedirect: '/home',
     failureFlash: true
 
 })
+
+const logout = async (req, res, next) => {
+    req.logout();
+    req.flash('succes_msg', 'You are logged out now')
+    res.redirect('/user/login')
+}
+
+
 
 
 
