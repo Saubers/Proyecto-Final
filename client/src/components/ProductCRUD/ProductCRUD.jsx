@@ -190,7 +190,7 @@ function validate(input) {
 
             <label className={styleCrudPost.label}>Description: </label>
             <div className={styleCrudPost.subDiv}>
-                <input
+                <textarea
                 required
                 type="text"
                 value= {input.description}

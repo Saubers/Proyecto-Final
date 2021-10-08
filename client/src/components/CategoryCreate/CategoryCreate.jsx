@@ -54,7 +54,7 @@ function CategoryCreate() {
                             cols="80" rows="6"
                             placeholder="Descripcion..."
                             onChange={(e) => handleChange(e)}
-                            required></textarea>
+                            required />
                     </div>
                 </fieldset>
                 <Link to="/home">
