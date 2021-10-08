@@ -28,10 +28,7 @@ const Login = () => {
                         <label>Password</label>
                         <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
-                    <div>
-                    <label>Password</label>
-                        <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                    </div>
+    
                     <div>
                         <button type="submit">Login</button>
                         <Link to = '/'> 

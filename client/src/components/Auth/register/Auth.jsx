@@ -11,7 +11,8 @@ export default function Register () {
         fullname: '',
         mail: '',
         phone: '',
-        password: ''
+        password: '',
+        check_password: ''
     })
     
 
@@ -25,7 +26,8 @@ export default function Register () {
             fullname: '',
             mail: '',
             phone: '',
-            password: ''
+            password: '',
+            check_password: ''
         })
     }
 
@@ -48,9 +50,11 @@ export default function Register () {
                     <input  type="email" name="mail"  value={user.mail} onChange={(e) => handleChange(e)} />
                     <label htmlFor='password'>Contraseña</label>
                     <input type="password" name="password"  value={user.password} onChange={(e) => handleChange(e)} />
+                    <label htmlFor='password'>Vuelve a escribir tu contraseña</label>
+                    <input type="password" name="check_password"  value={user.check_password} onChange={(e) => handleChange(e)} />
                     <label htmlFor='phone'>Telefono</label>
                     <input type="phone" name="phone" value={user.phone}  onChange={(e) => handleChange(e)} />
-                    <button type="submit" >Registrar</button>
+                    <button type="submit"onClick={(e) => handleSubmit} >Registrar</button>
                     </form>
             </div>
         </div>
