@@ -68,7 +68,7 @@ export default function Cart(props){
                 })}
 
 
-            <Link to= "/home/catalogo">
+            <Link to= "/home">
                 <button>Back</button>
             </Link>
             </div>
