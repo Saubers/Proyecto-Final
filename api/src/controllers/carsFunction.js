@@ -9,14 +9,15 @@ const idCars = async (req,res)=>{
         if (id) {
             let carDetail= await Car.findById(id).populate('category');
             let carId ={
-            id: carDetail.id,
-            brand:carDetail.brand,
-            name:carDetail.name,
+            id         : carDetail.id,
+            brand      :carDetail.brand,
+            name       :carDetail.name,
             description:carDetail.description,
-            img:carDetail.img,
-            category:carDetail.category,
-            features:carDetail.features,
-            price : carDetail.price,
+            img        :carDetail.img,
+            category   :carDetail.category,
+            features   :carDetail.features,
+            price      :carDetail.price,
+            number     :carDetail.number
             }
             res.status(200).send(carId)
         }else {
