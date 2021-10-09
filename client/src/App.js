@@ -17,6 +17,7 @@ import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduc
 function App() {
   return (
     <Router>
+      <div className='container'>
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/home" component={Home} />
@@ -32,6 +33,7 @@ function App() {
         <Route exact path='/home/compra' component={Cart} />
         <Route exact path="/contactos" component={Contact} />
       </Switch>
+      </div>
     </Router>
   );
 }

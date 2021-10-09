@@ -3,7 +3,7 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row } from 'react-bootstrap';
 import {useDispatch} from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { userRegister } from '../../../actions';
 import NavBar from '../../NavBar/NavBar'
 import ErrorMessage from '../login/ErrorMessage';
@@ -22,7 +22,7 @@ export default function Register () {
     const [message, setMessage] = useState(null)
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
-
+    const history = useHistory()
 
 
     const handleSubmit = async (e) => {
@@ -58,7 +58,7 @@ localStorage.setItem("userInfo", JSON.stringify(data));
 
     function handleChange(e){
     e.preventDefault()
-
+history.push('/user/login')
     }
    
     return (
@@ -114,7 +114,7 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                     />  
                 </Form.Group>
 
-                <Button type="submit">Register</Button>
+                <Button type="submit" onClick={(e) => handleChange(e)}>Register</Button>
             </form>
             
             </div>

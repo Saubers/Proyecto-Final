@@ -3,12 +3,13 @@
 *{
     margin: 0;
     padding: 0;
+    
 }
 .header{
     height: 70px;
 }
 .containerdiv{
-    background: whitesmoke;
+    background: rgb(255, 255, 255);
 }
 .cajabotones{
     position: absolute;
@@ -16,6 +17,8 @@
     left: 280px;
 }
 .btn{
+    display:flexbox;
+    justify-content: center;
     padding: 10px 70px;
     border-radius: 5px;
     background-color: rgb(30, 143, 255,0.3);

@@ -44,7 +44,7 @@ return(
                 </Carousel>
                 <div className={stylesLanding.cajabotones}>
                     <div className={stylesLanding.jj}>
-                        <h2 className={stylesLanding.h2sly}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed,</h2>
+                        <h2 className={stylesLanding.h2sly}>We can help you to find your favourite car!</h2>
                         <div>
                             <Link to ='/user/login'>
                                 <button className={stylesLanding.btn}>LOGIN</button>

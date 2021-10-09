@@ -14,7 +14,7 @@
 }
 .containerproduct{
     width: 400px;
-    height: 300px;
+    height: 350px;
     border: 1px solid gray; 
     border-radius: 5px;
    
@@ -31,18 +31,9 @@
 }
 .btn{
     margin-right: 10px;
-    width: 70px;
+    width: 50px;
     height: 30px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    background-color:#485482;
-    color :white;
-    cursor: pointer;
-}
-.btnComprar{
-    margin-right: 10px;
-    width: 70px;
-    height: 30px;
+    font-size: 12px;
     border: 1px solid gray;
     border-radius: 5px;
     background-color:#485482;
