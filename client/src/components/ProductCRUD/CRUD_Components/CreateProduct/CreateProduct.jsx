@@ -45,7 +45,8 @@ export default function CreateProduct() {
     }, [dispatch])
 
     const [errors, setErrors] = useState({})
-
+    const [imageMessage, setImageMessage] = useState(null)
+    const [image, setImage] = useState("")
 
 
 
@@ -55,7 +56,6 @@ export default function CreateProduct() {
         brand: "",
         name: "",
         model: "",
-        img: "",
         category: "",
         description: "",
         features_doors: "",
@@ -91,7 +91,6 @@ export default function CreateProduct() {
             brand: "",
             name: "",
             model: "",
-            img: "",
             category: "",
             description: "",
             features_doors: "",
@@ -114,6 +113,32 @@ export default function CreateProduct() {
         })
     }
 
+    const postDetails=(images) =>{
+    if(
+        images === undefined
+    ) {
+        return setImageMessage("Select an image...")
+    }
+    setImageMessage(null);
+    
+    if(images.type === 'image/jpeg' || images.type === 'image/png' || images.type === 'image/jpg'){
+        const data = new FormData();
+        data.append('file', images)
+        data.append('upload_preset', 'carshop')
+        data.append('cloud_name', 'proyect-cloud')
+        fetch("https://api.cloudinary.com/v1_1/proyect-cloud/image/upload", {
+            method: "POST",
+            body: data,
+        }).then((res) => res.json()).then((data)=>{
+            console.log(data);
+            setImage(data.url.toString())
+        }).catch((err) => {
+            console.log(err)
+        })
+    } else {
+        return setImageMessage("Select an image...")
+    }
+    }
     return (
         <div className={styleCrudPost.General}>
             <div>
@@ -167,10 +192,9 @@ export default function CreateProduct() {
                     <label className={styleCrudPost.label}>Image: </label>
                     <div className={styleCrudPost.subDiv}>
                         <input
-                            type="text"
-                            value={input.img}
+                            type="file"
                             name="img"
-                            onChange={(e) => handleChange(e)}
+                            onChange={(e) => postDetails(e)}
                             required
                             className={styleCrudPost.inputActivity}
                         />
