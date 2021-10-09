@@ -62,7 +62,7 @@ function CategoryCreate() {
                 <Link to="/home">
                     <button>Volver</button>
                 </Link>
-                <button type='submit'>Publicar</button>
+                <button type='submit'>Crear</button>
             </form>
         </div>
     )
