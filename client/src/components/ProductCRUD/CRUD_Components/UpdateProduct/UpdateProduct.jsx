@@ -50,11 +50,14 @@ export default function UpdateProduct() {
 
     const cars = useSelector(state => state.allCars)
 
-
     const [errors, setErrors] = useState({})
+
     const [imageMessage, setImageMessage] = useState(null)
+
     const [image, setImage] = useState("")
+
     const [id, setID] = useState("")
+
     const [input, setInput] = useState({
         brand: "",
         name: "",
