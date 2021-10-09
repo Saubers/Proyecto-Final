@@ -1,5 +1,5 @@
 import stylesLanding from '../LandingPage/LangingPage.module.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Nuevologo from '../image/nuevologo.png';
 import usuario from '../image/usuario.png';
@@ -10,7 +10,16 @@ import image3 from '../image/imgcarousellandin/image3.jpg';
 import Servi from '../LandingPage/Servicios/Servi'
 import Footer from '../LandingPage/Footer/Footer'
 
-export default function LandingPage() {
+export default function LandingPage({history}) {
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("userInfo");
+ 
+        if(userInfo) {
+            history.push("/home")
+        }
+    }, [history])
+
 return(
     
        <div>
