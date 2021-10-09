@@ -47,7 +47,7 @@ export default function Cart(props){
                     <div key={el.id}>
                         <h1>{el?.brand},{el?.name}</h1>
                         <h2>{el?.price} X {el.number} = {el?.price * el.number}</h2>
-                         {<img src={el.img} alt='Erorr' width="200x" height="200px"></img>}
+                         {<img src={el.img[0]} alt='Erorr' width="200x" height="200px"></img>}
                         <h4>{priceTotal = priceTotal +( el?.price * cantidad )}</h4>
                         <select onChange={(e)=>handleSelect(e,el.price)}> 
                         Cantidad
