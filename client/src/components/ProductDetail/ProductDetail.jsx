@@ -26,13 +26,18 @@ export default function Detail(props){
     
     const [idAuto, setIdAuto] = useLocalStorage('auto',[])
     
-    
-    const [Isbotton, setIsButton] = useLocalStorage('button',[])
-        
-    async function addToCart(){
+
+        async function addToCart(){
         setIdAuto([...idAuto , MyCar])
         setIsButton([...Isbotton,MyCar.id])
+
 }
+
+    const [Isbotton, setIsButton] = useLocalStorage('button',[])
+        
+
+
+
     const found = Isbotton.find(element => element === IdButton)
     console.log('Fopund ',found)
     /* const carCategories = useSelector((state) => state.categories) */
