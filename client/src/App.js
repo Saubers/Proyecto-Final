@@ -6,7 +6,7 @@ import Contact from './components/Contacto/Contacto';
 import Home from './components/Home/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import CategoryCreate from './components/CategoryCreate/CategoryCreate';
-import Register from './components/Auth/register/Auth';
+import Register from './components/Auth/register/Register';
 import Cart from './components/Cart/Cart';
 import Login from './components/Auth/login/Login';
 import CRUD from './components/ProductCRUD/CRUD.jsx';
