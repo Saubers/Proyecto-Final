@@ -59,7 +59,7 @@ function CategoryCreate() {
                             required />
                     </div>
                 </fieldset>
-                <Link to="/home">
+                <Link to="/CRUD">
                     <button>Volver</button>
                 </Link>
                 <button type='submit'>Crear</button>

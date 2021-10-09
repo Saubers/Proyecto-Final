@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getCarDetail, postProduct, getCategories } from '../../../../actions/index'
+import { postProduct, getCategories } from '../../../../actions/index'
 import { useDispatch, useSelector } from "react-redux";
 import styleCrudPost from './CreateProduct.module.css';
 import NavBar from "../../../NavBar/NavBar";
@@ -38,7 +38,7 @@ export default function CreateProduct() {
 
     const dispatch = useDispatch();
 
-    const cars = useSelector(state => state.allcategories)
+    const categories = useSelector(state => state.allcategories)
 
     useEffect(() => {
         dispatch(getCategories());
@@ -205,7 +205,7 @@ export default function CreateProduct() {
                     <div className={styleCrudPost.subDiv}>
                         <h5>Eliga una categoria</h5>
                         <select required className={styleCrudPost.selectCategory} onChange={(e) => handleSelect(e)}>
-                            {cars.map((el) => (
+                            {categories.map((el) => (
                                 <option value={el._id}>{el.name}</option>
                             ))}
 
@@ -374,7 +374,7 @@ export default function CreateProduct() {
                         <button className={styleCrudPost.button3} type='submit'>Publicar</button>
                     )
                 }
-                <Link to="/home">
+                <Link to="/CRUD">
                     <button className={styleCrudPost.button3}>Back</button>
                 </Link>
 

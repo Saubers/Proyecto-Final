@@ -40,11 +40,11 @@ export default function DeleteProduct() {
                         ))}
                     </select>
                     {id.id && (
-                        <p>{id.id}</p>
+                        <p><id><b>ID: </b></id>{id.id}</p>
 
                     )}
                     <button type='submit'>Submit</button>
-                    <Link to="/home">
+                    <Link to="/CRUD">
                         <button >Back</button>
                     </Link>
                 </fieldset>

@@ -11,6 +11,7 @@ export function getCars() {
         })
     }
 }
+
 export function getEngine() {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/products");
@@ -40,6 +41,17 @@ export function postProduct(payload) {
         })
     }
 }
+
+export function putProduct(id, payload) {
+    return async function (dispatch) {
+        const json = await axios.put("http://localhost:3002/productsPut/:id" + id, payload);
+        return dispatch({
+            type: 'PUT_PRODUCT',
+            payload: json
+        })
+    }
+}
+
 export function postCategory(payload) {
     return async function (dispatch) {
         const json = await axios.post("http://localhost:3002/categories", payload);
@@ -49,6 +61,7 @@ export function postCategory(payload) {
         })
     }
 }
+
 export function postCart(idUser, payload) {
     console.log("id", idUser, 'payload', payload);
     return async function (dispatch) {
@@ -90,6 +103,7 @@ export function DeleteCar(id) {
         })
     }
 }
+
 export function filterEngine(payload) {
     return {
         type: 'FILTER_BY_ENGINE',
@@ -152,7 +166,6 @@ export function getNameCars(name) {
     };
 
 }
-
 
 export function getBrandCars(name) {
     return async function (dispatch) {
