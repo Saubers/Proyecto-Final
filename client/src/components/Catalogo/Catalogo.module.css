@@ -1,0 +1,31 @@
+.containerdiv{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+ 
+}
+.containercar{
+    padding: 10px;
+}
+.link{
+    text-decoration-line: none;
+}
+.btnfilter{
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: #485482;
+    color :white;
+    width:100px;
+    cursor: pointer;
+}
+.divfilter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130px;
+}
+.divcontainer{
+    display: flex;
+    justify-content: space-around;
+}

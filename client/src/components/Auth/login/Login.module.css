@@ -1,0 +1,21 @@
+.loginContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.imgdivd{
+display: flex;
+height: 900px;
+align-items: center;
+}
+.btnsubt{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
+}
