@@ -1,13 +1,21 @@
 .loginContainer{
-    
-    width: 100%;
-    height: 913px;
-    background-repeat:no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 .login{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.imgdivd{
+display: flex;
+height: 900px;
+align-items: center;
+}
+.btnsubt{
+    width: 100%;
+    margin-top: 10px;
+    height: 40px;
 }

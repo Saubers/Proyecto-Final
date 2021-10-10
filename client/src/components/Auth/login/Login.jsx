@@ -5,6 +5,7 @@ import styles from './Login.module.css'
 import ErrorMessage from './ErrorMessage';
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
+import lg from '../../image/lg.jpg';
 
 
 
@@ -48,6 +49,9 @@ const Login = () => {
     }
     return(
         <div className={styles.loginContainer}>
+            <div className={styles.imgdivd}>
+                <img src={lg} alt="lg" width="500px" />
+            </div>
             <div className={styles.login}>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                 {loading && <Loading />}
@@ -70,7 +74,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         />  
                     </Form.Group>
-                    <Button type="submit">Login</Button>
+                    <Button type="submit" className={styles.btnsubt}>Login</Button>
                 </form>
                 
                 <Row className="py-3">
