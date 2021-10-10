@@ -9,6 +9,7 @@ import NavBar from '../../NavBar/NavBar'
 import ErrorMessage from '../login/ErrorMessage';
 import Loading from '../login/Loading';
 import styles from '../register/Register.module.css';
+import registre from '../../image/registre.jpg';
 
 export default function Register () {
     const dispatch = useDispatch()
@@ -62,7 +63,10 @@ history.push('/user/login')
     }
    
     return (
-        <div className={styles.loginContainer}>
+        <div className={styles.regContainer}>
+            <div className={styles.imgdiv}>
+                <img src={registre} alt="img" width="500px" />
+            </div>
         <div className={styles.login}>
         {error && <ErrorMessage variant='danger'></ErrorMessage>}
         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
@@ -114,7 +118,7 @@ history.push('/user/login')
                     />  
                 </Form.Group>
 
-                <Button type="submit" onClick={(e) => handleChange(e)}>Register</Button>
+                <Button type="submit" className={styles.btn} onClick={(e) => handleChange(e)}>Register</Button>
             </form>
             
             </div>
