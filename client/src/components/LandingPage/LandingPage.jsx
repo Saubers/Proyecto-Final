@@ -29,7 +29,12 @@ return(
                        <img src={Nuevologo} alt="img" width="50px"/>
                    </div>
                    <div>
-                       <h2>Car Shop</h2>
+                       <ul className={stylesLanding.ulli}>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/contactos">Contacts</a></li>
+                            <li><a href="/home/catalogo ">Our Catalog</a></li>
+                            <li><a href="# ">Payment Methods</a></li>
+                        </ul>
                    </div>
                    <div>
                        <img src={usuario} alt="usuario" width="50px" />
@@ -62,16 +67,6 @@ return(
             <footer>
                 <Footer/>
             </footer>
-        {/* <h1 className={styles.title}>Car Shop</h1>
-        <Link to ='/home'>
-            <button className={styles.button}>ENTER THE STORE</button>
-        </Link>
-        <Link to ='/user/login'>
-            <button className={styles.button}>LOGIN</button>
-        </Link>
-        <Link to='/user/register'>
-            <button className={styles.button}>REGISTER</button>
-        </Link> */}
        </div>
        
       )

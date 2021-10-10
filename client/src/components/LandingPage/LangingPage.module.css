@@ -16,6 +16,15 @@
     top: 500px;
     left: 280px;
 }
+.ulli{
+    margin-top:10px;
+}
+.ulli li a {
+    color: black;
+}
+.ulli li a:hover{
+    border-bottom: 1px solid;
+}
 .btn{
     display:flexbox;
     justify-content: center;
