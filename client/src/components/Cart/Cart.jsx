@@ -81,10 +81,23 @@ export default function Cart(props){
                 return(
                     <div key={el.id}>
                         <h1>{el?.brand},{el?.name}</h1>
+                        <h2>{el?.price} X {el.number} = {el?.price * el.number}</h2>
                          {<img src={el.img[0]} alt='Erorr' width="200x" height="200px"></img>}
-                        <h2>{el?.price}</h2>
-                        <button onClick={()=>sumarCar(el)}>sumar</button>
-                        
+                        <h4>{priceTotal = priceTotal +( el?.price * cantidad )}</h4>
+                        <select onChange={(e)=>handleSelect(e,el.price)}> 
+                        Cantidad
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                        </select>
+                        <button onClick={()=> handleDelete()}>BORRA TODO</button>
+                        <div>
+                        <button onClick={()=>handleClickSumar(el.id)}>+1</button>
+                        <button onClick={()=>handleClickRestar()}>-1</button>
+                        <h3>----------------------</h3>
+                        </div>
                     </div>
             )
                 })}

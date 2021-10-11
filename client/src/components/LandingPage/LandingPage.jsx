@@ -1,5 +1,5 @@
 import stylesLanding from '../LandingPage/LangingPage.module.css'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import Nuevologo from '../image/nuevologo.png';
 import usuario from '../image/usuario.png';
@@ -10,7 +10,16 @@ import image3 from '../image/imgcarousellandin/image3.jpg';
 import Servi from '../LandingPage/Servicios/Servi'
 import Footer from '../LandingPage/Footer/Footer'
 
-export default function LandingPage() {
+export default function LandingPage({history}) {
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("userInfo");
+ 
+        if(userInfo) {
+            history.push("/home")
+        }
+    }, [history])
+
 return(
     
        <div>
@@ -20,7 +29,12 @@ return(
                        <img src={Nuevologo} alt="img" width="50px"/>
                    </div>
                    <div>
-                       <h2>Car Shop</h2>
+                       <ul className={stylesLanding.ulli}>
+                            <li><a href="/home">Home</a></li>
+                            <li><a href="/contactos">Contacts</a></li>
+                            <li><a href="/home/catalogo ">Our Catalog</a></li>
+                            <li><a href="# ">Payment Methods</a></li>
+                        </ul>
                    </div>
                    <div>
                        <img src={usuario} alt="usuario" width="50px" />
@@ -35,7 +49,7 @@ return(
                 </Carousel>
                 <div className={stylesLanding.cajabotones}>
                     <div className={stylesLanding.jj}>
-                        <h2 className={stylesLanding.h2sly}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sed,</h2>
+                        <h2 className={stylesLanding.h2sly}>We can help you to find your favourite car!</h2>
                         <div>
                             <Link to ='/user/login'>
                                 <button className={stylesLanding.btn}>LOGIN</button>
@@ -53,16 +67,6 @@ return(
             <footer>
                 <Footer/>
             </footer>
-        {/* <h1 className={styles.title}>Car Shop</h1>
-        <Link to ='/home'>
-            <button className={styles.button}>ENTER THE STORE</button>
-        </Link>
-        <Link to ='/user/login'>
-            <button className={styles.button}>LOGIN</button>
-        </Link>
-        <Link to='/user/register'>
-            <button className={styles.button}>REGISTER</button>
-        </Link> */}
        </div>
        
       )

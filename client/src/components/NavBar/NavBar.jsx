@@ -17,8 +17,10 @@ const NavBar = () => {
             <li><a href="/contactos">Contacts</a></li>
             <li><a href="/home/catalogo ">Our Catalog</a></li>
             <li><a href="# ">Payment Methods</a></li>
-            <li><a href="# ">Branch Office</a></li>
-            <a href="/home/Catalogo/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
+            <li><a className={styleNav.logout} onClick={
+              localStorage.removeItem('userInfo')
+            }>Logout</a></li>
+            <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
          </ul>
       </nav>
         </div>

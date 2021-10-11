@@ -5,48 +5,67 @@ export function getCars() {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/products");
         return dispatch({
-          
-            type:'GET_CARS',
+
+            type: 'GET_CARS',
             payload: json.data
-})}}
+        })
+    }
+}
+
 export function getEngine() {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/products");
         return dispatch({
-            type:'GET_ENGINE',
+            type: 'GET_ENGINE',
             payload: json.data.map(el => el.features.engine)
-})}}
+        })
+    }
+}
 
-export function getCarDetail(id){
-    return async function (dispatch){
-            var json= await axios.get("http://localhost:3002/products/"+id);
-            return dispatch({
-                type: "GET_CAR_DETAIL",
-                payload: json.data
-})}}
+export function getCarDetail(id) {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/products/" + id);
+        return dispatch({
+            type: "GET_CAR_DETAIL",
+            payload: json.data
+        })
+    }
+}
 
-export function postProduct(payload){
-    return async function(dispatch){   
-        const json =  await axios.post("http://localhost:3002/products", payload);
+export function postProduct(payload) {
+    return async function (dispatch) {
+        const json = await axios.post("http://localhost:3002/products", payload);
         return dispatch({
             type: 'POST_PRODUCT',
-            payload : json
+            payload: json
         })
     }
 }
-export function postCategory(payload){
-    return async function(dispatch){   
-        const json =  await axios.post("http://localhost:3002/categories", payload);
+
+export function putProduct(id, payload) {
+    return async function (dispatch) {
+        const json = await axios.put("http://localhost:3002/productsPut/:id" + id, payload);
+        return dispatch({
+            type: 'PUT_PRODUCT',
+            payload: json
+        })
+    }
+}
+
+export function postCategory(payload) {
+    return async function (dispatch) {
+        const json = await axios.post("http://localhost:3002/categories", payload);
         return dispatch({
             type: 'POST_CATEGORY',
-            payload : json
+            payload: json
         })
     }
 }
-export function postCart(idUser, payload){
-    console.log("id", idUser, 'payload' , payload);
-    return async function (dispatch){
-        const json = await axios.post ("http://localhost:3002/users/"+ idUser + "/cart" , payload);
+
+export function postCart(idUser, payload) {
+    console.log("id", idUser, 'payload', payload);
+    return async function (dispatch) {
+        const json = await axios.post("http://localhost:3002/users/" + idUser + "/cart", payload);
         return dispatch({
             type: 'POST_CART',
             payload: json
@@ -54,18 +73,18 @@ export function postCart(idUser, payload){
     }
 }
 
-export function userRegister(payload){
-return async function (dispatch){
-    const json = await axios.post('http://localhost:3002/register',payload);
-    return dispatch({
-        type: 'USER_REGISTER',
-        payload: json
-    })
-}
+export function userRegister(payload) {
+    return async function (dispatch) {
+        const json = await axios.post('http://localhost:3002/register', payload);
+        return dispatch({
+            type: 'USER_REGISTER',
+            payload: json
+        })
+    }
 }
 
-export function loginUser(){
-    return async function (dispatch){
+export function loginUser() {
+    return async function (dispatch) {
         const json = await axios.post('http://localhost:3002/login');
         return dispatch({
             type: 'USER_LOGIN',
@@ -74,99 +93,108 @@ export function loginUser(){
     }
 }
 
-export function DeleteCar(id){
-    
-    return async function (dispatch){
-            var json= await axios.delete("http://localhost:3002/productsDelete/:id" + id);
-            return dispatch({
-                type: "DELETE_CAR",
-                payload: json
-})}}
+export function DeleteCar(id) {
+
+    return async function (dispatch) {
+        var json = await axios.delete("http://localhost:3002/productsDelete/:id" + id);
+        return dispatch({
+            type: "DELETE_CAR",
+            payload: json
+        })
+    }
+}
+
 export function filterEngine(payload) {
-    return{
-        type:'FILTER_BY_ENGINE',
+    return {
+        type: 'FILTER_BY_ENGINE',
         payload
-}}
+    }
+}
 
 export function filterKm(payload) {
-    return{
-        type:'FILTER_BY_KM',
+    return {
+        type: 'FILTER_BY_KM',
         payload
-}}
-export function listCart(payload){
-    return{
-        type:'LIST_CARD',
+    }
+}
+export function listCart(payload) {
+    return {
+        type: 'LIST_CARD',
         payload
-}}
+    }
+}
 export function filterPrice(payload) {
-    return{
-        type:'FILTER_BY_PRICE',
+    return {
+        type: 'FILTER_BY_PRICE',
         payload
-}}
+    }
+}
 
 export function filterTraction(payload) {
-    return{
-        type:'FILTER_BY_TRACTION',
+    return {
+        type: 'FILTER_BY_TRACTION',
         payload
-}}
+    }
+}
 
 export function filterTransmission(payload) {
-    return{
-        type:'FILTER_BY_TRANSMISSION',
+    return {
+        type: 'FILTER_BY_TRANSMISSION',
         payload
-}}
+    }
+}
 
 export function filterAge(payload) {
-    return{
-        type:'FILTER_BY_AGE',
+    return {
+        type: 'FILTER_BY_AGE',
         payload
-}}
+    }
+}
 
-export function getNameCars(name){
-    console.log('action',name)
-    return async function(dispatch){
-        try{
+export function getNameCars(name) {
+    console.log('action', name)
+    return async function (dispatch) {
+        try {
             var json = await axios.get("http://localhost:3002/searchCars?name=" + name);
             return dispatch({
-                type:"GET_NAME_CARS",
+                type: "GET_NAME_CARS",
                 payload: json.data
             })
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     };
-    
-} 
 
+}
 
-export function getBrandCars(name){
-    return async function(dispatch){
-        try{
-            var json = await axios.get("http://localhost:3002/searchbrand?brand=" + name,{
+export function getBrandCars(name) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.get("http://localhost:3002/searchbrand?brand=" + name, {
 
             });
             return dispatch({
-                type:"GET_BRAND_CARS",
+                type: "GET_BRAND_CARS",
                 payload: json.data
             })
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     };
-    
-} 
 
-export function getCategories(){
-    return async function(dispatch){
-        try{
+}
+
+export function getCategories() {
+    return async function (dispatch) {
+        try {
             var json = await axios.get("http://localhost:3002/categories");
             return dispatch({
-                type:"GET_CATEGORIES",
+                type: "GET_CATEGORIES",
                 payload: json.data
             })
-        }catch(err){
+        } catch (err) {
             console.log(err)
         }
     };
-    
-} 
+
+}
