@@ -79,7 +79,6 @@ return (
         <img className={styleCatalogo.vantaimg} src="https://www.purcellvilletireandauto.com/images/banner-areas.jpg" alt="foto" />
         <h2 className={styleCatalogo.venta}>Venta de auto</h2>
     </div>
-    
         {/* SELECT DE KM*/}
     <div className={styleCatalogo.divtotal}>
         <div className={styleCatalogo.divfiltros}>
@@ -150,6 +149,7 @@ return (
             <div className={styleCatalogo.divSearch}>
                 <SearchBar/>
             </div>
+            
             {
                 
                 ProductViewsXPage.length === 0 ?
@@ -177,6 +177,7 @@ return (
             }
         </div>
     </div>
+    <hr />
     <div >
         <Paginado
             AllProducts={AllProducts.length}
