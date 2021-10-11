@@ -76,12 +76,11 @@ return (
     <NavBar/>
     {/* SEARCHBAR */}
     <div>
-    <SearchBar/>
-<button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
+        
+    <SearchBar/> <button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
+
     </div>
-    {/* BOTON VOLVER */}
-    <Link to = '/home'><button className = 'home'>Volver</button></Link>
-    
+
     <div className = {styleCatalogo.divcontainer}>
 
         {/* SELECT DE KM*/}

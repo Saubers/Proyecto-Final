@@ -20,7 +20,7 @@ export default function Cart(props){
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({
         user:"615dc2f5f1a17cca9b833c49",
-        publication: idAuto.map(el => el.id),
+        publication: idAuto? idAuto.map(el => el.id) : "",
         price: "",
         state:"En proceso"
     })
