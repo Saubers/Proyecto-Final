@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import styleSearch from '../SearchBar/SearchBar.module.css';
 import { getNameCars } from '../../actions/index'
 import { getBrandCars } from "../../actions/index";
+import busqueda from '../image/buscar.jpg';
 
 export default function SearchBar(){
 const dispatch = useDispatch()
@@ -30,23 +31,19 @@ function handleSubmit(e){
 
 
 return(
-    <div className={styleSearch.containerSearch}>
+    <div>
         <form onSubmit={e => handleSubmit(e)} className={styleSearch.styleform}>
-            <div className={styleSearch.divprin}>
-                <div className={styleSearch.divsecu}>
-                    <h2 className={styleSearch.h2}>Search for your ideal car</h2>
-                </div>
-                <div>
+            
+                <div className={styleSearch.divinput}>
+                    <button className={styleSearch.btnbuscar}><img src={busqueda} alt="buscar" width="50px"/></button>
                     <input className={styleSearch.inputbusqueda}
                     type ="text"
-                    placeholder ='Busqueda por nombre'
+                    placeholder ='Buscar'
                     onChange ={e=> handleInputChange(e)}
                     value={name} 
                     />
-                    <button className={styleSearch.btn} type = 'submit'>Search</button>
                 </div>
-                
-            </div>
+    
             
         </form>
     </div>

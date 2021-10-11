@@ -19,8 +19,8 @@ function App() {
     <Router>
       <div className='container'>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/home" component={Home} />
+        {/* <Route exact path="/" component={LandingPage} /> */}
+        <Route exact path="/home" component={LandingPage} />
         <Route exact path="/home/Catalogo" component={Catalogo} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />

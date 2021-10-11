@@ -8,6 +8,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
 import styleCatalogo from '../Catalogo/Catalogo.module.css';
 import { getCars } from "../../actions/index";
+import gara from '../image/garage1.jpg';
 import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
 
 // import Card from './Card';
@@ -74,16 +75,21 @@ function handleFilterAge(evento){
 return (
 <div className ='container'>
     <NavBar/>
-    {/* SEARCHBAR */}
     <div>
-    <SearchBar/>
-<button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
+        <img className={styleCatalogo.vantaimg} src="https://www.purcellvilletireandauto.com/images/banner-areas.jpg" alt="foto" />
+        <h2 className={styleCatalogo.venta}>Venta de auto</h2>
+    </div>
+    {/* SEARCHBAR */}
+    <div className={styleCatalogo.divtotal}>
+        <div>
+    {/* <SearchBar/> */}
+{/* <button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
     </div>
     {/* BOTON VOLVER */}
-    <Link to = '/home'><button className = 'home'>Volver</button></Link>
+    {/* <Link to = '/home'><button className = 'home'>Volver</button></Link>
     
-    <div className = {styleCatalogo.divcontainer}>
-
+    <div className = {styleCatalogo.divcontainer}> */}
+    
         {/* SELECT DE KM*/}
         <div className={styleCatalogo.divfilter}>
             <label>KILOMETRAJE</label>
@@ -142,9 +148,43 @@ return (
                 <option value ='+2021'>+2021</option>
             </select>
         </div>
+        </div>
+    
+    
+    
+
+        <div className={styleCatalogo.containerdiv}>
+            <div className={styleCatalogo.divSearch}>
+                <SearchBar/>
+            </div>
+        
+            {
+                
+                ProductViewsXPage.length === 0 ?
+                <h2>No hay autos que cumplan su criterio de busqueda</h2>            
+                :  ProductViewsXPage.map(el => {
+                    return(
+                        
+                        <div className={styleCatalogo.containercar}>
+                        
+                            <ProductCard
+                                name={el.name}
+                                img={el.img[0]}
+                                model={el.model}
+                                brand={el.brand}
+                                description={el.description}
+                                price={el.price}
+                                mileage={el.features?.mileage}
+                                _id={el._id}
+                                />
+                        </div>
+                    
+                    )
+                })
+                
+            }
+        </div>
     </div>
-    
-    
     <div >
         <Paginado
             AllProducts={AllProducts.length}
@@ -152,35 +192,6 @@ return (
             productsXpage={productsXpage}
         />
     </div>
-
-    <div className={styleCatalogo.containerdiv}>
-        {
-            
-            ProductViewsXPage.length === 0 ?
-            <h2>No hay autos que cumplan su criterio de busqueda</h2>            
-            :  ProductViewsXPage.map(el => {
-                return(
-                    
-                    <div className={styleCatalogo.containercar}>
-                    
-                        <ProductCard
-                            name={el.name}
-                            img={el.img[0]}
-                            model={el.model}
-                            brand={el.brand}
-                            description={el.description}
-                            price={el.price}
-                            mileage={el.features?.mileage}
-                            _id={el._id}
-                            />
-                    </div>
-                 
-                )
-            })
-            
-        }
-    </div>
-    
 </div>
 )
   //  {/* SELECT DE CATEGORIAS */} // FALTA LA BD DE CATEGORIAS
