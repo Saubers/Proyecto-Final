@@ -8,7 +8,7 @@ import ProductCard from '../ProductCard/ProductCard'
 import NavBar from '../NavBar/NavBar'
 import styleCatalogo from '../Catalogo/Catalogo.module.css';
 import { getCars } from "../../actions/index";
-import gara from '../image/garage1.jpg';
+import recargar from '../image/reload.png';
 import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from '../../actions/index';
 
 // import Card from './Card';
@@ -79,85 +79,77 @@ return (
         <img className={styleCatalogo.vantaimg} src="https://www.purcellvilletireandauto.com/images/banner-areas.jpg" alt="foto" />
         <h2 className={styleCatalogo.venta}>Venta de auto</h2>
     </div>
-    {/* SEARCHBAR */}
-    <div className={styleCatalogo.divtotal}>
-        <div>
-    {/* <SearchBar/> */}
-{/* <button className="button2"  onClick={e=>handleClick(e) }>Volver a cargar autos</button>
-    </div>
-    {/* BOTON VOLVER */}
-    {/* <Link to = '/home'><button className = 'home'>Volver</button></Link>
-    
-    <div className = {styleCatalogo.divcontainer}> */}
     
         {/* SELECT DE KM*/}
-        <div className={styleCatalogo.divfilter}>
-            <label>KILOMETRAJE</label>
-            <select onChange = {ev => hadleFiltroKm(ev)} className={styleCatalogo.btnfilter}>
-                <option value ='All'>All</option>
-                <option value ='0'>0Km</option>
-                <option value ='0-10'>0km - 10km</option>
-                <option value ='10-40'>10km - 40km</option>
-                <option value ='40-80'>40km - 80km</option>
-                <option value ='80-110'>80km - 110</option>
-                <option value ='110-150'>110km - 150km</option>
-                <option value ='+150'>+150km</option>
-            </select>
-        </div>
-        
-        {/* SELECT DE PRECIO*/}
-        <div className={styleCatalogo.divfilter}>
-            <label>PRECIO</label>
-            <select onChange = {e => handleFilterPrice(e)} className={styleCatalogo.btnfilter}>
-                <option value ='max'>$$++</option>
-                <option value ='min'>$$--</option>
-            </select>
-        </div>
+    <div className={styleCatalogo.divtotal}>
+        <div className={styleCatalogo.divfiltros}>
+        <button className={styleCatalogo.btnreload} onClick={e=>handleClick(e) }><img width="50px" src={recargar}></img> </button>
+        <br />
+        {/* BOTON VOLVER */}
+        <Link to = '/home'><button className = 'home'>Volver</button></Link>
+            <div className={styleCatalogo.divfilter}>
+                <label>KILOMETRAJE</label>
+                <select onChange = {ev => hadleFiltroKm(ev)} className={styleCatalogo.btnfilter}>
+                    <option value ='All'>All</option>
+                    <option value ='0'>0Km</option>
+                    <option value ='0-10'>0km - 10km</option>
+                    <option value ='10-40'>10km - 40km</option>
+                    <option value ='40-80'>40km - 80km</option>
+                    <option value ='80-110'>80km - 110</option>
+                    <option value ='110-150'>110km - 150km</option>
+                    <option value ='+150'>+150km</option>
+                </select>
+            </div>
             
-        {/* SELECT DE TRACCION */}
-        <div className={styleCatalogo.divfilter}>
-            <label>TRACCION</label>
-            <select onChange = {ev => handleFilterTraction(ev)} className={styleCatalogo.btnfilter}>
-                <option value ='All'>All</option>
-                <option value ='FWD'>FWD</option>
-                <option value ='RWD'>RWD</option>
-                <option value ='AWD'>AWD</option>
-            </select>
+            {/* SELECT DE PRECIO*/}
+            <div className={styleCatalogo.divfilter}>
+                <label>PRECIO</label>
+                <select onChange = {e => handleFilterPrice(e)} className={styleCatalogo.btnfilter}>
+                    <option value ='max'>$$++</option>
+                    <option value ='min'>$$--</option>
+                </select>
+            </div>
+                
+            {/* SELECT DE TRACCION */}
+            <div className={styleCatalogo.divfilter}>
+                <label>TRACCION</label>
+                <select onChange = {ev => handleFilterTraction(ev)} className={styleCatalogo.btnfilter}>
+                    <option value ='All'>All</option>
+                    <option value ='FWD'>FWD</option>
+                    <option value ='RWD'>RWD</option>
+                    <option value ='AWD'>AWD</option>
+                </select>
+            </div>
+            
+            {/* SELECT DE TRANSMISION */}
+            <div className={styleCatalogo.divfilter}>
+                <label>TRANSMISION</label>
+                <select onChange = {ev => handleFilterTransmission(ev)} className={styleCatalogo.btnfilter}>
+                    <option value ='All'>All</option>
+                    <option value ='manual'>Manual</option>
+                    <option value ='automatic'>Automatic</option>
+                </select>
+            </div>
+            
+            {/* SELECT DE AÑO */}
+            <div className={styleCatalogo.divfilter}>
+                <label>AÑO</label>
+                <select onChange = {ev => handleFilterAge(ev)} className={styleCatalogo.btnfilter}>
+                    <option value ='All'>All</option>
+                    <option value ='-2000'>-2000</option>
+                    <option value ='2000-2005'>2000-2005</option>
+                    <option value ='2006-2010'>2006-2010</option>
+                    <option value ='2011-2015'>2011-2015</option>
+                    <option value ='2016-2020'>2016-2020</option>
+                    <option value ='+2021'>+2021</option>
+                </select>
+            </div>
         </div>
-        
-        {/* SELECT DE TRANSMISION */}
-        <div className={styleCatalogo.divfilter}>
-            <label>TRANSMISION</label>
-            <select onChange = {ev => handleFilterTransmission(ev)} className={styleCatalogo.btnfilter}>
-                <option value ='All'>All</option>
-                <option value ='manual'>Manual</option>
-                <option value ='automatic'>Automatic</option>
-            </select>
-        </div>
-        
-        {/* SELECT DE AÑO */}
-        <div className={styleCatalogo.divfilter}>
-            <label>AÑO</label>
-            <select onChange = {ev => handleFilterAge(ev)} className={styleCatalogo.btnfilter}>
-                <option value ='All'>All</option>
-                <option value ='-2000'>-2000</option>
-                <option value ='2000-2005'>2000-2005</option>
-                <option value ='2006-2010'>2006-2010</option>
-                <option value ='2011-2015'>2011-2015</option>
-                <option value ='2016-2020'>2016-2020</option>
-                <option value ='+2021'>+2021</option>
-            </select>
-        </div>
-        </div>
-    
-    
-    
 
         <div className={styleCatalogo.containerdiv}>
             <div className={styleCatalogo.divSearch}>
                 <SearchBar/>
             </div>
-        
             {
                 
                 ProductViewsXPage.length === 0 ?

@@ -15,6 +15,17 @@
 .divSearch{
     width: 80%;
 }
+.btnreload{
+    border: none;
+    background: none;
+}
+.divfiltros{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+}
 .vantaimg{
     width: 100%;
     border-radius: 5px;
