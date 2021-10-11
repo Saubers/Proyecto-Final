@@ -1,123 +1,149 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
 import { postCart, getUserOrder } from "../../actions";
-import {useLocalStorage} from '../../useStorage/useLocalStorage';
+import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link} from "react-router-dom";
 //import NavBar from "../NavBar/NavBar";
 
 export default function Cart(props){
     // const idCar = useSelector((state)=> state.idCar)
-    //const carrito = useSelector ((state)=> state.cart)
+    //const carrito = u seSelector ((state)=> state.cart)
     // console.log("ACA",idCar);
-
-    const [price,setPrice] = useState(0)
     const [idAuto, setIdAuto] = useLocalStorage('auto')
-    const [cantidad,setCantidad] = useState(0)
+
     //console.log(idAuto)
+    
+    const [amount, setAmount] = useState([])
+    const [price,setPrice] = useState(0)
+    
+    function sumatotal() {
+        let suma = [];
+        let numero = 0
+        for (let i = 0; i < amount.length; i++) {
+            // setPrice(parseInt(amount.cantidad) * parseInt(amount.price))
+            
+            suma.push( amount[i].price * amount[i].cantidad)
+        }
+        console.log('array suma',suma)
+        suma.forEach(element =>{
+            numero = numero + element
+            console.log(' numero ',numero)
+            setPrice(numero)
+        })
+    }
 
-    // function handleClickSumar(id){
-    //     // var sumaAuto = idAuto.filter(el => el.id === id)
-    //     // const numero = sumaAuto.map(el => el.number + 1)
-    //     // setIdAuto([
-    //     //     ...idAuto,
-    //     //      idAuto.number = numero])
-    // }
-    // function handleClickRestar(){
-    //     let sumar = cantidad - 1
-    //     setCantidad(sumar)
-    // }
-    // function handleDelete(){
-    //     window.localStorage.clear();
-    // }
-
-    // function handleSelect(e,precio) {
-    //     console.log('precio', precio)
-    //     setCantidad(
-    //       e.target.value
-    //     )
-    // }
-
-
-   
-    let [amount, setAmount] = useState([])
-    const [Isbotton, setIsButton] = useState('')
-
-    let [priceTotal, setpriceTotal] = useState('')
+    
+    
+    
     function sumarCar(idCar){
         const found = amount.find(element => element.id === idCar.id)
-        // console.log('found',found)
-        // console.log('iDcar',idCar)
         if(found?.id !== idCar.id){
             setAmount([...amount,{
                 id: idCar.id,
                 brand: idCar.brand,
-                name :idCar.name,
+                carname :idCar.name,
                 price : idCar.price,
                 cantidad : 1
             }])
-            setpriceTotal(parseInt(idCar.price) * parseInt(idCar.cantidad))
         }
         else{
-             amount.forEach(element =>{
-                 if(element.id === idCar.id){
-                   element.cantidad =  element.cantidad + 1
-                   setpriceTotal(parseInt(element.price) * parseInt(element.cantidad))
-                 }
+            amount.forEach(element =>{
+                if(element.id === idCar.id){
+                    element.cantidad =  parseInt(element.cantidad + 1)
+                }
             })
-            console.log(amount)
         }
+        sumatotal()
+
     }
+    
+    //boton post filtrar todos los que tengan
+    
+    function handleClickSumar(car){
+        sumarCar(car)
+        sumatotal()
+        console.log('suma',amount)
+    }
+    function handleClickRestark(e){
+        let numeroresta = 0
+        const found = amount.find(element => element.id === e.id)
+        if(found?.id === e.id && e.cantidad >=1){
+            amount.forEach(element =>{
+                if(element.id === e.id){
+                    element.cantidad =  parseInt(element.cantidad - 1)
+                }
+            })
+            numeroresta = price - e.price
+            setPrice(numeroresta)
+        }
+        else if (e.cantidad <=0){ 
+            const filter = amount.filter(car => car !== e)
+            console.log('resta',filter)
+            setAmount(filter)
+        }
+       
 
 
-
+    }
+    function handleDelete() {
+        borrarItem('auto')
+        setAmount([])
+        setPrice(0)
+    }
 
 
     return(
         <div>
             {/* <button onChange= {(e)=> handleSubmit(e)}>Comprar</button> */}
             <h3>PRODUCTOS</h3>
-                {idAuto && idAuto?.map(el => {
-                 //   console.log('hola', el.number);
+                {idAuto === undefined ? 
+                <div>
+                    CARRITO VACIO 
+                    </div>
+                : idAuto?.map(el => {
                 return(
                     <div key={el.id}>
-                        <h1>{el?.brand},{el?.name}</h1>
-                        <h2>{el?.price} X {el.number} = {el?.price * el.number}</h2>
+                        <h1>{el?.brand},{el?.carname}</h1>
                          {<img src={el.img[0]} alt='Erorr' width="200x" height="200px"></img>}
-                        <h4>{priceTotal = priceTotal +( el?.price * cantidad )}</h4>
-                        <select onChange={(e)=>handleSelect(e,el.price)}> 
-                        Cantidad
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        </select>
-                        <button onClick={()=> handleDelete()}>BORRA TODO</button>
+                        <h2>{el?.price} </h2>
                         <div>
-                        <button onClick={()=>handleClickSumar(el.id)}>+1</button>
-                        <button onClick={()=>handleClickRestar()}>-1</button>
+                        <button onClick={()=>handleClickSumar(el)}>+1</button>
                         <h3>----------------------</h3>
                         </div>
                     </div>
-            )
-                })}
+            ) 
+        })
+        }
+        {
+            idAuto?.length ?
+                <div>
+                <button onClick={()=> handleDelete()}>VACIAR CARRITO</button>
+                </div>
+            : <div/>
+            
+        }
                 <h3>TICKET</h3>
                 <div>
                     <h3>----------------------</h3>
                     {
                         amount && amount.map(item=>{
-                            {}
-                    return(
-                        <tr >
-                    <ul>{item.brand} {item.name} {item.price} {item.cantidad}</ul>
+                            if(item.cantidad >=0)
+                            return(
+                                <tr >
+                    <li>{item.brand} {item.carname} {item.price} {item.cantidad}</li>
+                    <button onClick={()=>handleClickRestark(item)}>-1</button>
                         </tr>
-                   )})
+                        )
+                        else{
+                            <p>Elija cantidad</p>                            
+                        }
+                    })
                 }
-
                 {
+                    
                     <div>
                     <h6>----------------------</h6>
-                       <h4>{priceTotal}</h4>
+                       <h4>{price}</h4>
                      </div>
                   }
                 </div>
