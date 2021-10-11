@@ -28,6 +28,8 @@ export default function Register () {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+    
+
     if(password !== confirm_password) {
         setMessage('Passwords do not match')
     } else {
@@ -59,7 +61,6 @@ localStorage.setItem("userInfo", JSON.stringify(data));
 
     function handleChange(e){
     e.preventDefault()
-history.push('/user/login')
     }
    
     return (
@@ -118,7 +119,7 @@ history.push('/user/login')
                     />  
                 </Form.Group>
 
-                <Button type="submit" className={styles.btn} onClick={(e) => handleChange(e)}>Register</Button>
+                <Button type="submit" className={styles.btn} onClick={(e) => handleSubmit(e)}>Register</Button>
             </form>
             
             </div>

@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const generateToken = require('../utils/generateToken')
 require('../db.js')
 
 const getAllUser = async (req, res, next) => {
@@ -28,7 +29,8 @@ const createUser = async ( req, res ,next) => {
     phone: phone, 
     mail: mail, 
     password: password,
-    confirm_password: confirm_password
+    confirm_password: confirm_password,
+    token: generateToken(user._id)
 })
 user.password = await user.encryptPassword(password);
     await user.save()
@@ -50,7 +52,8 @@ const loginUser = async (req,res,next) => {
             fullname: user.fullname,
             password: user.password,
             mail: user.mail,
-            phone: user.phone
+            phone: user.phone,
+            token: generateToken(user._id)
         })
     } else {
         res.status(400).send('Invalid mail or password')
