@@ -31,8 +31,8 @@ export function getCarDetail(id) {
         })
     }
 }
-
-export function postProduct(payload) {
+export function postProduct(payload) { 
+    console.log('id usuario',payload);
     return async function (dispatch) {
         const json = await axios.post("http://localhost:3002/products", payload);
         return dispatch({
@@ -43,6 +43,7 @@ export function postProduct(payload) {
 }
 
 export function putProduct(id, payload) {
+   
     return async function (dispatch) {
         const json = await axios.put("http://localhost:3002/productsPut/:id" + id, payload);
         return dispatch({
@@ -62,10 +63,10 @@ export function postCategory(payload) {
     }
 }
 
-export function postCart(idUser, payload) {
-    console.log("id", idUser, 'payload', payload);
+export function postCart(payload) {
+    console.log('payload', payload, 'SACANDO IDD', payload.user);
     return async function (dispatch) {
-        const json = await axios.post("http://localhost:3002/users/" + idUser + "/cart", payload);
+        const json = await axios.post("http://localhost:3002/users/" + payload.user + "/cart", payload);
         return dispatch({
             type: 'POST_CART',
             payload: json

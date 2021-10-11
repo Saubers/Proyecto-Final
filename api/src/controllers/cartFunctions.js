@@ -5,7 +5,7 @@ const agregarOrden = async function(req,res){
     let {idUser} = req.params
     let {idItem,price,state} = req.body
     try{    
-        const cart = new CarT({
+        const cart = new Cart({
         user: idUser,
         publication:idItem,
         price : price,

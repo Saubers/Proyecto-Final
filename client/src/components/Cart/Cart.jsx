@@ -9,12 +9,21 @@ export default function Cart(props){
     // const idCar = useSelector((state)=> state.idCar)
     //const carrito = u seSelector ((state)=> state.cart)
     // console.log("ACA",idCar);
+    const dispatch = useDispatch()
     const [idAuto, setIdAuto] = useLocalStorage('auto')
+    const userInfo = localStorage.getItem("userInfo");
+
 
     //console.log(idAuto)
     
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
+    const [input , setInput] = useState ({
+        user:"615dc2f5f1a17cca9b833c49",
+        publication: idAuto.map(el => el.id),
+        price: "",
+        state:"En proceso"
+    })
     
     function sumatotal() {
         let suma = [];
@@ -24,10 +33,10 @@ export default function Cart(props){
             
             suma.push( amount[i].price * amount[i].cantidad)
         }
-        console.log('array suma',suma)
+        // console.log('array suma',suma)
         suma.forEach(element =>{
             numero = numero + element
-            console.log(' numero ',numero)
+            // console.log(' numero ',numero)
             setPrice(numero)
         })
     }
@@ -62,7 +71,7 @@ export default function Cart(props){
     function handleClickSumar(car){
         sumarCar(car)
         sumatotal()
-        console.log('suma',amount)
+        // console.log('suma',amount)
     }
     function handleClickRestark(e){
         let numeroresta = 0
@@ -76,14 +85,23 @@ export default function Cart(props){
             numeroresta = price - e.price
             setPrice(numeroresta)
         }
-        else if (e.cantidad <=0){ 
+        else if (e.cantidad <= 0){ 
             const filter = amount.filter(car => car !== e)
-            console.log('resta',filter)
+            // console.log('resta',filter)
             setAmount(filter)
         }
        
 
 
+    }
+    function handlePost(ev){
+        ev.preventDefault()
+        setInput({
+        ...input,
+        price:price ,
+        })
+        dispatch(postCart(input))
+        console.log('INOPUT', input);
     }
     function handleDelete() {
         borrarItem('auto')
@@ -108,6 +126,7 @@ export default function Cart(props){
                         <h2>{el?.price} </h2>
                         <div>
                         <button onClick={()=>handleClickSumar(el)}>+1</button>
+
                         <h3>----------------------</h3>
                         </div>
                     </div>
@@ -118,6 +137,7 @@ export default function Cart(props){
             idAuto?.length ?
                 <div>
                 <button onClick={()=> handleDelete()}>VACIAR CARRITO</button>
+                <button onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
                 </div>
             : <div/>
             

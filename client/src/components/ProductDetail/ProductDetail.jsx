@@ -60,7 +60,7 @@ export default function Detail(props) {
 
                 {
                     found === IdButton ? <div>
-                        Orden agregada al <Link to="/home/Catalogo/compra">carrito</Link>
+                        Orden agregada al <Link to="/home/compra">carrito</Link>
                     </div>
                         :
                         <button onClick={() => addToCart(MyCar.id)} >Comprar</button>
