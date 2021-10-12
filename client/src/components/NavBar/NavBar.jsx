@@ -20,7 +20,7 @@ const NavBar = () => {
                 <li><a href="# ">Payment Methods</a></li>
            
                 <li><a className={styleNav.logout} 
-                  onClick={localStorage.removeItem('userInfo')}>Logout</a></li>
+                  onClick={localStorage.removeItem('userInfo')} href='/user/login'>Logout</a></li>
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
             </ul>
           </nav>

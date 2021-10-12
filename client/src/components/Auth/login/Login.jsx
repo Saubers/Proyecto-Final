@@ -22,7 +22,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
        if(userInfo){ 
-           history.push("/home")
+           history.push("/")
         }
         try{
 
@@ -61,6 +61,7 @@ const Login = () => {
                     <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Mail address</Form.Label>
                         <Form.Control
+                        required
                         type='email'
                         value={mail}
                         placeholder='Enter your mail'
@@ -70,6 +71,7 @@ const Login = () => {
                     <Form.Group controlId='formBasicPassword'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
+                        required
                         type='password'
                         value={password}
                         placeholder='Enter your password'

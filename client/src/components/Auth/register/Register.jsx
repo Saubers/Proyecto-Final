@@ -58,7 +58,7 @@ export default function Register () {
 setLoading(false);
 localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
-    setError(error.response.data.message);
+    setMessage("You should check all fields");
     }
     }
     
@@ -81,15 +81,17 @@ localStorage.setItem("userInfo", JSON.stringify(data));
             <Form.Group controlId='name'>
                     <Form.Label>Fullname</Form.Label>
                     <Form.Control
+                    required
                     type='text'
                     value={fullname}
-                    placeholder='Confirm your password'
+                    placeholder='Enter your full name'
                     onChange={(e) => setFullname(e.target.value)}
                     />  
                 </Form.Group>
                 <Form.Group controlId='formBasicEmail'>
                     <Form.Label>Mail address</Form.Label>
                     <Form.Control
+                    required
                     type='email'
                     value={mail}
                     placeholder='Enter your mail'
@@ -99,6 +101,7 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                 <Form.Group controlId='confirmPassword'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                    required
                     type='password'
                     value={password}
                     placeholder='Enter your password'
@@ -108,6 +111,7 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                 <Form.Group controlId='formBasicPassword'>
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
+                    required
                     type='password'
                     value={confirm_password}
                     placeholder='Confirm your password'
@@ -117,6 +121,7 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                 <Form.Group controlId='formBasicPhone'>
                     <Form.Label>Phone</Form.Label>
                     <Form.Control
+                    required
                     type='phone'
                     value={phone}
                     placeholder='Phone number'
