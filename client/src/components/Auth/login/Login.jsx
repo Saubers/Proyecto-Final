@@ -21,7 +21,9 @@ const Login = () => {
    
     const handleSubmit = async (e) => {
         e.preventDefault();
-        history.push("/home")
+       if(userInfo){ 
+           history.push("/home")
+        }
         try{
 
     const config = {
@@ -42,7 +44,7 @@ const Login = () => {
     localStorage.setItem('userInfo', JSON.stringify(data))
     setLoading(false)
    } catch(error) {
-   setError(error.response.data.message)
+   setError("The mail or password are incorrect")
         }
 
 
