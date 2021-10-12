@@ -14,9 +14,11 @@ export default function OrderCar(props) {
         <div>
             <div>Todas las ordenes</div>
             {OrderUser && OrderUser.map(el=>{
-                return(<div>
+                return(
+                <div key={el._id}>
                     <h1>{el.cantidad}</h1>
                     <h2>{el.price}</h2>
+                    <h3>{el.state}</h3>
                 </div>
             )})
 

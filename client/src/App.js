@@ -21,7 +21,6 @@ function App() {
       <Switch>
         {/* <Route exact path="/" component={LandingPage} /> */}
         <Route exact path="/home" component={LandingPage} />
-        <Route exact path="/home/Catalogo" component={Catalogo} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
         <Route exact path='/CRUD' component={CRUD} />
@@ -29,6 +28,7 @@ function App() {
         <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />
         <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />
         <Route exact path='/user/register' component={Register} />
+        <Route exact path="/home/Catalogo" component={Catalogo} />
         <Route exact path="/user/login" component={Login} />
         <Route exact path='/home/compra' component={Cart} />
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
