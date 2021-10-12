@@ -17,7 +17,6 @@ export default function Cart(props){
 
 
     
-    
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({})
@@ -45,7 +44,7 @@ export default function Cart(props){
                 brand: idCar.brand,
                 carname :idCar.name,
                 price : idCar.price,
-                cantidad : 1
+                cantidad : 0
             }])
         }
         else{
@@ -77,11 +76,13 @@ export default function Cart(props){
             })
             numeroresta = price - e.price
             setPrice(numeroresta)
+            
         }
         else if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
             // console.log('resta',filter)
             setAmount(filter)
+            setPrice(0)
         }
        
 
@@ -117,7 +118,6 @@ export default function Cart(props){
         borrarItem('auto')
         borrarItem('button')
         setAmount([])
-        setPrice(0)
     }
 
 
