@@ -16,7 +16,7 @@ export default function LandingPage({history}) {
         const userInfo = localStorage.getItem("userInfo");
  
         if(userInfo) {
-            history.push("/home")
+            history.push("/home/catalogo")
         }
     }, [history])
 
@@ -30,7 +30,7 @@ return(
                    </div>
                    <div>
                        <ul className={stylesLanding.ulli}>
-                            <li><a href="/home">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="/contactos">Contacts</a></li>
                             <li><a href="/home/catalogo ">Our Catalog</a></li>
                             <li><a href="# ">Payment Methods</a></li>
