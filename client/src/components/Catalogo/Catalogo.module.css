@@ -8,6 +8,35 @@
 .containercar{
     padding: 10px;
 }
+.divtotal{
+    display: flex;
+    flex-direction: row;
+}
+.divSearch{
+    width: 80%;
+}
+.btnreload{
+    border: none;
+    background: none;
+}
+.divfiltros{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+
+}
+.vantaimg{
+    width: 100%;
+    border-radius: 5px;
+    height: 150px;
+}
+.venta{
+    position: absolute;
+    top: 150px;
+    left: 500px;
+    color: white;
+}
 .link{
     text-decoration-line: none;
 }
