@@ -26,14 +26,10 @@ export default function Cart(props){
         let suma = [];
         let numero = 0
         for (let i = 0; i < amount.length; i++) {
-            // setPrice(parseInt(amount.cantidad) * parseInt(amount.price))
-            
             suma.push( amount[i].price * amount[i].cantidad)
         }
-        // console.log('array suma',suma)
         suma.forEach(element =>{
             numero = numero + element
-            // console.log(' numero ',numero)
             setPrice(numero)
         })
     }
@@ -91,10 +87,11 @@ export default function Cart(props){
 
 
     }
+    const user = "615dc2f5f1a17cca9b833c49"
     function handlePost(ev){
         ev.preventDefault()
         setInput({
-        user:"615dc2f5f1a17cca9b833c49",
+        user:user,
         publication: amount.map(el => el.id),
         cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
         price: price,

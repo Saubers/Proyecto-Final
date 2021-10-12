@@ -76,11 +76,6 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 users: action.payload
             }
-        case 'USER_LOGIN':
-            return {
-                ...state,
-                users: action.payload
-            }
         case 'FILTER_BY_ENGINE':
             let filterEngine = []
             // console.log(action.payload)

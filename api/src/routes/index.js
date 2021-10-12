@@ -66,7 +66,7 @@ module.exports = app => {
 
 
     //Ruta para agregar Item al Carrito
-    router.post('/users/:idUser/cart', agregarOrden)
+    router.post('/users/:id/cart', agregarOrden)
 
     ///modificar
     router.put('/orders/:id',putCart)

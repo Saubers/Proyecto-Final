@@ -1,11 +1,11 @@
 const Cart = require('../models/Cart');
 
 const agregarOrden = async function(req,res){
-    let {idUser} = req.params
+    var myId = req.params.id
     let {publication,price,state,cantidad} = req.body
     try{    
         const cart = new Cart({
-        user: idUser,
+        user: myId,
         publication: publication,
         cantidad : cantidad,
         price : price,
@@ -40,7 +40,7 @@ const AllOrders = async function (req,res){
     let {status } = req.query     
     if(status ){
         try {
-            const AllOrders = await Cart.find({status : status }).populate('publication').populate('user')
+            const AllOrders = await Cart.find({status : status }).populate('publication')
             return res.status(200).send(AllOrders);
         } catch (error) {
             console.log(error)
@@ -48,7 +48,8 @@ const AllOrders = async function (req,res){
     }
     else{
         try {
-        const AllOrders = await Cart.find().populate('publication').populate('user')
+            const AllOrders = await Cart.find().populate('publication')
+            console.log('allOrders',AllOrders)
         return res.status(200).send(AllOrders);
 
     } catch (error) {
