@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{ useState } from 'react';
 import axios from 'axios';
 import Loading from './Loading';
 import styles from './Login.module.css'
@@ -6,6 +6,8 @@ import ErrorMessage from './ErrorMessage';
 import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { signin } from '../../../actions';
 
 
 
@@ -14,41 +16,17 @@ const Login = () => {
     const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
-    const [errorMessage, setErrorMessage] = useState(null)
     const [loading, setLoading] = useState(false)
-    const userInfo = localStorage.getItem("userInfo");
-        
-   
+    //const userSignin = useSelector((state) => state.userInfo)    
+    const dispatch = useDispatch()
     const handleSubmit = async (e) => {
         e.preventDefault();
-       if(userInfo){ 
-           history.push("/home/catalogo")
-        }
-        try{
-
-    const config = {
-        headers: {
-            "Content-type": "application/json"
-        }
+        
+            history.push('/home/catalogo')
+        
+    dispatch(signin(mail, password))
     }
-    setLoading(true)
-
-    const { data } = await axios.post("http://localhost:3002/login", {
-        mail,
-        password
-    },
-    config
-    );
-    
-    console.log(data)
-    localStorage.setItem('userInfo', JSON.stringify(data))
-    setLoading(false)
-   } catch(error) {
-   setError("The mail or password are incorrect")
-        }
-
-
-    }
+        
     return(
         <div className={styles.loginContainer}>
             <div className={styles.imgdivd}>

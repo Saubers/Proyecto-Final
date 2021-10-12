@@ -6,8 +6,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const NavBar = () => {
- 
-    return (
+  console.log("a",JSON.parse(localStorage.getItem('userInfo')))
+  const userLogged = useSelector((state) => state.userInfo)
+  
+
+  return (
         <div className={styleNav.container}>
           <nav>
             <div>
@@ -18,9 +21,10 @@ const NavBar = () => {
                 <li><a href="/contactos">Contacts</a></li>
                 <li><a href="/home/catalogo ">Our Catalog</a></li>
                 <li><a href="# ">Payment Methods</a></li>
-           
-                <li><a className={styleNav.logout} 
-                  onClick={localStorage.removeItem('userInfo')} href='/user/login'>Logout</a></li>
+           { userLogged ? (
+  <li><a className={styleNav.logout} 
+  onClick={localStorage.removeItem('userInfo')} href='/user/login'>Logout</a></li>
+                  )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
             </ul>
           </nav>

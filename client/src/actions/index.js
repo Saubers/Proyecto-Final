@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from '../constants/userConstants';
 
 //Traemos al payload todos los autos
 export function getCars() {
@@ -105,15 +106,25 @@ export function userRegister(payload) {
     }
 }
 
-export function loginUser() {
-    return async function (dispatch) {
-        const json = await axios.post('http://localhost:3002/login');
-        return dispatch({
-            type: 'USER_LOGIN',
-            payload: json
-        })
-    }
+export const signin =(mail, password) => async (dispatch) => {
+    dispatch({ type: USER_SIGNIN_REQUEST, payload: {mail, password}})
+try {
+    const {data} = await axios.post('http://localhost:3002/login', {mail, password})
+    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
+    localStorage.setItem('userInfo', JSON.stringify(data))
+    console.log(localStorage.getItem('userInfo'))
+} catch (error){
+    dispatch({
+        type: USER_SIGNIN_FAIL,
+        payload:
+        error.response && error.response.data.message
+        ? error.response.data.message : error.message,
+    })
 }
+}
+
+    
+
 
 export function DeleteCar(id) {
     return async function (dispatch) {

@@ -15,6 +15,8 @@ import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
+    const userLogged = useSelector((state) => state.userInfo)
+    console.log(userLogged)
 const dispatch = useDispatch()
 const AllProducts = useSelector((state) => state.cars)
 
@@ -30,7 +32,7 @@ const [order, setOrder] = useState("")
 // const [engine , setEngine] = useState("")
 const EndProduct = page * productsXpage;
 const StartProduct = EndProduct - productsXpage;
-const ProductViewsXPage = AllProducts.slice(StartProduct, EndProduct);
+const ProductViewsXPage = AllProducts?.slice(StartProduct, EndProduct);
 
 
 /////
@@ -151,9 +153,9 @@ return (
             
             {
                 
-                ProductViewsXPage.length === 0 ?
+                ProductViewsXPage?.length === 0 ?
                 <h2>No hay autos que cumplan su criterio de busqueda</h2>            
-                :  ProductViewsXPage.map(el => {
+                :  ProductViewsXPage?.map(el => {
                     return(
                         
                         <div className={styleCatalogo.containercar}>
@@ -179,7 +181,7 @@ return (
     <hr />
     <div >
         <Paginado
-            AllProducts={AllProducts.length}
+            AllProducts={AllProducts?.length}
             paginado={paginado}//const paginado linea °n 21
             productsXpage={productsXpage}
         />
