@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const generateToken = require('../utils/generateToken')
+const generateToken = require('../generateToken')
 require('../db.js')
 
 const getAllUser = async (req, res, next) => {
