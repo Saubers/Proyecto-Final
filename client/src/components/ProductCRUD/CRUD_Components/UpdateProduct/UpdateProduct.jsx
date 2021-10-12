@@ -58,6 +58,8 @@ export default function UpdateProduct() {
 
     const [id, setID] = useState("")
 
+    const selectedCar = cars.find((el)=>el._id===id); /* probar con .map y ruta de getDetail */
+
     const [input, setInput] = useState({
         brand: "",
         name: "",
@@ -91,7 +93,7 @@ export default function UpdateProduct() {
     function handleSubmit(e) {
         console.log(input)
         e.preventDefault(e);
-        dispatch(putProduct(input))
+        dispatch(putProduct(id, input))
         alert("¡PRODUCTO AÑADIDO!")
         setInput({
             brand: "",
@@ -122,6 +124,24 @@ export default function UpdateProduct() {
     function handleSelectID(e) {
         setID({
             id: e.target.value
+        })
+        console.log(id, selectedCar,cars.map((el)=>el._id))
+        setInput({
+            brand: "",
+            name: "",
+            model: "",
+            category: "",
+            description: "",
+            features_doors: "",
+            features_engine_name: "",
+            features_engine_cv: "",
+            features_engine_torque: "",
+            features_engine_combustion: "",
+            features_transmission_manual: "",
+            features_transmission_automatic: "",
+            features_traction: "",
+            features_mileage: "",
+            price: ""
         })
     }
 
@@ -159,13 +179,11 @@ export default function UpdateProduct() {
             <h1>Update car information</h1>
             <h3>Select car</h3>
             <select required onChange={(e) => handleSelectID(e)}>
-                        {cars.map((el) => (
-                            <option value={el._id}>{el.name}</option>
-                        ))}
-                    </select>
-                    {id.id && (
-                        <p><b>ID: </b>{id.id}</p>
-                    )}
+                {cars.map((el) => (
+                    <option value={el._id}>{el.name}</option>
+                ))}
+            </select>
+           
             <h2>Enter new car information</h2>
 
             <form onSubmit={(e) => handleSubmit(e)}>
