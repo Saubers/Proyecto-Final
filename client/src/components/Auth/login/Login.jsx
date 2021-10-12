@@ -84,6 +84,9 @@ const Login = () => {
                     New Customer ? <Link to="/user/register">Register Here</Link>
                     </Col>
                 </Row>
+                <Link to ='/'>
+                <Button className={styles.btnsubt}>Back home</Button>
+                </Link>
                 </div>
         </div>
         

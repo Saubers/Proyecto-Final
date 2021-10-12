@@ -1,7 +1,7 @@
 import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
-import { Form, Row } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import {useDispatch} from 'react-redux'
 import { Link, useHistory } from 'react-router-dom';
 import { userRegister } from '../../../actions';
@@ -125,8 +125,15 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                 </Form.Group>
 
                 <Button type="submit" className={styles.btn} onClick={(e) => handleSubmit(e)}>Register</Button>
+                <Row className="py-3">
+                    <Col>
+                    You already have an account ? <Link to="/user/login">Login Here</Link>
+                    </Col>
+                </Row>
+                <Link to ='/'>
+                <Button className={styles.btn}>Back home</Button>
+                </Link>
             </form>
-            
             </div>
     </div>
     )
