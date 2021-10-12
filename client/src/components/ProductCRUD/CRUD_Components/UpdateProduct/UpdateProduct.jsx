@@ -58,7 +58,7 @@ export default function UpdateProduct() {
 
     const [id, setID] = useState("")
 
-    const selectedCar = cars.find((el)=>el._id===id); /* probar con .map y ruta de getDetail */
+    const selectedCar = cars.map((el)=>el).find((el) => el._id === id); /* probar con .map y ruta de getDetail */
 
     const [input, setInput] = useState({
         brand: "",
@@ -125,7 +125,7 @@ export default function UpdateProduct() {
         setID({
             id: e.target.value
         })
-        console.log(id, selectedCar,cars.map((el)=>el._id))
+        console.log(id, selectedCar)
         setInput({
             brand: "",
             name: "",
@@ -172,253 +172,253 @@ export default function UpdateProduct() {
         }
     }
     return (
-        <div className={styleCrudUpdate.General}>
-            <div>
-                <NavBar />
+        <div>
+            <NavBar />
+            <div className={styleCrudUpdate.General}>
+                <h1>Update car information</h1>
+                <h3>Select car</h3>
+                <select required onChange={(e) => handleSelectID(e)}>
+                    {cars.map((el) => (
+                        <option value={el._id}>{el.name}</option>
+                    ))}
+                </select>
+
+                <h2>Enter new car information</h2>
+
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <fieldset >
+                        <label className={styleCrudUpdate.label}>Brand: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                type="text"
+                                value={input.brand}
+                                name="brand"
+                                onChange={(e) => handleChange(e)}
+                                className={styleCrudUpdate.inputActivity}
+                                required
+                                placeholder="Marca"
+                            />
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Titulo/Nombre del auto: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                type="text"
+                                value={input.name}
+                                name="name"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Titulo Publicacion/Nombre del auto'
+                                className={styleCrudUpdate.inputActivity}
+                                required
+                            />
+                        </div>
+                        <label className={styleCrudUpdate.label}>Modelo: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                type="text"
+                                value={input.model}
+                                name="model"
+                                onChange={(e) => handleChange(e)}
+                                placeholder="Modelo"
+                                required
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                            {errors.model && (
+                                <p className="errors">{errors.model}</p>
+                            )}
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Image: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                type="file"
+                                name="img"
+                                onChange={(e) => postDetails(e)}
+                                required
+                                className={styleCrudUpdate.inputActivity}
+                            />
+
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Category: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <h5>Eliga una categoria</h5>
+                            <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
+                                {categories.map((el) => (
+                                    <option value={el._id}>{el.name}</option>
+                                ))}
+
+                            </select>
+
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Description: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <textarea
+                                required
+                                type="text"
+                                cols="80" rows="6"
+                                value={input.description}
+                                name="description"
+                                onChange={(e) => handleChange(e)}
+                                placeholder="Añada una pequeña descripcion del auto/Add a small description about the car"
+                                className={styleCrudUpdate.textarea}
+                            />
+                        </div>
+                        <label className={styleCrudUpdate.label}>Price: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="number"
+                                value={input.price}
+                                name="price"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='$$$$$$$$'
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                            {errors.price && (
+                                <p className={styleCrudUpdate.errors}>{errors.price}</p>
+                            )}
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h2 className={styleCrudUpdate.label}>Features</h2>
+
+                        <label className={styleCrudUpdate.label}>Puertas</label>
+                        <div className={styleCrudUpdate.subDiv}>
+
+                            <input
+                                required
+                                type="text"
+                                value={input.features_doors}
+                                name="features_doors"
+                                onChange={(e) => handleChange(e)}
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                            {errors.features_doors && (
+                                <p className={styleCrudUpdate.errors}>{errors.features_doors}</p>
+                            )}
+                        </div>
+                        <label className={styleCrudUpdate.label}>Nombre motor</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_engine_name}
+                                name="features_engine_name"
+                                onChange={(e) => handleChange(e)}
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Cv </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_engine_cv}
+                                name="features_engine_cv"
+                                onChange={(e) => handleChange(e)}
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                            {errors.features_engine_cv && (
+                                <p className={styleCrudUpdate.errors}>{errors.features_engine_cv}</p>
+                            )}
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Torque</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_engine_torque}
+                                name="features_engine_torque"
+                                onChange={(e) => handleChange(e)}
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                            {errors.features_torque && (
+                                <p className={styleCrudUpdate.errors}>{input.features_engine_torque}</p>
+                            )}
+                        </div>
+                        <label className={styleCrudUpdate.label}>Combustion</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_engine_combustion}
+                                name="features_engine_combustion"
+                                onChange={(e) => handleChange(e)}
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                        </div>
+
+                        <div className={styleCrudUpdate.subDiv}>
+                            <h3>Transmision:</h3>
+                            <h5>Manual</h5>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_transmission_manual}
+                                name="features_transmission_manual"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Nro velocidades'
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                        </div>
+
+                        <div className={styleCrudUpdate.subDiv}>
+                            <h5>Automatica</h5>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_transmission_automatic}
+                                name="features_transmission_automatic"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Nro velocidades'
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Traccion:</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_traction}
+                                name="features_traction"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Tipo de traccion'
+                                className={styleCrudUpdate.inputActivity}
+                            />
+                        </div>
+
+                        <label className={styleCrudUpdate.label}>Millage:</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.features_mileage}
+                                name="features_mileage"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Nro de Km totales'
+                                className={styleCrudUpdate.inputActivity} />
+                            {errors.features_mileage && (
+                                <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
+                            )}
+                        </div>
+                    </fieldset>
+                    {
+                        errors && (
+                            <button className={styleCrudUpdate.button3} type='submit'>Publicar</button>
+                        )
+                    }
+                    <Link to="/CRUD">
+                        <button className={styleCrudUpdate.button3}>Back</button>
+                    </Link>
+
+                </form>
             </div>
-            <h1>Update car information</h1>
-            <h3>Select car</h3>
-            <select required onChange={(e) => handleSelectID(e)}>
-                {cars.map((el) => (
-                    <option value={el._id}>{el.name}</option>
-                ))}
-            </select>
-           
-            <h2>Enter new car information</h2>
-
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <fieldset >
-                    <label className={styleCrudUpdate.label}>Brand: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            type="text"
-                            value={input.brand}
-                            name="brand"
-                            onChange={(e) => handleChange(e)}
-                            className={styleCrudUpdate.inputActivity}
-                            required
-                            placeholder="Marca"
-                        />
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Titulo/Nombre del auto: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            type="text"
-                            value={input.name}
-                            name="name"
-                            onChange={(e) => handleChange(e)}
-                            placeholder='Titulo Publicacion/Nombre del auto'
-                            className={styleCrudUpdate.inputActivity}
-                            required
-                        />
-                    </div>
-                    <label className={styleCrudUpdate.label}>Modelo: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            type="text"
-                            value={input.model}
-                            name="model"
-                            onChange={(e) => handleChange(e)}
-                            placeholder="Modelo"
-                            required
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                        {errors.model && (
-                            <p className="errors">{errors.model}</p>
-                        )}
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Image: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            type="file"
-                            name="img"
-                            onChange={(e) => postDetails(e)}
-                            required
-                            className={styleCrudUpdate.inputActivity}
-                        />
-
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Category: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <h5>Eliga una categoria</h5>
-                        <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
-                            {categories.map((el) => (
-                                <option value={el._id}>{el.name}</option>
-                            ))}
-
-                        </select>
-
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Description: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <textarea
-                            required
-                            type="text"
-                            cols="80" rows="6"
-                            value={input.description}
-                            name="description"
-                            onChange={(e) => handleChange(e)}
-                            placeholder="Añada una pequeña descripcion del auto/Add a small description about the car"
-                            className={styleCrudUpdate.textarea}
-                        />
-                    </div>
-                    <label className={styleCrudUpdate.label}>Price: </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="number"
-                            value={input.price}
-                            name="price"
-                            onChange={(e) => handleChange(e)}
-                            placeholder='$$$$$$$$'
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                        {errors.price && (
-                            <p className={styleCrudUpdate.errors}>{errors.price}</p>
-                        )}
-                    </div>
-                </fieldset>
-
-                <fieldset>
-                    <h2 className={styleCrudUpdate.label}>Features</h2>
-
-                    <label className={styleCrudUpdate.label}>Puertas</label>
-                    <div className={styleCrudUpdate.subDiv}>
-
-                        <input
-                            required
-                            type="text"
-                            value={input.features_doors}
-                            name="features_doors"
-                            onChange={(e) => handleChange(e)}
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                        {errors.features_doors && (
-                            <p className={styleCrudUpdate.errors}>{errors.features_doors}</p>
-                        )}
-                    </div>
-                    <label className={styleCrudUpdate.label}>Nombre motor</label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_engine_name}
-                            name="features_engine_name"
-                            onChange={(e) => handleChange(e)}
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Cv </label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_engine_cv}
-                            name="features_engine_cv"
-                            onChange={(e) => handleChange(e)}
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                        {errors.features_engine_cv && (
-                            <p className={styleCrudUpdate.errors}>{errors.features_engine_cv}</p>
-                        )}
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Torque</label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_engine_torque}
-                            name="features_engine_torque"
-                            onChange={(e) => handleChange(e)}
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                        {errors.features_torque && (
-                            <p className={styleCrudUpdate.errors}>{input.features_engine_torque}</p>
-                        )}
-                    </div>
-                    <label className={styleCrudUpdate.label}>Combustion</label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_engine_combustion}
-                            name="features_engine_combustion"
-                            onChange={(e) => handleChange(e)}
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                    </div>
-
-                    <div className={styleCrudUpdate.subDiv}>
-                        <h3>Transmision:</h3>
-                        <h5>Manual</h5>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_transmission_manual}
-                            name="features_transmission_manual"
-                            onChange={(e) => handleChange(e)}
-                            placeholder='Nro velocidades'
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                    </div>
-
-                    <div className={styleCrudUpdate.subDiv}>
-                        <h5>Automatica</h5>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_transmission_automatic}
-                            name="features_transmission_automatic"
-                            onChange={(e) => handleChange(e)}
-                            placeholder='Nro velocidades'
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Traccion:</label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_traction}
-                            name="features_traction"
-                            onChange={(e) => handleChange(e)}
-                            placeholder='Tipo de traccion'
-                            className={styleCrudUpdate.inputActivity}
-                        />
-                    </div>
-
-                    <label className={styleCrudUpdate.label}>Millage:</label>
-                    <div className={styleCrudUpdate.subDiv}>
-                        <input
-                            required
-                            type="text"
-                            value={input.features_mileage}
-                            name="features_mileage"
-                            onChange={(e) => handleChange(e)}
-                            placeholder='Nro de Km totales'
-                            className={styleCrudUpdate.inputActivity} />
-                        {errors.features_mileage && (
-                            <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
-                        )}
-                    </div>
-                </fieldset>
-                {
-                    errors && (
-                        <button className={styleCrudUpdate.button3} type='submit'>Publicar</button>
-                    )
-                }
-                <Link to="/CRUD">
-                    <button className={styleCrudUpdate.button3}>Back</button>
-                </Link>
-
-            </form>
         </div>
     )
 }
