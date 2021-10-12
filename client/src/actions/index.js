@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from '../constants/userConstants';
+import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from './userConstants';
 
 //Traemos al payload todos los autos
 export function getCars() {
