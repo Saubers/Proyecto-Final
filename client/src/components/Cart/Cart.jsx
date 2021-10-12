@@ -131,7 +131,7 @@ export default function Cart(props){
                                 <div className={stylecart.imgcont}>
                                     <img src={el.img[0]} alt='Erorr' width="150x" height="150px"></img>
                                 </div>
-                                <div>
+                                <div className={stylecart.divname}>
                                     <div>
                                         <h2>{el?.brand}<br/> {el?.name}</h2>
                                     </div>

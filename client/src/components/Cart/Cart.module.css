@@ -60,6 +60,11 @@
     background-color: red;
     color: white;
 }
+.divname{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 /* TICKET */
 
 .divticket{
