@@ -27,6 +27,7 @@
         "express-session": "^1.17.2",
         "flash": "^1.1.0",
         "fs-extra": "^10.0.0",
+        "generate-token": "^1.0.1",
         "jsonwebtoken": "^8.5.1",
         "md5": "^2.3.0",
         "mogoose": "0.0.1-security",
