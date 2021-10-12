@@ -18,12 +18,7 @@ export default function Cart(props){
     
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
-    const [input , setInput] = useState ({
-        user:"615dc2f5f1a17cca9b833c49",
-        publication: idAuto.map(el => el.id),
-        price: "",
-        state:"En proceso"
-    })
+    const [input , setInput] = useState ({})
     
     function sumatotal() {
         let suma = [];
@@ -97,8 +92,11 @@ export default function Cart(props){
     function handlePost(ev){
         ev.preventDefault()
         setInput({
-        ...input,
-        price:price ,
+        user:"615dc2f5f1a17cca9b833c49",
+        publication: amount.map(el => el.id),
+        cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
+        price: price,
+        state:"En proceso"
         })
         dispatch(postCart(input))
         console.log('INOPUT', input);

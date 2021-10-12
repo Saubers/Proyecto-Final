@@ -13,7 +13,7 @@ import CRUD from './components/ProductCRUD/CRUD.jsx';
 import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduct/CreateProduct';
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
-
+import OrderCar from './components/OrderCars/OrderCar';
 function App() {
   return (
     <Router>
@@ -31,6 +31,7 @@ function App() {
         <Route exact path='/user/register' component={Register} />
         <Route exact path="/user/login" component={Login} />
         <Route exact path='/home/compra' component={Cart} />
+        <Route exact path='/home/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />
       </Switch>
       </div>

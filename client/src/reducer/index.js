@@ -6,7 +6,8 @@ const initialState = {
     kilometraje: [],
     users: [],
     allcategories: [],
-    cart: []
+    cart: [],
+    orders:[]
 }
 
 function rootReducer(state = initialState, action) {
@@ -28,6 +29,16 @@ function rootReducer(state = initialState, action) {
                 ...state,
                 cars: action.payload,
             }
+        case 'GET_ORDERS' : 
+        return{
+            ...state,
+            orders: action.payload
+        }
+        case 'GET_ORDERS_BY_USUARIO' : 
+        return{
+            ...state,
+            orders: action.payload
+        }
         case 'LIST_CARD':
             console.log('CART', action.payload);
             return {

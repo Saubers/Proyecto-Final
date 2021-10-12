@@ -1,13 +1,13 @@
-const Car = require('../models/Cars');
 const Cart = require('../models/Cart');
 
 const agregarOrden = async function(req,res){
     let {idUser} = req.params
-    let {idItem,price,state} = req.body
+    let {publication,price,state,cantidad} = req.body
     try{    
         const cart = new Cart({
         user: idUser,
-        publication:idItem,
+        publication: publication,
+        cantidad : cantidad,
         price : price,
         state : state
         });
@@ -22,9 +22,9 @@ const agregarOrden = async function(req,res){
 const CartUser = async function(req,res){
     let {idUser} = req.params
     try {
-        const userOrder = await Cart.find({user : idUser})
+        const userOrder = await Cart.find({user : idUser}).populate('publication').populate('user')
         if(userOrder){
-            res.status(200).send(user)
+            res.status(200).send(userOrder)
         }else{
             res.status(404).send('Id invalida')
         }
@@ -40,7 +40,7 @@ const AllOrders = async function (req,res){
     let {status } = req.query     
     if(status ){
         try {
-            const AllOrders = await Cart.find({status : status }).populate('car').populate('users')
+            const AllOrders = await Cart.find({status : status }).populate('publication').populate('user')
             return res.status(200).send(AllOrders);
         } catch (error) {
             console.log(error)
@@ -48,7 +48,7 @@ const AllOrders = async function (req,res){
     }
     else{
         try {
-        const AllOrders = await Cart.find().populate('car').populate('users')
+        const AllOrders = await Cart.find().populate('publication').populate('user')
         return res.status(200).send(AllOrders);
 
     } catch (error) {
@@ -60,7 +60,7 @@ const AllOrders = async function (req,res){
 const OrdenesByUsuario= async function (req,res) {
     const {id} = req.params;
     try {
-        let Ordenes = await Cart.find({user : id}).populate('car').populate('users')
+        let Ordenes = await Cart.find({user : id}).populate('publication').populate('user')
         res.status(200).send(Ordenes)
 
     } catch (error) {
@@ -73,7 +73,7 @@ const cartOrderId = async function(req,res) {
     try {
         const {idOrder} = req.params;
         try {
-            let Ordenes = await Cart.find({_id: idOrder}).populate('car').populate('users')
+            let Ordenes = await Cart.find({_id: idOrder}).populate('publication').populate('user')
             res.status(200).send(Ordenes)
     
         } catch (error) {
@@ -105,7 +105,7 @@ const putCart = async function(req,res){
 const deleteCart = async function(req,res){
     const { id } = req.params.id;
     try {
-        const ProductDB = await Car.findByIdAndDelete(id)
+        const ProductDB = await Cart.findByIdAndDelete(id)
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }

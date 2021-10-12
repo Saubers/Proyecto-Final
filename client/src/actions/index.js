@@ -5,8 +5,29 @@ export function getCars() {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/products");
         return dispatch({
-
             type: 'GET_CARS',
+            payload: json.data
+        })
+    }
+}
+
+export function getOrder() {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/orders");
+        return dispatch({
+            type: 'GET_ORDERS',
+            payload: json.data
+        })
+    }
+}
+
+
+export function getOrderByUsuario() {
+    const id = '615dc2f5f1a17cca9b833c49'
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/users/"+id+"/orders");
+        return dispatch({
+            type: 'GET_ORDERS_BY_USUARIO',
             payload: json.data
         })
     }
