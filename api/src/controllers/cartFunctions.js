@@ -49,7 +49,7 @@ const AllOrders = async function (req,res){
     else{
         try {
             const AllOrders = await Cart.find().populate('publication')
-            console.log('allOrders',AllOrders)
+          //  console.log('allOrders',AllOrders)
         return res.status(200).send(AllOrders);
 
     } catch (error) {
@@ -105,13 +105,15 @@ const putCart = async function(req,res){
 
 const deleteCart = async function(req,res){
     const { id } = req.params.id;
+    console.log(req.params)
     try {
         const ProductDB = await Cart.findByIdAndDelete(id)
+        console.log('ProductDB',ProductDB)
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
     }catch(error){
-        next(error);
+        console.log(error);
     }
 }
 module.exports= {

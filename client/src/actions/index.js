@@ -116,15 +116,31 @@ export function loginUser() {
 }
 
 export function DeleteCar(id) {
-
     return async function (dispatch) {
-        var json = await axios.delete("http://localhost:3002/productsDelete/:id" + id);
+        try {
+            var json = await axios.delete("http://localhost:3002/productsDelete/:id" + id);
+            return dispatch({
+                type: "DELETE_CAR",
+                payload: json
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function DeleteCartId(id) {
+    console.log('id',id)
+    return async function (dispatch) {
+        var json = await axios.delete("http://localhost:3002/cart/delete/:id" + id);
         return dispatch({
-            type: "DELETE_CAR",
+            type: "DELETE_CART_BY_ID",
             payload: json
         })
     }
 }
+
 
 export function filterEngine(payload) {
     return {

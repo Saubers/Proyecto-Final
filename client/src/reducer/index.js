@@ -248,6 +248,10 @@ function rootReducer(state = initialState, action) {
             return {
                 ...state,
             }
+        case "DELETE_CART_BY_ID":
+            return{
+                ...state,
+            }
         default:
             return state;
     }

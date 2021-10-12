@@ -78,7 +78,7 @@ export default function Cart(props){
             numeroresta = price - e.price
             setPrice(numeroresta)
         }
-        else if (e.cantidad <= 0){ 
+        else if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
             // console.log('resta',filter)
             setAmount(filter)
@@ -87,21 +87,35 @@ export default function Cart(props){
 
 
     }
+
+    function handleDeleteCar(car){
+        let Delete = idAuto.filter(element => element !== car)
+        setIdAuto(Delete)
+        window.location.reload()
+    }
+
     const user = "615dc2f5f1a17cca9b833c49"
     function handlePost(ev){
         ev.preventDefault()
         setInput({
-        user:user,
-        publication: amount.map(el => el.id),
-        cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
-        price: price,
-        state:"En proceso"
+            user:user,
+            publication: amount.map(el => el.id),
+            cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
+            price: price,
+            state:"En proceso"
         })
-        dispatch(postCart(input))
-        console.log('INOPUT', input);
+        if(input.user && input.publication && input.cantidad && input.price){
+            dispatch(postCart(input))
+            alert('Compra exitosa')
+            handleDelete()
+        }else{
+            alert('Vuelva a tocar el boton para confirmar')
+            console.log('INOPUT', input);
+        }
     }
     function handleDelete() {
         borrarItem('auto')
+        borrarItem('button')
         setAmount([])
         setPrice(0)
     }
@@ -113,7 +127,7 @@ export default function Cart(props){
             <hr />
             {/* <button onChange= {(e)=> handleSubmit(e)}>Comprar</button> */}
             <div className={stylecart.divbtn}>
-                <h3>PRODUCTOS EN CARRITO {idAuto.length}</h3>
+                <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
     
                 <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
             </div>
@@ -143,7 +157,7 @@ export default function Cart(props){
                                     <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
                                 </div>
                                 <div className={stylecart.btnde}>
-                                    <button className={stylecart.btndelee}>X</button>
+                                    <button onClick={()=>handleDeleteCar(el)} className={stylecart.btndelee}>X</button>
                                 </div>
                         
                         </div>
@@ -156,7 +170,7 @@ export default function Cart(props){
                     <div className={stylecart.divdata}>
                         {
                             amount && amount.map(item=>{
-                                if(item.cantidad >=0)
+                                if(item.cantidad >0)
                                 return(
                                     <tr className={stylecart.trdiv}>
                                         <li className={stylecart.listy}>{item.brand} {item.carname} ${item.price} <br/>Cantidad:{item.cantidad}</li>
