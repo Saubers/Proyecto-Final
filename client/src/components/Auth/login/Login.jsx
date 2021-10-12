@@ -22,7 +22,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
        if(userInfo){ 
-           history.push("/")
+           history.push("/home/catalogo")
         }
         try{
 
