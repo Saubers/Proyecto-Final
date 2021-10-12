@@ -1,0 +1,90 @@
+.divall{
+    display: flex;
+    flex-direction: row;
+}
+.containerproduct{
+    border: 1px solid;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+.divbtn{
+    display: flex;
+    width: 70%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.divcart{
+    width: 70%;
+}
+.cantidad{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.imgcont{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.btndelee{
+    width: 30px;
+    padding: 5px 5px;
+    border: none;
+}
+.btndelee:hover{
+    background-color:red;
+    color: white;
+}
+.btnde{
+    position: relative;
+    left: 288px;
+}
+.btndeleall{
+    padding: 5px 20px;
+    border: none;
+}
+.btndeleall:hover{
+    background-color: red;
+    color: white;
+}
+.btn1{
+    padding: 1px 5px;
+    border: none;
+    position: relative;
+    top: -7px;
+}
+.btn1:hover{
+    background-color: red;
+    color: white;
+}
+/* TICKET */
+
+.divticket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    margin-left: 25px;
+    border-left: 1px solid black;
+
+}
+.btncomprartodo{
+    width: 100%;
+    padding: 10px;
+    border: none;
+}
+.listy{
+    list-style: none;
+}
+.divdata{
+    width: 100%;
+    padding: 20px;
+}
+.trdiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

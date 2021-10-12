@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { postCart, getUserOrder } from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link} from "react-router-dom";
-//import NavBar from "../NavBar/NavBar";
+import NavBar from '../NavBar/NavBar'
+import stylecart from '../Cart/Cart.module.css';
+
 
 export default function Cart(props){
     // const idCar = useSelector((state)=> state.idCar)
@@ -14,7 +16,7 @@ export default function Cart(props){
     const userInfo = localStorage.getItem("userInfo");
 
 
-    //console.log(idAuto)
+    
     
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
@@ -110,64 +112,77 @@ export default function Cart(props){
 
     return(
         <div>
+            <NavBar/>
+            <hr />
             {/* <button onChange= {(e)=> handleSubmit(e)}>Comprar</button> */}
-            <h3>PRODUCTOS</h3>
-                {idAuto === undefined ? 
-                <div>
-                    CARRITO VACIO 
-                    </div>
-                : idAuto?.map(el => {
-                return(
-                    <div key={el.id}>
-                        <h1>{el?.brand},{el?.carname}</h1>
-                         {<img src={el.img[0]} alt='Erorr' width="200x" height="200px"></img>}
-                        <h2>{el?.price} </h2>
-                        <div>
-                        <button onClick={()=>handleClickSumar(el)}>+1</button>
+            <div className={stylecart.divbtn}>
+                <h3>PRODUCTOS EN CARRITO {idAuto.length}</h3>
+    
+                <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
+            </div>
+            
+                <div className={stylecart.divall}>
+                    <div className={stylecart.divcart}>
+                    {idAuto === undefined ? 
+                    <div>
+                        CARRITO VACIO 
+                        </div>
+                    : idAuto?.map(el => {
+                    return(
+                        <div key={el.id} className={stylecart.containerproduct}>
+                            
+                                <div className={stylecart.imgcont}>
+                                    <img src={el.img[0]} alt='Erorr' width="150x" height="150px"></img>
+                                </div>
+                                <div>
+                                    <div>
+                                        <h2>{el?.brand}<br/> {el?.name}</h2>
+                                    </div>
+                                    <div>
+                                        <h2>${el?.price} </h2>
+                                    </div>
+                                </div>
+                                <div className={stylecart.cantidad}>
+                                    <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
+                                </div>
+                                <div className={stylecart.btnde}>
+                                    <button className={stylecart.btndelee}>X</button>
+                                </div>
+                        
+                        </div>
+                ) 
+            })
+            }
+            </div>
+                <div className={stylecart.divticket}>
+                    <h3>TICKET</h3>
+                    <div className={stylecart.divdata}>
+                        {
+                            amount && amount.map(item=>{
+                                if(item.cantidad >=0)
+                                return(
+                                    <tr className={stylecart.trdiv}>
+                                        <li className={stylecart.listy}>{item.brand} {item.carname} ${item.price} <br/>Cantidad:{item.cantidad}</li>
+                                        <button  className={stylecart.btndelee} onClick={()=>handleClickRestark(item)}>X</button>
 
-                        <h3>----------------------</h3>
+                                    </tr>
+                              
+                            )
+                            else{
+                                <p>Elija cantidad</p>                            
+                            }
+                        })
+                    }
+                    <hr />
+                        <div>
+                        <h4>Total:{price}</h4>
+                        </div>
+                        <div>
+                            <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
                         </div>
                     </div>
-            ) 
-        })
-        }
-        {
-            idAuto?.length ?
-                <div>
-                <button onClick={()=> handleDelete()}>VACIAR CARRITO</button>
-                <button onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
                 </div>
-            : <div/>
-            
-        }
-                <h3>TICKET</h3>
-                <div>
-                    <h3>----------------------</h3>
-                    {
-                        amount && amount.map(item=>{
-                            if(item.cantidad >=0)
-                            return(
-                                <tr >
-                    <li>{item.brand} {item.carname} {item.price} {item.cantidad}</li>
-                    <button onClick={()=>handleClickRestark(item)}>-1</button>
-                        </tr>
-                        )
-                        else{
-                            <p>Elija cantidad</p>                            
-                        }
-                    })
-                }
-                {
-                    
-                    <div>
-                    <h6>----------------------</h6>
-                       <h4>{price}</h4>
-                     </div>
-                  }
                 </div>
-            <Link to= "/home/catalogo">
-                <button>Back</button>
-            </Link>
             </div>
             )
         
