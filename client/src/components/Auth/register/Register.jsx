@@ -23,11 +23,16 @@ export default function Register () {
     const [message, setMessage] = useState(null)
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    
     const history = useHistory()
 
 
     const handleSubmit = async (e) => {
+        const userInfo = localStorage.getItem("userInfo");
         e.preventDefault()
+        if(userInfo){
+            history.push('/user/login')
+        }
     
 
     if(password !== confirm_password) {

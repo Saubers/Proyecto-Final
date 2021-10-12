@@ -30,7 +30,6 @@ const createUser = async ( req, res ,next) => {
     mail: mail, 
     password: password,
     confirm_password: confirm_password,
-    token: generateToken(user._id)
 })
 user.password = await user.encryptPassword(password);
     await user.save()
