@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Catalogo from './components/Catalogo/Catalogo';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Contact from './components/Contacto/Contacto';
-import Home from './components/Home/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import CategoryCreate from './components/CategoryCreate/CategoryCreate';
 import Register from './components/Auth/register/Register';
@@ -20,7 +19,7 @@ function App() {
       <div className='container'>
       <Switch>
         {/* <Route exact path="/" component={LandingPage} /> */}
-        <Route exact path="/home" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
         <Route exact path='/CRUD' component={CRUD} />

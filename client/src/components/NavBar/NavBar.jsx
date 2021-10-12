@@ -14,7 +14,7 @@ const NavBar = () => {
                 <img src={nuevologo} alt="logo" width="50px" />
             </div>
             <ul>
-                <li><a href="/home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/contactos">Contacts</a></li>
                 <li><a href="/home/catalogo ">Our Catalog</a></li>
                 <li><a href="# ">Payment Methods</a></li>

@@ -85,7 +85,6 @@ return (
         <button className={styleCatalogo.btnreload} onClick={e=>handleClick(e) }><img width="50px" src={recargar}></img> </button>
         <br />
         {/* BOTON VOLVER */}
-        <Link to = '/home'><button className = 'home'>Volver</button></Link>
             <div className={styleCatalogo.divfilter}>
                 <label>KILOMETRAJE</label>
                 <select onChange = {ev => hadleFiltroKm(ev)} className={styleCatalogo.btnfilter}>
