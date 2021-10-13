@@ -125,7 +125,7 @@ const deleteCart = async function(req,res){
 const checkout = async function(req,res){
     try{
         let preferences = {
-            items=[
+            items:[
                 {
                     title: req.body.title,
                     unit_price: req.body.price,
