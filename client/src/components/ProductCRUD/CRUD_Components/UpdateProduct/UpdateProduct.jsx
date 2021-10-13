@@ -58,7 +58,7 @@ export default function UpdateProduct() {
 
     const [id, setID] = useState("")
 
-    const selectedCar = cars.map((el)=>el).find((el) => el._id === id); /* probar con .map y ruta de getDetail */
+    const selectedCar = cars.find((el) => el._id === id); /* probar con .map y ruta de getDetail */
 
     const [input, setInput] = useState({
         brand: "",
