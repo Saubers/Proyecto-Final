@@ -30,6 +30,7 @@
         "generate-token": "^1.0.1",
         "jsonwebtoken": "^8.5.1",
         "md5": "^2.3.0",
+        "mercadopago": "^1.5.8",
         "mogoose": "0.0.1-security",
         "mongod": "^2.0.0",
         "mongodb": "^4.1.2",
