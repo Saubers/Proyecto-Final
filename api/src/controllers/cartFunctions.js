@@ -1,5 +1,11 @@
 const Cart = require('../models/Cart');
 
+const mercadopago = require ('mercadopago');
+
+mercadopago.configure({
+    access_token: 'TEST-6136905946660486-101322-d3c2d7427e978b5bd98fac6c652b25e8-378799934',
+});
+
 const agregarOrden = async function(req,res){
     var myId = req.params.id
     let {publication,price,state,cantidad} = req.body
@@ -116,6 +122,33 @@ const deleteCart = async function(req,res){
         console.log(error);
     }
 }
+const checkout = async function(req,res){
+    try{
+        let preferences = {
+            items=[
+                {
+                    title: req.body.title,
+                    unit_price: req.body.price,
+                    quantity: req.body.quantity,
+                }
+            ],
+            back_urls:{
+                success:'',
+                pending:'',
+                failure:'',
+            },
+            auto_return:'approved'
+        }
+        mercadopago.preferences.create(preferences)
+        .then((response)=>{
+            console.log(response.body)
+            res.redirect(response.body.init_point)
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
 module.exports= {
     agregarOrden,
     AllOrders,
@@ -123,5 +156,6 @@ module.exports= {
     cartOrderId,
     putCart,
     deleteCart,
-    CartUser
+    CartUser,
+    checkout
 }
