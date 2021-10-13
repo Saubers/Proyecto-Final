@@ -8,21 +8,25 @@ import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { signin } from '../../../actions';
+import { useEffect } from 'react';
 
 
 
 const Login = () => {
     const [mail, setMail] = useState("")
-    const history = useHistory()
+    const [user, setUser] = useState('')
+    //const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     //const userSignin = useSelector((state) => state.userInfo)    
     const dispatch = useDispatch()
+    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-            history.push('/home/catalogo')
+         ////   history.push('/home/catalogo')
         
     dispatch(signin(mail, password))
     }

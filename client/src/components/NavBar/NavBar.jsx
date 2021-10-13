@@ -7,7 +7,8 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   console.log("a",JSON.parse(localStorage.getItem('userInfo')))
-  const userLogged = useSelector((state) => state.userInfo)
+  const userSignin = useSelector((state) => state.userInfo)
+
   
 
   return (
@@ -21,7 +22,7 @@ const NavBar = () => {
                 <li><a href="/contactos">Contacts</a></li>
                 <li><a href="/home/catalogo ">Our Catalog</a></li>
                 <li><a href="# ">Payment Methods</a></li>
-           { userLogged ? (
+           { userSignin ? (
   <li><a className={styleNav.logout} 
   onClick={localStorage.removeItem('userInfo')} href='/user/login'>Logout</a></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
