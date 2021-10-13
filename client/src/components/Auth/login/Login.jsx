@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 const Login = () => {
     const [mail, setMail] = useState("")
     const [user, setUser] = useState('')
-    //const history = useHistory()
+  const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -26,7 +26,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-         ////   history.push('/home/catalogo')
+  history.push('/home/catalogo')
         
     dispatch(signin(mail, password))
     }
