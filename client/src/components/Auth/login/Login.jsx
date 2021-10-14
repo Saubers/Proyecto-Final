@@ -32,19 +32,24 @@ const Login = () => {
 
         
     dispatch(signin(mail, password))
-    setLoading(true)
+    
+    if(signin(mail) != mail || signin(password) !== password){
+        setError("Your mail or password are wrong...")
+       setTimeout(3000)
+    }else{
+        setLoading(true)
+    }
+    setLoading(false)
+   
     }
         
     return(
         <div className={styles.loginContainer}>
-            {loading && <Loading />}
             <div className={styles.imgdivd}>
                 <img src={lg} alt="lg" width="500px" />
             </div>
             
             <div className={styles.login}>
-            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-                
                 <form actions="/login" onSubmit={handleSubmit}>
                     <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Mail address</Form.Label>
@@ -68,7 +73,8 @@ const Login = () => {
                     </Form.Group>
                     <Button type="submit" className={styles.btnsubt}>Login</Button>
                 </form>
-                
+                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {loading && <Loading />}
                 <Row className="py-3">
                     <Col>
                     New Customer ? <Link to="/user/register">Register Here</Link>
