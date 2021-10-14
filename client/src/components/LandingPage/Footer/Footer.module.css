@@ -1,5 +1,32 @@
 .containerfooter{
-    height: 100px;
+    height: 200px;
     background: black;
     color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.container1{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+}
+.container12{
+    display: flex;
+    flex-direction: column;
+}
+.container2{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.container3{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+a{ 
+    text-decoration: none;
+    color: #fff;
 }
