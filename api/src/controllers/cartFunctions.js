@@ -129,6 +129,7 @@ const checkout = async function(req,res){
                 {
                     _id: req.body._id,
                     title: req.body.title,
+                    description: req.body.description,
                     unit_price: req.body.unit_price,
                     quantity: req.body.quantity,
                     currency_id: 'ARS'
