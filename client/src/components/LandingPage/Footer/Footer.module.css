@@ -26,7 +26,11 @@
     flex-direction: column;
     width: 300px;
 }
-a{ 
+.container12 a{
+    text-decoration: none;
+    color: #fff;
+}
+.container2 a{ 
     text-decoration: none;
     color: #fff;
 }
