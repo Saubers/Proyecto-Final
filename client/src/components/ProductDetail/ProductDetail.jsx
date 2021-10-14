@@ -43,16 +43,16 @@ export default function Detail(props) {
             <div className={styles.container}>
 
                 <div>
-                    <h1 className={styles.name}>{MyCar.brand} {MyCar.name}</h1>
+                    <h1 className={styles.name}>{MyCar?.brand} {MyCar?.name}</h1>
 
-                    {MyCar.category ? <h3>{MyCar.category.name}</h3> : null}
+                    {MyCar?.category ? <h3>{MyCar?.category.name}</h3> : null}
                     <div className='car_detail_carousel'>
-                        <Component_Carousel photos={MyCar.img} />
+                        <Component_Carousel photos={MyCar?.img} />
                     </div>
                     <h3 className={styles.title}>About the car</h3>
-                    <h6 className={styles.details}>Mileage: {MyCar.features?.mileage}km</h6>
-                    <h6 className={styles.details}>traction: {MyCar.features?.traction}</h6>
-                    <h6 className={styles.details}>Description: {MyCar.description}</h6>
+                    <h6 className={styles.details}>Mileage: {MyCar?.features.mileage}km</h6>
+                    <h6 className={styles.details}>traction: {MyCar?.features.traction}</h6>
+                    <h6 className={styles.details}>Description: {MyCar?.description}</h6>
                 </div>
                 <Link to="/home/catalogo">
                     <button className={styles.button}>Back</button>
@@ -60,7 +60,7 @@ export default function Detail(props) {
 
                 {
                     found === IdButton ? <div>
-                        Orden agregada al <Link to="/home/Catalogo/compra">carrito</Link>
+                        Orden agregada al <Link to="/home/compra">carrito</Link>
                     </div>
                         :
                         <button onClick={() => addToCart(MyCar.id)} >Comprar</button>

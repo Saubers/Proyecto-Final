@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
-const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser} = require('../controllers/cartFunctions')
+const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
 const { createUser, getAllUser, loginUser, logout } = require('../controllers/userFunction');
+const mercadopago = require ('mercadopago');
 
+mercadopago.configure({
+    access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
+});
 // const {getUsers, createUser} = require('../controllers/userFunction')
 module.exports = app => {
     router.get('/', function(req, res){
@@ -66,7 +70,7 @@ module.exports = app => {
 
 
     //Ruta para agregar Item al Carrito
-    router.post('/users/:idUser/cart', agregarOrden)
+    router.post('/users/:id/cart', agregarOrden)
 
     ///modificar
     router.put('/orders/:id',putCart)
@@ -78,8 +82,13 @@ module.exports = app => {
     router.get('/users/:id/orders', OrdenesByUsuario)
 
     //Vaciar carrito
-    router.get('/users/:idUser/cart/',deleteCart)
+    router.delete('/cart/delete/:id/',deleteCart)
 
+
+
+    ///// mercadopago
+
+    router.post('/checkout', checkout)
     app.use(router);
 }
 

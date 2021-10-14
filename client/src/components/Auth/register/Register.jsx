@@ -1,7 +1,7 @@
 import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
-import { Form, Row } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import {useDispatch} from 'react-redux'
 import { Link, useHistory } from 'react-router-dom';
 import { userRegister } from '../../../actions';
@@ -19,15 +19,21 @@ export default function Register () {
     const [password, setPassword] = useState("")
     const [confirm_password, setConfirmPassword] = useState("")
     const [phone, setPhone] = useState("")
+    const [isAdmin, setIsAdmin] = useState(false)
 
     const [message, setMessage] = useState(null)
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
-    const history = useHistory()
+    
+   // const history = useHistory()
 
 
     const handleSubmit = async (e) => {
+        
         e.preventDefault()
+      
+    
+
     if(password !== confirm_password) {
         setMessage('Passwords do not match')
     } else {
@@ -44,14 +50,15 @@ export default function Register () {
         mail,
         password,
         confirm_password,
-        phone
+        phone,
+        isAdmin
 }, config
 );
 
 setLoading(false);
 localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (error) {
-    setError(error.response.data.message);
+    setMessage("You should check all fields");
     }
     }
     
@@ -59,7 +66,6 @@ localStorage.setItem("userInfo", JSON.stringify(data));
 
     function handleChange(e){
     e.preventDefault()
-history.push('/user/login')
     }
    
     return (
@@ -75,15 +81,17 @@ history.push('/user/login')
             <Form.Group controlId='name'>
                     <Form.Label>Fullname</Form.Label>
                     <Form.Control
+                    required
                     type='text'
                     value={fullname}
-                    placeholder='Confirm your password'
+                    placeholder='Enter your full name'
                     onChange={(e) => setFullname(e.target.value)}
                     />  
                 </Form.Group>
                 <Form.Group controlId='formBasicEmail'>
                     <Form.Label>Mail address</Form.Label>
                     <Form.Control
+                    required
                     type='email'
                     value={mail}
                     placeholder='Enter your mail'
@@ -93,6 +101,7 @@ history.push('/user/login')
                 <Form.Group controlId='confirmPassword'>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
+                    required
                     type='password'
                     value={password}
                     placeholder='Enter your password'
@@ -102,6 +111,7 @@ history.push('/user/login')
                 <Form.Group controlId='formBasicPassword'>
                     <Form.Label>Confirm Password</Form.Label>
                     <Form.Control
+                    required
                     type='password'
                     value={confirm_password}
                     placeholder='Confirm your password'
@@ -111,6 +121,7 @@ history.push('/user/login')
                 <Form.Group controlId='formBasicPhone'>
                     <Form.Label>Phone</Form.Label>
                     <Form.Control
+                    required
                     type='phone'
                     value={phone}
                     placeholder='Phone number'
@@ -118,9 +129,16 @@ history.push('/user/login')
                     />  
                 </Form.Group>
 
-                <Button type="submit" className={styles.btn} onClick={(e) => handleChange(e)}>Register</Button>
+                <Button type="submit" className={styles.btn} onClick={(e) => handleSubmit(e)}>Register</Button>
+                <Row className="py-3">
+                    <Col>
+                    You already have an account ? <Link to="/user/login">Login Here</Link>
+                    </Col>
+                </Row>
+                <Link to ='/'>
+                <Button className={styles.btn}>Back home</Button>
+                </Link>
             </form>
-            
             </div>
     </div>
     )

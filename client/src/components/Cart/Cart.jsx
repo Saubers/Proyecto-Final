@@ -1,76 +1,200 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
 import { postCart, getUserOrder } from "../../actions";
-import {useLocalStorage} from '../../useStorage/useLocalStorage';
+import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link} from "react-router-dom";
-//import NavBar from "../NavBar/NavBar";
+import NavBar from '../NavBar/NavBar'
+import stylecart from '../Cart/Cart.module.css';
+
 
 export default function Cart(props){
     // const idCar = useSelector((state)=> state.idCar)
-    // const carrito = useSelector ((state)=> state.cart)
+    //const carrito = u seSelector ((state)=> state.cart)
     // console.log("ACA",idCar);
-
-    const [price,setPrice] = useState(0)
+    const dispatch = useDispatch()
     const [idAuto, setIdAuto] = useLocalStorage('auto')
-    const [cantidad,setCantidad] = useState(0)
-    console.log(idAuto)
+    const userInfo = localStorage.getItem("userInfo");
 
-    function handleClickSumar(id){
-        // var sumaAuto = idAuto.filter(el => el.id === id)
-        // const numero = sumaAuto.map(el => el.number + 1)
-        // setIdAuto([
-        //     ...idAuto,
-        //      idAuto.number = numero])
-    }
-    function handleClickRestar(){
-        let sumar = cantidad - 1
-        setCantidad(sumar)
-    }
-    function handleDelete(){
-        window.localStorage.clear();
+
+    
+    const [amount, setAmount] = useState([])
+    const [price,setPrice] = useState(0)
+    const [input , setInput] = useState ({})
+    
+    function sumatotal() {
+        let suma = [];
+        let numero = 0
+        for (let i = 0; i < amount.length; i++) {
+            suma.push( amount[i].price * amount[i].cantidad)
+        }
+        suma.forEach(element =>{
+            numero = numero + element
+            setPrice(numero)
+        })
     }
 
-    function handleSelect(e,precio) {
-        console.log('precio', precio)
-        setCantidad(
-          e.target.value
-        )
+    
+    
+    
+    function sumarCar(idCar){
+        const found = amount.find(element => element.id === idCar.id)
+        if(found?.id !== idCar.id){
+            setAmount([...amount,{
+                id: idCar.id,
+                brand: idCar.brand,
+                carname :idCar.name,
+                price : idCar.price,
+                cantidad : 0
+            }])
+        }
+        else{
+            amount.forEach(element =>{
+                if(element.id === idCar.id){
+                    element.cantidad =  parseInt(element.cantidad + 1)
+                }
+            })
+        }
+        sumatotal()
+
     }
-    let priceTotal = 0;
+    
+    //boton post filtrar todos los que tengan
+    
+    function handleClickSumar(car){
+        sumarCar(car)
+        sumatotal()
+        // console.log('suma',amount)
+    }
+    function handleClickRestark(e){
+        let numeroresta = 0
+        const found = amount.find(element => element.id === e.id)
+        if(found?.id === e.id && e.cantidad >=1){
+            amount.forEach(element =>{
+                if(element.id === e.id){
+                    element.cantidad =  parseInt(element.cantidad - 1)
+                }
+            })
+            numeroresta = price - e.price
+            setPrice(numeroresta)
+            
+        }
+        else if (e.cantidad === 0){ 
+            const filter = amount.filter(car => car !== e)
+            // console.log('resta',filter)
+            setAmount(filter)
+            setPrice(0)
+        }
+       
+
+
+    }
+
+    function handleDeleteCar(car){
+        let Delete = idAuto.filter(element => element !== car)
+        setIdAuto(Delete)
+        window.location.reload()
+    }
+
+    const user = "615dc2f5f1a17cca9b833c49"
+    function handlePost(ev){
+        ev.preventDefault()
+        setInput({
+            user:user,
+            publication: amount.map(el => el.id),
+            cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
+            price: price,
+            state:"En proceso"
+        })
+        if(input.user && input.publication && input.cantidad && input.price){
+            dispatch(postCart(input))
+            alert('Compra exitosa')
+            handleDelete()
+        }else{
+            alert('Vuelva a tocar el boton para confirmar')
+            console.log('INOPUT', input);
+        }
+    }
+    function handleDelete() {
+        borrarItem('auto')
+        borrarItem('button')
+        setAmount([])
+    }
+
+
     return(
         <div>
+            <NavBar/>
+            <hr />
             {/* <button onChange= {(e)=> handleSubmit(e)}>Comprar</button> */}
-            <h3>PRODUCTOS</h3>
-                {idAuto && idAuto.map(el => {
-                    console.log('hola', el.number);
-                return(
-                    <div key={el.id}>
-                        <h1>{el?.brand},{el?.name}</h1>
-                        <h2>{el?.price} X {el.number} = {el?.price * el.number}</h2>
-                         {<img src={el.img[0]} alt='Erorr' width="200x" height="200px"></img>}
-                        <h4>{priceTotal = priceTotal +( el?.price * cantidad )}</h4>
-                        <select onChange={(e)=>handleSelect(e,el.price)}> 
-                        Cantidad
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        </select>
-                        <button onClick={()=> handleDelete()}>BORRA TODO</button>
+            <div className={stylecart.divbtn}>
+                <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
+    
+                <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
+            </div>
+            
+                <div className={stylecart.divall}>
+                    <div className={stylecart.divcart}>
+                    {idAuto === undefined ? 
+                    <div>
+                        CARRITO VACIO 
+                        </div>
+                    : idAuto?.map(el => {
+                    return(
+                        <div key={el.id} className={stylecart.containerproduct}>
+                            
+                                <div className={stylecart.imgcont}>
+                                    <img src={el.img[0]} alt='Erorr' width="150x" height="150px"></img>
+                                </div>
+                                <div className={stylecart.divname}>
+                                    <div>
+                                        <h2>{el?.brand}<br/> {el?.name}</h2>
+                                    </div>
+                                    <div>
+                                        <h2>${el?.price} </h2>
+                                    </div>
+                                </div>
+                                <div className={stylecart.cantidad}>
+                                    <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
+                                </div>
+                                <div className={stylecart.btnde}>
+                                    <button onClick={()=>handleDeleteCar(el)} className={stylecart.btndelee}>X</button>
+                                </div>
+                        
+                        </div>
+                ) 
+            })
+            }
+            </div>
+                <div className={stylecart.divticket}>
+                    <h3>TICKET</h3>
+                    <div className={stylecart.divdata}>
+                        {
+                            amount && amount.map(item=>{
+                                if(item.cantidad >0)
+                                return(
+                                    <tr className={stylecart.trdiv}>
+                                        <li className={stylecart.listy}>{item.brand} {item.carname} ${item.price} <br/>Cantidad:{item.cantidad}</li>
+                                        <button  className={stylecart.btndelee} onClick={()=>handleClickRestark(item)}>X</button>
+
+                                    </tr>
+                              
+                            )
+                            else{
+                                <p>Elija cantidad</p>                            
+                            }
+                        })
+                    }
+                    <hr />
                         <div>
-                        <button onClick={()=>handleClickSumar(el.id)}>+1</button>
-                        <button onClick={()=>handleClickRestar()}>-1</button>
-                        <h3>----------------------</h3>
+                        <h4>Total:{price}</h4>
+                        </div>
+                        <div>
+                            <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
                         </div>
                     </div>
-            )
-                })}
-
-
-            <Link to= "/home">
-                <button>Back</button>
-            </Link>
+                </div>
+                </div>
             </div>
             )
+        
 }
