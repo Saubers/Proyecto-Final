@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 const Login = () => {
     const [mail, setMail] = useState("")
     const [user, setUser] = useState('')
-  //const history = useHistory()
+    const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -25,20 +25,26 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+        const local = localStorage.getItem('userInfo')
+        if(local){
+            history.push('/home/catalogo')
+        }
 
         
     dispatch(signin(mail, password))
+    setLoading(true)
     }
         
     return(
         <div className={styles.loginContainer}>
+            {loading && <Loading />}
             <div className={styles.imgdivd}>
                 <img src={lg} alt="lg" width="500px" />
             </div>
+            
             <div className={styles.login}>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-                {loading && <Loading />}
+                
                 <form actions="/login" onSubmit={handleSubmit}>
                     <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Mail address</Form.Label>

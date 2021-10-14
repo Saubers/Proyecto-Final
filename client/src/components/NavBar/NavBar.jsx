@@ -4,21 +4,16 @@ import logocarrito from '../image/carrito.png';
 import nuevologo from '../image/nuevologo.png';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import salir from '../image/salir.png';
 
 const NavBar = () => {
-  console.log("a",JSON.parse(localStorage.getItem('userInfo')))
   const userSignin = useSelector((state) => state.userInfo)
   console.log(userSignin)
+const local = localStorage.getItem('userInfo')
 
 
 
 
-const NavBar = () => {
-  const local = localStorage.getItem('userInfo')
-
-  
 
   return (
         <div className={styleNav.container}>
@@ -35,16 +30,14 @@ const NavBar = () => {
 
            { local ? (
   <li><a className={styleNav.logout} 
-  onClick={() => localStorage.removeItem('userInfo')} href='/user/login'>Logout</a></li>
+  onClick={() => localStorage.removeItem('userInfo')} href='/'>Logout</a></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
  
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
-                { userSignin ? ( <div className={styleNav.userdiv}>
-             <h3>User:{userSignin.fullname}</h3>
-             <h3>Email:{userSignin.mail}</h3>
-            <li><a className={styleNav.logout} 
-            onClick={localStorage.removeItem('userInfo')} href='/user/login'><img src={salir} width="20px"></img></a></li>
-           </div>)  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
+                { local && ( <div className={styleNav.userdiv}>
+             <h3>User:{userSignin?.fullname}</h3>
+             <h3>Email:{userSignin?.mail}</h3>
+           </div>)  }
             </ul>
           </nav>
         </div>
