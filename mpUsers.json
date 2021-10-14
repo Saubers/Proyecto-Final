@@ -1,0 +1,54 @@
+[
+    {
+        "vendedor": true,
+        "id": 1000552229,
+        "nickname": "TESTRBZ2HMFP",
+        "password": "qatest6134",
+        "site_status": "active",
+        "email": "test_user_81077097@testuser.com",
+        "credentials":{
+            "production":{
+                "acces_token": "APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229",
+                "public": "APP_USR-49e4bd31-51c8-40af-9eec-a68ed3c1b070"
+            },
+            "test":{
+                "acces_token":"TEST-2749767482103662-101420-2d037e6e1a32c1667f9677c39d696b6a-1000552229",
+                "public":"TEST-f2adb885-3b7f-4f92-8aac-d5cfb837b0e4"
+            }
+        }
+    },
+    {
+        "id": 1000537187,
+        "nickname": "TESTYPM9EXXF",
+        "password": "qatest2195",
+        "site_status": "active",
+        "email": "test_user_2819983@testuser.com",
+        "credentials":{
+            "production":{
+                "acces_token": "",
+                "public": ""
+            },
+            "test":{
+                "acces_token":"",
+                "public":""
+            }
+        }
+    },
+    {
+        "id": 1000552606,
+        "nickname": "TESTXDKXDUKR",
+        "password": "qatest6208",
+        "site_status": "active",
+        "email": "test_user_23096563@testuser.com",
+        "credentials":{
+            "production":{
+                "acces_token": "",
+                "public": ""
+            },
+            "test":{
+                "acces_token":"",
+                "public":""
+            }
+        }
+    }
+]

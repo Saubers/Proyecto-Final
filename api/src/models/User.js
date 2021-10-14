@@ -14,6 +14,7 @@ const UserSchema = new Schema(
     },
     mail: {
       type: String,
+      unique: true
       
     },
     ban: {
@@ -23,6 +24,10 @@ const UserSchema = new Schema(
     password: {
       type: String,
       
+    },
+    isAdmin:{   
+      type:Boolean,
+      default: false
     },
     date:{
       type:Date,

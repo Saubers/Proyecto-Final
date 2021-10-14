@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Catalogo from './components/Catalogo/Catalogo';
 import ProductDetail from './components/ProductDetail/ProductDetail';
 import Contact from './components/Contacto/Contacto';
-import Home from './components/Home/Home';
 import LandingPage from './components/LandingPage/LandingPage';
 import CategoryCreate from './components/CategoryCreate/CategoryCreate';
 import Register from './components/Auth/register/Register';
@@ -13,24 +12,31 @@ import CRUD from './components/ProductCRUD/CRUD.jsx';
 import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduct/CreateProduct';
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
-
+import OrderCar from './components/OrderCars/OrderCar';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useState } from 'react';
 function App() {
+const local = localStorage.getItem('userInfo')
+
   return (
     <Router>
       <div className='container'>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/home/Catalogo" component={Catalogo} />
+{ !local && ( <Route exact path="/" component={LandingPage} />)}
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
-        <Route exact path='/CRUD' component={CRUD} />
+   { local ?  (<Route exact path='/CRUD' component={CRUD} />)
+   : "You dont have permissions..."
+  }
         <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />
         <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />
         <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />
-        <Route exact path='/user/register' component={Register} />
-        <Route exact path="/user/login" component={Login} />
-        <Route exact path='/home/compra' component={Cart} />
+{ !local && (<Route exact path='/user/register' component={Register} />)}
+        <Route exact path="/home/Catalogo" component={Catalogo} />
+{ !local &&  (<Route exact path="/user/login" component={Login} />)}
+{ local && ( <Route exact path='/home/compra' component={Cart} />)}
+        <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />
       </Switch>
       </div>

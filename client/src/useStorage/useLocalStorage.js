@@ -27,6 +27,7 @@ export function useLocalStorage (key,initialValue){
     }
     return [storedValue,setValue]
 }   
-  export function borrar(item){
+  export function borrarItem(item){
     window.localStorage.removeItem(item);
+    window.location.reload()
   } 

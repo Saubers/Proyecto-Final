@@ -16,7 +16,7 @@ export default function LandingPage({history}) {
         const userInfo = localStorage.getItem("userInfo");
  
         if(userInfo) {
-            history.push("/home")
+            history.push("/home/catalogo")
         }
     }, [history])
 
@@ -29,11 +29,17 @@ return(
                        <img src={Nuevologo} alt="img" width="50px"/>
                    </div>
                    <div>
-                       <h2>Car Shop</h2>
+                       <ul className={stylesLanding.ulli}>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/contactos">Contacts</a></li>
+                            <li><a href="/home/catalogo ">Our Catalog</a></li>
+                            <li><a href="# ">Payment Methods</a></li>
+                            <li><a href='/user/login'>Login</a></li>
+                        </ul>
                    </div>
-                   <div>
+                   {/* <div>
                        <img src={usuario} alt="usuario" width="50px" />
-                   </div>
+                   </div> */}
                </nav>
            </header>
             <section>
@@ -42,7 +48,7 @@ return(
                     <img src={image2} alt="img" height="700px"/>
                     <img src={image3} alt="img" height="700px"/>
                 </Carousel>
-                <div className={stylesLanding.cajabotones}>
+                {/* <div className={stylesLanding.cajabotones}>
                     <div className={stylesLanding.jj}>
                         <h2 className={stylesLanding.h2sly}>We can help you to find your favourite car!</h2>
                         <div>
@@ -54,7 +60,7 @@ return(
                             </Link> 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
             <section>
                 <Servi/>
@@ -62,16 +68,6 @@ return(
             <footer>
                 <Footer/>
             </footer>
-        {/* <h1 className={styles.title}>Car Shop</h1>
-        <Link to ='/home'>
-            <button className={styles.button}>ENTER THE STORE</button>
-        </Link>
-        <Link to ='/user/login'>
-            <button className={styles.button}>LOGIN</button>
-        </Link>
-        <Link to='/user/register'>
-            <button className={styles.button}>REGISTER</button>
-        </Link> */}
        </div>
        
       )
