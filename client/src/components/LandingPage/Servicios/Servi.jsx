@@ -9,15 +9,15 @@ const Servi = () => {
             <div className={StyleServi.containersecu}>
                 <div className={StyleServi.cajas}>
                     <img src={logo1} alt="logo1" width="100px"/>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est tempore obcaecati sed, ne.</p>
+                    <p>Our web service for your gadgets its comming soon!</p>
                 </div>
                 <div className={StyleServi.cajas}>
                     <img src={logo2} alt="logo2" width="100px"/>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est tempore obcaecati se</p>
+                    <p>We protect your information aware of uknown people, please don't share your account.</p>
                 </div>
                 <div className={StyleServi.cajas}>
                     <img src={logo3} alt="logo3" width="100px"/>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est tempore obcaecati sed, ne</p>
+                    <p>Our vehicles are checked and in good condition, you can test them in our dealership.</p>
                 </div>
             </div>
         </div>

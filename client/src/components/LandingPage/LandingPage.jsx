@@ -34,11 +34,12 @@ return(
                             <li><a href="/contactos">Contacts</a></li>
                             <li><a href="/home/catalogo ">Our Catalog</a></li>
                             <li><a href="# ">Payment Methods</a></li>
+                            <li><a href='/user/login'>Login</a></li>
                         </ul>
                    </div>
-                   <div>
+                   {/* <div>
                        <img src={usuario} alt="usuario" width="50px" />
-                   </div>
+                   </div> */}
                </nav>
            </header>
             <section>
@@ -47,7 +48,7 @@ return(
                     <img src={image2} alt="img" height="700px"/>
                     <img src={image3} alt="img" height="700px"/>
                 </Carousel>
-                <div className={stylesLanding.cajabotones}>
+                {/* <div className={stylesLanding.cajabotones}>
                     <div className={stylesLanding.jj}>
                         <h2 className={stylesLanding.h2sly}>We can help you to find your favourite car!</h2>
                         <div>
@@ -59,7 +60,7 @@ return(
                             </Link> 
                         </div>
                     </div>
-                </div>
+                </div> */}
             </section>
             <section>
                 <Servi/>
