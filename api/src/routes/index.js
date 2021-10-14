@@ -7,7 +7,7 @@ const { createUser, getAllUser, loginUser, logout } = require('../controllers/us
 const mercadopago = require ('mercadopago');
 
 mercadopago.configure({
-    access_token: 'PROD_ACCESS_TOKEN',
+    access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
 });
 // const {getUsers, createUser} = require('../controllers/userFunction')
 module.exports = app => {
