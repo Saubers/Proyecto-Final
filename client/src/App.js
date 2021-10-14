@@ -35,7 +35,7 @@ const local = localStorage.getItem('userInfo')
 { !local && (<Route exact path='/user/register' component={Register} />)}
         <Route exact path="/home/Catalogo" component={Catalogo} />
 { !local &&  (<Route exact path="/user/login" component={Login} />)}
-{ local && ( <Route exact path='/home/compra' component={Cart} />)}
+{( <Route exact path='/home/compra' component={Cart} />)}
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />
       </Switch>

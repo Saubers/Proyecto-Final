@@ -123,12 +123,14 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
+     const {user, publication, cantidad, price, state} = req.body
+     console.log("PROBNADMP SI LLEGA",user, publication, cantidad, price, state);
     try{
         let preferences = {
             items:[
                 {
                     _id: req.body._id,
-                    title: req.body.title,
+                    title: req.cantidad,
                     unit_price: req.body.unit_price,
                     quantity: req.body.quantity,
                 }

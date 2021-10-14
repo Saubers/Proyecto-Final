@@ -1,6 +1,6 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import { postCart, getUserOrder } from "../../actions";
+import { postCart,postMg, getUserOrder } from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
@@ -97,16 +97,18 @@ export default function Cart(props){
 
     const user = "615dc2f5f1a17cca9b833c49"
     function handlePost(ev){
+        console.log(ev);
         ev.preventDefault()
         setInput({
             user:user,
             publication: amount.map(el => el.id),
-            cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
+            cantidad : amount.map(el => el.cantidad),
             price: price,
             state:"En proceso"
         })
         if(input.user && input.publication && input.cantidad && input.price){
             dispatch(postCart(input))
+            dispatch(postMg(input))
             alert('Compra exitosa')
             handleDelete()
         }else{
@@ -189,7 +191,9 @@ export default function Cart(props){
                         <h4>Total:{price}</h4>
                         </div>
                         <div>
+                        <Link to = '/checkout'>
                             <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
+                        </Link>
                         </div>
                     </div>
                 </div>

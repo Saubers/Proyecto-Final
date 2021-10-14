@@ -75,6 +75,17 @@ export function putProduct(id, payload) {
     }
 }
 
+export function postMg (payload){
+    console.log('HOLA',payload);
+    return async function (dispatch){
+        const json = await axios.post("http://localhost:3002/checkout", payload);
+        return dispatch({
+            type: 'POST_MG',
+            payload:json
+        })
+    }
+}
+
 export function postCategory(payload) {
     return async function (dispatch) {
         const json = await axios.post("http://localhost:3002/categories", payload);
@@ -86,7 +97,6 @@ export function postCategory(payload) {
 }
 
 export function postCart(payload) {
-    console.log('payload', payload, 'SACANDO IDD', payload.user);
     return async function (dispatch) {
         const json = await axios.post("http://localhost:3002/users/"+payload.user+"/cart", payload);
         return dispatch({

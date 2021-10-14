@@ -40,7 +40,6 @@ function rootReducer(state = initialState, action) {
         orders: action.payload,
       };
     case "LIST_CARD":
-      console.log("CART", action.payload);
       return {
         ...state,
         cart: action.payload,
@@ -85,6 +84,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "POST_MG":
+      return{
+        ...state,
+      }
     case "USER_REGISTER":
       return {
         ...state,
