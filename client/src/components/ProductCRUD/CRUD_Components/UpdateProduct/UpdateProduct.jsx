@@ -58,7 +58,7 @@ export default function UpdateProduct() {
 
     const [id, setID] = useState("")
 
-    const selectedCar = cars.find((el) => el._id === id); /* probar con .map y ruta de getDetail */
+    const selectedCar = cars?.find((el) => el._id === id); /* probar con .map y ruta de getDetail */
 
     const [input, setInput] = useState({
         brand: "",
@@ -178,7 +178,7 @@ export default function UpdateProduct() {
                 <h1>Update car information</h1>
                 <h3>Select car</h3>
                 <select required onChange={(e) => handleSelectID(e)}>
-                    {cars.map((el) => (
+                    {cars?.map((el) => (
                         <option value={el._id}>{el.name}</option>
                     ))}
                 </select>
@@ -244,7 +244,7 @@ export default function UpdateProduct() {
                         <div className={styleCrudUpdate.subDiv}>
                             <h5>Eliga una categoria</h5>
                             <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
-                                {categories.map((el) => (
+                                {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}
 
