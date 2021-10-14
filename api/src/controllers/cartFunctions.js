@@ -127,15 +127,16 @@ const checkout = async function(req,res){
         let preferences = {
             items:[
                 {
+                    _id: req.body._id,
                     title: req.body.title,
-                    unit_price: req.body.price,
+                    unit_price: req.body.unit_price,
                     quantity: req.body.quantity,
                 }
             ],
             back_urls:{
-                success:'',
-                pending:'',
-                failure:'',
+                success:'http://localhost:3002/success',
+                pending:'http://localhost:3002/pending',
+                failure:'http://localhost:3002/failure',
             },
             auto_return:'approved'
         }
