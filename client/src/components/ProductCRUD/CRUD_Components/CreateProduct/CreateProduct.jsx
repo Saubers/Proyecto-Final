@@ -203,7 +203,7 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <h5>Eliga una categoria</h5>
                             <select required className={styleCrudPost.selectCategory} onChange={(e) => handleSelect(e)}>
-                                {categories.map((el) => (
+                                {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}
 
