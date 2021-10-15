@@ -1,0 +1,27 @@
+.divall{
+    display: flex;
+    flex-direction: column;
+}
+.containerproduct{
+    border: 1px solid;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+.divbtn{
+    display: center;
+    width: 70%;
+    height: auto;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+}
+.divcart{
+    width: 100%;
+}
+.title{
+    border: 1px solid;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}

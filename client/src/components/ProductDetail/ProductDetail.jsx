@@ -14,8 +14,10 @@ export default function Detail(props) {
 
     useEffect(() => {
         dispatch(getCarDetail(props.match.params.id));
+        dispatch(getReview(props.match.params.id))
     }, [dispatch, props.match.params.id])
 
+    const review = useSelector((state) => state.review)
 
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
@@ -23,19 +25,17 @@ export default function Detail(props) {
     //const review = useSelector((state) => state.review)
 
     let IdButton = props.match.params.id
-    //console.log('REVIEW', review);
     const [idAuto, setIdAuto] = useLocalStorage('auto', [])
-
-
+    console.log('REVIEW', review);
+    
+    
     const [Isbotton, setIsButton] = useLocalStorage('button', [])
-
+    
     async function addToCart() {
         setIdAuto([...idAuto, MyCar])
         setIsButton([...Isbotton, MyCar.id])
     }
     const found = Isbotton.find(element => element === IdButton)
-    /* const carCategories = useSelector((state) => state.categories) */
-    var voy = 'vot'
     return (
         <div>
             <NavBar />

@@ -58,6 +58,7 @@ const getReview = async function (req,res) {
     let id = req.params.id  
     try {
         const getreview = await Review.find({publication : id}).populate('user')
+        console.log(getreview)
         res.status(200).send(getreview)
     } catch (error) {
         console.log(error)
