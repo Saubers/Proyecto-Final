@@ -92,7 +92,7 @@ const cartOrderId = async function(req,res) {
 }
 
 const putCart = async function(req,res){
-    let idOrder = req.params
+    let idOrder = req.params.id
     let {idItem,idUsuario,price,state} = req.boddy
     try{    
         const cart =  Cart.findByIdAndUpdate(idOrder,{
@@ -101,8 +101,7 @@ const putCart = async function(req,res){
         price : price,
         state : state
         });
-        await cart.save()
-        res.send("Auto actualizado correctamente");
+        res.send(cart);
     }catch(error){
         console.log(error)
     }

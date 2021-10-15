@@ -4,6 +4,7 @@ const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBra
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
 const { createUser, getAllUser, loginUser, logout } = require('../controllers/userFunction');
+const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
 const mercadopago = require ('mercadopago');
 
 mercadopago.configure({
@@ -89,6 +90,24 @@ module.exports = app => {
     ///// mercadopago
 
     router.post('/checkout', checkout)
+    
+    
+    //POST /product/:id/review
+    router.post('/product/:id/review',addReview)
+    
+    // PUT /product/:id/review/:idReview
+    
+    router.put('/product/:id/review/:idReview', putReview)
+    
+    //DELETE /product/:id/review/:idReview
+    router.delete('/product/review/:idReview',delReview)
+    
+    //GET /product/:id/review/
+    router.get('/product/:id/review',getReview)
+
+
+
+
     app.use(router);
 }
 
