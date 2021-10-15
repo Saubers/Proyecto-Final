@@ -2,7 +2,7 @@ import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
 import { postCart,postMg, getUserOrder } from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
 import stylecart from '../Cart/Cart.module.css';
 
@@ -14,7 +14,7 @@ export default function Cart(props){
     const dispatch = useDispatch()
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const userInfo = localStorage.getItem("userInfo");
-
+    const history = useHistory();
 
     
     const [amount, setAmount] = useState([])
@@ -101,25 +101,32 @@ export default function Cart(props){
         ev.preventDefault()
         setInput({
             user:user,
-            publication: amount.map(el => el.id),
+            publication: amount.map(el => el.id ),
             cantidad : amount.map(el => el.cantidad),
             price: price,
             state:"En proceso"
         })
+        if (idAuto){
         if(input.user && input.publication && input.cantidad && input.price){
             dispatch(postCart(input))
             dispatch(postMg(input))
             alert('Compra exitosa')
+            history.push('/checkout')
             handleDelete()
+        }
         }else{
             alert('Vuelva a tocar el boton para confirmar')
             console.log('INOPUT', input);
         }
+        alert('Selecciona el auto que quieres comprar')
     }
     function handleDelete() {
         borrarItem('auto')
         borrarItem('button')
         setAmount([])
+    }
+    function handleError(){
+        alert('Selecciona el auto que quieres comprar')
     }
 
 
@@ -191,9 +198,13 @@ export default function Cart(props){
                         <h4>Total:{price}</h4>
                         </div>
                         <div>
+                        {
+                            idAuto?
                         <Link to = '/checkout'>
                             <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
-                        </Link>
+                        </Link>:
+                        <button className={stylecart.btncomprartodo} onClick={(ev)=> handleError(ev)}>CONFIRMAR COMPRA</button>
+                        }
                         </div>
                     </div>
                 </div>
