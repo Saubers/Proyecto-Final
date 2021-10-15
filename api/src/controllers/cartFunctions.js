@@ -1,9 +1,10 @@
 const Cart = require('../models/Cart');
+const Car = require('../models/Cars.js');
 
 const mercadopago = require ('mercadopago');
 
 mercadopago.configure({
-    access_token: 'TEST-6136905946660486-101322-d3c2d7427e978b5bd98fac6c652b25e8-378799934',
+    access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
 });
 
 const agregarOrden = async function(req,res){
@@ -122,18 +123,24 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
-     const {user, publication, cantidad, price, state} = req.body
-     console.log("PROBNADMP SI LLEGA",user, publication, cantidad, price, state);
+     const {user, publication, cantidad, state} = req.body
+     console.log("PROBNADMP SI LLEGA",user, publication, cantidad, state);
     try{
+        const items = []
+        for(let i = 0; i < publication.length; i++){
+            const car = await Car.findById(publication[i])
+            const oneProduct = {
+                title: car.name, 
+                quantity: cantidad[i], 
+                unit_price: car.price,
+                picture_url: car.img[0], 
+                currency_id: 'ARS', 
+            }
+            console.log('cartsFunctions 139',oneProduct)
+            items.push(oneProduct)
+        }
         let preferences = {
-            items:[
-                {
-                    _id: req.body._id,
-                    title: req.cantidad,
-                    unit_price: req.body.unit_price,
-                    quantity: req.body.quantity,
-                }
-            ],
+            items: items,
             // back_urls:{
             //     success:'http://localhost:3002/success',
             //     pending:'http://localhost:3002/pending',
