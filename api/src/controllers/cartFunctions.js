@@ -134,16 +134,16 @@ const checkout = async function(req,res){
                     quantity: req.body.quantity,
                 }
             ],
-            back_urls:{
-                success:'http://localhost:3002/success',
-                pending:'http://localhost:3002/pending',
-                failure:'http://localhost:3002/failure',
-            },
-            auto_return:'approved'
+            // back_urls:{
+            //     success:'http://localhost:3002/success',
+            //     pending:'http://localhost:3002/pending',
+            //     failure:'http://localhost:3002/failure',
+            // },
+            // auto_return:'approved'
         }
         mercadopago.preferences.create(preferences)
         .then((response)=>{
-            console.log(response.body)
+            console.log(response.body.init_point)
             res.redirect(response.body.init_point)
         })
     }catch(err){

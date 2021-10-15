@@ -13,9 +13,7 @@ import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduc
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
 import OrderCar from './components/OrderCars/OrderCar';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import { useState } from 'react';
+
 function App() {
 const local = localStorage.getItem('userInfo')
 
