@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styles from '../ProductDetail/ProductDetail.module.css'
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCarDetail } from "../../actions/index";
+import { getCarDetail, getReview } from "../../actions/index";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
+import Review from '../Review/Review'
 
 export default function Detail(props) {
     const dispatch = useDispatch()
@@ -16,14 +17,20 @@ export default function Detail(props) {
 
     }, [dispatch, props.match.params.id])
 
+    useEffect(() => {
+        dispatch(getReview(props.match.params.id));
+
+    }, [dispatch, props.match.params.id])
+
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
-
+    const review = useSelector((state) => state.review)
 
     let IdButton = props.match.params.id
 
 
+console.log('REVIEW', review);
     const [idAuto, setIdAuto] = useLocalStorage('auto', [])
 
 
@@ -34,7 +41,6 @@ export default function Detail(props) {
         setIsButton([...Isbotton, MyCar.id])
     }
     const found = Isbotton.find(element => element === IdButton)
-    console.log('Fopund ', found)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>
@@ -66,6 +72,10 @@ export default function Detail(props) {
                         <button onClick={() => addToCart(MyCar.id)} >Comprar</button>
 
                 }
+                <Review
+                review={review}
+                publication={MyCar}
+                ></Review>
             </div>
         </div>
     )

@@ -53,6 +53,17 @@ export function getCarDetail(id) {
         })
     }
 }
+
+export  function getReview(id) {
+    console.log("ID",id);
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3000/products/"+id+"/review");
+        return dispatch({
+            type: "GET_REVIEW",
+            payload: json.data
+        })
+    }
+}
 export function postProduct(payload) { 
     console.log('id usuario',payload);
     return async function (dispatch) {
@@ -78,7 +89,7 @@ export function putProduct(id, payload) {
 export function postMg (payload){
     console.log('HOLA',payload);
     return async function (dispatch){
-        const json = await axios.post("http://localhost:3002/checkout", payload);
+        const json = await axios.post("https://pf-car-shop.herokuapp.com/checkout", payload);
         return dispatch({
             type: 'POST_MG',
             payload:json

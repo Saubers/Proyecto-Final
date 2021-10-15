@@ -8,6 +8,7 @@ const initialState = {
   allcategories: [],
   cart: [],
   orders: [],
+  review: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -54,6 +55,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         carDetail: action.payload,
       };
+    case "GET_REVIEW":
+      console.log('ACTION', action.payload);
+      return {
+        ...state,
+        review: action.payload
+      }
     case "USER_SIGNIN_REQUEST":
       return { 
           loading: true 
