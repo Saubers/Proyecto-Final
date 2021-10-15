@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
+// import Review from '../Review/Review'
 
 export default function Detail(props) {
     const dispatch = useDispatch()
@@ -94,7 +95,7 @@ export default function Detail(props) {
                         <button className={styles.buttonback}>Back</button>
                     </Link>
                 </div>
-                
+                {/* <Review></Review> */}
             </div>
         </div>
     )

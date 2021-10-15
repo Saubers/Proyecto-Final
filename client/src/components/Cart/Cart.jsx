@@ -106,19 +106,18 @@ export default function Cart(props){
             price: price,
             state:"En proceso"
         })
-        if (idAuto){
         if(input.user && input.publication && input.cantidad && input.price){
-            dispatch(postCart(input))
-            dispatch(postMg(input))
+             dispatch(postMg(input))
+             dispatch(postCart(input))
             alert('Compra exitosa')
             history.push('/checkout')
             handleDelete()
         }
-        }else{
+        else{
             alert('Vuelva a tocar el boton para confirmar')
             console.log('INOPUT', input);
         }
-        alert('Selecciona el auto que quieres comprar')
+        
     }
     function handleDelete() {
         borrarItem('auto')
@@ -134,7 +133,6 @@ export default function Cart(props){
         <div>
             <NavBar/>
             <hr />
-            {/* <button onChange= {(e)=> handleSubmit(e)}>Comprar</button> */}
             <div className={stylecart.divbtn}>
                 <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
     
