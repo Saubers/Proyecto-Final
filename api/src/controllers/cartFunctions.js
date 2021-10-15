@@ -122,28 +122,28 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
+     const {user, publication, cantidad, price, state} = req.body
+     console.log("PROBNADMP SI LLEGA",user, publication, cantidad, price, state);
     try{
         let preferences = {
             items:[
                 {
                     _id: req.body._id,
-                    title: req.body.title,
-                    description: req.body.description,
+                    title: req.cantidad,
                     unit_price: req.body.unit_price,
                     quantity: req.body.quantity,
-                    currency_id: 'ARS'
                 }
             ],
-            // back_urls:{
-            //     success:'http://localhost:3002/success',
-            //     pending:'http://localhost:3002/pending',
-            //     failure:'http://localhost:3002/failure',
-            // },
-            // auto_return:'approved'
+            back_urls:{
+                success:'http://localhost:3002/success',
+                pending:'http://localhost:3002/pending',
+                failure:'http://localhost:3002/failure',
+            },
+            auto_return:'approved'
         }
         mercadopago.preferences.create(preferences)
         .then((response)=>{
-            console.log(response.body.init_point)
+            console.log(response.body)
             res.redirect(response.body.init_point)
         })
     }catch(err){

@@ -6,10 +6,11 @@ require('../db.js')
 const idCars = async (req,res)=>{
     const {id} =req.params;
     try{
-        if (id) {
+        if (id) { 
+            
             let carDetail= await Car.findById(id).populate('category');
             let carId ={
-            id         : carDetail.id,
+            id         :carDetail.id,
             brand      :carDetail.brand,
             name       :carDetail.name,
             description:carDetail.description,
