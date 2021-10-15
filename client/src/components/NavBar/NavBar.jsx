@@ -2,18 +2,21 @@ import React from 'react';
 import styleNav from '../NavBar/NavBar.module.css';
 import logocarrito from '../image/carrito.png';
 import nuevologo from '../image/nuevologo.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import salir from '../image/salir.png';
+import { userAdmin } from '../../actions';
+import { useState } from 'react';
 
 const NavBar = () => {
   const userSignin = useSelector((state) => state.userInfo)
   console.log(userSignin)
 const local = localStorage.getItem('userInfo')
+const [isAdmin, setIsAdmin] = useState(false)
 
+const dispatch = useDispatch()
 
-
-
+dispatch(userAdmin(isAdmin))
 
   return (
         <div className={styleNav.container}>
@@ -33,7 +36,7 @@ const local = localStorage.getItem('userInfo')
   onClick={() => localStorage.removeItem('userInfo')} href='/'>Logout</a></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
  
-                <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
+               { local && (<a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>)}
                 { local && ( <div className={styleNav.userdiv}>
              <h3>User:{userSignin?.fullname}</h3>
              <h3>Email:{userSignin?.mail}</h3>

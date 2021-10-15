@@ -69,6 +69,10 @@ function rootReducer(state = initialState, action) {
         };
     case "USER_SIGNOUT":
       return {};
+      case 'USER_ADMIN':
+        return {
+          isAdmin: action.payload
+        }
     case "POST_PRODUCT":
       return {
         ...state,

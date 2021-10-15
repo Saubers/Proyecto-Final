@@ -62,11 +62,7 @@ const loginUser = async (req,res,next) => {
 }
  
 
-const logout = async (req, res, next) => {
-    req.logout();
-    req.flash('succes_msg', 'You are logged out now')
-    res.redirect('/user/login')
-}
+
 
 
 
@@ -77,5 +73,4 @@ module.exports = {
     createUser,
     loginUser,
     getAllUser,
-    logout
 }

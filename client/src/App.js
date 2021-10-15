@@ -13,11 +13,17 @@ import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduc
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
 import OrderCar from './components/OrderCars/OrderCar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { useState } from 'react';
+import { userAdmin } from './actions';
 function App() {
 const local = localStorage.getItem('userInfo')
+const [isAdmin, setIsAdmin] = useState(false)
+
+const dispatch = useDispatch()
+const verifyUser = useSelector(state => state.isAdmin)
+dispatch(userAdmin(isAdmin))
 
   return (
     <Router>
@@ -29,7 +35,7 @@ const local = localStorage.getItem('userInfo')
    { local ?  (<Route exact path='/CRUD' component={CRUD} />)
    : "You dont have permissions..."
   }
-        <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />
+    <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />
         <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />
         <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />
 { !local && (<Route exact path='/user/register' component={Register} />)}

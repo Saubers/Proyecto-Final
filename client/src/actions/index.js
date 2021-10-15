@@ -123,7 +123,13 @@ try {
 }
 }
 
-    
+export const userAdmin = (isAdmin) => async (dispatch) => {
+ 
+     const {data} = await axios.post('https://pf-car-shop.herokuapp.com/login', {isAdmin})
+     console.log(data)
+     dispatch({type: 'USER_ADMIN', payload: data})
+ 
+}    
 
 
 export function DeleteCar(id) {

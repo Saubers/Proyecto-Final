@@ -33,13 +33,8 @@ const Login = () => {
         
     dispatch(signin(mail, password))
     
-    if(signin(mail) != mail || signin(password) !== password){
-        setError("Your mail or password are wrong...")
-       setTimeout(3000)
-    }else{
-        setLoading(true)
-    }
-    setLoading(false)
+    
+    setLoading(true)
    
     }
         
