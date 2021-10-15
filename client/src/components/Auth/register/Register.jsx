@@ -19,20 +19,19 @@ export default function Register () {
     const [password, setPassword] = useState("")
     const [confirm_password, setConfirmPassword] = useState("")
     const [phone, setPhone] = useState("")
+    const [isAdmin, setIsAdmin] = useState(false)
 
     const [message, setMessage] = useState(null)
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     
-    const history = useHistory()
+   // const history = useHistory()
 
 
     const handleSubmit = async (e) => {
-        const userInfo = localStorage.getItem("userInfo");
+        
         e.preventDefault()
-        if(userInfo){
-            history.push('/user/login')
-        }
+      
     
 
     if(password !== confirm_password) {
@@ -51,7 +50,8 @@ export default function Register () {
         mail,
         password,
         confirm_password,
-        phone
+        phone,
+        isAdmin
 }, config
 );
 

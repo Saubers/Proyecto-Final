@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 const Login = () => {
     const [mail, setMail] = useState("")
     const [user, setUser] = useState('')
-  const history = useHistory()
+    const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -25,10 +25,22 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-  history.push('/home/catalogo')
+        const local = localStorage.getItem('userInfo')
+        if(local){
+            history.push('/home/catalogo')
+        }
+
         
     dispatch(signin(mail, password))
+    
+    if(signin(mail) != mail || signin(password) !== password){
+        setError("Your mail or password are wrong...")
+       setTimeout(3000)
+    }else{
+        setLoading(true)
+    }
+    setLoading(false)
+   
     }
         
     return(
@@ -36,9 +48,8 @@ const Login = () => {
             <div className={styles.imgdivd}>
                 <img src={lg} alt="lg" width="500px" />
             </div>
+            
             <div className={styles.login}>
-            {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-                {loading && <Loading />}
                 <form actions="/login" onSubmit={handleSubmit}>
                     <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Mail address</Form.Label>
@@ -62,7 +73,8 @@ const Login = () => {
                     </Form.Group>
                     <Button type="submit" className={styles.btnsubt}>Login</Button>
                 </form>
-                
+                {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+            {loading && <Loading />}
                 <Row className="py-3">
                     <Col>
                     New Customer ? <Link to="/user/register">Register Here</Link>

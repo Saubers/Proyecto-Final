@@ -13,24 +13,29 @@ import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduc
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
 import OrderCar from './components/OrderCars/OrderCar';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useState } from 'react';
 function App() {
- 
+const local = localStorage.getItem('userInfo')
+
   return (
     <Router>
       <div className='container'>
       <Switch>
-
-        <Route exact path="/" component={LandingPage} />
+ <Route exact path="/" component={LandingPage} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
-        <Route exact path='/CRUD' component={CRUD} />
+   { local ?  (<Route exact path='/CRUD' component={CRUD} />)
+   : "You dont have permissions..."
+  }
         <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />
         <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />
         <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />
-        <Route exact path='/user/register' component={Register} />
+{ !local && (<Route exact path='/user/register' component={Register} />)}
         <Route exact path="/home/Catalogo" component={Catalogo} />
-        <Route exact path="/user/login" component={Login} />
-        <Route exact path='/home/compra' component={Cart} />
+{ !local &&  (<Route exact path="/user/login" component={Login} />)}
+{    ( <Route exact path='/home/compra' component={Cart} />)}
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />
       </Switch>

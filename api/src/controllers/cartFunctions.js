@@ -92,7 +92,7 @@ const cartOrderId = async function(req,res) {
 }
 
 const putCart = async function(req,res){
-    let idOrder = req.params
+    let idOrder = req.params.id
     let {idItem,idUsuario,price,state} = req.boddy
     try{    
         const cart =  Cart.findByIdAndUpdate(idOrder,{
@@ -101,8 +101,7 @@ const putCart = async function(req,res){
         price : price,
         state : state
         });
-        await cart.save()
-        res.send("Auto actualizado correctamente");
+        res.send(cart);
     }catch(error){
         console.log(error)
     }
@@ -123,19 +122,22 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
+     const {user, publication, cantidad, price, state} = req.body
+     console.log("PROBNADMP SI LLEGA",user, publication, cantidad, price, state);
     try{
         let preferences = {
             items:[
                 {
-                    title: req.body.title,
-                    unit_price: req.body.price,
+                    _id: req.body._id,
+                    title: req.cantidad,
+                    unit_price: req.body.unit_price,
                     quantity: req.body.quantity,
                 }
             ],
             back_urls:{
-                success:'',
-                pending:'',
-                failure:'',
+                success:'http://localhost:3002/success',
+                pending:'http://localhost:3002/pending',
+                failure:'http://localhost:3002/failure',
             },
             auto_return:'approved'
         }
