@@ -133,7 +133,7 @@ try {
     const {data} = await axios.post('https://pf-car-shop.herokuapp.com/login', {mail, password})
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
     localStorage.setItem('userInfo', JSON.stringify(data))
-    console.log(localStorage.getItem('userInfo'))
+    
 } catch (error){
     dispatch({
         type: USER_SIGNIN_FAIL,
@@ -144,7 +144,41 @@ try {
 }
 }
 
-    
+ export const getUserData = (userId) => async (dispatch, getState) => {
+     dispatch({type: 'USER_DETAILS_REQUEST', payload: userId});
+     const { userSignin:{ userInfo }} = getState();
+     try {
+         const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/users/${userId}`, {
+             headers: { Authorization: `Bearer ${userInfo.token}`}
+         });
+         dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
+     } catch (error) {
+         const message = error.response && error.response.data.message
+         ? error.response.data.message : error.message;
+         dispatch({type: 'USER_DETAILS_FAIL', payload: message})
+     }
+ }
+
+ export const updateUserProfile = (user) => async (dispatch, getState) => {
+    dispatch({ type: 'USER_UPDATE_PROFILE_REQUEST', payload: user });
+    const {
+      userSignin: { userInfo },
+    } = getState();
+    try {
+      const { data } = await axios.put(`https://pf-car-shop.herokuapp.com/users/profile`, user, {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      });
+      dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
+      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+      localStorage.setItem('userDetails', JSON.stringify(data));
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: 'USER_UPDATE_PROFILE_FAIL', payload: message });
+    }
+  };
 
 
 export function DeleteCar(id) {

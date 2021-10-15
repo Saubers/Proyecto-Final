@@ -8,7 +8,7 @@ const initialState = {
   allcategories: [],
   cart: [],
   orders: [],
-  review: []
+  review: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -56,25 +56,41 @@ function rootReducer(state = initialState, action) {
         carDetail: action.payload,
       };
     case "GET_REVIEW":
-      console.log('ACTION', action.payload);
+      console.log("ACTION", action.payload);
       return {
         ...state,
-        review: action.payload
-      }
+        review: action.payload,
+      };
     case "USER_SIGNIN_REQUEST":
-      return { 
-          loading: true 
-        };
+      return {
+        loading: true,
+      };
     case "USER_SIGNIN_SUCCESS":
       return {
-           loading: false, userInfo: action.payload 
-        };
+        loading: false,
+        userInfo: action.payload,
+      };
     case "USER_SIGNIN_FAIL":
       return {
-           loading: false, error: action.payload 
-        };
+        loading: false,
+        error: action.payload,
+      };
     case "USER_SIGNOUT":
-      return {};
+      return {
+
+      };
+    case "USER_DETAILS_REQUEST":
+      return { 
+        loading: true 
+      };
+    case "USER_DETAILS_SUCCESS":
+      return { 
+        loading: false, users: action.payload
+       };
+    case "USER_DETAILS_FAIL":
+      return { 
+        loading: false, error: action.payload
+       };
     case "POST_PRODUCT":
       return {
         ...state,
@@ -92,9 +108,9 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "POST_MG":
-      return{
+      return {
         ...state,
-      }
+      };
     case "USER_REGISTER":
       return {
         ...state,

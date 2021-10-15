@@ -15,11 +15,10 @@ import {filterPrice, filterTraction,filterKm,filterAge ,filterTransmission} from
 // import Paginado from "./Paginado";
 
 export default function Catalogo(){
-    const userLogged = useSelector((state) => state.userInfo)
-    console.log(userLogged)
+    
 const dispatch = useDispatch()
 const AllProducts = useSelector((state) => state.cars)
-
+console.log(AllProducts)
 
 useEffect(()=>{
     dispatch(getCars())

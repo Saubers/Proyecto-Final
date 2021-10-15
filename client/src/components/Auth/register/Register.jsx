@@ -2,7 +2,7 @@ import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import { Link, useHistory } from 'react-router-dom';
 import { userRegister } from '../../../actions';
 import NavBar from '../../NavBar/NavBar'
@@ -26,7 +26,7 @@ export default function Register () {
     const [loading, setLoading] = useState(false)
     
    // const history = useHistory()
-
+   
 
     const handleSubmit = async (e) => {
         

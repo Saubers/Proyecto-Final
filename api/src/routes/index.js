@@ -3,7 +3,7 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
-const { createUser, getAllUser, loginUser, logout } = require('../controllers/userFunction');
+const { createUser, loginUser, logout, getUserData } = require('../controllers/userFunction');
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
 const mercadopago = require ('mercadopago');
 
@@ -53,13 +53,12 @@ module.exports = app => {
 
     router.post('/login', loginUser)
 
-    router.get('/logout', logout)
+    router.get("/user/profile/:id", getUserData)
 
-    router.get("/alluser", getAllUser)
+    // router.put('/forgot-password')
 
-
-
-
+    // router.put('/new-password')
+ 
     ///////Carrito
 
     ///todos los items del Carrito con query 

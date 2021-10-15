@@ -7,22 +7,22 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { signin } from '../../../actions';
+import { getCars, signin } from '../../../actions';
 import { useEffect } from 'react';
 
 
 
 const Login = () => {
+    
+    
     const [mail, setMail] = useState("")
     const [user, setUser] = useState('')
     const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
-    //const userSignin = useSelector((state) => state.userInfo)    
     const dispatch = useDispatch()
-    
-
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
         const local = localStorage.getItem('userInfo')

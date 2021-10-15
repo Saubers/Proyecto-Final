@@ -13,10 +13,12 @@ import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduc
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
 import OrderCar from './components/OrderCars/OrderCar';
-
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useState } from 'react';
+import Profile from './components/ProfileInfo/Profile';
 function App() {
 const local = localStorage.getItem('userInfo')
-
   return (
     <Router>
       <div className='container'>
@@ -33,6 +35,7 @@ const local = localStorage.getItem('userInfo')
 { !local && (<Route exact path='/user/register' component={Register} />)}
         <Route exact path="/home/Catalogo" component={Catalogo} />
 { !local &&  (<Route exact path="/user/login" component={Login} />)}
+{local && (<Route exact path='/user/profile' component={Profile} />)}
 {    ( <Route exact path='/home/compra' component={Cart} />)}
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />

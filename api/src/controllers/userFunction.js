@@ -2,14 +2,14 @@ const User = require('../models/User')
 const generateToken = require('../generateToken')
 require('../db.js')
 
-const getAllUser = async (req, res, next) => {
-    try {
-        const alluser = await User.find()
-        return res.status(200).json([alluser])
-    }catch(err) {
-        next(err)
+const getUserData = async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    if(user) {
+        res.send(user)
+    } else {
+        res.status(404).send({ message: 'User not found...' })
     }
-}
+} 
 
 const createUser = async ( req, res ,next) => {
     const {fullname, mail ,password, confirm_password, phone, isAdmin} = req.body;
@@ -53,8 +53,8 @@ const loginUser = async (req,res,next) => {
             password: user.password,
             mail: user.mail,
             phone: user.phone,
+            isAdmin: user.isAdmin,
             token: generateToken(user._id),
-            isAdmin: user.isAdmin
         })
     } else {
         res.status(400).send('Invalid mail or password')
@@ -62,12 +62,55 @@ const loginUser = async (req,res,next) => {
 }
  
 
-const logout = async (req, res, next) => {
-    req.logout();
-    req.flash('succes_msg', 'You are logged out now')
-    res.redirect('/user/login')
-}
 
+// const forgotPassword = async (req, res) => {
+// const {mail} = req.body;
+// if(!mail){
+//     return res.status(400).json({message: 'Your mail is required!'})
+// }
+
+// const message = 'Check your mail for a link to reset your password...'
+// let verificationLink;
+// let emailStatus = 'OK'
+
+// const userRepository = getRepository(User);
+
+// let user = User;
+
+// try{
+//   user = await userRepository.findOneOrFail({ where: { mail }})  
+//   const token = jwt.sign({ userId: user._id, mail: user.mail }, config.jwtSecret, { expiresIn: '10m' })
+//   verificationLink = `https://pf-car-shop.herokuapp.com/new-password/${token}`
+//   user.resetToken = token
+// } catch (error) {
+//     return res.json({ message })
+// }
+
+// try {
+    
+// } catch (error) {
+//     mailStatus = error
+//     return res.status(400).json({message: 'Something goes wrong'})
+// }
+
+// try {
+//     await userRepository.save(user)
+// } catch (error) {
+//     mailStatus = error;
+//     return res.status(400).json({ message: 'Something goes wrong!' })
+// }
+// res.json({message, info: mailStatus})
+// }
+
+// const createNewPass = async (req, res) => {
+//     const { newPassword } = req.body;
+//     const resetToken = req.headers('reset')
+    
+//     if(!resetToken && !newPassword) {
+//         res.status(400).json({ message: 'All the fields are required' })
+//     }
+//     //const userRepository = getRepo
+// }
 
 
 
@@ -76,6 +119,5 @@ const logout = async (req, res, next) => {
 module.exports = {
     createUser,
     loginUser,
-    getAllUser,
-    logout
+    getUserData,
 }
