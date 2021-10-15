@@ -29,7 +29,7 @@ dispatch(userAdmin(isAdmin))
     <Router>
       <div className='container'>
       <Switch>
-{ !local && ( <Route exact path="/" component={LandingPage} />)}
+     <Route exact path="/" component={LandingPage} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
    { local ?  (<Route exact path='/CRUD' component={CRUD} />)
