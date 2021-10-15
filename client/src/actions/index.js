@@ -57,7 +57,7 @@ export function getCarDetail(id) {
 export  function getReview(id) {
     console.log("ID",id);
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3000/products/"+id+"/review");
+        var json = await axios.get("http://localhost:3002/product/"+id+"/review");
         return dispatch({
             type: "GET_REVIEW",
             payload: json.data

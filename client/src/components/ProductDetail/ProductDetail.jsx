@@ -14,23 +14,16 @@ export default function Detail(props) {
 
     useEffect(() => {
         dispatch(getCarDetail(props.match.params.id));
-
     }, [dispatch, props.match.params.id])
 
-    useEffect(() => {
-        dispatch(getReview(props.match.params.id));
-
-    }, [dispatch, props.match.params.id])
 
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
-    const review = useSelector((state) => state.review)
+    //const review = useSelector((state) => state.review)
 
     let IdButton = props.match.params.id
-
-
-console.log('REVIEW', review);
+    //console.log('REVIEW', review);
     const [idAuto, setIdAuto] = useLocalStorage('auto', [])
 
 
@@ -42,6 +35,7 @@ console.log('REVIEW', review);
     }
     const found = Isbotton.find(element => element === IdButton)
     /* const carCategories = useSelector((state) => state.categories) */
+    var voy = 'vot'
     return (
         <div>
             <NavBar />
@@ -72,10 +66,11 @@ console.log('REVIEW', review);
                         <button onClick={() => addToCart(MyCar.id)} >Comprar</button>
 
                 }
-                <Review
-                review={review}
+                {
+                    MyCar && MyCar? <Review
                 publication={MyCar}
-                ></Review>
+                /> : <div>error</div>
+                }
             </div>
         </div>
     )
