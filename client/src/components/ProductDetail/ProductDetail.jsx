@@ -40,32 +40,61 @@ export default function Detail(props) {
         <div>
             <NavBar />
 
-            <div className={styles.container}>
+            <div className={styles.containerprin}>
 
-                <div>
-                    <h1 className={styles.name}>{MyCar?.brand} {MyCar?.name}</h1>
+                <div className={styles.container}>
+                    {/* <h1 className={styles.name}>{MyCar?.brand} {MyCar?.name}</h1>
 
-                    {MyCar?.category ? <h3>{MyCar?.category.name}</h3> : null}
+                    {MyCar?.category ? <h3>{MyCar?.category.name}</h3> : null} */}
                     <div className='car_detail_carousel'>
-                        <Component_Carousel photos={MyCar?.img} />
+                        <Component_Carousel photos={MyCar?.img} width="90%"/>
                     </div>
-                    <h3 className={styles.title}>About the car</h3>
-                    <h6 className={styles.details}>Mileage: {MyCar?.features.mileage}km</h6>
-                    <h6 className={styles.details}>traction: {MyCar?.features.traction}</h6>
-                    <h6 className={styles.details}>Description: {MyCar?.description}</h6>
+                    <h3 className={styles.title}>Estados del auto</h3>
+                    <div>
+                        <div>
+                            <div>
+                                <p>Garantía de 6 meses:</p>
+                                <p>Más de 30 ítems con garantía y mano de obra incluida.</p>
+                            </div>
+                            <div>
+                                <p>Documentación al día:</p>
+                                <p>Papeles al día, listo para ser transferido.</p>
+                            </div>
+                            <div>
+                                <p>Calidad mecánica garantizada:</p>
+                                <p>Cada vehículo pasa por una inspección de más de 280 puntos para que <br /> puedas estar 100% seguro de la calidad y seguridad de tu vehículo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Detalles del auto</h3>
+                    <div>
+                        <div>
+                            <p>Año</p>
+                            <h1>{MyCar?.price}</h1>
+                        </div>
+                    </div>
                 </div>
-                <Link to="/home/catalogo">
-                    <button className={styles.button}>Back</button>
-                </Link>
+                <div className={styles.containerdetail}>
+                    <h3>{MyCar?.brand} {MyCar?.name}</h3>
+                    <h3>${MyCar?.price}</h3>
+                    <div>
+                        <p>{MyCar?.features.traction} {MyCar?.features.mileage}km</p>
+                    </div>
 
                 {
                     found === IdButton ? <div>
                         Orden agregada al <Link to="/home/compra">carrito</Link>
                     </div>
                         :
-                        <button onClick={() => addToCart(MyCar.id)} >Comprar</button>
-
+                        <button className={styles.button} onClick={() => addToCart(MyCar.id)} >Comprar</button>
+                        
                 }
+                    <br />
+                    <Link to="/home/catalogo">
+                        <button className={styles.buttonback}>Back</button>
+                    </Link>
+                </div>
+                
             </div>
         </div>
     )
