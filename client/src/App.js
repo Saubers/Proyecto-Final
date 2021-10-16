@@ -13,11 +13,11 @@ import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduc
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
 import OrderCar from './components/OrderCars/OrderCar';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import { useState } from 'react';
+import { useHistory } from 'react-router';
 import Profile from './components/ProfileInfo/Profile';
+
 function App() {
+  const history = useHistory()
 const local = localStorage.getItem('userInfo')
   return (
     <Router>
@@ -26,8 +26,8 @@ const local = localStorage.getItem('userInfo')
  <Route exact path="/" component={LandingPage} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
-   { local ?  (<Route exact path='/CRUD' component={CRUD} />)
-   : "You dont have permissions..."
+   { local &&  (<Route exact path='/CRUD' component={CRUD} />)
+   
   }
         <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />
         <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />

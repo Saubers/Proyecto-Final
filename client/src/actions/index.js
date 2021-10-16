@@ -89,7 +89,7 @@ export function putProduct(id, payload) {
 export function postMg (payload){
     console.log('HOLA',payload);
     return async function (dispatch){
-        const json = await axios.post("http://localhost:3002/checkout", payload);
+        const json = await axios.post("https://pf-car-shop.herokuapp.com/checkout", payload);
         return dispatch({
             type: 'POST_MG',
             payload:json
@@ -133,6 +133,7 @@ try {
     const {data} = await axios.post('https://pf-car-shop.herokuapp.com/login', {mail, password})
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
     localStorage.setItem('userInfo', JSON.stringify(data))
+    
     
 } catch (error){
     dispatch({

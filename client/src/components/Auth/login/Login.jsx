@@ -21,6 +21,7 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState('')
     const dispatch = useDispatch()
    
     const handleSubmit = async (e) => {
@@ -33,11 +34,12 @@ const Login = () => {
         
     dispatch(signin(mail, password))
     
-    if(signin(mail) != mail || signin(password) !== password){
-        setError("Your mail or password are wrong...")
-       setTimeout(3000)
+    if(signin(mail) && signin(password) !== local){
+      setSuccess('You are logged succesfully!!')
+      setLoading(true)
+      history.push('/home/catalogo')
     }else{
-        setLoading(true)
+        setError('Your mail or password are wrong...')
     }
     setLoading(false)
    
@@ -74,6 +76,7 @@ const Login = () => {
                     <Button type="submit" className={styles.btnsubt}>Login</Button>
                 </form>
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
             {loading && <Loading />}
                 <Row className="py-3">
                     <Col>
