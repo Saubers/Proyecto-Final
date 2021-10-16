@@ -12,7 +12,7 @@ const Review = (props) =>{
     }, [dispatch, props.publication.id])
     
     const review = useSelector((state) => state.review)
-    
+    console.log('review',review)
 
     function mathRound2 (num, decimales = 2) {
         var exponente = Math.pow(10, decimales);

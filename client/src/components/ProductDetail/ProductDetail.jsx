@@ -7,7 +7,9 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
-// import Review from '../Review/Review'
+import {getReview} from '../../actions/index'
+ 
+import Review from '../Review/Review'
 
 export default function Detail(props) {
     const dispatch = useDispatch()
@@ -17,6 +19,9 @@ export default function Detail(props) {
 
     }, [dispatch, props.match.params.id])
 
+    useEffect(() => {
+        dispatch(getReview(props.match.params.id))
+    }, [dispatch, props.match.params.id])
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
@@ -95,7 +100,15 @@ export default function Detail(props) {
                         <button className={styles.buttonback}>Back</button>
                     </Link>
                 </div>
-                {/* <Review></Review> */}
+                <div className={styles.review}>
+
+                { MyCar && MyCar? <Review
+                publication={MyCar}
+                ></Review>
+                : <div>error</div> 
+                }
+            </div>
+
             </div>
         </div>
     )
