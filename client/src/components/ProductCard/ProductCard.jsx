@@ -25,7 +25,7 @@ const ProductCard = ({ name, brand, img, price, model, mileage, stock, _id }) =>
                 <p>USD${price}</p>
                 <p>{model}-{mileage}km</p>
                 <h3 className={styleCars.name}>{brand} {name}
-                    {stock < 1 ? <button className={styleCars.btn}>Sin Stock</button> : null}
+                    {stock < 1 ? <button className={styleCars.btnStock}>Sin Stock</button> : null}
                     <Link to={'/home/Catalogo/' + _id}>
                         <button className={styleCars.btn}>Detalle</button>
                     </Link>
