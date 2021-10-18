@@ -114,6 +114,16 @@ export function postCart(payload) {
     }
 }
 
+export function postReview(payload ){
+    return async function (dispatch){
+        const json = await axios.post("http://localhost:3002/product/"+payload.id+"/review", payload)
+        return dispatch({
+            type: 'POST_REVIEW',
+            payload:json
+        })
+    }
+}
+
 export function userRegister(payload) {
     return async function (dispatch) {
         const json = await axios.post('https://pf-car-shop.herokuapp.com/register', payload);

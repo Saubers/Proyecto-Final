@@ -96,6 +96,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "POST_REVIEW":
+      return{
+        ...state,
+      }
     case "PUT_PRODUCT":
       return {
         ...state,

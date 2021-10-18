@@ -1,18 +1,15 @@
 const Review = require('../models/Review')
 
 const addReview = async function(req,res){
-    var id = req.params.id
-    console.log(id)
-    let {publication,description,calification, title} = req.body
+    let {user, publication,description,calification, title} = req.body
     try{    
         const review = new Review({
-        user: id,
+        user: user,
         publication: publication,
         calification : calification,
         title : title,
         description : description,
         });
-        console.log("Param",id)
         await review.save()
         res.status(200).json(review)
     }catch(error){
@@ -24,8 +21,8 @@ const putReview = async function(req,res){
     let idReview = req.params.idReview
     let publication = req.params.id
     let {user,description,calification, title} = req.body
-    console.log('params',req.params)
-    console.log('body',calification)
+    // console.log('params',req.params)
+    // console.log('body',calification)
     try{    
         const review = await Review.findByIdAndUpdate(idReview,{
             user: user,
@@ -43,7 +40,7 @@ const putReview = async function(req,res){
 
 const delReview = async function(req,res) {
     let idReview = req.params.idReview
-    console.log(idReview)
+    // console.log(idReview)
     try {
         const ReviewDB = await Review.findByIdAndDelete(idReview)
         if(ReviewDB !== null){
@@ -58,7 +55,7 @@ const getReview = async function (req,res) {
     let id = req.params.id  
     try {
         const getreview = await Review.find({publication : id}).populate('user')
-        console.log(getreview)
+        // console.log(getreview)
         res.status(200).send(getreview)
     } catch (error) {
         console.log(error)
