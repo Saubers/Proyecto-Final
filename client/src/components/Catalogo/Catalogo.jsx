@@ -166,6 +166,7 @@ return (
                                 brand={el.brand}
                                 description={el.description}
                                 price={el.price}
+                                stock={el.stock}
                                 mileage={el.features?.mileage}
                                 _id={el._id}
                                 />

@@ -18,6 +18,7 @@ const idCars = async (req,res)=>{
             category   :carDetail.category,
             features   :carDetail.features,
             price      :carDetail.price,
+            stock      :carDetail.stock,
             number     :carDetail.number
             }
             res.status(200).send(carId)
@@ -63,8 +64,8 @@ const CreateProduct = async (req,res,next) => {
         features_transmission_automatic,
         features_traction,
         features_mileage,
-        price/* ,
-        stock */} = req.body;
+        price,
+        stock} = req.body;
 
         const NewProduct = new Car({
             brand       : brand,
@@ -90,8 +91,8 @@ const CreateProduct = async (req,res,next) => {
                 traction    : features_traction,
                 mileage     : features_mileage,
             },
-            price       :price/* ,
-            stock       :stock */
+            price       :price,
+            stock       :stock
         });
         console.log(req.file)
         await NewProduct.save()
