@@ -56,7 +56,6 @@ function rootReducer(state = initialState, action) {
         carDetail: action.payload,
       };
     case "GET_REVIEW":
-      console.log("ACTION", action.payload);
       return {
         ...state,
         review: action.payload,
