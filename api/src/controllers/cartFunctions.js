@@ -1,22 +1,17 @@
 const Cart = require('../models/Cart');
 const Car = require('../models/Cars.js');
 
-const mercadopago = require ('mercadopago');
-
-mercadopago.configure({
-    access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
-});
 
 const agregarOrden = async function(req,res){
     var myId = req.params.id
     let {publication,price,state,cantidad} = req.body
     try{    
         const cart = new Cart({
-        user: myId,
-        publication: publication,
-        cantidad : cantidad,
-        price : price,
-        state : state
+            user: myId,
+            publication: publication,
+            cantidad : cantidad,
+            price : price,
+            state : state
         });
         await cart.save()
         res.status(200).json(cart)
@@ -42,7 +37,7 @@ const CartUser = async function(req,res){
 
 /*
 Esta ruta puede recibir el query string status
- y deberá devolver sólo las ordenes con ese status. */
+y deberá devolver sólo las ordenes con ese status. */
 const AllOrders = async function (req,res){
     let {status } = req.query     
     if(status ){
@@ -56,13 +51,13 @@ const AllOrders = async function (req,res){
     else{
         try {
             const AllOrders = await Cart.find().populate('publication')
-          //  console.log('allOrders',AllOrders)
-        return res.status(200).send(AllOrders);
-
-    } catch (error) {
-        console.log(error)
+            //  console.log('allOrders',AllOrders)
+            return res.status(200).send(AllOrders);
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
 }
 
 const OrdenesByUsuario= async function (req,res) {
@@ -70,7 +65,7 @@ const OrdenesByUsuario= async function (req,res) {
     try {
         let Ordenes = await Cart.find({user : id}).populate('publication').populate('user')
         res.status(200).send(Ordenes)
-
+        
     } catch (error) {
         res.status(200).send(error)
     }
@@ -83,7 +78,7 @@ const cartOrderId = async function(req,res) {
         try {
             let Ordenes = await Cart.find({_id: idOrder}).populate('publication').populate('user')
             res.status(200).send(Ordenes)
-    
+            
         } catch (error) {
             res.status(200).send(Ordenes)
         } 
@@ -97,16 +92,16 @@ const putCart = async function(req,res){
     let {idItem,idUsuario,price,state} = req.boddy
     try{    
         const cart =  Cart.findByIdAndUpdate(idOrder,{
-        user: idUsuario,
-        publication:idItem,
-        price : price,
-        state : state
+            user: idUsuario,
+            publication:idItem,
+            price : price,
+            state : state
         });
         res.send(cart);
     }catch(error){
         console.log(error)
     }
-
+    
 }
 
 const deleteCart = async function(req,res){
@@ -123,8 +118,13 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
-     const {user, publication, cantidad, state} = req.body
-     console.log("PROBNADMP SI LLEGA",user, publication, cantidad, state);
+    const {user, publication, cantidad, state} = req.body
+    console.log("PROBNADMP SI LLEGA",user, publication, cantidad, state);
+    const mercadopago = require ('mercadopago');
+    
+    mercadopago.configure({
+        access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
+    });
     try{
         const items = []
         for(let i = 0; i < publication.length; i++){
@@ -136,18 +136,20 @@ const checkout = async function(req,res){
                 picture_url: car.img[0], 
                 currency_id: 'ARS', 
             }
-            console.log('cartsFunctions 139',oneProduct)
             items.push(oneProduct)
         }
+        console.log('cartsFunctions 139',items)
         let preferences = {
             items: items,
-            // back_urls:{
-            //     success:'http://localhost:3002/success',
-            //     pending:'http://localhost:3002/pending',
-            //     failure:'http://localhost:3002/failure',
-            // },
-            // auto_return:'approved'
+            external_reference: `${new Date().valueOf()}`,
+            back_urls:{
+                success:'http://localhost:3000/pagos',
+                pending:'http://localhost:3000/pagos',
+                failure:'http://localhost:3000/pagos',
+            },
+            auto_return:'approved'
         }
+        console.log('preference', preferences)
         mercadopago.preferences.create(preferences)
         .then((response)=>{
             console.log(response.body.init_point)

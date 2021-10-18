@@ -13,12 +13,14 @@ import CreateProduct from './components/ProductCRUD/CRUD_Components/CreateProduc
 import UpdateProduct from './components/ProductCRUD/CRUD_Components/UpdateProduct/UpdateProduct';
 import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduct/DeleteProduct';
 import OrderCar from './components/OrderCars/OrderCar';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import { useState } from 'react';
+import { useHistory } from 'react-router';
 import Profile from './components/ProfileInfo/Profile';
+import Pagos from './components/pagos/pagos'
+
 function App() {
+  const history = useHistory()
 const local = localStorage.getItem('userInfo')
+const isAdmin = localStorage.getItem('userAdmin')
   return (
     <Router>
       <div className='container'>
@@ -26,12 +28,12 @@ const local = localStorage.getItem('userInfo')
  <Route exact path="/" component={LandingPage} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
-   { local ?  (<Route exact path='/CRUD' component={CRUD} />)
-   : "You dont have permissions..."
+   { isAdmin?.toString() === 'true' &&  (<Route exact path='/CRUD' component={CRUD} />)
+   
   }
-        <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />
-        <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />
-        <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />
+      { isAdmin?.toString() === 'true' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
+      { isAdmin?.toString() === 'true' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
+      { isAdmin?.toString() === 'true' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />}
 { !local && (<Route exact path='/user/register' component={Register} />)}
         <Route exact path="/home/Catalogo" component={Catalogo} />
 { !local &&  (<Route exact path="/user/login" component={Login} />)}
@@ -39,6 +41,7 @@ const local = localStorage.getItem('userInfo')
 {    ( <Route exact path='/home/compra' component={Cart} />)}
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />
+        <Route path="/pagos" component={Pagos} />
       </Switch>
       </div>
     </Router>

@@ -5,25 +5,29 @@ import style from './Review.module.css'
 const Review = (props) =>{
     console.log("props",props)
     const [average,setAverage] = useState(0)
+    
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(getReview(props.publication.id))
         sumAverage()
     }, [dispatch, props.publication.id])
-    
+    const userInfo = localStorage.getItem("userInfo");
     const review = useSelector((state) => state.review)
-    console.log('review',review)
-
+    const usuario = JSON.parse(userInfo)
+    console.log('Hola', usuario);
+    // const [comentario, setComentario] = useState({
+    //         user: 
+    //     })
+    // const usuario = userInfo.find(el => el.id)
     function mathRound2 (num, decimales = 2) {
         var exponente = Math.pow(10, decimales);
         return (num >= 0 || -1) * Math.round(Math.abs(num) * exponente) / exponente;
-      }
+    }
 
 
     function sumAverage() {
         let numero = 0
         let indice = 0
-        console.log('review',review)
         if(review !== undefined){
             let avrg = review?.map(el=> el.calification)
             avrg?.forEach(element =>{
@@ -37,13 +41,18 @@ const Review = (props) =>{
         else{
             console.log('error')
         }
-        console.log('avrg lenght' ,review?.length)
-}
-    console.log(average)
+        // console.log('avrg lenght' ,review?.length)
+    }
+
+    function handleChange(e){
+        e.preventDefault()
+
+    }
     
     return(
         <div className={style.divall}>
             <div>
+
                 {
                     average && average ? <div>
                     <h2> Promedio de calificaciones  {average}</h2>      
@@ -55,15 +64,17 @@ const Review = (props) =>{
             {   
                 review && review.map(el=>(
                     <div className={style.divcart}>
-                    <h4 className ={style.title}>{el.title}</h4>
-                    <h5>Calificacion : {el.calification}</h5>
-                    <h5>{el.description}</h5>
+                    <h5 className ={style.title}>{el.user?.fullname}</h5>
+                    <h5>{el.title}</h5>
+                    <h7>Calificacion : {el.calification}</h7>
+                    <h6>{el.description}</h6>
                     </div>
              ))
             }
            </div>
            <div className={style.containerproduct}>
-            <button >Agregar comentario</button>
+            <button onChange={e=>handleChange(e)}>Agregar comentario </button>
+            <input></input>
            </div>
        </div>
     )

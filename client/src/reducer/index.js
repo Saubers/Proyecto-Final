@@ -56,7 +56,6 @@ function rootReducer(state = initialState, action) {
         carDetail: action.payload,
       };
     case "GET_REVIEW":
-      console.log("ACTION", action.payload);
       return {
         ...state,
         review: action.payload,
@@ -85,12 +84,14 @@ function rootReducer(state = initialState, action) {
       };
     case "USER_DETAILS_SUCCESS":
       return { 
-        loading: false, users: action.payload
+        loading: false, usersUpdate: action.payload
        };
     case "USER_DETAILS_FAIL":
       return { 
         loading: false, error: action.payload
        };
+    case 'USER_UPDATE_PROFILE_RESET':
+      return {};  
     case "POST_PRODUCT":
       return {
         ...state,

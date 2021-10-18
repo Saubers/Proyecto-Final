@@ -15,7 +15,7 @@ export default function Cart(props){
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const userInfo = localStorage.getItem("userInfo");
     const history = useHistory();
-
+    console.log('ACA' , userInfo);
     
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
@@ -97,7 +97,6 @@ export default function Cart(props){
 
     const user = "615dc2f5f1a17cca9b833c49"
     function handlePost(ev){
-        console.log(ev);
         ev.preventDefault()
         setInput({
             user:user,
@@ -110,8 +109,8 @@ export default function Cart(props){
              dispatch(postMg(input))
              dispatch(postCart(input))
             alert('Compra exitosa')
-            history.push('/checkout')
-            handleDelete()
+            // history.push('/checkout')
+            // handleDelete()
         }
         else{
             alert('Vuelva a tocar el boton para confirmar')

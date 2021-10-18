@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCars, signin } from '../../../actions';
+import { getCars, signin, userAdmin } from '../../../actions';
 import { useEffect } from 'react';
 
 
@@ -21,6 +21,7 @@ const Login = () => {
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [success, setSuccess] = useState('')
     const dispatch = useDispatch()
    
     const handleSubmit = async (e) => {
@@ -32,14 +33,16 @@ const Login = () => {
 
         
     dispatch(signin(mail, password))
-    
-    if(signin(mail) != mail || signin(password) !== password){
-        setError("Your mail or password are wrong...")
-       setTimeout(3000)
-    }else{
-        setLoading(true)
-    }
-    setLoading(false)
+    dispatch(userAdmin(mail, password))
+
+    // if(signin(mail) && signin(password) !== local){
+    //   setSuccess('You are logged succesfully!!')
+    //   setLoading(true)
+    //   history.push('/home/catalogo')
+    // }else{
+    //     setError('Your mail or password are wrong...')
+    // }
+    // setLoading(false)
    
     }
         
@@ -74,6 +77,7 @@ const Login = () => {
                     <Button type="submit" className={styles.btnsubt}>Login</Button>
                 </form>
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+                {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
             {loading && <Loading />}
                 <Row className="py-3">
                     <Col>

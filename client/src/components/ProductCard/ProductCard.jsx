@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getCarDetail } from '../../actions/index';
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
 
-const ProductCard = ({ name, brand, img, price, model, mileage, _id }) => {
+const ProductCard = ({ name, brand, img, price, model, mileage, stock, _id }) => {
     const dispatch = useDispatch()
 
     // localStorage.setItem('auto',[])
@@ -25,6 +25,7 @@ const ProductCard = ({ name, brand, img, price, model, mileage, _id }) => {
                 <p>USD${price}</p>
                 <p>{model}-{mileage}km</p>
                 <h3 className={styleCars.name}>{brand} {name}
+                    {stock < 1 ? <button className={styleCars.btnStock}>Sin Stock</button> : null}
                     <Link to={'/home/Catalogo/' + _id}>
                         <button className={styleCars.btn}>Detalle</button>
                     </Link>

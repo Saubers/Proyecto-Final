@@ -27,6 +27,9 @@ function validate(input) {
     else if (!input.features_mileage.match(valoresAceptados)) {
         errors.features_mileage = '*SOLO SE PUEDEN AGREGAR NUMEROS*'
     }
+    else if (!input.stock.match(valoresAceptados)) {
+        errors.stock = '*SOLO SE PUEDEN AGREGAR NUMEROS*'
+    }
     else {
         errors.ok = true;
     }
@@ -56,9 +59,11 @@ export default function UpdateProduct() {
 
     const [image, setImage] = useState("")
 
+    const [idNull, setIdNull] = useState(null)
+
     const [id, setID] = useState("")
 
-    const selectedCar = cars?.find((el) => el._id === id); /* probar con .map y ruta de getDetail */
+    /* const selectedCar = cars.find(el) => el._id === id; */
 
     const [input, setInput] = useState({
         brand: "",
@@ -75,7 +80,8 @@ export default function UpdateProduct() {
         features_transmission_automatic: "",
         features_traction: "",
         features_mileage: "",
-        price: ""
+        price: "",
+        stock: ""
     });
 
 
@@ -110,7 +116,8 @@ export default function UpdateProduct() {
             features_transmission_automatic: "",
             features_traction: "",
             features_mileage: "",
-            price: ""
+            price: "",
+            stock:""
         })
     };
 
@@ -125,7 +132,7 @@ export default function UpdateProduct() {
         setID({
             id: e.target.value
         })
-        console.log(id, selectedCar)
+        console.log(id,cars)
         setInput({
             brand: "",
             name: "",
@@ -141,7 +148,8 @@ export default function UpdateProduct() {
             features_transmission_automatic: "",
             features_traction: "",
             features_mileage: "",
-            price: ""
+            price: "",
+            stock: ""
         })
     }
 
@@ -171,6 +179,7 @@ export default function UpdateProduct() {
             return setImageMessage("Select an image...")
         }
     }
+
     return (
         <div>
             <NavBar />
@@ -178,6 +187,7 @@ export default function UpdateProduct() {
                 <h1>Update car information</h1>
                 <h3>Select car</h3>
                 <select required onChange={(e) => handleSelectID(e)}>
+                        <option disabled selected>Selecciona un auto</option>
                     {cars?.map((el) => (
                         <option value={el._id}>{el.name}</option>
                     ))}
@@ -407,6 +417,22 @@ export default function UpdateProduct() {
                                 <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
                             )}
                         </div>
+
+                        <label className={styleCrudUpdate.label}>Stock:</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.stock}
+                                name="stock"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Disponibles'
+                                className={styleCrudUpdate.inputActivity} />
+                            {errors.stock && (
+                                <p className={styleCrudUpdate.errors}>{errors.stock}</p>
+                            )}
+                        </div>
+
                     </fieldset>
                     {
                         errors && (

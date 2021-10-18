@@ -54,6 +54,10 @@ const CarsSchema = new Schema({
     number:{
         type: Number,
         required: true
+    },
+    stock:{
+        type: Number,
+        required: true
     }
     
 },
