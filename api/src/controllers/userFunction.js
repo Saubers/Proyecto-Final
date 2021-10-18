@@ -61,57 +61,24 @@ const loginUser = async (req,res,next) => {
     }
 }
  
-
-
-// const forgotPassword = async (req, res) => {
-// const {mail} = req.body;
-// if(!mail){
-//     return res.status(400).json({message: 'Your mail is required!'})
-// }
-
-// const message = 'Check your mail for a link to reset your password...'
-// let verificationLink;
-// let emailStatus = 'OK'
-
-// const userRepository = getRepository(User);
-
-// let user = User;
-
-// try{
-//   user = await userRepository.findOneOrFail({ where: { mail }})  
-//   const token = jwt.sign({ userId: user._id, mail: user.mail }, config.jwtSecret, { expiresIn: '10m' })
-//   verificationLink = `https://pf-car-shop.herokuapp.com/new-password/${token}`
-//   user.resetToken = token
-// } catch (error) {
-//     return res.json({ message })
-// }
-
-// try {
-    
-// } catch (error) {
-//     mailStatus = error
-//     return res.status(400).json({message: 'Something goes wrong'})
-// }
-
-// try {
-//     await userRepository.save(user)
-// } catch (error) {
-//     mailStatus = error;
-//     return res.status(400).json({ message: 'Something goes wrong!' })
-// }
-// res.json({message, info: mailStatus})
-// }
-
-// const createNewPass = async (req, res) => {
-//     const { newPassword } = req.body;
-//     const resetToken = req.headers('reset')
-    
-//     if(!resetToken && !newPassword) {
-//         res.status(400).json({ message: 'All the fields are required' })
-//     }
-//     //const userRepository = getRepo
-// }
-
+const updateProfile = async (req, res) => {
+ const user = await User.findById(req.user._id);
+ if(user) {
+     user.fullname = req.body.fullname || user.fullname;
+     user.mail = req.body.mail || user.mail;
+     if(req.body.password) {
+         user.password = bcrypt.hashSync(req.body.password, 8)
+     }
+     const updatedUser = await user.save()
+     res.send({
+         _id: updatedUser._id,
+         fullname: updatedUser.fullname,
+         mail: updatedUser.mail,
+         isAdmin: updatedUser.isAdmin,
+         token: generateToken(updatedUser),
+     })
+ }
+}
 
 
 
@@ -120,4 +87,5 @@ module.exports = {
     createUser,
     loginUser,
     getUserData,
+    updateProfile
 }

@@ -147,11 +147,14 @@ try {
 
  export const getUserData = (userId) => async (dispatch, getState) => {
      dispatch({type: 'USER_DETAILS_REQUEST', payload: userId});
-     const { userSignin:{ userInfo }} = getState();
+     const {
+           userInfo 
+        } = getState();
      try {
-         const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/users/${userId}`, {
-             headers: { Authorization: `Bearer ${userInfo.token}`}
+         const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/user/${userId}`, {
+         headers: { Authorization: `Bearer ${userInfo.token}`}
          });
+         console.log(data)
          dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
      } catch (error) {
          const message = error.response && error.response.data.message
@@ -163,12 +166,13 @@ try {
  export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: 'USER_UPDATE_PROFILE_REQUEST', payload: user });
     const {
-      userSignin: { userInfo },
+        userInfo  ,
     } = getState();
     try {
-      const { data } = await axios.put(`https://pf-car-shop.herokuapp.com/users/profile`, user, {
+      const { data } = await axios.put(`https://pf-car-shop.herokuapp.com/user/profile`, user, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
+      console.log(data)
       dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
       dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
       localStorage.setItem('userDetails', JSON.stringify(data));

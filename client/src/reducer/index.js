@@ -85,12 +85,14 @@ function rootReducer(state = initialState, action) {
       };
     case "USER_DETAILS_SUCCESS":
       return { 
-        loading: false, users: action.payload
+        loading: false, usersUpdate: action.payload
        };
     case "USER_DETAILS_FAIL":
       return { 
         loading: false, error: action.payload
        };
+    case 'USER_UPDATE_PROFILE_RESET':
+      return {};  
     case "POST_PRODUCT":
       return {
         ...state,
