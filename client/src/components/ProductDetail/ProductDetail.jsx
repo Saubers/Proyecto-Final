@@ -77,6 +77,7 @@ export default function Detail(props) {
                         <div>
                             <p>Año</p>
                             <h1>{MyCar?.price}</h1>
+                            <h2>{MyCar.stock}</h2>
                         </div>
                     </div>
                 </div>
