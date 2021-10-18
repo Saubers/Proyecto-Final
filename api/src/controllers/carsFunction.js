@@ -32,7 +32,7 @@ const idCars = async (req,res)=>{
 
 const GetAllCars = async (req,res,next) => {
         try {
-            const GetAll = await Car.find()
+            const GetAll = await Car.find().populate('category')
             .populate('category')
             // console.log('getall',GetAll)
             return res.status(200).send(GetAll);
@@ -106,7 +106,7 @@ const uploadFile = async (req, res, next) => {
 const carBrands = async (req, res, next) =>{
     const { brand } = req.query;
     try {
-        const productBrand = await Car.find({brand: brand})
+        const productBrand = await Car.find({brand: brand}).populate('category')
         console.log(productBrand)
         if(productBrand !== null){
             return res.status(200).send(productBrand)
@@ -121,7 +121,7 @@ const carBrands = async (req, res, next) =>{
 const SearchCars = async (req,res,next) =>{
     const { name } = req.query;
     try {
-        const ProductDB = await Car.find({name:name})
+        const ProductDB = await Car.find({name:name}).populate('category')
         console.log(ProductDB)
         if(ProductDB !== null){
             return res.status(200).send(ProductDB)
