@@ -22,17 +22,18 @@ export default function Profile() {
     
     dispatch(getUserData())
    dispatch(updateUserProfile())
-   const userData = useSelector((state) => state?.userInfo)
-   const userDetail = useSelector((state) => state?.users)
-   console.log(userDetail)
+   const userData = useSelector((state) => state.userInfo)
+   const userUpdate = useSelector((state) => state.usersUpdate)
+   console.log(userData)
   
    
     useEffect(() => {
-        if(!userDetail){
+        if(!userUpdate){
+            dispatch({type: 'USER_UPDATE_PROFILE_RESET'})
             dispatch(getUserData(userData?._id))            
         } else {
-            setFullname(userDetail.fullname);
-            setMail(userDetail.mail)
+            setFullname(userUpdate.fullname);
+            setMail(userUpdate.mail)
         }
 
     }, []);
@@ -41,11 +42,11 @@ export default function Profile() {
     e.preventDefault();
     // dispatch update profile
     if (password !== confirmPassword) {
-      alert('Password and Confirm Password Are Not Matched');
+      setError('Password and Confirm Password Are Not Matched');
     } else {
       dispatch(
         updateUserProfile({
-          userId: userDetail?._id,
+          userId: userUpdate?._id,
           fullname,
           mail,
           password,
@@ -91,6 +92,16 @@ export default function Profile() {
               ></input>
             </div>
             <div>
+              <label htmlFor="name">Phone</label>
+              <input
+                id="phone"
+                type="text"
+                placeholder="Enter your phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              ></input>
+            </div>
+            <div>
               <label htmlFor="password">Password</label>
               <input
                 id="password"
@@ -110,9 +121,9 @@ export default function Profile() {
             </div>
             <div>
               <label />
-              <button className="primary" type="submit">
+              <Button className="primary" type="submit">
                 Update
-              </button>
+              </Button>
             </div>
           </>
         )}

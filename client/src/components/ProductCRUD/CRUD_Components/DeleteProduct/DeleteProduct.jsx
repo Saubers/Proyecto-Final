@@ -36,7 +36,7 @@ export default function DeleteProduct() {
                 <fieldset>
                     <legend>Select car to delete</legend>
                     <select required onChange={(e) => handleSelect(e)}>
-                        {cars.map((el) => (
+                        {cars?.map((el) => (
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>

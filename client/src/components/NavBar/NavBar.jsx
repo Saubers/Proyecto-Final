@@ -8,9 +8,8 @@ import salir from '../image/salir.png';
 
 const NavBar = () => {
   const userSignin = useSelector((state) => state.userInfo)
-  console.log(userSignin)
 const local = localStorage.getItem('userInfo')
-
+const isAdmin = localStorage.getItem('userAdmin')
 
 
 
@@ -27,17 +26,19 @@ const local = localStorage.getItem('userInfo')
                 <li><a href="/home/catalogo ">Our Catalog</a></li>
                 <li><a href="# ">Payment Methods</a></li>
 
-
            { local ? (
   <li><a className={styleNav.logout} 
-  onClick={() => localStorage.removeItem('userInfo')} href='/'>Logout</a></li>
+  onClick={() => localStorage.removeItem('userAdmin') + localStorage.removeItem('userInfo')} href='/'>Logout</a></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
- 
+  {isAdmin?.toString() === 'true' && (
+             <div className='dropdown'>
+               <button  type="button" class="btn btn-light"><a className={styleNav.container} href="/CRUD">Admin</a></button>
+             </div>
+           )}
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
                 { local && ( <div className={styleNav.userdiv}>
-             <h3>User:{userSignin?.fullname}</h3>
-             <h3>Email:{userSignin?.mail}</h3>
            </div>)  }
+           
             </ul>
           </nav>
         </div>
