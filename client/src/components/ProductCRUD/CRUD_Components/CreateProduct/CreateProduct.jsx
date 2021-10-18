@@ -27,6 +27,9 @@ function validate(input) {
     else if (!input.features_mileage.match(valoresAceptados)) {
         errors.features_mileage = '*SOLO SE PUEDEN AGREGAR NUMEROS*'
     }
+    else if (!input.stock.match(valoresAceptados)) {
+        errors.stock = '*SOLO SE PUEDEN AGREGAR NUMEROS*'
+    }
     else {
         errors.ok = true;
     }
@@ -67,7 +70,8 @@ export default function CreateProduct() {
         features_transmission_automatic: "",
         features_traction: "",
         features_mileage: "",
-        price: ""
+        price: "",
+        stock: "",
     });
 
 
@@ -102,7 +106,8 @@ export default function CreateProduct() {
             features_transmission_automatic: "",
             features_traction: "",
             features_mileage: "",
-            price: ""
+            price: "",
+            stock: ""
         })
     };
 
@@ -366,6 +371,22 @@ export default function CreateProduct() {
                                 <p className={styleCrudPost.errors}>{errors.features_mileage}</p>
                             )}
                         </div>
+
+                        <label className={styleCrudPost.label}>Stock:</label>
+                        <div className={styleCrudPost.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.stock}
+                                name="stock"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Disponibles'
+                                className={styleCrudPost.inputActivity} />
+                            {errors.stock && (
+                                <p className={styleCrudPost.errors}>{errors.stock}</p>
+                            )}
+                        </div>
+
                     </fieldset>
                     {
                         errors && (

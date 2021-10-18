@@ -16,6 +16,7 @@ export default function DeleteProduct() {
         setID({
             id: e.target.value
         })
+        console.log(id)
     }
 
     function handleSubmit(e) {
