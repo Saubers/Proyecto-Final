@@ -148,7 +148,8 @@ export default function UpdateProduct() {
             features_transmission_automatic: "",
             features_traction: "",
             features_mileage: "",
-            price: ""
+            price: "",
+            stock: ""
         })
     }
 
