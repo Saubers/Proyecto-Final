@@ -15,6 +15,7 @@ import DeleteProduct from './components/ProductCRUD/CRUD_Components/DeleteProduc
 import OrderCar from './components/OrderCars/OrderCar';
 import { useHistory } from 'react-router';
 import Profile from './components/ProfileInfo/Profile';
+import Pagos from './components/pagos/pagos'
 
 function App() {
   const history = useHistory()
@@ -40,6 +41,7 @@ const isAdmin = localStorage.getItem('userAdmin')
 {    ( <Route exact path='/home/compra' component={Cart} />)}
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
         <Route exact path="/contactos" component={Contact} />
+        <Route path="/pagos" component={Pagos} />
       </Switch>
       </div>
     </Router>
