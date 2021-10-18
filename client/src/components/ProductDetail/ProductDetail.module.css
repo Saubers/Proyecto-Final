@@ -43,6 +43,18 @@
     background: cornflowerblue;
     color: white;
 }
+.buttonStock{
+    cursor: pointer;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    height: 40px;
+    background: red;
+    color: white;
+}
+.buttonStock:hover{
+    cursor: default;
+}
 
 .img{
     width: 600px;

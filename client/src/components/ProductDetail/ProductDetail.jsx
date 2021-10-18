@@ -77,7 +77,6 @@ export default function Detail(props) {
                         <div>
                             <p>Año</p>
                             <h1>{MyCar?.price}</h1>
-                            <h2>{MyCar.stock}</h2>
                         </div>
                     </div>
                 </div>
@@ -89,6 +88,9 @@ export default function Detail(props) {
                     </div>
 
                 {
+                    MyCar?.stock<1?
+                    <button className={styles.buttonStock}>Sin Stock</button>
+                    :
                     found === IdButton ? <div>
                         Orden agregada al <Link to="/home/compra">carrito</Link>
                     </div>
