@@ -63,7 +63,8 @@ const CreateProduct = async (req,res,next) => {
         features_transmission_automatic,
         features_traction,
         features_mileage,
-        price} = req.body;
+        price/* ,
+        stock */} = req.body;
 
         const NewProduct = new Car({
             brand       : brand,
@@ -89,7 +90,8 @@ const CreateProduct = async (req,res,next) => {
                 traction    : features_traction,
                 mileage     : features_mileage,
             },
-            price       :price
+            price       :price/* ,
+            stock       :stock */
         });
         console.log(req.file)
         await NewProduct.save()
