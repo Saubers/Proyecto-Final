@@ -130,6 +130,7 @@ try {
     const { data } = await axios.post('http://localhost:3002/login', {mail, password})
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
     localStorage.setItem('userInfo', JSON.stringify(data.token))
+    localStorage.setItem('userInformacion', JSON.stringify(data))
     
     
 } catch (error){
