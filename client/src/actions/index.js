@@ -55,7 +55,6 @@ export function getCarDetail(id) {
 }
 
 export  function getReview(id) {
-    console.log("ID",id);
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/product/"+id+"/review");
         return dispatch({
@@ -65,7 +64,6 @@ export  function getReview(id) {
     }
 }
 export function postProduct(payload) { 
-    console.log('id usuario',payload);
     return async function (dispatch) {
         const json = await axios.post("https://pf-car-shop.herokuapp.com/products", payload);
         return dispatch({
@@ -87,7 +85,6 @@ export function putProduct(id, payload) {
 }
 
 export function postMg (payload){
-    console.log('HOLA',payload);
     return async function (dispatch){
         const json = await axios.post("http://localhost:3002/checkout", payload);
         return dispatch({
@@ -172,7 +169,6 @@ try {
          const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/user/${userId}`, {
          headers: { Authorization: `Bearer ${userInfo.token}`}
          });
-         console.log(data)
          dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
      } catch (error) {
          const message = error.response && error.response.data.message

@@ -40,7 +40,6 @@ export default function Detail(props) {
         setIsButton([...Isbotton, MyCar.id])
     }
     const found = Isbotton.find(element => element === IdButton)
-    console.log('Fopund ', found)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>

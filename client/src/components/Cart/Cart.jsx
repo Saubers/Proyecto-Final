@@ -15,7 +15,7 @@ export default function Cart(props){
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const userInfo = localStorage.getItem("userInfo");
     const history = useHistory();
-
+    console.log('ACA' , userInfo);
     
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
