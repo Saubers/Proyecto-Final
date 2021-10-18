@@ -11,9 +11,9 @@ const Review = (props) =>{
         dispatch(getReview(props.publication.id))
         sumAverage()
     }, [dispatch, props.publication.id])
-    const userInfo = localStorage.getItem("userInfo");
+    const userInformacion = localStorage.getItem("userInformacion");
     const review = useSelector((state) => state.review)
-    const usuario = JSON.parse(userInfo)
+    const usuario = JSON.parse(userInformacion)
     console.log('Hola', usuario);
     // const [comentario, setComentario] = useState({
     //         user: 
