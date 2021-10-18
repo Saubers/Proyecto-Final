@@ -7,7 +7,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCars, signin } from '../../../actions';
+import { getCars, signin, userAdmin } from '../../../actions';
 import { useEffect } from 'react';
 
 
@@ -33,15 +33,16 @@ const Login = () => {
 
         
     dispatch(signin(mail, password))
-    
-    if(signin(mail) && signin(password) !== local){
-      setSuccess('You are logged succesfully!!')
-      setLoading(true)
-      history.push('/home/catalogo')
-    }else{
-        setError('Your mail or password are wrong...')
-    }
-    setLoading(false)
+    dispatch(userAdmin(mail, password))
+
+    // if(signin(mail) && signin(password) !== local){
+    //   setSuccess('You are logged succesfully!!')
+    //   setLoading(true)
+    //   history.push('/home/catalogo')
+    // }else{
+    //     setError('Your mail or password are wrong...')
+    // }
+    // setLoading(false)
    
     }
         

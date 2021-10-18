@@ -132,7 +132,25 @@ export const signin =(mail, password) => async (dispatch) => {
 try {
     const { data } = await axios.post('http://localhost:3002/login', {mail, password})
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
-    console.log(localStorage.setItem('userInfo', JSON.stringify(data.token)))
+    localStorage.setItem('userInfo', JSON.stringify(data.token))
+    
+    
+} catch (error){
+    dispatch({
+        type: USER_SIGNIN_FAIL,
+        payload:
+        error.response && error.response.data.message
+        ? error.response.data.message : error.message,
+    })
+}
+}
+
+export const userAdmin =(mail, password) => async (dispatch) => {
+    dispatch({ type: 'USER_ADMIN_REQUEST', payload: {mail, password}})
+try {
+    const { data } = await axios.post('http://localhost:3002/login', {mail, password})
+    dispatch({ type: 'USER_ISADMIN', payload: data})
+    localStorage.setItem('userAdmin', JSON.stringify(data.isAdmin))
     
     
 } catch (error){
