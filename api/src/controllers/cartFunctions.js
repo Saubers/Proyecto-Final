@@ -1,6 +1,7 @@
 const Cart = require('../models/Cart');
 const Car = require('../models/Cars.js');
-
+require('dotenv').config();
+const { PROD_ACCESS_TOKEN } = process.env;
 
 const agregarOrden = async function(req,res){
     var myId = req.params.id
@@ -120,14 +121,14 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
-    const {user, publication, cantidad, state} = req.body
-    console.log("PROBNADMP SI LLEGA",user, publication, cantidad, state);
+    const {user, publication, cantidad} = req.body
     const mercadopago = require ('mercadopago');
     
     mercadopago.configure({
-        access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
+        access_token: PROD_ACCESS_TOKEN,
     });
     try{
+        
         const items = []
         for(let i = 0; i < publication.length; i++){
             const car = await Car.findById(publication[i])
@@ -140,10 +141,10 @@ const checkout = async function(req,res){
             }
             items.push(oneProduct)
         }
-        console.log('cartsFunctions 139',items)
         let preferences = {
             items: items,
-            external_reference: `${new Date().valueOf()}`,
+            external_reference: user, 
+            // `${new Date().valueOf()}`,
             back_urls:{
                 success:'http://localhost:3000/pagos',
                 pending:'http://localhost:3000/pagos',
@@ -151,7 +152,6 @@ const checkout = async function(req,res){
             },
             auto_return:'approved'
         }
-        console.log('preference', preferences)
         mercadopago.preferences.create(preferences)
         .then((response)=>{
             console.log(response.body.init_point)
