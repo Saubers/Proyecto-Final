@@ -159,7 +159,7 @@ export default function Cart(props){
                         <div key={el.id} className={stylecart.containerproduct}>
                             
                                 <div className={stylecart.imgcont}>
-                                    <img src={el.img[0]} alt='Erorr' width="150x" height="150px"></img>
+                                    <img src={el.img?.[0]} alt='Erorr' width="150x" height="150px"></img>
                                 </div>
                                 <div className={stylecart.divname}>
                                     <div>
