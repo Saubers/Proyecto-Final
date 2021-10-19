@@ -123,8 +123,10 @@ const carBrands = async (req, res, next) =>{
 //FALTA IMPLEMENTAR FILTER CON INCLUDE
 const SearchCars = async (req,res,next) =>{
     const { name } = req.query;
+    const ProductsDB = await Car.find().populate('category');
     try {
-        const ProductDB = await Car.find({name:name}).populate('category')
+        /* const ProductsDB = await Car.find({name:name}).populate('category') */
+        const ProductDB = await ProductsDB.filter((el)=> el.name.toLowerCase().includes(name.toLowerCase()));
         console.log(ProductDB)
         if(ProductDB !== null){
             return res.status(200).send(ProductDB)
