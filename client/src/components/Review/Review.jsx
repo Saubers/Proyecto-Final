@@ -14,7 +14,7 @@ const Review = (props) =>{
     const review = useSelector((state) => state.review)
     const usuario = JSON.parse(userInformacion)
     const [comentario, setComentario] = useState({
-            user: usuario._id,
+            user: usuario?._id,
             calification:'',
             title:'',
             description:'',

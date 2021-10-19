@@ -34,7 +34,7 @@ export default function Detail(props) {
 
 
     const [carrito, setCarrito] = useState({
-        user:user._id,
+        user:user?._id,
         publication: props.match.params.id,
         cantidad : 1,
         price:  0,
@@ -53,7 +53,7 @@ export default function Detail(props) {
         console.log('isbotton',Isbotton)
         console.log('carrito',carrito)
         setCarrito({
-            user:user._id,
+            user:user?._id,
             publication: props.match.params.id,
             cantidad : 1,
             price:  MyCar.id,

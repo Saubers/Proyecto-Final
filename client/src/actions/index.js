@@ -169,7 +169,7 @@ export function deleteUser(id) {
         try {
             let json = await axios.delete("https://pf-car-shop.herokuapp.com/delete-user/:id" + id);
             return dispatch({
-                type: "DELETE_CAR",
+                type: "DELETE_USER",
                 payload: json
             })
             

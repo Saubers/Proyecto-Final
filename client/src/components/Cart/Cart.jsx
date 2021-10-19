@@ -96,18 +96,18 @@ export default function Cart(props){
         setIdAuto(Delete)
         window.location.reload()
     }
-    console.log('userid',user._id)
+    console.log('userid',user?._id)
     function handlePost(ev){
         ev.preventDefault()
         setCart({
-            user:user._id,
+            user:user?._id,
             publication: amount.map(el => el.id),
             cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
             price: price,
             state:"En proceso"
         })
         setInput({
-            user:user._id,
+            user:user?._id,
             publication: amount.map(el => el.id ),
             cantidad : amount.map(el => el.cantidad),
             price: price,
@@ -123,7 +123,7 @@ export default function Cart(props){
         }
         else{
             alert('Vuelva a tocar el boton para confirmar')
-            console.log('INOPUT', input);
+            console.log('INPUT', input);
         }
         
     }
@@ -207,8 +207,8 @@ export default function Cart(props){
                         <div>
                     <div>
                     <tr className={stylecart.trdiv}>
-                    <ul className={stylecart.listy}>User:{user.fullname}</ul>
-                    <ul className={stylecart.listy}>Mail:{user.mail} </ul>
+                    <ul className={stylecart.listy}>User:{user?.fullname}</ul>
+                    <ul className={stylecart.listy}>Mail:{user?.mail} </ul>
 
                     </tr>
                     </div>
