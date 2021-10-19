@@ -105,18 +105,28 @@ const Review = (props) =>{
              ))
             }
            </div>
+           
            <div className={style.containerproduct}>
-            <button onClick={e=>handleClick(e)}>Agregar comentario </button>
-            <select onChange={e=>handleSelect(e)}>
-                <option value = '1'>1</option>
-                <option value = '2'>2</option>
-                <option value = '3'>3</option>
-                <option value = '4'>4</option>
-                <option value = '5'>5</option>
-            </select>
+           <form>
+            <p className={style.clasificacion}>
+                <input id="radio1" type="radio" name="estrellas" value="5" onClick={e => handleSelect(e)}/>
+                <label for="radio1">★</label>
+                <input id="radio2" type="radio" name="estrellas" value="4" onClick={e => handleSelect(e)}/>
+                <label for="radio2">★</label>
+                <input id="radio3" type="radio" name="estrellas" value="3" onClick={e => handleSelect(e)}/>
+                <label for="radio3">★</label>
+                <input id="radio4" type="radio" name="estrellas" value="2" onClick={e => handleSelect(e)}/>
+                <label for="radio4">★</label>
+                <input id="radio5" type="radio" name="estrellas" value="1" onClick={e => handleSelect(e)}/>
+                <label for="radio5">★</label>
+            </p>
+            </form>
             <input type= "text" value={comentario.title} onChange={(e) => handleTitle(e)}></input>
             <input type="text" value={comentario.description} onChange={(e) => handleComentario(e)} ></input>
+            <button onClick={e=>handleClick(e)}>Agregar comentario </button>
+            
            </div>
+
        </div>
     )
 }
