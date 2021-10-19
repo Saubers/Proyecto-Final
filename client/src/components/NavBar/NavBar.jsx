@@ -3,8 +3,8 @@ import styleNav from '../NavBar/NavBar.module.css';
 import logocarrito from '../image/carrito.png';
 import nuevologo from '../image/nuevologo.png';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import salir from '../image/salir.png';
+import MenuDesp from './MenuDesp/MenuDesp';
+
 
 const NavBar = () => {
   const userSignin = useSelector((state) => state.userInfo)
@@ -27,8 +27,8 @@ const isAdmin = localStorage.getItem('userAdmin')
                 <li><a href="# ">Payment Methods</a></li>
 
            { local ? (
-  <li><a className={styleNav.logout} 
-  onClick={() => localStorage.removeItem('userAdmin') + localStorage.removeItem('userInfo')} href='/'>Logout</a></li>
+            <li>
+  <MenuDesp/></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
   {isAdmin?.toString() === 'true' && (
              <div className='dropdown'>
