@@ -79,6 +79,13 @@ const updateProfile = async (req, res) => {
      })
  }
 }
+const changeStateToInactive = async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (user){
+        user.state = 'inactive'
+    }
+    user.state === 'inactive'? res.status(200).send('inactive'): res.status(400).send('err')
+}
 
 const deleteUser = async (req,res,next) =>{
     const userData = await User.findById(req.params.id);
@@ -99,5 +106,6 @@ module.exports = {
     loginUser,
     getUserData,
     updateProfile,
-    deleteUser
+    deleteUser,
+    changeStateToInactive,
 }
