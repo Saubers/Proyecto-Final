@@ -11,26 +11,45 @@ input[type = "radio"]{ display:none;}
 .clasificacion{
     direction:rtl;/* right to left */
     unicode-bidi: bidi-override;/* bidi de bidireccional */
+    font-size: 34px;
 }
 label:hover,
 label:hover ~ label {
-  color: orange;
+  color: cornflowerblue;
+}
+.btnagregar{
+    display: flex;
+    background-color:cornflowerblue;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: none;
+    flex-direction: row;
+    justify-content: center;
+}
+.formstyle{
+    display: flex;
+    justify-content: center;
 }
 
-input[type = "radio"]:checked ~ label{color:orange;}
+input[type = "radio"]:checked ~ label{color:cornflowerblue;}
 
 
-
+.divbtn{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
 
 .containerproduct{
     border: 1px solid;
     height: auto;
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 .divbtn{
     display: center;
-    width: 70%;
     height: auto;
     flex-direction: row;
     justify-content: baseline;
@@ -44,4 +63,9 @@ input[type = "radio"]:checked ~ label{color:orange;}
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+}
+.divReview{
+    display: flex;
+    flex-direction: column;
+    width:70%;
 }
