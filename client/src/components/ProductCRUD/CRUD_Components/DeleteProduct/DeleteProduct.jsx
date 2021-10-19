@@ -16,6 +16,7 @@ export default function DeleteProduct() {
         setID({
             id: e.target.value
         })
+        console.log(id)
     }
 
     function handleSubmit(e) {
@@ -27,33 +28,26 @@ export default function DeleteProduct() {
             id: ""
         })
     }
-
-    console.log(id)
-
     return (
         <div>
             <NavBar />
-            <h1>Selecciona el auto a eliminar</h1>
-            <hr />
+            <h1>Car delete</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <fieldset>
-                    {/* <legend>Select car to delete</legend> */}
+                    <legend>Select car to delete</legend>
                     <select required onChange={(e) => handleSelect(e)}>
-                        <option disabled selected>Autos</option>
                         {cars?.map((el) => (
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>
                     {id.id && (
-                        <h3><id><b>ID: </b></id>{id.id}</h3>
+                        <p><id><b>ID: </b></id>{id.id}</p>
 
                     )}
-                    <div>
-                        <button type='submit'>Submit</button>
-                        <Link to="/ProductCRUD">
-                            <button >Back</button>
-                        </Link>
-                    </div>
+                    <button type='submit'>Submit</button>
+                    <Link to="/CRUD">
+                        <button >Back</button>
+                    </Link>
                 </fieldset>
             </form>
         </div>

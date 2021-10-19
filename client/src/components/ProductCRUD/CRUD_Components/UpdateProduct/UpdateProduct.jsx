@@ -100,7 +100,7 @@ export default function UpdateProduct() {
         console.log(input)
         e.preventDefault(e);
         dispatch(putProduct(id, input))
-        alert("¡PRODUCTO ACTUALIZADO!")
+        alert("¡PRODUCTO AÑADIDO!")
         setInput({
             brand: "",
             name: "",
@@ -117,7 +117,7 @@ export default function UpdateProduct() {
             features_traction: "",
             features_mileage: "",
             price: "",
-            stock: ""
+            stock:""
         })
     };
 
@@ -132,9 +132,7 @@ export default function UpdateProduct() {
         setID({
             id: e.target.value
         })
-
-        console.log(id, cars)
-
+        console.log(id,cars)
         setInput({
             brand: "",
             name: "",
@@ -187,9 +185,9 @@ export default function UpdateProduct() {
             <NavBar />
             <div className={styleCrudUpdate.General}>
                 <h1>Update car information</h1>
-                <hr />
+                <h3>Select car</h3>
                 <select required onChange={(e) => handleSelectID(e)}>
-                    <option disabled selected>Autos</option>
+                        <option disabled selected>Selecciona un auto</option>
                     {cars?.map((el) => (
                         <option value={el._id}>{el.name}</option>
                     ))}
@@ -441,7 +439,7 @@ export default function UpdateProduct() {
                             <button className={styleCrudUpdate.button3} type='submit'>Publicar</button>
                         )
                     }
-                    <Link to="/ProductCRUD">
+                    <Link to="/CRUD">
                         <button className={styleCrudUpdate.button3}>Back</button>
                     </Link>
 
