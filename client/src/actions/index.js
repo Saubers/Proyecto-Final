@@ -32,10 +32,10 @@ export function getOrderByID(id) {
     }
 }
 
-export function getOrderByUsuario() {
-    const id = '615dc2f5f1a17cca9b833c49'
+export function getOrderByUsuario(payload) {
+    console.log("GET ORDER USUARIO",payload);
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/users/"+id+"/orders");
+        var json = await axios.get("https://pf-car-shop.herokuapp.com/users/"+payload+"/orders");
         return dispatch({
             type: 'GET_ORDERS_BY_USUARIO',
             payload: json.data
@@ -72,6 +72,16 @@ export  function getReview(id) {
         })
     }
 }
+
+// export function getOrderByUser(id) {
+//     return async function (dispatch){
+//         var json = await axios.get ('http://localhost:3002/users/'+id+'/orders');
+//         return dispatch({
+//             type: 'GET_ORDER_USER',
+//             payload:json
+//         })
+//     }
+// }
 export function postProduct(payload) { 
     return async function (dispatch) {
         const json = await axios.post("https://pf-car-shop.herokuapp.com/products", payload);

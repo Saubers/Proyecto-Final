@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
-import {getReview} from '../../actions/index'
+import {getReview, getOrderByUsuario} from '../../actions/index'
 
 
 import Review from '../Review/Review'
@@ -23,14 +23,21 @@ export default function Detail(props) {
     useEffect(() => {
         dispatch(getReview(props.match.params.id))
     }, [dispatch, props.match.params.id])
+
+    
     const userInformacion = localStorage.getItem("userInformacion")
     const user = JSON.parse(userInformacion)
-    console.log('userInfo',user)
+
+    useEffect (()=>{
+            dispatch(getOrderByUsuario(user._id))
+    }, [dispatch,user._id ])
+
+    const idPublication = useSelector ((state) => state.ordersId)
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
-
-
+    const verdadero = idPublication?.find(el => el === MyCar?.id)
+    console.log(verdadero);
     let IdButton = props.match.params.id
 
 
@@ -100,11 +107,13 @@ export default function Detail(props) {
                         </div>
                     </div>
                     <hr />
-                    <div className={styles.review}>
-                        { MyCar && MyCar? <Review
+                    <div className={styles.review}> 
+                    { verdadero ?
+                         MyCar && MyCar? <Review
                         publication={MyCar}
                         ></Review>
                         : <div>error</div> 
+                       : <div> Solo puedes comentar cuando compras el auto</div>
                         }
                     </div>
                 </div>
@@ -115,7 +124,7 @@ export default function Detail(props) {
                         <p>{MyCar?.features.traction} {MyCar?.features.mileage}km</p>
                     </div>
 
-                {
+                { 
                     MyCar?.stock<1?
                     <button className={styles.buttonStock}>Sin Stock</button>
                     :
@@ -124,8 +133,7 @@ export default function Detail(props) {
                     </div>
                         :
                         <button className={styles.button} onClick={() => addToCart(MyCar)} >Comprar</button>
-                        
-                }
+                } 
                     <br />
                     <Link to="/home/catalogo">
                         <button className={styles.buttonback}>Back</button>

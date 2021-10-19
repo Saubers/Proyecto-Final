@@ -9,6 +9,7 @@ const initialState = {
   allcategories: [],
   cart: [],
   orders: [],
+  ordersId: [],
   orderDetail:[],
   review: [],
   
@@ -39,9 +40,11 @@ function rootReducer(state = initialState, action) {
         orders: action.payload,
       };
     case "GET_ORDERS_BY_USUARIO":
+      const ordersId = action.payload.map(element => element.publication[0]._id);
       return {
         ...state,
         orders: action.payload,
+        ordersId : ordersId
       };
     case "LIST_CARD":
       return {
