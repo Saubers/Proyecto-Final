@@ -18,7 +18,6 @@ export default function Catalogo(){
     
 const dispatch = useDispatch()
 const AllProducts = useSelector((state) => state.cars)
-console.log(AllProducts)
 
 useEffect(()=>{
     dispatch(getCars())
