@@ -13,10 +13,9 @@ export default function Cart(props){
     // console.log("ACA",idCar);
     const dispatch = useDispatch()
     const [idAuto, setIdAuto] = useLocalStorage('auto')
-    const userInfo = localStorage.getItem("userInfo");
-    const user = JSON.parse(userInfo)
+    const userInformacion = localStorage.getItem("userInformacion")
+    const user = JSON.parse(userInformacion)
     const history = useHistory();
-    console.log('UserInfo' , userInfo);
     console.log('userInformacion' , user);
 
     const [cart,setCart] = useState({})
@@ -115,7 +114,7 @@ export default function Cart(props){
             state:"En proceso"
         })
         if(input.user && input.publication && input.cantidad && input.price){
-            // dispatch(postMg(input))
+             dispatch(postMg(input))
             console.log(input)
              dispatch(postCart(cart))
             alert('Compra exitosa')

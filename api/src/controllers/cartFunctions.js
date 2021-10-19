@@ -107,10 +107,10 @@ const putCart = async function(req,res){
 }
 
 const deleteCart = async function(req,res){
-    const { id } = req.params.id;
-    console.log(req.params)
+    const  id  = req.params.id;
+    console.log('id',id)
     try {
-        const ProductDB = await Cart.findByIdAndDelete(id)
+        const ProductDB = await Cart.findOneAndRemove({_id : id})
         console.log('ProductDB',ProductDB)
         if(ProductDB !== null){
             res.status(200).json(ProductDB)

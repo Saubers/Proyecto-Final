@@ -179,6 +179,7 @@ export function deleteUser(id) {
     }
 }
 
+
 export const userAdmin =(mail, password) => async (dispatch) => {
     dispatch({ type: 'USER_ADMIN_REQUEST', payload: {mail, password}})
 try {
@@ -255,7 +256,7 @@ export function DeleteCar(id) {
 export function DeleteCartId(id) {
     console.log('id',id)
     return async function (dispatch) {
-        var json = await axios.delete("https://pf-car-shop.herokuapp.com/cart/delete/:id" + id);
+        var json = await axios.delete("http://localhost:3002/cart/delete/" + id);
         return dispatch({
             type: "DELETE_CART_BY_ID",
             payload: json
