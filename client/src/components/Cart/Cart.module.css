@@ -56,6 +56,10 @@
     position: relative;
     top: -7px;
 }
+.vaciocart{
+    display: flex;
+    justify-content: center;
+}
 .btn1:hover{
     background-color: red;
     color: white;
