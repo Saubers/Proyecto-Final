@@ -12,7 +12,7 @@ const getUserData = async (req, res, next) => {
 } 
 
 const createUser = async ( req, res ,next) => {
-    const {fullname, mail ,password, confirm_password, phone, isAdmin} = req.body;
+    const {fullname, mail ,password, confirm_password, phone, state} = req.body;
     const emailUser = await User.findOne({mail: mail});
     const userPhone = await User.findOne({phone: phone});
     if(emailUser) {
@@ -30,7 +30,7 @@ const createUser = async ( req, res ,next) => {
     mail: mail, 
     password: password,
     confirm_password: confirm_password,
-    isAdmin: isAdmin
+    state: state
 })
 user.password = await user.encryptPassword(password);
     await user.save()
@@ -53,7 +53,7 @@ const loginUser = async (req,res,next) => {
             password: user.password,
             mail: user.mail,
             phone: user.phone,
-            isAdmin: user.isAdmin,
+            state: user.state,
             token: generateToken(user._id),
         })
     } else {
@@ -74,7 +74,7 @@ const updateProfile = async (req, res) => {
          _id: updatedUser._id,
          fullname: updatedUser.fullname,
          mail: updatedUser.mail,
-         isAdmin: updatedUser.isAdmin,
+         state: updatedUser.state,
          token: generateToken(updatedUser),
      })
  }

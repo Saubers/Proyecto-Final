@@ -186,7 +186,7 @@ export const userAdmin =(mail, password) => async (dispatch) => {
 try {
     const { data } = await axios.post('http://localhost:3002/login', {mail, password})
     dispatch({ type: 'USER_ISADMIN', payload: data})
-    localStorage.setItem('userAdmin', JSON.stringify(data.isAdmin))
+    localStorage.setItem('userAdmin', JSON.stringify(data.state))
     
     
 } catch (error){
