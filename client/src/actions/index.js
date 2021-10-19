@@ -152,6 +152,7 @@ try {
     dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
     localStorage.setItem('userInfo', JSON.stringify(data.token))
     localStorage.setItem('userInformacion', JSON.stringify(data))
+    localStorage.setItem('userID', data._id)
     
     
 } catch (error){
@@ -166,9 +167,11 @@ try {
 
 
 export function deleteUser(id) {
+    console.log(id)
     return async function (dispatch) {
         try {
-            let json = await axios.delete("https://pf-car-shop.herokuapp.com/delete-user/:id" + id);
+            let json = await axios.put("http://localhost:3002/delete_user", id)
+
             return dispatch({
                 type: "DELETE_USER",
                 payload: json

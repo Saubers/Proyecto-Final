@@ -1,31 +1,21 @@
 import React, { useState } from "react"
 import { Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../../actions";
 
 
 
 export default function UserDelete(){
-const [id, setID] = useState(null)
+    const id = localStorage.getItem('userID')
+ console.log(id)
 const dispatch = useDispatch()  
 
-const lookID = async (e) =>{
-    setID({
-        id: e.target.value
-    })
-}
+
     const handleSubmit = async (e) => {
         e.preventDefault(e);
-        if(lookID){
-        console.log(id)
         dispatch(deleteUser(id))
-        alert("Usuario eliminado")
-        setID({
-            id:""
-        })
-    } else{
-        return "cant find the user"
-    }
+        
+       
     }
     return (
         <div>

@@ -5,6 +5,7 @@ const initialState = {
   engine: [],
   kilometraje: [],
   users: [],
+  userInfo: [],
   allcategories: [],
   cart: [],
   orders: [],

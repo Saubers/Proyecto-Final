@@ -25,10 +25,10 @@ const UserSchema = new Schema(
       type: String,
       
     },
-    state:[{   
+    state:{   
       type:String,
       default: 'user'
-     }],
+     },
     date:{
       type:Date,
       default:Date.now
