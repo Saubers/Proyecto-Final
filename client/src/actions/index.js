@@ -35,7 +35,7 @@ export function getOrderByID(id) {
 export function getOrderByUsuario() {
     const id = '615dc2f5f1a17cca9b833c49'
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/users/"+id+"/orders");
+        var json = await axios.get("https://pf-car-shop.herokuapp.com/users/" + id + "/orders");
         return dispatch({
             type: 'GET_ORDERS_BY_USUARIO',
             payload: json.data
@@ -63,16 +63,16 @@ export function getCarDetail(id) {
     }
 }
 
-export  function getReview(id) {
+export function getReview(id) {
     return async function (dispatch) {
-        var json = await axios.get("http://localhost:3002/product/"+id+"/review");
+        var json = await axios.get("http://localhost:3002/product/" + id + "/review");
         return dispatch({
             type: "GET_REVIEW",
             payload: json.data
         })
     }
 }
-export function postProduct(payload) { 
+export function postProduct(payload) {
     return async function (dispatch) {
         const json = await axios.post("https://pf-car-shop.herokuapp.com/products", payload);
         return dispatch({
@@ -83,7 +83,7 @@ export function postProduct(payload) {
 }
 
 export function putProduct(id, payload) {
-   
+
     return async function (dispatch) {
         const json = await axios.put("https://pf-car-shop.herokuapp.com/productsPut/:id" + id, payload);
         return dispatch({
@@ -93,21 +93,11 @@ export function putProduct(id, payload) {
     }
 }
 
-export function postMg (payload){
-    return async function (dispatch){
+export function postMg(payload) {
+    return async function (dispatch) {
         const json = await axios.post("http://localhost:3002/checkout", payload);
         return dispatch({
             type: 'POST_MG',
-            payload:json
-        })
-    }
-}
-
-export function postCategory(payload) {
-    return async function (dispatch) {
-        const json = await axios.post("https://pf-car-shop.herokuapp.com/categories", payload);
-        return dispatch({
-            type: 'POST_CATEGORY',
             payload: json
         })
     }
@@ -144,23 +134,23 @@ export function userRegister(payload) {
     }
 }
 
-export const signin =(mail, password) => async (dispatch) => {
-    dispatch({ type: USER_SIGNIN_REQUEST, payload: {mail, password}})
-try {
-    const { data } = await axios.post('http://localhost:3002/login', {mail, password})
-    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
-    localStorage.setItem('userInfo', JSON.stringify(data.token))
-    localStorage.setItem('userInformacion', JSON.stringify(data))
-    
-    
-} catch (error){
-    dispatch({
-        type: USER_SIGNIN_FAIL,
-        payload:
-        error.response && error.response.data.message
-        ? error.response.data.message : error.message,
-    })
-}
+export const signin = (mail, password) => async (dispatch) => {
+    dispatch({ type: USER_SIGNIN_REQUEST, payload: { mail, password } })
+    try {
+        const { data } = await axios.post('http://localhost:3002/login', { mail, password })
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data })
+        localStorage.setItem('userInfo', JSON.stringify(data.token))
+        localStorage.setItem('userInformacion', JSON.stringify(data))
+
+
+    } catch (error) {
+        dispatch({
+            type: USER_SIGNIN_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message : error.message,
+        })
+    }
 }
 
 
@@ -196,46 +186,45 @@ try {
         ? error.response.data.message : error.message,
     })
 }
-}
 
- export const getUserData = (userId) => async (dispatch, getState) => {
-     dispatch({type: 'USER_DETAILS_REQUEST', payload: userId});
-     const {
-           userInfo 
-        } = getState();
-     try {
-         const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/user/${userId}`, {
-         headers: { Authorization: `Bearer ${userInfo.token}`}
-         });
-         dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
-     } catch (error) {
-         const message = error.response && error.response.data.message
-         ? error.response.data.message : error.message;
-         dispatch({type: 'USER_DETAILS_FAIL', payload: message})
-     }
- }
-
- export const updateUserProfile = (user) => async (dispatch, getState) => {
-    dispatch({ type: 'USER_UPDATE_PROFILE_REQUEST', payload: user });
+export const getUserData = (userId) => async (dispatch, getState) => {
+    dispatch({ type: 'USER_DETAILS_REQUEST', payload: userId });
     const {
-        userInfo  ,
+        userInfo
     } = getState();
     try {
-      const { data } = await axios.put(`https://pf-car-shop.herokuapp.com/user/profile`, user, {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      });
-      console.log(data)
-      dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
-      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-      localStorage.setItem('userDetails', JSON.stringify(data));
+        const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/user/${userId}`, {
+            headers: { Authorization: `Bearer ${userInfo.token}` }
+        });
+        dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
     } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({ type: 'USER_UPDATE_PROFILE_FAIL', payload: message });
+        const message = error.response && error.response.data.message
+            ? error.response.data.message : error.message;
+        dispatch({ type: 'USER_DETAILS_FAIL', payload: message })
     }
-  };
+}
+
+export const updateUserProfile = (user) => async (dispatch, getState) => {
+    dispatch({ type: 'USER_UPDATE_PROFILE_REQUEST', payload: user });
+    const {
+        userInfo,
+    } = getState();
+    try {
+        const { data } = await axios.put(`https://pf-car-shop.herokuapp.com/user/profile`, user, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        console.log(data)
+        dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        localStorage.setItem('userDetails', JSON.stringify(data));
+    } catch (error) {
+        const message =
+            error.response && error.response.data.message
+                ? error.response.data.message
+                : error.message;
+        dispatch({ type: 'USER_UPDATE_PROFILE_FAIL', payload: message });
+    }
+};
 
 
 export function DeleteCar(id) {
@@ -246,7 +235,7 @@ export function DeleteCar(id) {
                 type: "DELETE_CAR",
                 payload: json
             })
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -254,7 +243,7 @@ export function DeleteCar(id) {
 }
 
 export function DeleteCartId(id) {
-    console.log('id',id)
+    console.log('id', id)
     return async function (dispatch) {
         var json = await axios.delete("http://localhost:3002/cart/delete/" + id);
         return dispatch({
@@ -347,6 +336,16 @@ export function getBrandCars(name) {
 
 }
 
+/* export function getCategories() {
+    return async function (dispatch) {
+        var json = await axios.get("https://pf-car-shop.herokuapp.com/categories");
+        return dispatch({
+            type: 'GET_CATEGORIES',
+            payload: json.data
+        })
+    }
+} */
+
 export function getCategories() {
     return async function (dispatch) {
         try {
@@ -360,4 +359,40 @@ export function getCategories() {
         }
     };
 
+}
+
+export function postCategory(payload) {
+    return async function (dispatch) {
+        const json = await axios.post("https://pf-car-shop.herokuapp.com/categories", payload);
+        return dispatch({
+            type: 'POST_CATEGORY',
+            payload: json
+        })
+    }
+}
+
+export function deleteCategory(id) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.delete("https://pf-car-shop.herokuapp.com/categoriesDelete/:id" + id);
+            return dispatch({
+                type: "DELETE_CATEGORY",
+                payload: json
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function updateCategory(id, payload) {
+
+    return async function (dispatch) {
+        const json = await axios.put("https://pf-car-shop.herokuapp.com/categories" + id, payload);
+        return dispatch({
+            type: 'UPDATE_CATEGORY',
+            payload: json
+        })
+    }
 }

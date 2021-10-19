@@ -98,6 +98,7 @@ export default function Detail(props) {
                         </div>
                     </div>
                     <h3>Detalles del auto</h3>
+                    
                     <div>
                         <div>
                             <p>Año</p>
