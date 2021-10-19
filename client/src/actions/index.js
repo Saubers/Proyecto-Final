@@ -95,7 +95,8 @@ export function putProduct(id, payload) {
 
 export function postMg (payload){
     return async function (dispatch){
-        const json = await axios.post("http://localhost:3002/checkout", payload);
+        const json = await axios.post("https://pf-car-shop.herokuapp.com/checkout", payload);
+        console.log('el json de postmg en action',json)
         return dispatch({
             type: 'POST_MG',
             payload:json
