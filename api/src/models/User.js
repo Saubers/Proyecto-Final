@@ -25,10 +25,10 @@ const UserSchema = new Schema(
       type: String,
       
     },
-    isAdmin:{   
-      type:Boolean,
-      default: false
-    },
+    state:[{   
+      type:String,
+      default: 'user'
+     }],
     date:{
       type:Date,
       default:Date.now
