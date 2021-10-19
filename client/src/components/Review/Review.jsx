@@ -1,5 +1,6 @@
 import {useDispatch, useSelector } from "react-redux";
 import {getReview, postReview} from '../../actions/index'
+import IconUser from '../image/userre.png';
 import { useEffect, useState } from "react";
 import style from './Review.module.css'
 const Review = (props) =>{
@@ -12,6 +13,7 @@ const Review = (props) =>{
     }, [dispatch, props.publication.id])
     const userInformacion = localStorage.getItem("userInformacion");
     const review = useSelector((state) => state.review)
+    const data = useSelector((state)=> state.carDetail)
     const usuario = JSON.parse(userInformacion)
     const [comentario, setComentario] = useState({
             user: usuario._id,
@@ -85,27 +87,32 @@ const Review = (props) =>{
     return(
         <div className={style.divall}>
             <div>
-
+                <h4>Opiniones sobre {data.brand} {data.name}</h4>
                 {
-                    average && average ? <div>
-                    <h2> Promedio de calificaciones  {average}</h2>      
+                    average && average ? <div className={style.divestre}>
+                    <h2 className={style.title}>{average}★</h2><p>Promedio entre {review.length} opiniones</p>
                     </div>
                 : <p>Pulicacion sin comentario</p>
             } 
             </div>
+            <hr />
            <div className={style.containerproduct}>
             {   
                 review && review.map(el=>(
                     <div className={style.divcart}>
-                    <h5 className ={style.title}>{el.user?.fullname}</h5>
-                    <h5>{el.title}</h5>
-                    <h7>Calificacion : {el.calification}★</h7>
+                    <h5 className={style.title}>{el.calification}★</h5>
+                    <div>
+                        <img src={IconUser}/>
+                        {el.user && el.user ? <h7 >{el.user?.fullname}</h7> : <h7 >Anonimo</h7>} <br />
+                    </div>
+                    <strong>{el.title}</strong>
                     <h6>{el.description}</h6>
+                    <hr />
                     </div>
              ))
             }
            </div>
-           <hr />
+
            <div className={style.containerproduct}>
            <label>Calificar</label>
            <form className={style.formstyle}>
@@ -123,7 +130,7 @@ const Review = (props) =>{
             </p>
             </form>
             <div className={style.divReview}>
-                <label>Titulo :</label>
+                <label>Titulo</label>
                 <input type= "text" value={comentario.title} onChange={(e) => handleTitle(e)}></input>
                 <label>Comentario</label>
                 <textarea type="text" value={comentario.description} onChange={(e) => handleComentario(e)} ></textarea>
