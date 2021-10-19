@@ -3,7 +3,7 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
-const { createUser, loginUser, logout, getUserData, updateProfile } = require('../controllers/userFunction');
+const { createUser, loginUser, logout, getUserData, updateProfile, deleteUser } = require('../controllers/userFunction');
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
 const mercadopago = require ('mercadopago');
 
@@ -56,6 +56,8 @@ module.exports = app => {
     router.get("/user/:id", getUserData)
 
      router.put('/profile', updateProfile)
+
+    router.delete('/delete-user/:id', deleteUser)
 
     // router.put('/new-password')
  

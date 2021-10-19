@@ -124,6 +124,16 @@ export function postCart(payload) {
     }
 }
 
+export function postReview(payload ){
+    return async function (dispatch){
+        const json = await axios.post("http://localhost:3002/product/"+payload.id+"/review", payload)
+        return dispatch({
+            type: 'POST_REVIEW',
+            payload:json
+        })
+    }
+}
+
 export function userRegister(payload) {
     return async function (dispatch) {
         const json = await axios.post('https://pf-car-shop.herokuapp.com/register', payload);
@@ -151,6 +161,22 @@ try {
         ? error.response.data.message : error.message,
     })
 }
+}
+
+
+export function deleteUser(id) {
+    return async function (dispatch) {
+        try {
+            let json = await axios.delete("https://pf-car-shop.herokuapp.com/delete-user/:id" + id);
+            return dispatch({
+                type: "DELETE_CAR",
+                payload: json
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 export const userAdmin =(mail, password) => async (dispatch) => {

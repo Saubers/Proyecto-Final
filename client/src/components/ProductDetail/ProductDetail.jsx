@@ -7,8 +7,8 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
-import { getReview } from '../../actions/index'
-
+import {getReview} from '../../actions/index'
+ 
 import Review from '../Review/Review'
 
 export default function Detail(props) {
@@ -40,6 +40,7 @@ export default function Detail(props) {
         setIsButton([...Isbotton, MyCar.id])
     }
     const found = Isbotton.find(element => element === IdButton)
+    console.log('Fopund ', found)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>
@@ -52,7 +53,7 @@ export default function Detail(props) {
 
                     {MyCar?.category ? <h3>{MyCar?.category.name}</h3> : null} */}
                     <div className='car_detail_carousel'>
-                        <Component_Carousel photos={MyCar?.img} width="90%" />
+                        <Component_Carousel photos={MyCar?.img} width="90%"/>
                     </div>
                     <h3 className={styles.title}>Estados del auto</h3>
                     <div>
@@ -76,7 +77,6 @@ export default function Detail(props) {
                         <div>
                             <p>Año</p>
                             <h1>{MyCar?.price}</h1>
-                            <h2>{MyCar?.stock}</h2>
                         </div>
                     </div>
                 </div>
@@ -87,13 +87,17 @@ export default function Detail(props) {
                         <p>{MyCar?.features.traction} {MyCar?.features.mileage}km</p>
                     </div>
 
-                    {
-                        found === IdButton ? <div>
-                            Orden agregada al <Link to="/home/compra">carrito</Link>
-                        </div>
-                            :
-                            <button className={styles.button} onClick={() => addToCart(MyCar.id)} >Comprar</button>
-                    }
+                {
+                    MyCar?.stock<1?
+                    <button className={styles.buttonStock}>Sin Stock</button>
+                    :
+                    found === IdButton ? <div>
+                        Orden agregada al <Link to="/home/compra">carrito</Link>
+                    </div>
+                        :
+                        <button className={styles.button} onClick={() => addToCart(MyCar.id)} >Comprar</button>
+                        
+                }
                     <br />
                     <Link to="/home/catalogo">
                         <button className={styles.buttonback}>Back</button>
@@ -101,12 +105,12 @@ export default function Detail(props) {
                 </div>
                 <div className={styles.review}>
 
-                    {MyCar && MyCar ? <Review
-                        publication={MyCar}
-                    ></Review>
-                        : <div>error</div>
-                    }
-                </div>
+                { MyCar && MyCar? <Review
+                publication={MyCar}
+                ></Review>
+                : <div>error</div> 
+                }
+            </div>
 
             </div>
         </div>
