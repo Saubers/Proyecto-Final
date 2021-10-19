@@ -5,6 +5,7 @@ import { getUserData, updateUserProfile } from '../../actions';
 import Loading from '../Auth/login/Loading';
 import ErrorMessage from '../Auth/login/ErrorMessage';
 import { Button } from 'react-bootstrap';
+import UserDelete from './ProfileDelete';
 
 export default function Profile() {
     const [fullname, setFullname] = useState("")
@@ -72,34 +73,19 @@ export default function Profile() {
               <ErrorMessage variant="danger">{error}</ErrorMessage>
             )}
             <div>
-              <label htmlFor="name">Fullname</label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Enter name"
-                value={fullname}
-                onChange={(e) => setFullname(e.target.value)}
-              ></input>
+              <h6>
+                {userData?.fullname}
+              </h6>
             </div>
             <div>
-              <label htmlFor="email">Mail</label>
-              <input
-                id="email"
-                type="email"
-                placeholder="Enter email"
-                value={mail}
-                onChange={(e) => setMail(e.target.value)}
-              ></input>
+            <h6>
+                {userData?.mail}
+              </h6>
             </div>
             <div>
-              <label htmlFor="name">Phone</label>
-              <input
-                id="phone"
-                type="text"
-                placeholder="Enter your phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              ></input>
+            <h6>
+                {userData?.phone}
+              </h6>
             </div>
             <div>
               <label htmlFor="password">Password</label>
@@ -121,6 +107,7 @@ export default function Profile() {
             </div>
             <div>
               <label />
+              <UserDelete />
               <Button className="primary" type="submit">
                 Update
               </Button>
