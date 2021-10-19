@@ -92,6 +92,11 @@ export default function Cart(props){
     function handleDeleteCar(car){
         let Delete = idAuto.filter(element => element !== car)
         setIdAuto(Delete)
+        if (idAuto?.length === 1) {
+        borrarItem('auto')
+        borrarItem('button')
+        setAmount([])
+        }
         window.location.reload()
     }
 
