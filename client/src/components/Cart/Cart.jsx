@@ -17,7 +17,6 @@ export default function Cart(props){
     const userInformacion = localStorage.getItem("userInformacion")
     const user = JSON.parse(userInformacion)
     const history = useHistory();
-    console.log('userInformacion' , user);
     const [cart,setCart] = useState({})
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
@@ -66,7 +65,6 @@ export default function Cart(props){
     function handleClickSumar(car){
         sumarCar(car)
         sumatotal()
-        // console.log('suma',amount)
     }
     function handleClickRestark(e){
         let numeroresta = 0
@@ -83,7 +81,6 @@ export default function Cart(props){
         }
         else if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
-            // console.log('resta',filter)
             setAmount(filter)
             setPrice(0)
         }
@@ -97,7 +94,7 @@ export default function Cart(props){
         setIdAuto(Delete)
         window.location.reload()
     }
-    console.log('userid',user?._id)
+
     function handlePost(ev){
         ev.preventDefault()
         setCart({
@@ -116,7 +113,6 @@ export default function Cart(props){
         })
         if(input.user && input.publication && input.cantidad && input.price){
              dispatch(postMg(input))
-            console.log(input)
              dispatch(postCart(cart))
             alert('Compra exitosa')
             // history.push('/checkout')
@@ -124,7 +120,6 @@ export default function Cart(props){
         }
         else{
             alert('Vuelva a tocar el boton para confirmar')
-            console.log('INPUT', input);
         }
         
     }
