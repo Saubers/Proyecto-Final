@@ -73,10 +73,12 @@ const OrdenesByUsuario= async function (req,res) {
 
 
 const cartOrderId = async function(req,res) {
+    
     try {
-        const {idOrder} = req.params;
+        const id = req.params.id;
+        console.log(id)
         try {
-            let Ordenes = await Cart.find({_id: idOrder}).populate('publication').populate('user')
+            let Ordenes = await Cart.find({_id: id}).populate('publication').populate('user')
             res.status(200).send(Ordenes)
             
         } catch (error) {

@@ -18,7 +18,11 @@ const CartSchema = new Schema(
         } ,
         state :{
             type : String,
-        }
+        },
+        date:{
+            type:Date,
+            default:Date.now
+          }
     }
 )
 

@@ -22,6 +22,15 @@ export function getOrder() {
     }
 }
 
+export function getOrderByID(id) {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/orders/" + id);
+        return dispatch({
+            type: 'GET_ORDERS_BY_ID',
+            payload: json.data
+        })
+    }
+}
 
 export function getOrderByUsuario() {
     const id = '615dc2f5f1a17cca9b833c49'
@@ -105,8 +114,9 @@ export function postCategory(payload) {
 }
 
 export function postCart(payload) {
+    console.log(payload)
     return async function (dispatch) {
-        const json = await axios.post("https://pf-car-shop.herokuapp.com/users/"+payload.user+"/cart", payload);
+        const json = await axios.post("http://localhost:3002/users/"+payload.user+"/cart", payload);
         return dispatch({
             type: 'POST_CART',
             payload: json
@@ -226,6 +236,8 @@ export function DeleteCartId(id) {
         })
     }
 }
+
+
 
 
 export function filterEngine(payload) {
