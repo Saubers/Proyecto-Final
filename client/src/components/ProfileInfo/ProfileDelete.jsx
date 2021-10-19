@@ -1,18 +1,19 @@
 import React, { useState } from "react"
 import { Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../../actions";
 
 
 
 export default function UserDelete(){
-const [id, setID] = useState(null)
+    const id = localStorage.getItem('userID')
+ console.log(id)
 const dispatch = useDispatch()  
 
 
     const handleSubmit = async (e) => {
         e.preventDefault(e);
-        dispatch(deleteUser)
+        dispatch(deleteUser(id))
         
        
     }

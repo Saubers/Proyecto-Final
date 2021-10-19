@@ -57,7 +57,7 @@ module.exports = app => {
 
      router.put('/profile', updateProfile)
 
-    router.delete('/delete-user/:id', deleteUser)
+    router.delete('/delete-user', deleteUser)
 
     router.put('/delete_user', changeStateToInactive)
 
