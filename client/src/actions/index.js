@@ -4,7 +4,7 @@ import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from './us
 //Traemos al payload todos los autos
 export function getCars() {
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/products");
+        var json = await axios.get("http://localhost:3002/products");
         return dispatch({
             type: 'GET_CARS',
             payload: json.data
@@ -14,7 +14,7 @@ export function getCars() {
 
 export function getOrder() {
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/orders");
+        var json = await axios.get("http://localhost:3002/orders");
         return dispatch({
             type: 'GET_ORDERS',
             payload: json.data
@@ -35,7 +35,7 @@ export function getOrderByID(id) {
 export function getOrderByUsuario() {
     const id = '615dc2f5f1a17cca9b833c49'
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/users/"+id+"/orders");
+        var json = await axios.get("http://localhost:3002/users/"+id+"/orders");
         return dispatch({
             type: 'GET_ORDERS_BY_USUARIO',
             payload: json.data
@@ -45,7 +45,7 @@ export function getOrderByUsuario() {
 
 export function getEngine() {
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/products");
+        var json = await axios.get("http://localhost:3002/products");
         return dispatch({
             type: 'GET_ENGINE',
             payload: json.data.map(el => el.features.engine)
@@ -55,7 +55,7 @@ export function getEngine() {
 
 export function getCarDetail(id) {
     return async function (dispatch) {
-        var json = await axios.get("https://pf-car-shop.herokuapp.com/products/" + id);
+        var json = await axios.get("http://localhost:3002/products/" + id);
         return dispatch({
             type: "GET_CAR_DETAIL",
             payload: json.data
@@ -74,7 +74,7 @@ export  function getReview(id) {
 }
 export function postProduct(payload) { 
     return async function (dispatch) {
-        const json = await axios.post("https://pf-car-shop.herokuapp.com/products", payload);
+        const json = await axios.post("http://localhost:3002/products", payload);
         return dispatch({
             type: 'POST_PRODUCT',
             payload: json
@@ -85,7 +85,7 @@ export function postProduct(payload) {
 export function putProduct(id, payload) {
    
     return async function (dispatch) {
-        const json = await axios.put("https://pf-car-shop.herokuapp.com/productsPut/:id" + id, payload);
+        const json = await axios.put("http://localhost:3002/productsPut/:id" + id, payload);
         return dispatch({
             type: 'PUT_PRODUCT',
             payload: json
@@ -95,7 +95,7 @@ export function putProduct(id, payload) {
 
 export function postMg (payload){
     return async function (dispatch){
-        const json = await axios.post("https://pf-car-shop.herokuapp.com/checkout", payload);
+        const json = await axios.post("http://localhost:3002/checkout", payload);
         {json && json? console.log('el json de postmg en action',json) : console.log('no hay json')}
         return dispatch({
             type: 'POST_MG',
@@ -106,7 +106,7 @@ export function postMg (payload){
 
 export function postCategory(payload) {
     return async function (dispatch) {
-        const json = await axios.post("https://pf-car-shop.herokuapp.com/categories", payload);
+        const json = await axios.post("http://localhost:3002/categories", payload);
         return dispatch({
             type: 'POST_CATEGORY',
             payload: json
@@ -137,7 +137,7 @@ export function postReview(payload ){
 
 export function userRegister(payload) {
     return async function (dispatch) {
-        const json = await axios.post('https://pf-car-shop.herokuapp.com/register', payload);
+        const json = await axios.post('http://localhost:3002/register', payload);
         return dispatch({
             type: 'USER_REGISTER',
             payload: json
@@ -208,7 +208,7 @@ try {
            userInfo 
         } = getState();
      try {
-         const { data } = await axios.get(`https://pf-car-shop.herokuapp.com/user/${userId}`, {
+         const { data } = await axios.get(`http://localhost:3002/user/${userId}`, {
          headers: { Authorization: `Bearer ${userInfo.token}`}
          });
          dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
@@ -225,7 +225,7 @@ try {
         userInfo  ,
     } = getState();
     try {
-      const { data } = await axios.put(`https://pf-car-shop.herokuapp.com/user/profile`, user, {
+      const { data } = await axios.put(`http://localhost:3002/user/profile`, user, {
         headers: { Authorization: `Bearer ${userInfo.token}` },
       });
       console.log(data)
@@ -245,7 +245,7 @@ try {
 export function DeleteCar(id) {
     return async function (dispatch) {
         try {
-            var json = await axios.delete("https://pf-car-shop.herokuapp.com/productsDelete/:id" + id);
+            var json = await axios.delete("http://localhost:3002/productsDelete/:id" + id);
             return dispatch({
                 type: "DELETE_CAR",
                 payload: json
@@ -322,7 +322,7 @@ export function getNameCars(name) {
     console.log('action', name)
     return async function (dispatch) {
         try {
-            var json = await axios.get("https://pf-car-shop.herokuapp.com/searchCars?name=" + name);
+            var json = await axios.get("http://localhost:3002/searchCars?name=" + name);
             return dispatch({
                 type: "GET_NAME_CARS",
                 payload: json.data
@@ -337,7 +337,7 @@ export function getNameCars(name) {
 export function getBrandCars(name) {
     return async function (dispatch) {
         try {
-            var json = await axios.get("https://pf-car-shop.herokuapp.com/searchbrand?brand=" + name, {
+            var json = await axios.get("http://localhost:3002/searchbrand?brand=" + name, {
 
             });
             return dispatch({
@@ -354,7 +354,7 @@ export function getBrandCars(name) {
 export function getCategories() {
     return async function (dispatch) {
         try {
-            var json = await axios.get("https://pf-car-shop.herokuapp.com/categories");
+            var json = await axios.get("http://localhost:3002/categories");
             return dispatch({
                 type: "GET_CATEGORIES",
                 payload: json.data
