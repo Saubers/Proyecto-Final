@@ -25,7 +25,6 @@ export default function Profile() {
    dispatch(updateUserProfile())
    const userData = useSelector((state) => state.userInfo)
    const userUpdate = useSelector((state) => state.usersUpdate)
-   console.log(userData)
   
    
     useEffect(() => {

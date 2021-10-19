@@ -146,8 +146,8 @@ export default function Cart(props){
                 <div className={stylecart.divall}>
                     <div className={stylecart.divcart}>
                     {idAuto === undefined ? 
-                    <div>
-                        <h1>CARRITO VACIO </h1>
+                    <div className={stylecart.vaciocart}>
+                        <img src="https://pedidos.mostazagreenburger.com/static/images/cart/empty_cart.png"/>
                     </div>
                     : idAuto.map(el => {
                     return(
