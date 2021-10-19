@@ -15,8 +15,8 @@ export default function OrderCar(props) {
 
     function handleDelete(el) {
         dispatch(DeleteCartId(el._id))
-        //window.location.reload()
-        //alert('Orden eliminada con exito')
+        window.location.reload()
+        alert('Orden eliminada con exito')
     }
     return(
         <div className={style.body}>
@@ -34,6 +34,7 @@ export default function OrderCar(props) {
                     <Link to={'/home/ADMIN/orders/' + el._id}>
                         <button>Detalle</button>
                     </Link>
+                    <button onClick={()=>handleDelete(el)}>Eliminar Ticket</button>
                     </tr>
                     </table>
                     {/* <button onClick={()=>handleDelete(el)}>Eliminar ticket</button> */}

@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import styles from '../ProductDetail/ProductDetail.module.css'
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCarDetail } from "../../actions/index";
+import { getCarDetail,postCart } from "../../actions/index";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
 import {getReview} from '../../actions/index'
- 
+
 import Review from '../Review/Review'
 
 export default function Detail(props) {
@@ -22,6 +22,9 @@ export default function Detail(props) {
     useEffect(() => {
         dispatch(getReview(props.match.params.id))
     }, [dispatch, props.match.params.id])
+    const userInformacion = localStorage.getItem("userInformacion")
+    const user = JSON.parse(userInformacion)
+    console.log('userInfo',user)
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
@@ -30,14 +33,36 @@ export default function Detail(props) {
     let IdButton = props.match.params.id
 
 
+    const [carrito, setCarrito] = useState({
+        user:user._id,
+        publication: props.match.params.id,
+        cantidad : 1,
+        price:  0,
+        state:"Carrito"
+    })
+
     const [idAuto, setIdAuto] = useLocalStorage('auto', [])
 
 
     const [Isbotton, setIsButton] = useLocalStorage('button', [])
 
+    
     async function addToCart() {
         setIdAuto([...idAuto, MyCar])
         setIsButton([...Isbotton, MyCar.id])
+        console.log('isbotton',Isbotton)
+        console.log('carrito',carrito)
+        setCarrito({
+            user:user._id,
+            publication: props.match.params.id,
+            cantidad : 1,
+            price:  MyCar.id,
+            state:"Carrito" 
+        })
+        if(carrito.user && carrito.publication){
+         //   dispatch(postCart(carrito))
+           // alert('Agregado al carrito')
+        }
     }
     const found = Isbotton.find(element => element === IdButton)
     console.log('Fopund ', found)
@@ -95,7 +120,7 @@ export default function Detail(props) {
                         Orden agregada al <Link to="/home/compra">carrito</Link>
                     </div>
                         :
-                        <button className={styles.button} onClick={() => addToCart(MyCar.id)} >Comprar</button>
+                        <button className={styles.button} onClick={() => addToCart(MyCar)} >Comprar</button>
                         
                 }
                     <br />
