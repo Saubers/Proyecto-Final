@@ -14,9 +14,12 @@ export default function Cart(props){
     const dispatch = useDispatch()
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const userInfo = localStorage.getItem("userInfo");
+    const user = JSON.parse(userInfo)
     const history = useHistory();
-    console.log('ACA' , userInfo);
-    
+    console.log('UserInfo' , userInfo);
+    console.log('userInformacion' , user);
+
+    const [cart,setCart] = useState({})
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({})
@@ -94,20 +97,27 @@ export default function Cart(props){
         setIdAuto(Delete)
         window.location.reload()
     }
-
-    const user = "615dc2f5f1a17cca9b833c49"
+    console.log('userid',user._id)
     function handlePost(ev){
         ev.preventDefault()
+        setCart({
+            user:user._id,
+            publication: amount.map(el => el.id),
+            cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
+            price: price,
+            state:"En proceso"
+        })
         setInput({
-            user:user,
+            user:user._id,
             publication: amount.map(el => el.id ),
             cantidad : amount.map(el => el.cantidad),
             price: price,
             state:"En proceso"
         })
         if(input.user && input.publication && input.cantidad && input.price){
-             dispatch(postMg(input))
-             dispatch(postCart(input))
+            // dispatch(postMg(input))
+            console.log(input)
+             dispatch(postCart(cart))
             alert('Compra exitosa')
             // history.push('/checkout')
             // handleDelete()
@@ -173,6 +183,7 @@ export default function Cart(props){
             </div>
                 <div className={stylecart.divticket}>
                     <h3>TICKET</h3>
+                                        
                     <div className={stylecart.divdata}>
                         {
                             amount && amount.map(item=>{
@@ -195,6 +206,13 @@ export default function Cart(props){
                         <h4>Total:{price}</h4>
                         </div>
                         <div>
+                    <div>
+                    <tr className={stylecart.trdiv}>
+                    <ul className={stylecart.listy}>User:{user.fullname}</ul>
+                    <ul className={stylecart.listy}>Mail:{user.mail} </ul>
+
+                    </tr>
+                    </div>
                         {
                             idAuto?
                         <Link to = '/checkout'>

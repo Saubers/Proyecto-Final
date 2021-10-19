@@ -16,6 +16,7 @@ import OrderCar from './components/OrderCars/OrderCar';
 import { useHistory } from 'react-router';
 import Profile from './components/ProfileInfo/Profile';
 import Pagos from './components/pagos/pagos'
+import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 
 function App() {
   const history = useHistory()
@@ -40,6 +41,7 @@ const isAdmin = localStorage.getItem('userAdmin')
 {local && (<Route exact path='/user/profile' component={Profile} />)}
 {    ( <Route exact path='/home/compra' component={Cart} />)}
         <Route exact path='/home/ADMIN/orders' component={OrderCar}/>
+        <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail}/>
         <Route exact path="/contactos" component={Contact} />
         <Route path="/pagos" component={Pagos} />
       </Switch>
