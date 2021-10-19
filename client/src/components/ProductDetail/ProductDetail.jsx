@@ -9,6 +9,7 @@ import Component_Carousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
 import {getReview} from '../../actions/index'
 
+
 import Review from '../Review/Review'
 
 export default function Detail(props) {
@@ -80,6 +81,7 @@ export default function Detail(props) {
                     <div className='car_detail_carousel'>
                         <Component_Carousel photos={MyCar?.img} width="90%"/>
                     </div>
+                    <hr />
                     <h3 className={styles.title}>Estados del auto</h3>
                     <div>
                         <div>
@@ -95,13 +97,6 @@ export default function Detail(props) {
                                 <p>Calidad mecánica garantizada:</p>
                                 <p>Cada vehículo pasa por una inspección de más de 280 puntos para que <br /> puedas estar 100% seguro de la calidad y seguridad de tu vehículo.</p>
                             </div>
-                        </div>
-                    </div>
-                    <h3>Detalles del auto</h3>
-                    <div>
-                        <div>
-                            <p>Año</p>
-                            <h1>{MyCar?.price}</h1>
                         </div>
                     </div>
                     <hr />
@@ -137,6 +132,7 @@ export default function Detail(props) {
                     </Link>
                 </div>
             </div>
+
         </div>
     )
 }
