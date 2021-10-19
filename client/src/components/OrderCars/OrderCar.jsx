@@ -4,7 +4,7 @@ import {getOrder, getOrderByUsuario,DeleteCartId } from "../../actions";
 import {Link} from "react-router-dom";
 import style from '../OrderCars/OrderCar.module.css'
 import NavBar from '../NavBar/NavBar'
-
+import OrderDetail from './OrderDetail/OrderDetail.jsx'
 export default function OrderCar(props) {
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -24,12 +24,16 @@ export default function OrderCar(props) {
             <div>Todas las ordenes</div>
             {OrderUser && OrderUser.map(el=>{
                 return(
-                <div key={el._id} className={style.ticket}>
+                <div className={style.ticket}>
                     <table>
                     <tr>
+                    <th>id odrder : {el._id}</th>
                     <th>{el.cantidad + ''}</th >
                     <th className={style.total}>{el.price}</th>
                     <th>{el.state}</th>
+                    <Link to={'/home/ADMIN/orders/' + el._id}>
+                        <button>Detalle</button>
+                    </Link>
                     </tr>
                     </table>
                     {/* <button onClick={()=>handleDelete(el)}>Eliminar ticket</button> */}
