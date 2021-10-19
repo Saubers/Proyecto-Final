@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { postCategory } from '../../actions/index'
+import { updateCategory, getCategories } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../NavBar/NavBar";
 
-function CategoryCreate() {
+function CategoryUpdate() {
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCategories());
+    }, [dispatch])
+
+    const [id, setID] = useState("");
+
+    const categories = useSelector(state => state.allCategories);
 
     const [input, setInput] = useState({
         name: "",
@@ -15,13 +23,13 @@ function CategoryCreate() {
 
     function HandleSubmit(e) {
         e.preventDefault(e);
-        dispatch(postCategory(input))
-        alert("CATEGORIA AÑADIDA")
+        dispatch(updateCategory(input))
+        alert("CATEGORIA ACTUALIZADA")
         setInput({
             name: "",
             description: ""
         })
-    }
+    };
 
     function handleChange(e) {
         setInput({
@@ -30,15 +38,37 @@ function CategoryCreate() {
         })
     };
 
+    function handleSelectID(e) {
+        setID({
+            id: e.target.value
+        })
+        setInput({
+            name: "",
+            description: ""
+        })
+    }
+
+    const selectedCategory= categories?.find((el)=> el._id === id);
+
+    console.log(categories, id, selectedCategory)
+
     return (
         <div>
             <NavBar />
             <div>
-                <h1>Enter the new category information</h1>
+                <h1>Edita una categoria</h1>
+                <hr />
+                <select required onChange={(e) => handleSelectID(e)}>
+                    <option disabled selected>Categorias</option>
+                    {categories?.map((el) => (
+                        <option value={el._id}>{el.name}</option>
+                    ))}
+                </select>
             </div>
             <form onSubmit={(e) => HandleSubmit(e)}>
                 <fieldset>
-                    <legend>Categoria</legend>
+                    {/* <legend>Categoria</legend> */}
+                    <hr />
                     <div>
                         <label>Nombre:</label>
                         <input name="name"
@@ -59,7 +89,7 @@ function CategoryCreate() {
                             required />
                     </div>
                 </fieldset>
-                <Link to="/CRUD">
+                <Link to="/CategoryCRUD">
                     <button>Volver</button>
                 </Link>
                 <button type='submit'>Crear</button>
@@ -68,4 +98,4 @@ function CategoryCreate() {
     )
 }
 
-export default CategoryCreate;
+export default CategoryUpdate;

@@ -5,7 +5,7 @@ const initialState = {
   engine: [],
   kilometraje: [],
   users: [],
-  allcategories: [],
+  allCategories: [],
   cart: [],
   orders: [],
   review: [],
@@ -79,19 +79,19 @@ function rootReducer(state = initialState, action) {
 
       };
     case "USER_DETAILS_REQUEST":
-      return { 
-        loading: true 
+      return {
+        loading: true
       };
     case "USER_DETAILS_SUCCESS":
-      return { 
+      return {
         loading: false, usersUpdate: action.payload
-       };
+      };
     case "USER_DETAILS_FAIL":
-      return { 
+      return {
         loading: false, error: action.payload
-       };
+      };
     case 'USER_UPDATE_PROFILE_RESET':
-      return {};  
+      return {};
     case "POST_PRODUCT":
       return {
         ...state,
@@ -100,11 +100,32 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "POST_CART":
+      return {
+        ...state,
+      };
+    case "GET_CATEGORIES":
+      return {
+        ...state,
+        allCategories: action.payload,
+      };
     case "POST_CATEGORY":
       return {
         ...state,
       };
-    case "POST_CART":
+    case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+    case "DELETE_CATEGORY":
+      return {
+        ...state,
+      };
+    case "DELETE_CAR":
+      return {
+        ...state,
+      };
+    case "DELETE_CART_BY_ID":
       return {
         ...state,
       };
@@ -195,23 +216,23 @@ function rootReducer(state = initialState, action) {
       let money =
         action.payload === "max"
           ? state.cars.sort((a, b) => {
-              if (a.price > b.price) {
-                return -1;
-              }
-              if (a.price < b.price) {
-                return 1;
-              }
-              return 0;
-            })
+            if (a.price > b.price) {
+              return -1;
+            }
+            if (a.price < b.price) {
+              return 1;
+            }
+            return 0;
+          })
           : state.cars.sort((a, b) => {
-              if (a.price > b.price) {
-                return 1;
-              }
-              if (a.price < b.price) {
-                return -1;
-              }
-              return 0;
-            });
+            if (a.price > b.price) {
+              return 1;
+            }
+            if (a.price < b.price) {
+              return -1;
+            }
+            return 0;
+          });
       return {
         ...state,
         cars: money,
@@ -303,19 +324,6 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         cars: modelFilter,
-      };
-    case "GET_CATEGORIES":
-      return {
-        ...state,
-        allcategories: action.payload,
-      };
-    case "DELETE_CAR":
-      return {
-        ...state,
-      };
-    case "DELETE_CART_BY_ID":
-      return {
-        ...state,
       };
     default:
       return state;

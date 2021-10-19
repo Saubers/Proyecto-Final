@@ -393,7 +393,7 @@ export default function CreateProduct() {
                             <button className={styleCrudPost.button3} type='submit'>Publicar</button>
                         )
                     }
-                    <Link to="/CRUD">
+                    <Link to="/ProductCRUD">
                         <button className={styleCrudPost.button3}>Back</button>
                     </Link>
 
