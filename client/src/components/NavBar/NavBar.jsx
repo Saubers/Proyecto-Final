@@ -30,11 +30,11 @@ const isAdmin = localStorage.getItem('userAdmin')
   <li><a className={styleNav.logout} 
   onClick={() => localStorage.removeItem('userAdmin') + localStorage.removeItem('userInfo')} href='/'>Logout</a></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
-  {isAdmin?.toString() === 'true' && (
+  {isAdmin === '"admin"' ? (
              <div className='dropdown'>
                <button  type="button" class="btn btn-light"><a className={styleNav.container} href="/CRUD">Admin</a></button>
              </div>
-           )}
+           ): null}
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
                 { local && ( <div className={styleNav.userdiv}>
            </div>)  }

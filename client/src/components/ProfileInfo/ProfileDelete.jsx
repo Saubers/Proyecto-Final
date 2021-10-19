@@ -9,23 +9,12 @@ export default function UserDelete(){
 const [id, setID] = useState(null)
 const dispatch = useDispatch()  
 
-const lookID = async (e) =>{
-    setID({
-        id: e.target.value
-    })
-}
+
     const handleSubmit = async (e) => {
         e.preventDefault(e);
-        if(lookID){
-        console.log(id)
-        dispatch(deleteUser(id))
-        alert("Usuario eliminado")
-        setID({
-            id:""
-        })
-    } else{
-        return "cant find the user"
-    }
+        dispatch(deleteUser)
+        
+       
     }
     return (
         <div>

@@ -22,6 +22,7 @@ function App() {
   const history = useHistory()
 const local = localStorage.getItem('userInfo')
 const isAdmin = localStorage.getItem('userAdmin')
+console.log(isAdmin)
   return (
     <Router>
       <div className='container'>
@@ -29,12 +30,12 @@ const isAdmin = localStorage.getItem('userAdmin')
  <Route exact path="/" component={LandingPage} />
         <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
         <Route exact path="/home/CrearCategoria" component={CategoryCreate} />
-   { isAdmin === 'admin' &&  (<Route exact path='/CRUD' component={CRUD} />)
+   { isAdmin === '"admin"' &&  (<Route exact path='/CRUD' component={CRUD} />)
    
   }
-      { isAdmin === 'admin' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
-      { isAdmin === 'admin' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
-      { isAdmin === 'admin' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />}
+      { isAdmin === '"admin"' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
+      { isAdmin === '"admin"' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
+      { isAdmin === '"admin"' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />}
 { !local && (<Route exact path='/user/register' component={Register} />)}
         <Route exact path="/home/Catalogo" component={Catalogo} />
 { !local &&  (<Route exact path="/user/login" component={Login} />)}
