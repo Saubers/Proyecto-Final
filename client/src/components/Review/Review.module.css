@@ -2,6 +2,26 @@
     display: flex;
     flex-direction: column;
 }
+
+/*CALIFICAR ESTRELLA */
+label{ color:grey;}
+
+input[type = "radio"]{ display:none;}
+
+.clasificacion{
+    direction:rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+}
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type = "radio"]:checked ~ label{color:orange;}
+
+
+
+
 .containerproduct{
     border: 1px solid;
     height: auto;

@@ -104,6 +104,14 @@ export default function Detail(props) {
                             <h1>{MyCar?.price}</h1>
                         </div>
                     </div>
+                    <hr />
+                    <div className={styles.review}>
+                        { MyCar && MyCar? <Review
+                        publication={MyCar}
+                        ></Review>
+                        : <div>error</div> 
+                        }
+                    </div>
                 </div>
                 <div className={styles.containerdetail}>
                     <h3>{MyCar?.brand} {MyCar?.name}</h3>
@@ -128,15 +136,6 @@ export default function Detail(props) {
                         <button className={styles.buttonback}>Back</button>
                     </Link>
                 </div>
-                <div className={styles.review}>
-
-                { MyCar && MyCar? <Review
-                publication={MyCar}
-                ></Review>
-                : <div>error</div> 
-                }
-            </div>
-
             </div>
         </div>
     )
