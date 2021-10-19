@@ -40,14 +40,19 @@ input[type = "radio"]:checked ~ label{color:cornflowerblue;}
     justify-content: center;
     margin: 10px;
 }
+.divestre{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 .containerproduct{
-    border: 1px solid;
     height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
+
 .divbtn{
     display: center;
     height: auto;
@@ -57,12 +62,10 @@ input[type = "radio"]:checked ~ label{color:cornflowerblue;}
 }
 .divcart{
     width: 100%;
+    margin-bottom: 10px;
 }
 .title{
-    border: 1px solid;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    color:cornflowerblue;
 }
 .divReview{
     display: flex;
