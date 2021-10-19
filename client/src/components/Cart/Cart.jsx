@@ -5,23 +5,37 @@ import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link, useHistory} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
 import stylecart from '../Cart/Cart.module.css';
-
+import MercadoPago from 'mercadopago'
 
 export default function Cart(props){
     // const idCar = useSelector((state)=> state.idCar)
     //const carrito = u seSelector ((state)=> state.cart)
     // console.log("ACA",idCar);
+
+    
     const dispatch = useDispatch()
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const userInformacion = localStorage.getItem("userInformacion")
     const user = JSON.parse(userInformacion)
     const history = useHistory();
     console.log('userInformacion' , user);
-
     const [cart,setCart] = useState({})
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
-    const [input , setInput] = useState ({})
+    const [input , setInput] = useState ({});
+
+    // SDK MercadoPago.js V2
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+    
+    const mp = new MercadoPago('PUBLIC_KEY', {
+        locale: 'es-AR'
+    });
+    console.log(mp)
+    // const checkout = mp.checkout({
+    //     preference: {
+    //         id: 'YOUR_PREFERENCE_ID'
+    //     },
+    //  });
     
     function sumatotal() {
         let suma = [];
@@ -100,14 +114,14 @@ export default function Cart(props){
     function handlePost(ev){
         ev.preventDefault()
         setCart({
-            user:user._id,
+            user:user?._id,
             publication: amount.map(el => el.id),
             cantidad : amount.map(el => el.carname + ' X ' +el.cantidad),
             price: price,
             state:"En proceso"
         })
         setInput({
-            user:user._id,
+            user:user?._id,
             publication: amount.map(el => el.id ),
             cantidad : amount.map(el => el.cantidad),
             price: price,
@@ -119,7 +133,7 @@ export default function Cart(props){
              dispatch(postCart(cart))
             alert('Compra exitosa')
             // history.push('/checkout')
-            // handleDelete()
+            handleDelete()
         }
         else{
             alert('Vuelva a tocar el boton para confirmar')
@@ -212,6 +226,7 @@ export default function Cart(props){
 
                     </tr>
                     </div>
+                    {/* <input type="radio" id="checkout-open-radio" onclick={checkout.open()}/> */}
                         {
                             idAuto?
                         <Link to = '/checkout'>
