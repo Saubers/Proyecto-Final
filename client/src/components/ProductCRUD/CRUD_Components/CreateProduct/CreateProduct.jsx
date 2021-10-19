@@ -87,7 +87,6 @@ export default function CreateProduct() {
     };
 
     function handleSubmit(e) {
-        console.log(input)
         e.preventDefault(e);
         dispatch(postProduct(input))
         alert("¡PRODUCTO AÑADIDO!")

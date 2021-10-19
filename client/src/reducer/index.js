@@ -8,7 +8,9 @@ const initialState = {
   allCategories: [],
   cart: [],
   orders: [],
+  orderDetail:[],
   review: [],
+  
 };
 
 function rootReducer(state = initialState, action) {
@@ -60,6 +62,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         review: action.payload,
       };
+    case "GET_ORDERS_BY_ID":
+    return{
+      ...state,
+      orderDetail : action.payload
+    }
     case "USER_SIGNIN_REQUEST":
       return {
         loading: true,
@@ -96,6 +103,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "POST_REVIEW":
+      return{
+        ...state,
+      }
     case "PUT_PRODUCT":
       return {
         ...state,

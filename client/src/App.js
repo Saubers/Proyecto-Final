@@ -25,6 +25,7 @@ import OrderCar from './components/OrderCars/OrderCar';
 import { useHistory } from 'react-router';
 import Profile from './components/ProfileInfo/Profile';
 import Pagos from './components/pagos/pagos'
+import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 
 function App() {
   const history = useHistory()
@@ -37,20 +38,18 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
 
-          <Route exact path="/CategoryCRUD" component={CategoryCRUD} />
-          <Route exact path="/CategoryCRUD/CrearCategoria" component={CategoryCreate} />
-          <Route exact path="/CategoryCRUD/CategoryUpdate" component={CategoryUpdate} />
-          <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />
-          <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} />
+          {isAdmin?.toString() === 'true' && <Route exact path="/CategoryCRUD" component={CategoryCRUD} />}
+          {isAdmin?.toString() === 'true' && <Route exact path="/CategoryCRUD/CrearCategoria" component={CategoryCreate} />}
+          {isAdmin?.toString() === 'true' && <Route exact path="/CategoryCRUD/CategoryUpdate" component={CategoryUpdate} />}
+          {isAdmin?.toString() === 'true' && <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />}
+          {isAdmin?.toString() === 'true' && <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} />}
 
-          {/* { isAdmin?.toString() === 'true' &&  ( */}<Route exact path='/ProductCRUD' component={ProductCRUD} />/* )
-   
-  } */
+          {isAdmin?.toString() === 'true' && <Route exact path='/ProductCRUD' component={ProductCRUD} />}
           {isAdmin?.toString() === 'true' && <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />}
-          {/* { isAdmin?.toString() === 'true' &&  */}<Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />{/* } */}
+          {isAdmin?.toString() === 'true' && <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />}
           {isAdmin?.toString() === 'true' && <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />}
-          <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />
-          <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />
+          {isAdmin?.toString() === 'true' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
+          {isAdmin?.toString() === 'true' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
 
           {!local && (<Route exact path='/user/register' component={Register} />)}
           <Route exact path="/home/Catalogo" component={Catalogo} />
@@ -60,9 +59,9 @@ function App() {
           <Route exact path='/home/ADMIN/orders' component={OrderCar} />
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
-        </Switch>
-      </div>
-    </Router>
+        </Switch >
+      </div >
+    </Router >
   );
 }
 
