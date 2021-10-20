@@ -307,6 +307,16 @@ export function filterAge(payload) {
     }
 }
 
+//filtrado orderDetail
+
+export function filterStatus(payload) {
+    console.log(payload);
+    return{
+        type: 'FILTER_STATUS',
+        payload
+    }
+}
+
 export function getNameCars(name) {
     console.log('action', name)
     return async function (dispatch) {

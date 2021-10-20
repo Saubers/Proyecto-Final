@@ -15,7 +15,7 @@ export default function OrderDetail(props) {
     return(
     <div>
         {
-            OrderDetail && OrderDetail.map(el=>{
+            OrderDetail && OrderDetail?.map(el=>{
                     return(
                         <div>
                             <h3>User Info</h3>

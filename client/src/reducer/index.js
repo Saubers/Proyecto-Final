@@ -9,6 +9,7 @@ const initialState = {
   allcategories: [],
   cart: [],
   orders: [],
+  allOrders: [],
   orderDetail:[],
   review: [],
   userState: []
@@ -38,6 +39,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         orders: action.payload,
+        allOrders:action.payload
       };
     case "GET_ORDERS_BY_USUARIO":
       return {
@@ -134,36 +136,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
-    case "FILTER_BY_ENGINE":
-      let filterEngine = [];
-      // console.log(action.payload)
-      // const engines = state.allCars.map(el => el.features.engine.map(el => el.name))
-      // const nameEngines = []
-      // engines.forEach(function(element) {
-      //    element.forEach(function(element2){
-      //     if (element2 !== undefined) {
-      //     nameEngines.push(element2)
-      // }})})
-      //     if(action.payload === 'All'){
-      filterEngine = state.allCars;
-      //    }
-      //    /////////////////////////////////
-      //    let i = 0
-      //     do {
-      //     if(nameEngines[i] === action.payload ){
-      //         filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
-      //     }
-      //     i++
-      //  while (nameEngines[i] !== action.payload){
-      //      if(nameEngines[i] === action.payload){
-      //          filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
-      //     }
-      //     i = i+ 1
-      // }
-      return {
-        ...state,
-        cars: filterEngine,
-      };
     case "FILTER_BY_KM":
       let km = [];
       if (action.payload === "All") {
@@ -233,16 +205,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: money,
       };
-
-    // if(action.payload === 'all'){
-    //     const price = state.cars
-    //     }
-    //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
-    //     state.cars.sort((a,b) => b.price - a.price)
-    //     return{
-    //         ...state,
-    //         cars: price
-    //     }
 
     case "FILTER_BY_TRACTION":
       let filterTraction = [];
@@ -321,6 +283,26 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: modelFilter,
       };
+    //filtrado OrderDetail
+    case 'FILTER_STATUS':
+    let filterStatus = []
+    console.log("HOLA",state.allOrders);
+    if (action.payload === "proceso") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "En proceso")
+    }
+    if (action.payload === "cancelada") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Cancelada")
+    }
+    if (action.payload === "completa") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Completa")
+    }
+    if (action.payload === "carrito") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Carrito")
+    }
+    return{
+      ...state,
+      orders:filterStatus
+    }
     case "GET_CATEGORIES":
       return {
         ...state,

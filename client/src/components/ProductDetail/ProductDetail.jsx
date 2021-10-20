@@ -37,7 +37,6 @@ export default function Detail(props) {
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
     const verdadero = idPublication?.find(el => el === MyCar?.id)
-    console.log(verdadero);
     let IdButton = props.match.params.id
 
 
@@ -58,8 +57,6 @@ export default function Detail(props) {
     async function addToCart() {
         setIdAuto([...idAuto, MyCar])
         setIsButton([...Isbotton, MyCar.id])
-        console.log('isbotton',Isbotton)
-        console.log('carrito',carrito)
         setCarrito({
             user:user?._id,
             publication: props.match.params.id,
@@ -73,7 +70,6 @@ export default function Detail(props) {
         }
     }
     const found = Isbotton.find(element => element === IdButton)
-    console.log('Fopund ', found)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>
