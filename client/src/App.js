@@ -48,7 +48,7 @@ function App() {
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
 
-          {/* <Route exact path='/ProductCRUD' component={ProductCRUD} />
+          {/*  <Route exact path='/ProductCRUD' component={ProductCRUD} />
           <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />
           <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />
           <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />
