@@ -23,9 +23,9 @@ export default function Cart(props){
     const [input , setInput] = useState ({});
     const mpLink = useSelector(state => state.MPLink)
     const MPLINK = '5; URL='+mpLink
-
+    console.log('user',user)
     const orderPayload = {
-        id : user._id,
+        id : user?._id ,
         status : "Carrito"
     }
 
@@ -151,15 +151,17 @@ export default function Cart(props){
     }
 
     function handleCartDB(item){
-   //  setIdAuto(cartBD) 
-   //     window.location.reload()
-   //sumarCar(item)
-   console.log(cartBD)
+    //  setIdAuto(cartBD) 
+    //     window.location.reload()
+    //sumarCar(item)
+    console.log(cartBD)
    
-}
+    }
 
-console.log('idAuto',idAuto)
-
+    console.log('idAuto',idAuto)
+    function goLogin() {
+        history.push(`/user/login`)
+    }
 
     function handleSelect(e) {
       history.push(`/home/Catalogo/${e.target.value}`);
@@ -204,8 +206,17 @@ console.log('idAuto',idAuto)
                             </div>
                         ) 
                 }   )
-            }   
-                <div >
+            }  
+            
+            
+            {user === null ?
+                    <div> 
+                        <button onClick={()=> goLogin() }>
+                        <h1>POR FAVOR INSERTA TUS DATOS </h1>
+
+                        </button>
+                    </div>  
+                    :<div >
                     <h3>Historial de carrito del usuario:</h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
@@ -217,9 +228,11 @@ console.log('idAuto',idAuto)
                   )   
                 }
                 )}
-                </select>
+                    </select>
                      
             </div>
+
+            }
             </div>
                 <div className={stylecart.divticket}>
                     <h3>TICKET</h3>
@@ -253,7 +266,11 @@ console.log('idAuto',idAuto)
 
                     </tr>
                     </div>
-                        {
+                        {user === null ?
+                            <div> 
+                                <h1>INSERTA TUS DATOS </h1>
+                            </div>  
+                            :
                         idAuto?
                         <Link to = '/checkout'>
                             <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
