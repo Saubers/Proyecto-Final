@@ -39,27 +39,35 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
-          {/* { isAdmin === '"admin"' &&  (<Route exact path='/CRUD' component={CRUD} />)
-   
-  }
-      { isAdmin === '"admin"' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
-      { isAdmin === '"admin"' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
-      { isAdmin === '"admin"' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />} */}
 
-          <Route exact path='/ProductCRUD' component={ProductCRUD} />
+
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD' component={ProductCRUD} />}
+          {isAdmin === '"admin"' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
+
+          {/* <Route exact path='/ProductCRUD' component={ProductCRUD} />
           <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />
           <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />
           <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />
           <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />
-          <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />
+          <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} /> */}
 
 
+          {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD" component={CategoryCRUD} />}
+          {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CrearCategoria" component={CategoryCreate} />}
+          {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CategoryUpdate" component={CategoryUpdate} />}
+          {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />}
+          {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} />}
 
-          <Route exact path="/CategoryCRUD" component={CategoryCRUD} />
+
+          {/* <Route exact path="/CategoryCRUD" component={CategoryCRUD} />
           <Route exact path="/CategoryCRUD/CrearCategoria" component={CategoryCreate} />
           <Route exact path="/CategoryCRUD/CategoryUpdate" component={CategoryUpdate} />
           <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />
-          <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} />
+          <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} /> */}
 
 
           {!local && (<Route exact path='/user/register' component={Register} />)}
