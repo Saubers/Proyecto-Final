@@ -34,8 +34,12 @@ const UserSchema = new Schema(
       type:Date,
       default:Date.now
     },
-passwordResetToken: String,
-passwordResetExpires: Date
+passwordResetToken:{
+   type: String
+  },
+passwordResetExpires:{
+  type: Date
+}
 }
 );
 
