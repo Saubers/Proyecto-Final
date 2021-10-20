@@ -54,7 +54,6 @@ export default function Cart(props){
     
     
     function sumarCar(idCar){
-        console.log('idCar')
         const found = amount.find(element => element.id === idCar.id)
         if(found?.id !== idCar.id){
             setAmount([...amount,{
@@ -63,7 +62,8 @@ export default function Cart(props){
                 carname :idCar.name,
                 price : idCar.price,
                 cantidad : 1
-            }])
+           }])
+           setPrice(idCar.price)
         }
         else{
             amount.forEach(element =>{
