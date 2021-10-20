@@ -213,7 +213,9 @@ console.log('idAuto',idAuto)
                    //  console.log('elementCArbd',el)
                      return(
                         <option value={el._id} >
+                            <div>
                             {el.brand} {el.name} {el.price} stock : {el.stock}
+                            </div>
                         </option>
                   )   
                 }

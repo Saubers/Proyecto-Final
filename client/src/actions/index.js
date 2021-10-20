@@ -155,8 +155,8 @@ export function deleteUser(id) {
     console.log(id)
     return async function (dispatch) {
         try {
-            let json = await axios.put("http://localhost:3002/delete_user", id)
-            
+            let json = await axios.put("http://localhost:3002/delete_user/" + id)
+
             return dispatch({
                 type: "DELETE_USER",
                 payload: json

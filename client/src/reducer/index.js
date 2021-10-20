@@ -44,7 +44,9 @@ function rootReducer(state = initialState, action) {
       case "GET_ORDERS":
         return {
           ...state,
-          orders: action.payload,
+          orders: action.payload,  
+          allOrders:action.payload
+
         };
       case "GET_ORDERS_USER_STATUS":
         const ordersStatus = action.payload.map(element => element.publication[0])
@@ -53,7 +55,8 @@ function rootReducer(state = initialState, action) {
         orders: ordersStatus,
       };
     case "GET_ORDERS_BY_USUARIO":
-      return {
+    console.log('Getorders',action.payload)  
+    return {
         ...state,
         orders: action.payload,
       };
@@ -297,7 +300,7 @@ function rootReducer(state = initialState, action) {
     //filtrado OrderDetail
     case 'FILTER_STATUS':
     let filterStatus = []
-    console.log("HOLA",state.allOrders);
+    console.log("State AllOrders",state.allOrders);
     if (action.payload === "proceso") {
       filterStatus = state.allOrders?.filter((el) => el.state === "En proceso")
     }

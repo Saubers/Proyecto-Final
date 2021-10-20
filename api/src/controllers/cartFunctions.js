@@ -43,7 +43,7 @@ const AllOrders = async function (req,res){
     let {status } = req.query     
     if(status ){
         try {
-            const AllOrders = await Cart.find({status : status }).populate('publication')
+            const AllOrders = await Cart.find({status : status }).populate('publication').populate('user')
             return res.status(200).send(AllOrders);
         } catch (error) {
             console.log(error)
@@ -51,7 +51,7 @@ const AllOrders = async function (req,res){
     }
     else{
         try {
-            const AllOrders = await Cart.find().populate('publication')
+            const AllOrders = await Cart.find().populate('publication').populate('user')
             //  console.log('allOrders',AllOrders)
             return res.status(200).send(AllOrders);
             
