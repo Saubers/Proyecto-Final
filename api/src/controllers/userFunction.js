@@ -2,6 +2,7 @@ const User = require('../models/User')
 const crypto = require('crypto')
 const generateToken = require('../generateToken');
 const sendEmail = require('../utils/mail');
+const { error } = require('console');
 require('../db.js')
 
 const getUserData = async (req, res, next) => {
@@ -92,7 +93,7 @@ try{
 } catch (err) {
     user.createPasswordResetToken = undefined
     user.createPasswordResetExpires = undefined
-    await user.save({validateBeforSave: false});
+    await user.save();
 
     return next(err, 500)
 }
@@ -111,16 +112,22 @@ const user = await User.findOne({passwordResetToken: hashToken,
 
 // Si el token no expiro, y el usuario existe, setea la nueva contraseña
 if(!user) {
-    return next(console.error('Token is invalid or has expired'), 400)
+    return next(error)
 }
 user.password = req.body.password
-user.confirm_password = req.body.confirm_password
 user.passwordResetToken = undefined;
 user.PasswordResetExpires = undefined;
+await user.save();
 
 // Actualizar la contraseña cambiada como propiedad para el usuario
 
 // Logear el user y enviar JWT
+const token = generateToken(user._id)
+
+res.status(200).json({
+    status: 'success',
+    token
+})
 }
 
 const changeStateToInactive = async (req, res) => {
