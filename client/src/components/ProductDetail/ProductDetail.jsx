@@ -38,7 +38,6 @@ export default function Detail(props) {
     const verdadero = idPublication?.find(el => el === MyCar?.id)
     let IdButton = props.match.params.id
 
-
     const [carrito, setCarrito] = useState({
         user:user?._id,
         publication: props.match.params.id,

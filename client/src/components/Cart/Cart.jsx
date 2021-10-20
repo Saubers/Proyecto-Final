@@ -21,7 +21,7 @@ export default function Cart(props){
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({});
-    
+
     const orderPayload = {
         id : user._id,
         status : "Carrito"
@@ -60,7 +60,7 @@ export default function Cart(props){
                 brand: idCar.brand,
                 carname :idCar.name,
                 price : idCar.price,
-                cantidad : 0
+                cantidad : 1
             }])
         }
         else{
@@ -152,10 +152,18 @@ export default function Cart(props){
     function handleCartDB(item){
    //  setIdAuto(cartBD) 
    //     window.location.reload()
-        console.log(idAuto)
-        //sumarCar(item)
-        console.log(cartBD)
-        
+   //sumarCar(item)
+   console.log(cartBD)
+   
+}
+
+console.log('idAuto',idAuto)
+
+
+    function handleSelect(e) {
+
+      history.push(`/home/Catalogo/${e.target.value}`);
+
     }
     return(
         <div>
@@ -163,26 +171,11 @@ export default function Cart(props){
             <hr />
             <div className={stylecart.divbtn}>
                 <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
-                <button className={stylecart.btndeleall} onClick={()=> handleCartDB()}>CARGAR ULTIMO CARRITO</button>
                 <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
             </div>
             
                 <div className={stylecart.divall}>
                     <div className={stylecart.divcart}>
-                <div>
-                 { cartBD?.map(el =>{
-                     return(
-                   <div>
-                        <h1>  ASdasdadada  </h1>
-                        <li >{el.brand} {el.carname} {el.price}</li>
-                        <button   onClick={()=>handleCartDB(el)}>+</button>
-                    
-                    </div>
-                  )   
-                 }
-                )}
-                     
-            </div>
                     {idAuto === undefined  ? 
                     <div className={stylecart.vaciocart}>
                         <img src="https://pedidos.mostazagreenburger.com/static/images/cart/empty_cart.png"/>
@@ -213,6 +206,20 @@ export default function Cart(props){
                         ) 
                 }   )
             }   
+                <div>
+                    <select onChange={(e) =>handleSelect(e)}>
+                 { cartBD?.map((el) =>{
+                   //  console.log('elementCArbd',el)
+                     return(
+                        <option value={el._id} >
+                            {el.brand} {el.carname} {el.price}
+                        </option>
+                  )   
+                }
+                )}
+                </select>
+                     
+            </div>
             </div>
                 <div className={stylecart.divticket}>
                     <h3>TICKET</h3>
