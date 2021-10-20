@@ -150,10 +150,6 @@ export default function UpdateProduct() {
         })
     }
 
-    const auto= cars?.find((el)=>el._id=== "615d2a9711226f7a176d2d0f")
-
-    const autosid= cars?.map((el)=>el._id)
-
     const autoq= cars?.find((el)=>el._id=== id);
 
     console.log(autoq)

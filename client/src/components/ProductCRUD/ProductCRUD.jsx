@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
-import styleCRUD from './ProductCRUD.module.css'
+
 
 export default function CRUD() {
     return (
