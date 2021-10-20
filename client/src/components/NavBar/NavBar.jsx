@@ -36,8 +36,7 @@ const isAdmin = localStorage.getItem('userAdmin')
              </div>
            ): null}
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
-                { local && ( <div className={styleNav.userdiv}>
-           </div>)  }
+                
          
             </ul>
           </nav>

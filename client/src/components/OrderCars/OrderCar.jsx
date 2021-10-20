@@ -1,6 +1,6 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import {getOrder, getOrderByUsuario,DeleteCartId } from "../../actions";
+import {getOrder, getOrderByUsuario,DeleteCartId, filterStatus } from "../../actions";
 import {Link} from "react-router-dom";
 import style from '../OrderCars/OrderCar.module.css'
 import NavBar from '../NavBar/NavBar'
@@ -10,6 +10,7 @@ export default function OrderCar(props) {
     useEffect(()=>{
         dispatch(getOrder())
     },[dispatch])
+    const [order, setOrder] = useState("")
     const OrderUser = useSelector((state) => state.orders)
     console.log(OrderUser)
 
@@ -18,10 +19,24 @@ export default function OrderCar(props) {
         window.location.reload()
         alert('Orden eliminada con exito')
     }
+
+    function handleSelect(ev) {
+        ev.preventDefault()
+        dispatch(filterStatus(ev.target.value))
+    }
     return(
         <div className={style.body}>
             <NavBar/>
             <div>Todas las ordenes</div>
+            <div>
+            <label>Fitrado</label>
+                        <select onChange={ev => handleSelect(ev)}>
+                        <option value="carrito">En el carrito</option>
+                        <option value="proceso">En Proceso</option>
+                        <option value="cancelada">Cancelada</option>
+                        <option value="completa">Completa</option>
+                        </select>
+            </div>
             {OrderUser && OrderUser.map(el=>{
                 return(
                 <div className={style.ticket}>
