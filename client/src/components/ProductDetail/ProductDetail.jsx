@@ -28,8 +28,8 @@ export default function Detail(props) {
     const user = JSON.parse(userInformacion)
 
     useEffect (()=>{
-            dispatch(getOrderByUsuario(user._id))
-    }, [dispatch,user._id ])
+            dispatch(getOrderByUsuario(user?._id))
+    }, [dispatch,user?._id ])
 
     const idPublication = useSelector ((state) => state.ordersId)
     const MyCar = useSelector((state) => state.carDetail)
