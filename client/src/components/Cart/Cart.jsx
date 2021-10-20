@@ -206,13 +206,14 @@ console.log('idAuto',idAuto)
                         ) 
                 }   )
             }   
-                <div>
+                <div >
+                    <h3>Historial de carrito del usuario:</h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
                    //  console.log('elementCArbd',el)
                      return(
                         <option value={el._id} >
-                            {el.brand} {el.carname} {el.price}
+                            {el.brand} {el.name} {el.price} stock : {el.stock}
                         </option>
                   )   
                 }
