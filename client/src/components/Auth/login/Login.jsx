@@ -23,7 +23,9 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState('')
     const dispatch = useDispatch()
-   
+    const userState = localStorage.getItem('userAdmin')
+
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         const local = localStorage.getItem('userInfo')
@@ -45,7 +47,8 @@ const Login = () => {
     // setLoading(false)
    
     }
-        
+            
+       
     return(
         <div className={styles.loginContainer}>
             <div className={styles.imgdivd}>
@@ -91,6 +94,7 @@ const Login = () => {
         </div>
         
     );
+    
 };
 
 export default Login;

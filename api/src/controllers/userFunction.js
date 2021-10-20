@@ -80,11 +80,13 @@ const updateProfile = async (req, res) => {
  }
 }
 const changeStateToInactive = async (req, res) => {
-    const user = await User.findById(req.id);
-    if (user){
-        user.state = '"inactive"'
+    const userId = await User.findById(req.params._id);
+    console.log(userId)
+    if (userId){
+        userId.state = "inactive"
+        await userId.save()
     }
-    user.state === '"inactive"'? res.status(200).send('"inactive"'): res.status(400).send('err')
+    userId?.state === "inactive"? res.status(200).send("inactive"): res.status(400).send('err')
 }
 
 const deleteUser = async (req,res,next) =>{

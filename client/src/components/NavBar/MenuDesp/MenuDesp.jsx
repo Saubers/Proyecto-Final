@@ -10,6 +10,10 @@ const MenuDesp = (props) => {
   const isAdmin = localStorage.getItem('userAdmin')
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
+const logoutFunct = () => {
+      return localStorage.removeItem('userAdmin') + localStorage.removeItem('userInfo') + localStorage.removeItem('userInformacion')+ localStorage.removeItem('userID')
+    }
+
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle className={styledrop.divbtn} caret>
@@ -19,12 +23,11 @@ const MenuDesp = (props) => {
             </div> : <p>Login</p>}
       </DropdownToggle>
       <DropdownMenu>
-        
-        <DropdownItem href="/user/profile">/user/profile</DropdownItem>
+        <DropdownItem href="/user/profile">Settings</DropdownItem>
         <DropdownItem href="/user/me">Me</DropdownItem>
-        <DropdownItem href="/home/CrearCategoria">Crear Categoria</DropdownItem>
+        {isAdmin === '"admin"' && <DropdownItem href="/home/CrearCategoria">Crear Categoria</DropdownItem>}
         <DropdownItem href="/pagos">Ticket</DropdownItem>
-        <DropdownItem onClick={() => localStorage.removeItem('userAdmin') + localStorage.removeItem('userInfo')} href='/'>Logout</DropdownItem>
+        <DropdownItem onClick={() => logoutFunct()} href='/'>Logout</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );
