@@ -147,7 +147,6 @@ const checkout = async function(req,res){
                 title: car.name, 
                 quantity: cantidad[i], 
                 unit_price: car.price,
-                picture_url: car.img[0], 
                 currency_id: 'ARS', 
             }
             items.push(oneProduct)
@@ -166,7 +165,7 @@ const checkout = async function(req,res){
         mercadopago.preferences.create(preferences)
         .then((response)=>{
             console.log(response.body.init_point)
-            res.redirect(response.body.init_point)
+            res.send(response.body.init_point)
         })
     }catch(err){
         console.log(err)

@@ -21,6 +21,8 @@ export default function Cart(props){
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({});
+    const mpLink = useSelector(state => state.MPLink)
+    const MPLINK = '5; URL='+mpLink
 
     const orderPayload = {
         id : user._id,
@@ -129,10 +131,9 @@ export default function Cart(props){
             state:"En proceso"
         })
         if(input.user && input.publication && input.cantidad && input.price){
-             //dispatch(postMg(input))
-             dispatch(postCart(cart))
+            dispatch(postCart(cart))
+            dispatch(postMg(input))
             alert('Compra exitosa')
-            // history.push('/checkout')
             // handleDelete()
         }
         else{
@@ -257,11 +258,18 @@ console.log('idAuto',idAuto)
                     </tr>
                     </div>
                         {
-                            idAuto?
+                        idAuto?
                         <Link to = '/checkout'>
                             <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
                         </Link>:
                         <button className={stylecart.btncomprartodo} onClick={(ev)=> handleError(ev)}>CONFIRMAR COMPRA</button>
+                        }
+                        {
+                        mpLink? <div>
+                            <meta http-equiv="refresh" content={MPLINK}/>
+                            <p> si no es redirigido<a href= {mpLink}> haz click aqui</a></p>
+                            </div>
+                            : null
                         }
                         </div>
                     </div>

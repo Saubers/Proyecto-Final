@@ -89,10 +89,9 @@ export function putProduct(id, payload) {
 export function postMg (payload){
     return async function (dispatch){
         const json = await axios.post("http://localhost:3002/checkout", payload);
-        {json && json? console.log('el json de postmg en action',json) : console.log('no hay json')}
         return dispatch({
             type: 'POST_MG',
-            payload:json
+            payload:json.data
         })
     }
 }

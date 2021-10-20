@@ -12,8 +12,8 @@ const initialState = {
   allOrders: [],
   orderDetail:[],
   review: [],
-  userState: []
-  
+  userState: [],
+  MPLink: ''
 };
 
 function rootReducer(state = initialState, action) {
@@ -144,6 +144,7 @@ function rootReducer(state = initialState, action) {
     case "POST_MG":
       return {
         ...state,
+        MPLink: action.payload
       };
     case "USER_REGISTER":
       return {
