@@ -1,19 +1,19 @@
 const initialState = {
   cars: [],
   allCars: [],
-  carsToSearch:[],
+  carsToSearch: [],
   carDetail: [],
   engine: [],
   kilometraje: [],
   users: [],
   userInfo: [],
-  allcategories: [],
+  allCategories: [],
   cart: [],
   orders: [],
   ordersId: [],
-  orderDetail:[],
+  orderDetail: [],
   review: [],
-  
+
 };
 
 function rootReducer(state = initialState, action) {
@@ -45,7 +45,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         orders: action.payload,
-        ordersId : ordersId
+        ordersId: ordersId
       };
     case "LIST_CARD":
       return {
@@ -68,10 +68,10 @@ function rootReducer(state = initialState, action) {
         review: action.payload,
       };
     case "GET_ORDERS_BY_ID":
-    return{
-      ...state,
-      orderDetail : action.payload
-    }
+      return {
+        ...state,
+        orderDetail: action.payload
+      }
     case "USER_SIGNIN_REQUEST":
       return {
         loading: true,
@@ -91,25 +91,62 @@ function rootReducer(state = initialState, action) {
 
       };
     case "USER_DETAILS_REQUEST":
-      return { 
-        loading: true 
+      return {
+        loading: true
       };
     case "USER_DETAILS_SUCCESS":
-      return { 
+      return {
         loading: false, usersUpdate: action.payload
-       };
+      };
     case "USER_DETAILS_FAIL":
-      return { 
+      return {
         loading: false, error: action.payload
-       };
+      };
     case 'USER_UPDATE_PROFILE_RESET':
-      return {};  
+      return {};
+    case "POST_CART":
+      return {
+        ...state,
+      };
+    case "DELETE_CAR":
+      return {
+        ...state,
+      };
+    case "DELETE_CART_BY_ID":
+      return {
+        ...state,
+      };
+    case "GET_CATEGORIES":
+      return {
+        ...state,
+        allCategories: action.payload,
+      };
+    case "POST_CATEGORY":
+      return {
+        ...state,
+      };
+    case "PUT_CATEGORY":
+      return {
+        ...state,
+      };
+    case "DELETE_CATEGORY":
+      return {
+        ...state,
+      };
+    case "DELETE_CAR":
+      return {
+        ...state,
+      };
+    case "DELETE_CART_BY_ID":
+      return {
+        ...state,
+      };
     case "POST_PRODUCT":
       return {
         ...state,
       };
     case "POST_REVIEW":
-      return{
+      return {
         ...state,
       }
     case "PUT_PRODUCT":
@@ -117,10 +154,6 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     case "POST_CATEGORY":
-      return {
-        ...state,
-      };
-    case "POST_CART":
       return {
         ...state,
       };
@@ -211,23 +244,23 @@ function rootReducer(state = initialState, action) {
       let money =
         action.payload === "max"
           ? state.cars.sort((a, b) => {
-              if (a.price > b.price) {
-                return -1;
-              }
-              if (a.price < b.price) {
-                return 1;
-              }
-              return 0;
-            })
+            if (a.price > b.price) {
+              return -1;
+            }
+            if (a.price < b.price) {
+              return 1;
+            }
+            return 0;
+          })
           : state.cars.sort((a, b) => {
-              if (a.price > b.price) {
-                return 1;
-              }
-              if (a.price < b.price) {
-                return -1;
-              }
-              return 0;
-            });
+            if (a.price > b.price) {
+              return 1;
+            }
+            if (a.price < b.price) {
+              return -1;
+            }
+            return 0;
+          });
       return {
         ...state,
         cars: money,
@@ -320,19 +353,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: modelFilter,
       };
-    case "GET_CATEGORIES":
-      return {
-        ...state,
-        allcategories: action.payload,
-      };
-    case "DELETE_CAR":
-      return {
-        ...state,
-      };
-    case "DELETE_CART_BY_ID":
-      return {
-        ...state,
-      };
+
     default:
       return state;
   }

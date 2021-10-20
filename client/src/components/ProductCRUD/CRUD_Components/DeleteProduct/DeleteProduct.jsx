@@ -31,21 +31,21 @@ export default function DeleteProduct() {
     return (
         <div>
             <NavBar />
-            <h1>Car delete</h1>
+            <h1>Selecciona el auto a eliminar</h1>
+            <hr />
             <form onSubmit={(e) => handleSubmit(e)}>
                 <fieldset>
-                    <legend>Select car to delete</legend>
                     <select required onChange={(e) => handleSelect(e)}>
                         {cars?.map((el) => (
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>
                     {id.id && (
-                        <p><id><b>ID: </b></id>{id.id}</p>
+                        <h3><id><b>ID: </b></id>{id.id}</h3>
 
                     )}
                     <button type='submit'>Submit</button>
-                    <Link to="/CRUD">
+                    <Link to="/ProductCRUD">
                         <button >Back</button>
                     </Link>
                 </fieldset>

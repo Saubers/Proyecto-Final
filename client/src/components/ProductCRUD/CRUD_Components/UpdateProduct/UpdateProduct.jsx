@@ -59,11 +59,9 @@ export default function UpdateProduct() {
 
     const [image, setImage] = useState("")
 
-    const [idNull, setIdNull] = useState(null)
-
     const [id, setID] = useState("")
 
-    /* const selectedCar = cars.find(el) => el._id === id; */
+    /* const selectedCar = cars.find((el) => el._id === id); */
 
     const [input, setInput] = useState({
         brand: "",
@@ -132,7 +130,6 @@ export default function UpdateProduct() {
         setID({
             id: e.target.value
         })
-        console.log(id,cars)
         setInput({
             brand: "",
             name: "",
@@ -152,6 +149,14 @@ export default function UpdateProduct() {
             stock: ""
         })
     }
+
+    const auto= cars?.find((el)=>el._id=== "615d2a9711226f7a176d2d0f")
+
+    const autosid= cars?.map((el)=>el._id)
+
+    const autoq= cars?.find((el)=>el._id=== id);
+
+    console.log(autoq)
 
     const postDetails = (images) => {
         if (
@@ -439,7 +444,7 @@ export default function UpdateProduct() {
                             <button className={styleCrudUpdate.button3} type='submit'>Publicar</button>
                         )
                     }
-                    <Link to="/CRUD">
+                    <Link to="/ProductCRUD">
                         <button className={styleCrudUpdate.button3}>Back</button>
                     </Link>
 

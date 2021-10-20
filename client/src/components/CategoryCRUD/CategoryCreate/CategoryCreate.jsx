@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { postCategory } from '../../actions/index'
+import { postCategory } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../NavBar/NavBar";
+import NavBar from "../../NavBar/NavBar";
 
 function CategoryCreate() {
 
@@ -59,7 +59,7 @@ function CategoryCreate() {
                             required />
                     </div>
                 </fieldset>
-                <Link to="/CRUD">
+                <Link to="/CategoryCRUD">
                     <button>Volver</button>
                 </Link>
                 <button type='submit'>Crear</button>

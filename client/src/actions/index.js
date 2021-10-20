@@ -103,16 +103,6 @@ export function postMg (payload){
     }
 }
 
-export function postCategory(payload) {
-    return async function (dispatch) {
-        const json = await axios.post("http://localhost:3002/categories", payload);
-        return dispatch({
-            type: 'POST_CATEGORY',
-            payload: json
-        })
-    }
-}
-
 export function postCart(payload) {
     console.log(payload)
     return async function (dispatch) {
@@ -350,6 +340,16 @@ export function getBrandCars(name) {
 
 }
 
+/* export function getCategories() {
+    return async function (dispatch) {
+        var json = await axios.get("https://pf-car-shop.herokuapp.com/categories");
+        return dispatch({
+            type: 'GET_CATEGORIES',
+            payload: json.data
+        })
+    }
+} */
+
 export function getCategories() {
     return async function (dispatch) {
         try {
@@ -363,4 +363,40 @@ export function getCategories() {
         }
     };
 
+}
+
+export function postCategory(payload) {
+    return async function (dispatch) {
+        const json = await axios.post("https://pf-car-shop.herokuapp.com/categories", payload);
+        return dispatch({
+            type: 'POST_CATEGORY',
+            payload: json
+        })
+    }
+}
+
+export function deleteCategory(id) {
+    return async function (dispatch) {
+        try {
+            var json = await axios.delete("https://pf-car-shop.herokuapp.com/categoriesDelete/:id" + id);
+            return dispatch({
+                type: "DELETE_CATEGORY",
+                payload: json
+            })
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export function updateCategory(id, payload) {
+
+    return async function (dispatch) {
+        const json = await axios.put("https://pf-car-shop.herokuapp.com/categories" + id, payload);
+        return dispatch({
+            type: 'UPDATE_CATEGORY',
+            payload: json
+        })
+    }
 }
