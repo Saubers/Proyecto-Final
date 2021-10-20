@@ -157,7 +157,6 @@ export default function Cart(props){
         console.log(cartBD)
         
     }
-
     return(
         <div>
             <NavBar/>
@@ -171,14 +170,18 @@ export default function Cart(props){
                 <div className={stylecart.divall}>
                     <div className={stylecart.divcart}>
                 <div>
-                 { cartBD.map(el =>{
-                    <tr>
+                 { cartBD?.map(el =>{
+                     return(
+                   <div>
                         <h1>  ASdasdadada  </h1>
                         <li >{el.brand} {el.carname} {el.price}</li>
                         <button   onClick={()=>handleCartDB(el)}>+</button>
-                    </tr>
-                    })
-                     }
+                    
+                    </div>
+                  )   
+                 }
+                )}
+                     
             </div>
                     {idAuto === undefined  ? 
                     <div className={stylecart.vaciocart}>
