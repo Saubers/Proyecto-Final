@@ -130,9 +130,10 @@ const SearchCars = async (req, res, next) => {
     try {
         /* const ProductsDB = await Car.find({name:name}).populate('category') */
         const ProductDB = await ProductsDB.filter((el) => el.name.toLowerCase().includes(name.toLowerCase()));
+        const ProductBrand = await ProductsDB.filter((el) => el.brand.toLowerCase().includes(name.toLowerCase()));
         console.log(ProductDB)
-        if (ProductDB !== null) {
-            return res.status(200).send(ProductDB)
+        if (ProductDB !== null || ProductBrand !== null) {
+            return res.status(200).send(ProductDB.concat(ProductBrand));
         }
     } catch (error) {
         next(error);

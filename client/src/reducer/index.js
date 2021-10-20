@@ -1,6 +1,7 @@
 const initialState = {
   cars: [],
   allCars: [],
+  carsToSearch:[],
   carDetail: [],
   engine: [],
   kilometraje: [],
