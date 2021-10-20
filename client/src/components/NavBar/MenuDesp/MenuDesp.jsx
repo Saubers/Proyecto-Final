@@ -22,7 +22,6 @@ const MenuDesp = (props) => {
         
         <DropdownItem href="/user/profile">/user/profile</DropdownItem>
         <DropdownItem href="/user/me">Me</DropdownItem>
-        <DropdownItem Category>Category</DropdownItem>
         <DropdownItem href="/home/CrearCategoria">Crear Categoria</DropdownItem>
         <DropdownItem href="/pagos">Ticket</DropdownItem>
         <DropdownItem onClick={() => localStorage.removeItem('userAdmin') + localStorage.removeItem('userInfo')} href='/'>Logout</DropdownItem>
