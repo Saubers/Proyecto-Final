@@ -23,6 +23,18 @@ export function getOrder() {
 }
 
 
+export function putCart(id, payload) {
+    console.log("ACTIONS",id, payload);
+    return async function (dispatch) {
+        const json = await axios.put("http://localhost:3002/orders/:id" + id, payload)
+        console.log(json);
+        return dispatch({
+            type: 'PUT_CART',
+            payload:json
+        })
+    }
+}
+
 
 
 export function getOrderByID(id) {

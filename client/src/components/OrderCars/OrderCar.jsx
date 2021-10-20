@@ -49,6 +49,9 @@ export default function OrderCar(props) {
                     <Link to={'/home/ADMIN/orders/' + el._id}>
                         <button>Detalle</button>
                     </Link>
+                    <Link to={'/home/ADMIN/edit/' + el._id}>
+                        <button>Modificar</button>
+                    </Link>
                     <button onClick={()=>handleDelete(el)}>Eliminar Ticket</button>
                     </tr>
                     </table>

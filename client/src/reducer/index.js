@@ -129,6 +129,10 @@ function rootReducer(state = initialState, action) {
       return{
         ...state,
       }
+    case "PUT_CART":
+        return{
+          ...state
+        }
     case "PUT_PRODUCT":
       return {
         ...state,

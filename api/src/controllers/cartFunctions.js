@@ -154,17 +154,16 @@ const checkout = async function(req,res){
         let preferences = {
             items: items,
             external_reference: user, 
-            // `${new Date().valueOf()}`,
             back_urls:{
-                success:'https://proyecto-final-rho.vercel.app/pagos',
-                pending:'https://proyecto-final-rho.vercel.app/pagos',
-                failure:'https://proyecto-final-rho.vercel.app/pagos',
+                // https://proyecto-final-rho.vercel.app/pagos
+                success:'localhost:3000/pagos',
+                pending:'localhost:3000/pagos',
+                failure:'localhost:3000/pagos',
             },
             auto_return:'approved'
         }
         mercadopago.preferences.create(preferences)
         .then((response)=>{
-            console.log(response.body.init_point)
             res.send(response.body.init_point)
         })
     }catch(err){
