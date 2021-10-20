@@ -33,7 +33,7 @@ function App() {
   const history = useHistory()
   const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
-  console.log(isAdmin)
+  
   return (
     <Router>
       <div className='container'>

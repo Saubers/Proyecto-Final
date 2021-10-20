@@ -30,11 +30,6 @@ const isAdmin = localStorage.getItem('userAdmin')
             <li>
   <MenuDesp/></li>
                   )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
-  {isAdmin === '"admin"' ? (
-             <div className='dropdown'>
-               <button  type="button" class="btn btn-light"><a className={styleNav.container} href="/CRUD">Admin</a></button>
-             </div>
-           ): null}
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
                 
          

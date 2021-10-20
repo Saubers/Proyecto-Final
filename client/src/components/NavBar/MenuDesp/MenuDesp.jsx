@@ -24,6 +24,7 @@ const logoutFunct = () => {
       </DropdownToggle>
       <DropdownMenu>
         <DropdownItem href="/user/profile">Settings</DropdownItem>
+        <DropdownItem href="/ProductCRUD">Admin</DropdownItem>
         <DropdownItem href="/user/me">Me</DropdownItem>
         {isAdmin === '"admin"' && <DropdownItem href="/home/CrearCategoria">Crear Categoria</DropdownItem>}
         <DropdownItem href="/pagos">Ticket</DropdownItem>
