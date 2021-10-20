@@ -1,5 +1,11 @@
 [
     {
+        "tarjeta": 5031755734530604,
+        "cv":123,
+        "fecha de vencimiento": 1125,
+        "nombre": "APRO"
+    },
+    {
         "vendedor": true,
         "id": 1000552229,
         "nickname": "TESTRBZ2HMFP",
