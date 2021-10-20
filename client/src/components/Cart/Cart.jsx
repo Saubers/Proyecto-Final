@@ -162,9 +162,7 @@ console.log('idAuto',idAuto)
 
 
     function handleSelect(e) {
-
       history.push(`/home/Catalogo/${e.target.value}`);
-
     }
     return(
         <div>
@@ -211,12 +209,10 @@ console.log('idAuto',idAuto)
                     <h3>Historial de carrito del usuario:</h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
-                   //  console.log('elementCArbd',el)
+                   // console.log('elementCArbd',el)
                      return(
                         <option value={el._id} >
-                            <div>
                             {el.brand} {el.name} {el.price} stock : {el.stock}
-                            </div>
                         </option>
                   )   
                 }
