@@ -27,6 +27,7 @@ import Profile from './components/ProfileInfo/Profile';
 import Pagos from './components/pagos/pagos'
 import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 import ProfileInfo from './components/UserInfo/UserInfo'
+import OrderEdit from './components/OrderCars/OrderEdit/OrderEdit'
 
 function App() {
   const history = useHistory()
@@ -78,6 +79,7 @@ function App() {
           <Route exact path='/home/ADMIN/orders' component={OrderCar} />
           <Route exact path='/user/me' component={ProfileInfo} />
           <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />
+          <Route exact path='/home/ADMIN/orders/edit' component={OrderEdit}/>
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
         </Switch>
