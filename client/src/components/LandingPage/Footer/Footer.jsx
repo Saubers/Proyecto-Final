@@ -16,10 +16,10 @@ const Footer = () => {
                 </div>
             </div>
             <div className={styleFooter.container2}>
-                <a href="">Preguntas frecuentes</a>
-                <a href="">Blog</a>
-                <a href="">Quienes somos</a>
-                <a href="">Concesonarias</a>
+                <a href="# ">Preguntas frecuentes</a>
+                <a href="# ">Blog</a>
+                <a href="# ">Quienes somos</a>
+                <a href="# ">Concesonarias</a>
             </div>
             <div className={styleFooter.container3}>
                 <p>Atención al cliente <br/>
