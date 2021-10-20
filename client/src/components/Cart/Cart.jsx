@@ -1,6 +1,6 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import { postCart,postMg, getUserOrder } from "../../actions";
+import { postCart,postMg, getUserOrder ,getUserOrderStatus} from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link, useHistory} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
@@ -21,8 +21,23 @@ export default function Cart(props){
     const [amount, setAmount] = useState([])
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({});
+    const mpLink = useSelector(state => state.MPLink)
+    const MPLINK = '5; URL='+mpLink
+
+    const orderPayload = {
+        id : user._id,
+        status : "Carrito"
+    }
 
     
+    useEffect(() => {
+        dispatch(getUserOrderStatus(orderPayload))
+     }, [])
+    
+    const cartBD = useSelector ((state) => state.orders)
+    console.log('cartDb',cartBD)
+
+
     function sumatotal() {
         let suma = [];
         let numero = 0
@@ -39,6 +54,7 @@ export default function Cart(props){
     
     
     function sumarCar(idCar){
+        console.log('idCar')
         const found = amount.find(element => element.id === idCar.id)
         if(found?.id !== idCar.id){
             setAmount([...amount,{
@@ -46,7 +62,7 @@ export default function Cart(props){
                 brand: idCar.brand,
                 carname :idCar.name,
                 price : idCar.price,
-                cantidad : 0
+                cantidad : 1
             }])
         }
         else{
@@ -63,6 +79,7 @@ export default function Cart(props){
     //boton post filtrar todos los que tengan
     
     function handleClickSumar(car){
+        console.log('car',car)
         sumarCar(car)
         sumatotal()
     }
@@ -84,9 +101,6 @@ export default function Cart(props){
             setAmount(filter)
             setPrice(0)
         }
-       
-
-
     }
 
     function handleDeleteCar(car){
@@ -117,10 +131,9 @@ export default function Cart(props){
             state:"En proceso"
         })
         if(input.user && input.publication && input.cantidad && input.price){
-             dispatch(postMg(input))
-             dispatch(postCart(cart))
+            dispatch(postCart(cart))
+            dispatch(postMg(input))
             alert('Compra exitosa')
-            // history.push('/checkout')
             // handleDelete()
         }
         else{
@@ -137,36 +150,48 @@ export default function Cart(props){
         alert('Selecciona el auto que quieres comprar')
     }
 
+    function handleCartDB(item){
+   //  setIdAuto(cartBD) 
+   //     window.location.reload()
+   //sumarCar(item)
+   console.log(cartBD)
+   
+}
 
+console.log('idAuto',idAuto)
+
+
+    function handleSelect(e) {
+      history.push(`/home/Catalogo/${e.target.value}`);
+    }
     return(
         <div>
             <NavBar/>
             <hr />
             <div className={stylecart.divbtn}>
                 <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
-    
                 <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
             </div>
             
                 <div className={stylecart.divall}>
                     <div className={stylecart.divcart}>
-                    {idAuto === undefined ? 
+                    {idAuto === undefined  ? 
                     <div className={stylecart.vaciocart}>
                         <img src="https://pedidos.mostazagreenburger.com/static/images/cart/empty_cart.png"/>
                     </div>
-                    : idAuto.map(el => {
+                    :  idAuto.map(el => {
                     return(
-                        <div key={el.id} className={stylecart.containerproduct}>
+                            <div key={el.id} className={stylecart.containerproduct}>
                             
                                 <div className={stylecart.imgcont}>
                                     <img src={el.img?.[0]} alt='Erorr' width="150x" height="150px"></img>
                                 </div>
                                 <div className={stylecart.divname}>
                                     <div>
-                                        <h2>{el?.brand}<br/> {el?.name}</h2>
+                                        <h2>{el?.brand}<br/> { el?.name}</h2>
                                     </div>
                                     <div>
-                                        <h2>${el?.price} </h2>
+                                        <h2>{el?.price} </h2>
                                     </div>
                                 </div>
                                 <div className={stylecart.cantidad}>
@@ -176,10 +201,25 @@ export default function Cart(props){
                                     <button onClick={()=>handleDeleteCar(el)} className={stylecart.btndelee}>X</button>
                                 </div>
                         
-                        </div>
-                ) 
-            })
-            }
+                            </div>
+                        ) 
+                }   )
+            }   
+                <div >
+                    <h3>Historial de carrito del usuario:</h3>
+                    <select onChange={(e) =>handleSelect(e)}>
+                 { cartBD?.map((el) =>{
+                   // console.log('elementCArbd',el)
+                     return(
+                        <option value={el._id} >
+                            {el.brand} {el.name} {el.price} stock : {el.stock}
+                        </option>
+                  )   
+                }
+                )}
+                </select>
+                     
+            </div>
             </div>
                 <div className={stylecart.divticket}>
                     <h3>TICKET</h3>
@@ -190,7 +230,7 @@ export default function Cart(props){
                                 if(item.cantidad >0)
                                 return(
                                     <tr className={stylecart.trdiv}>
-                                        <li className={stylecart.listy}>{item.brand} {item.carname} ${item.price} <br/>Cantidad:{item.cantidad}</li>
+                                        <li className={stylecart.listy}>{item.brand} {item.carname} {item.price} <br/>Cantidad:{item.cantidad}</li>
                                         <button  className={stylecart.btndelee} onClick={()=>handleClickRestark(item)}>X</button>
 
                                     </tr>
@@ -214,15 +254,23 @@ export default function Cart(props){
                     </tr>
                     </div>
                         {
-                            idAuto?
+                        idAuto?
                         <Link to = '/checkout'>
                             <button className={stylecart.btncomprartodo} onClick={(ev)=> handlePost(ev)}>CONFIRMAR COMPRA</button>
                         </Link>:
                         <button className={stylecart.btncomprartodo} onClick={(ev)=> handleError(ev)}>CONFIRMAR COMPRA</button>
                         }
+                        {
+                        mpLink? <div>
+                            <meta http-equiv="refresh" content={MPLINK}/>
+                            <p> si no es redirigido<a href= {mpLink}> haz click aqui</a></p>
+                            </div>
+                            : null
+                        }
                         </div>
                     </div>
                 </div>
+                
                 </div>
             </div>
             )

@@ -12,7 +12,7 @@ auth: {
     });
     // Definir las opciones del mail
 const mailOptions = {
-    from: 'Sebastián Laserna <laserna.seba@gmail.com>',
+    from: 'Sebastián Laserna laserna.seba@gmail.com',
     to: options.email,
     subject: options.subject,
     text: options.message,

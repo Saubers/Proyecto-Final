@@ -9,10 +9,11 @@ const initialState = {
   allcategories: [],
   cart: [],
   orders: [],
+  allOrders: [],
   orderDetail:[],
   review: [],
-  userState: []
-  
+  userState: [],
+  MPLink: ''
 };
 
 function rootReducer(state = initialState, action) {
@@ -34,13 +35,28 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: action.payload,
       };
-    case "GET_ORDERS":
+    case "GET_ALL_ORDERS_STATUS":
       return {
         ...state,
         orders: action.payload,
+        allOrders:action.payload
+      }
+      case "GET_ORDERS":
+        return {
+          ...state,
+          orders: action.payload,  
+          allOrders:action.payload
+
+        };
+      case "GET_ORDERS_USER_STATUS":
+        const ordersStatus = action.payload.map(element => element.publication[0])
+      return {
+        ...state,
+        orders: ordersStatus,
       };
     case "GET_ORDERS_BY_USUARIO":
-      return {
+    console.log('Getorders',action.payload)  
+    return {
         ...state,
         orders: action.payload,
       };
@@ -113,6 +129,10 @@ function rootReducer(state = initialState, action) {
       return{
         ...state,
       }
+    case "PUT_CART":
+        return{
+          ...state
+        }
     case "PUT_PRODUCT":
       return {
         ...state,
@@ -128,41 +148,12 @@ function rootReducer(state = initialState, action) {
     case "POST_MG":
       return {
         ...state,
+        MPLink: action.payload
       };
     case "USER_REGISTER":
       return {
         ...state,
         users: action.payload,
-      };
-    case "FILTER_BY_ENGINE":
-      let filterEngine = [];
-      // console.log(action.payload)
-      // const engines = state.allCars.map(el => el.features.engine.map(el => el.name))
-      // const nameEngines = []
-      // engines.forEach(function(element) {
-      //    element.forEach(function(element2){
-      //     if (element2 !== undefined) {
-      //     nameEngines.push(element2)
-      // }})})
-      //     if(action.payload === 'All'){
-      filterEngine = state.allCars;
-      //    }
-      //    /////////////////////////////////
-      //    let i = 0
-      //     do {
-      //     if(nameEngines[i] === action.payload ){
-      //         filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
-      //     }
-      //     i++
-      //  while (nameEngines[i] !== action.payload){
-      //      if(nameEngines[i] === action.payload){
-      //          filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
-      //     }
-      //     i = i+ 1
-      // }
-      return {
-        ...state,
-        cars: filterEngine,
       };
     case "FILTER_BY_KM":
       let km = [];
@@ -233,16 +224,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: money,
       };
-
-    // if(action.payload === 'all'){
-    //     const price = state.cars
-    //     }
-    //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
-    //     state.cars.sort((a,b) => b.price - a.price)
-    //     return{
-    //         ...state,
-    //         cars: price
-    //     }
 
     case "FILTER_BY_TRACTION":
       let filterTraction = [];
@@ -321,6 +302,26 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: modelFilter,
       };
+    //filtrado OrderDetail
+    case 'FILTER_STATUS':
+    let filterStatus = []
+    console.log("State AllOrders",state.allOrders);
+    if (action.payload === "proceso") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "En proceso")
+    }
+    if (action.payload === "cancelada") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Cancelada")
+    }
+    if (action.payload === "completa") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Completa")
+    }
+    if (action.payload === "carrito") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Carrito")
+    }
+    return{
+      ...state,
+      orders:filterStatus
+    }
     case "GET_CATEGORIES":
       return {
         ...state,

@@ -6,7 +6,7 @@ import { getCarDetail,postCart } from "../../actions/index";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import Component_Carousel from "../Carousel/Carousel";
-import { useLocalStorage } from '../../useStorage/useLocalStorage'
+import { useLocalStorage ,borrarItem} from '../../useStorage/useLocalStorage'
 import {getReview, getOrderByUsuario} from '../../actions/index'
 
 
@@ -17,7 +17,6 @@ export default function Detail(props) {
 
     useEffect(() => {
         dispatch(getCarDetail(props.match.params.id));
-
     }, [dispatch, props.match.params.id])
 
     useEffect(() => {
@@ -29,17 +28,15 @@ export default function Detail(props) {
     const user = JSON.parse(userInformacion)
 
     useEffect (()=>{
-            dispatch(getOrderByUsuario(user._id))
-    }, [dispatch,user._id ])
+            dispatch(getOrderByUsuario(user?._id))
+    }, [dispatch,user?._id ])
 
     const idPublication = useSelector ((state) => state.ordersId)
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
     const verdadero = idPublication?.find(el => el === MyCar?.id)
-    console.log(verdadero);
     let IdButton = props.match.params.id
-
 
     const [carrito, setCarrito] = useState({
         user:user?._id,
@@ -58,22 +55,19 @@ export default function Detail(props) {
     async function addToCart() {
         setIdAuto([...idAuto, MyCar])
         setIsButton([...Isbotton, MyCar.id])
-        console.log('isbotton',Isbotton)
-        console.log('carrito',carrito)
         setCarrito({
             user:user?._id,
             publication: props.match.params.id,
             cantidad : 1,
-            price:  MyCar.id,
-            state:"Carrito" 
+            price:  MyCar.price,
+            state: "Carrito" 
         })
         if(carrito.user && carrito.publication){
-         //   dispatch(postCart(carrito))
-           // alert('Agregado al carrito')
+           dispatch(postCart(carrito))
+            alert('Agregado al carrito')
         }
     }
     const found = Isbotton.find(element => element === IdButton)
-    console.log('Fopund ', found)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>

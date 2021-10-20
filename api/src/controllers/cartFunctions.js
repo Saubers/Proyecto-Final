@@ -43,7 +43,7 @@ const AllOrders = async function (req,res){
     let {status } = req.query     
     if(status ){
         try {
-            const AllOrders = await Cart.find({status : status }).populate('publication')
+            const AllOrders = await Cart.find({status : status }).populate('publication').populate('user')
             return res.status(200).send(AllOrders);
         } catch (error) {
             console.log(error)
@@ -51,7 +51,7 @@ const AllOrders = async function (req,res){
     }
     else{
         try {
-            const AllOrders = await Cart.find().populate('publication')
+            const AllOrders = await Cart.find().populate('publication').populate('user')
             //  console.log('allOrders',AllOrders)
             return res.status(200).send(AllOrders);
             
@@ -63,12 +63,23 @@ const AllOrders = async function (req,res){
 
 const OrdenesByUsuario= async function (req,res) {
     const {id} = req.params;
-    try {
-        let Ordenes = await Cart.find({user : id}).populate('publication').populate('user')
-        res.status(200).send(Ordenes)
-        
-    } catch (error) {
-        res.status(200).send(error)
+    const {status} = req.query;
+    console.log('req.query',status)
+    if(status){
+        try {
+            let Ordenes = await Cart.find({user : id}).find({ state : status  }).populate('publication')
+            res.status(200).send(Ordenes)
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        try {
+            let Ordenes = await Cart.find({user : id}).populate('publication')
+            res.status(200).send(Ordenes)
+            
+        } catch (error) {
+            res.status(200).send(error)
+        }
     }
 }
 
@@ -136,7 +147,6 @@ const checkout = async function(req,res){
                 title: car.name, 
                 quantity: cantidad[i], 
                 unit_price: car.price,
-                picture_url: car.img[0], 
                 currency_id: 'ARS', 
             }
             items.push(oneProduct)
@@ -144,18 +154,17 @@ const checkout = async function(req,res){
         let preferences = {
             items: items,
             external_reference: user, 
-            // `${new Date().valueOf()}`,
             back_urls:{
-                success:'https://proyecto-final-rho.vercel.app/pagos',
-                pending:'https://proyecto-final-rho.vercel.app/pagos',
-                failure:'https://proyecto-final-rho.vercel.app/pagos',
+                // https://proyecto-final-rho.vercel.app/pagos
+                success:'localhost:3000/pagos',
+                pending:'localhost:3000/pagos',
+                failure:'localhost:3000/pagos',
             },
             auto_return:'approved'
         }
         mercadopago.preferences.create(preferences)
         .then((response)=>{
-            console.log(response.body.init_point)
-            res.redirect(response.body.init_point)
+            res.send(response.body.init_point)
         })
     }catch(err){
         console.log(err)

@@ -15,19 +15,23 @@ export default function Pagos() {
     useEffect(()=>{
         dispatch(getOrderByUsuario(usuario._id))
     },[dispatch])
-    
+    console.log('HOLA',ticket)
+
+    let filter = ticket?.filter(element => element.state !== "Carrito")
+    // console.log('filter', filter[0].user)
+    let usuarioFiltrado = usuario
     return (<>
         <div>
             <NavBar />
             <div className={StylePagos.divcontainertotal}>
-                {ticket && ticket.map(el => (
+                {filter && filter.map(el => (
                     <div className={StylePagos.divcontainer1}>
                         
                         <div className={StylePagos.divcontainerticket}> 
                             <h5>User Info</h5>
-                            <p>Name: {el.user.fullname} </p>
-                            <p>Mail: {el.user.mail}</p> 
-                            <p>Tel: {el.user.phone}</p>
+                            <p>Name: {usuarioFiltrado.fullname} </p>
+                            <p>Mail: {usuarioFiltrado.mail}</p> 
+                            <p>Tel: {usuarioFiltrado.phone}</p>
                         </div>
                         <div>
                             <p> Order Status :{el.state}</p>
