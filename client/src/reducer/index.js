@@ -12,7 +12,6 @@ const initialState = {
   ordersId: [],
   orderDetail:[],
   review: [],
-  
 };
 
 function rootReducer(state = initialState, action) {
@@ -34,10 +33,21 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: action.payload,
       };
-    case "GET_ORDERS":
+    case "GET_ALL_ORDERS_STATUS":
       return {
         ...state,
         orders: action.payload,
+      }
+      case "GET_ORDERS":
+        return {
+          ...state,
+          orders: action.payload,
+        };
+      case "GET_ORDERS_USER_STATUS":
+        const ordersStatus = action.payload.map(element => element.publication[0])
+      return {
+        ...state,
+        orders: ordersStatus,
       };
     case "GET_ORDERS_BY_USUARIO":
       const ordersId = action.payload.map(element => element.publication[0]._id);

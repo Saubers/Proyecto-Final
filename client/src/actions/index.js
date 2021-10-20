@@ -22,6 +22,9 @@ export function getOrder() {
     }
 }
 
+
+
+
 export function getOrderByID(id) {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/orders/" + id);
@@ -32,15 +35,6 @@ export function getOrderByID(id) {
     }
 }
 
-export function getOrderByUsuario(id) {
-    return async function (dispatch) {
-        var json = await axios.get("http://localhost:3002/users/"+id+"/orders");
-        return dispatch({
-            type: 'GET_ORDERS_BY_USUARIO',
-            payload: json.data
-        })
-    }
-}
 
 export function getEngine() {
     return async function (dispatch) {
@@ -82,7 +76,7 @@ export function postProduct(payload) {
 }
 
 export function putProduct(id, payload) {
-   
+    
     return async function (dispatch) {
         const json = await axios.put("http://localhost:3002/productsPut/:id" + id, payload);
         return dispatch({
@@ -124,6 +118,8 @@ export function postCart(payload) {
     }
 }
 
+
+
 export function postReview(payload ){
     return async function (dispatch){
         const json = await axios.post("http://localhost:3002/product/"+payload.id+"/review", payload)
@@ -146,16 +142,16 @@ export function userRegister(payload) {
 
 export const signin =(mail, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: {mail, password}})
-try {
-    const { data } = await axios.post('http://localhost:3002/login', {mail, password})
-    dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
-    localStorage.setItem('userInfo', JSON.stringify(data.token))
-    localStorage.setItem('userInformacion', JSON.stringify(data))
-    localStorage.setItem('userID', data._id)
-    
-    
-} catch (error){
-    dispatch({
+    try {
+        const { data } = await axios.post('http://localhost:3002/login', {mail, password})
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
+        localStorage.setItem('userInfo', JSON.stringify(data.token))
+        localStorage.setItem('userInformacion', JSON.stringify(data))
+        localStorage.setItem('userID', data._id)
+        
+        
+    } catch (error){
+        dispatch({
         type: USER_SIGNIN_FAIL,
         payload:
         error.response && error.response.data.message
@@ -170,7 +166,7 @@ export function deleteUser(id) {
     return async function (dispatch) {
         try {
             let json = await axios.put("http://localhost:3002/delete_user", id)
-
+            
             return dispatch({
                 type: "DELETE_USER",
                 payload: json
@@ -185,60 +181,60 @@ export function deleteUser(id) {
 
 export const userAdmin =(mail, password) => async (dispatch) => {
     dispatch({ type: 'USER_ADMIN_REQUEST', payload: {mail, password}})
-try {
-    const { data } = await axios.post('http://localhost:3002/login', {mail, password})
-    dispatch({ type: 'USER_ISADMIN', payload: data})
-    localStorage.setItem('userAdmin', JSON.stringify(data.state))
-    
-    
-} catch (error){
-    dispatch({
-        type: USER_SIGNIN_FAIL,
-        payload:
-        error.response && error.response.data.message
-        ? error.response.data.message : error.message,
-    })
+    try {
+        const { data } = await axios.post('http://localhost:3002/login', {mail, password})
+        dispatch({ type: 'USER_ISADMIN', payload: data})
+        localStorage.setItem('userAdmin', JSON.stringify(data.state))
+        
+        
+    } catch (error){
+        dispatch({
+            type: USER_SIGNIN_FAIL,
+            payload:
+            error.response && error.response.data.message
+            ? error.response.data.message : error.message,
+        })
 }
 }
 
- export const getUserData = (userId) => async (dispatch, getState) => {
-     dispatch({type: 'USER_DETAILS_REQUEST', payload: userId});
-     const {
-           userInfo 
-        } = getState();
-     try {
-         const { data } = await axios.get(`http://localhost:3002/user/${userId}`, {
-         headers: { Authorization: `Bearer ${userInfo.token}`}
-         });
-         dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
-     } catch (error) {
-         const message = error.response && error.response.data.message
-         ? error.response.data.message : error.message;
-         dispatch({type: 'USER_DETAILS_FAIL', payload: message})
-     }
- }
+export const getUserData = (userId) => async (dispatch, getState) => {
+    dispatch({type: 'USER_DETAILS_REQUEST', payload: userId});
+    const {
+        userInfo 
+    } = getState();
+    try {
+        const { data } = await axios.get(`http://localhost:3002/user/${userId}`, {
+            headers: { Authorization: `Bearer ${userInfo.token}`}
+        });
+        dispatch({ type: 'USER_DETAILS_SUCCESS', payload: data })
+    } catch (error) {
+        const message = error.response && error.response.data.message
+        ? error.response.data.message : error.message;
+        dispatch({type: 'USER_DETAILS_FAIL', payload: message})
+    }
+}
 
- export const updateUserProfile = (user) => async (dispatch, getState) => {
+export const updateUserProfile = (user) => async (dispatch, getState) => {
     dispatch({ type: 'USER_UPDATE_PROFILE_REQUEST', payload: user });
     const {
         userInfo  ,
     } = getState();
     try {
-      const { data } = await axios.put(`http://localhost:3002/user/profile`, user, {
-        headers: { Authorization: `Bearer ${userInfo.token}` },
-      });
-      console.log(data)
-      dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
-      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-      localStorage.setItem('userDetails', JSON.stringify(data));
+        const { data } = await axios.put(`http://localhost:3002/user/profile`, user, {
+            headers: { Authorization: `Bearer ${userInfo.token}` },
+        });
+        console.log(data)
+        dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
+        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
+        localStorage.setItem('userDetails', JSON.stringify(data));
     } catch (error) {
-      const message =
+        const message =
         error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({ type: 'USER_UPDATE_PROFILE_FAIL', payload: message });
+        ? error.response.data.message
+        : error.message;
+        dispatch({ type: 'USER_UPDATE_PROFILE_FAIL', payload: message });
     }
-  };
+};
 
 
 export function DeleteCar(id) {
@@ -330,9 +326,38 @@ export function getNameCars(name) {
             console.log(err)
         }
     };
-
+    
 }
 
+
+
+export function getAllOrderStatus(payload) {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/orders/?status="+ payload.status);
+        return dispatch({
+            type: 'GET_ALL_ORDERS_STATUS',
+            payload: json.data
+        })
+    }
+}
+export function getUserOrderStatus(payload) {
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/users/"+payload.id+"/orders/?status="+ payload.status);
+        return dispatch({
+            type: 'GET_ORDERS_USER_STATUS',
+            payload: json.data
+        })
+    }
+}
+    export function getOrderByUsuario(payload) {
+        return async function (dispatch) {
+            var json = await axios.get("http://localhost:3002/users/"+payload+"/orders");
+            return dispatch({
+                type: 'GET_ORDERS_BY_USUARIO',
+                payload: json.data
+            })
+        }
+    }
 export function getBrandCars(name) {
     return async function (dispatch) {
         try {

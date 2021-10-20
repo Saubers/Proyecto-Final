@@ -63,12 +63,23 @@ const AllOrders = async function (req,res){
 
 const OrdenesByUsuario= async function (req,res) {
     const {id} = req.params;
-    try {
-        let Ordenes = await Cart.find({user : id}).populate('publication').populate('user')
-        res.status(200).send(Ordenes)
-        
-    } catch (error) {
-        res.status(200).send(error)
+    const {status} = req.query;
+    console.log('req.query',status)
+    if(status){
+        try {
+            let Ordenes = await Cart.find({user : id}).find({ state : status  }).populate('publication')
+            res.status(200).send(Ordenes)
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        try {
+            let Ordenes = await Cart.find({user : id}).populate('publication')
+            res.status(200).send(Ordenes)
+            
+        } catch (error) {
+            res.status(200).send(error)
+        }
     }
 }
 

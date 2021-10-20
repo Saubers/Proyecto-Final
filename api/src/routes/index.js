@@ -85,6 +85,9 @@ module.exports = app => {
     //Ordener de usuario
     router.get('/users/:id/orders', OrdenesByUsuario)
 
+    
+    
+
     //Vaciar carrito
     router.delete('/cart/delete/:id/',deleteCart)
 
