@@ -79,7 +79,7 @@ function App() {
           <Route exact path='/home/ADMIN/orders' component={OrderCar} />
           <Route exact path='/user/me' component={ProfileInfo} />
           <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />
-          <Route exact path='/home/ADMIN/orders/edit' component={OrderEdit}/>
+          <Route exact path='/home/ADMIN/edit/:id' component={OrderEdit}/>
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
         </Switch>
