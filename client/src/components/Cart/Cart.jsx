@@ -75,13 +75,14 @@ export default function Cart(props){
                     element.cantidad =  parseInt(element.cantidad + 1)
                 }
             })
-            
+            setPrice(price + idCar.price)
         }
         else{
-            return(alert('item supero su stock'))
+            return(alert('item supero su stock'),
+            console.log('found cantidad',found?.cantidad),
+            console.log('idcar stocks',idCar.stock)
+            )
         }
-     //   sumatotal()
-        console.log('amount',amount)
 
     }
     console.log('amount',amount)
@@ -96,7 +97,6 @@ export default function Cart(props){
         // }
       //  console.log('car',car)
         sumarCar(car)
-      //  sumatotal()
     }
     function handleClickRestark(e){
         let numeroresta = 0
