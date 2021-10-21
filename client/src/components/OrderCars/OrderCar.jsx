@@ -74,7 +74,7 @@ export default function OrderCar(props) {
                 <div className={style.ticket}>
                     <table>
                     <tr>
-                    <th>id odrder : {el._id}</th>
+                    <th>Id de orden: {el._id}</th>
                     <th>{el.cantidad + ''}</th >
                     <th className={style.total}>{el.price}</th>
                     <th>{el.state}</th>

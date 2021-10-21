@@ -25,7 +25,7 @@ console.log(userState)
     return (
         <div>
            
-            <Button onClick={(e) => handleSubmit(e)} variant="danger">Delete user</Button>
+            <Button onClick={(e) => handleSubmit(e)} variant="danger">Borrar Usuario</Button>
             
         </div>
     )

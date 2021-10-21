@@ -13,16 +13,16 @@ export default function CategoryCRUD() {
                 <h1>Administracion de categorias</h1>
                 <ul>
                     <li>
-                        <Link to="/CategoryCRUD/CrearCategoria"><h1>Create</h1></Link>
+                        <Link to="/CategoryCRUD/CrearCategoria"><h1>CREAR</h1></Link>
                     </li>
                     <li>
-                        <Link to="/CategoryCRUD/CategoryRead"><h1>Read</h1></Link>
+                        <Link to="/CategoryCRUD/CategoryRead"><h1>LEER</h1></Link>
                     </li>
                     <li>
-                        <Link to="/CategoryCRUD/CategoryUpdate"><h1>Update</h1></Link>
+                        <Link to="/CategoryCRUD/CategoryUpdate"><h1>MODIFICAR</h1></Link>
                     </li>
                     <li>
-                        <Link to="/CategoryCRUD/CategoryDelete"><h1>Delete</h1></Link>
+                        <Link to="/CategoryCRUD/CategoryDelete"><h1>BORRAR</h1></Link>
                     </li>
                 </ul>
             </crud>

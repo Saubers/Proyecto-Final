@@ -34,11 +34,11 @@ function CategoryCreate() {
         <div>
             <NavBar />
             <div>
-                <h1>Enter the new category information</h1>
+                <h1>Agrega una nueva categoria</h1>
             </div>
             <form onSubmit={(e) => HandleSubmit(e)}>
                 <fieldset>
-                    <legend>Categoria</legend>
+                    {/* <legend>Categoria</legend> */}
                     <div>
                         <label>Nombre:</label>
                         <input name="name"

@@ -30,6 +30,8 @@ function CategoryDelete() {
         setID("")
     };
 
+    const selectedCategory= categories?.find((el)=> el._id === id);
+
     return (
         <div>
             <NavBar />
@@ -44,14 +46,16 @@ function CategoryDelete() {
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>
-                    {id && (
-                        <h3><id><b>ID: </b></id>{id}</h3>
-
+                    {selectedCategory&&(<div>
+                        <h3><b>Nombre: </b>{selectedCategory.name}</h3>
+                        <h4><b>ID: </b>{selectedCategory._id}</h4>
+                        <p><b>Descripcion: </b>{selectedCategory.description}</p>
+                        </div>
                     )}
                     <div>
-                        <button type='submit'>Submit</button>
+                        <button type='submit'>Borrar</button>
                         <Link to="/CategoryCRUD">
-                            <button >Back</button>
+                            <button >Volver</button>
                         </Link>
                     </div>
                 </fieldset>

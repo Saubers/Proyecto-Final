@@ -3,6 +3,7 @@ h1{
   margin-top: 5px;
   margin-bottom: 35px;
 }
+
 .General{
     background-color: rgba(139, 133, 133, 0.651);
     margin-left: 90px;
@@ -11,8 +12,6 @@ h1{
     border-radius: 5px;
     box-shadow: 0px 2px 15px rgba(255, 255, 255, 0.747);
     align-content: center;
-    
-    
   }
   
   .subDiv{

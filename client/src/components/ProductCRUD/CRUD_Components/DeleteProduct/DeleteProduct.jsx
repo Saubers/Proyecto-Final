@@ -5,18 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../../NavBar/NavBar";
 
 export default function DeleteProduct() {
+
     const dispatch = useDispatch();
+
     const [id, setID] = useState("")
+
     const cars = useSelector(state => state.allCars)
+
     useEffect(() => {
         dispatch(getCars());
     }, [dispatch])
 
     function handleSelect(e) {
-        setID({
-            id: e.target.value
-        })
-        console.log(id)
+        setID(e.target.value)
     }
 
     function handleSubmit(e) {
@@ -24,10 +25,11 @@ export default function DeleteProduct() {
         e.preventDefault(e);
         dispatch(DeleteCar(id))
         alert("Publicacion eliminada")
-        setID({
-            id: ""
-        })
-    }
+        setID("")
+    };
+
+    const selectedCar = cars?.find((el) => el._id === id);
+
     return (
         <div>
             <NavBar />
@@ -40,13 +42,15 @@ export default function DeleteProduct() {
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>
-                    {id.id && (
-                        <h3><id><b>ID: </b></id>{id.id}</h3>
-
+                    {selectedCar&&(<div>
+                        <h3><b>Nombre: </b>{selectedCar.name}</h3>
+                        <h4><b>ID: </b>{selectedCar._id}</h4>
+                        <p><b>Descripcion: </b>{selectedCar.description}</p>
+                        </div>
                     )}
-                    <button type='submit'>Submit</button>
+                    <button type='submit'>Eliminar</button>
                     <Link to="/ProductCRUD">
-                        <button >Back</button>
+                        <button >Volver</button>
                     </Link>
                 </fieldset>
             </form>

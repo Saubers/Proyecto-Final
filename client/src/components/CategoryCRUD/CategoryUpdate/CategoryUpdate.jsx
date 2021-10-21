@@ -99,7 +99,7 @@ function CategoryUpdate() {
                 <Link to="/CategoryCRUD">
                     <button>Volver</button>
                 </Link>
-                <button type='submit'>Crear</button>
+                <button type='submit'>Editar</button>
             </form>
         </div>
     )
