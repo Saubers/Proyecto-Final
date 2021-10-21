@@ -68,7 +68,7 @@ export default function AdministracionAdmin() {
             </select>
             </div>
             <div>
-                <button onClick={(e) => handleClick(e)}></button>
+                <button onClick={(e) => handleClick(e)}>Click</button>
             </div>
         </div>
     )
