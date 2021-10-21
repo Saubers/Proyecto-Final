@@ -1,12 +1,9 @@
 import React from 'react';
 import styleCars from '../ProductCard/ProductCard.module.css';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { getCarDetail } from '../../actions/index';
-import { useLocalStorage } from '../../useStorage/useLocalStorage'
+
 
 const ProductCard = ({ name, brand, img, price, model, mileage, stock, _id }) => {
-    const dispatch = useDispatch()
 
     // localStorage.setItem('auto',[])
     // let array = []

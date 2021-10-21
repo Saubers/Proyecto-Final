@@ -10,7 +10,7 @@ const Review = (props) =>{
     useEffect(() => {
         dispatch(getReview(props.publication.id))
         sumAverage()
-    }, [dispatch, props.publication.id])
+    },)
     const userInformacion = localStorage.getItem("userInformacion");
     const review = useSelector((state) => state.review)
     const data = useSelector((state)=> state.carDetail)
@@ -102,7 +102,7 @@ const Review = (props) =>{
                     <div className={style.divcart}>
                     <h5 className={style.title}>{el.calification}★</h5>
                     <div>
-                        <img src={IconUser}/>
+                        <img src={IconUser} alt=''/>
                         {el.user && el.user ? <h7 >{el.user?.fullname}</h7> : <h7 >Anonimo</h7>} <br />
                     </div>
                     <strong>{el.title}</strong>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getCars } from "../../../../actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,11 +10,9 @@ export default function ReadProduct() {
 
     useEffect(() => {
         dispatch(getCars());
-    }, [dispatch])
+    }, )
 
     const cars = useSelector(state => state.allCars);
-
-    console.log(cars)
 
     return (
         <div>
