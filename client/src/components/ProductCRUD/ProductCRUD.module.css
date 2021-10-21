@@ -10,7 +10,7 @@ crud {
 }
 
 ul{
-    margin-top: 100px;
+    margin-top: 40px;
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -28,4 +28,9 @@ ul{
     border-radius: 5px;
     letter-spacing: 1px;
     transition: all 0.3s ease;
+  }
+
+  .title{
+    text-align: center;
+    margin-top: 50px;
   }

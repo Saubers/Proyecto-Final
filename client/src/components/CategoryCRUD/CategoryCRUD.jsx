@@ -9,8 +9,8 @@ export default function CategoryCRUD() {
             <div>
                 <NavBar />
             </div>
+            <h1 className={styleCRUD.title}>Administracion de categorias</h1>
             <crud>
-                <h1>Administracion de categorias</h1>
                 <ul>
                     <li>
                         <Link to="/CategoryCRUD/CrearCategoria"><h1>CREAR</h1></Link>
@@ -19,7 +19,7 @@ export default function CategoryCRUD() {
                         <Link to="/CategoryCRUD/CategoryRead"><h1>LEER</h1></Link>
                     </li>
                     <li>
-                        <Link to="/CategoryCRUD/CategoryUpdate"><h1>MODIFICAR</h1></Link>
+                        <Link to="/CategoryCRUD/CategoryUpdate"><h1>ACTUALIZAR</h1></Link>
                     </li>
                     <li>
                         <Link to="/CategoryCRUD/CategoryDelete"><h1>BORRAR</h1></Link>

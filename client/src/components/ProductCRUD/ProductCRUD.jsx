@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import styles from "./ProductCRUD.module.css"
 
 
 export default function CRUD() {
@@ -9,8 +10,8 @@ export default function CRUD() {
             <div>
                 <NavBar />
             </div>
+            <h1 className={styles.title}>Administracion de productos</h1>
             <crud>
-                <h1>Administracion de productos</h1>
                 <ul>
                     <li>
                         <Link to='/ProductCRUD/CreateProduct'><h1>CREAR</h1></Link>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { deleteCategory, getCategories } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../NavBar/NavBar";
+import Styles from "./CategoryDelete.module.css"
 
 function CategoryDelete() {
 
@@ -30,7 +31,7 @@ function CategoryDelete() {
         setID("")
     };
 
-    const selectedCategory= categories?.find((el)=> el._id === id);
+    const selectedCategory = categories?.find((el) => el._id === id);
 
     return (
         <div>
@@ -40,24 +41,24 @@ function CategoryDelete() {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <fieldset>
                     {/* <legend>Select car to delete</legend> */}
-                    <select required onChange={(e) => handleSelect(e)}>
+                    <select className={Styles.selectCategory} required onChange={(e) => handleSelect(e)}>
                         <option disabled selected>Categorias</option>
                         {categories?.map((el) => (
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>
-                    {selectedCategory&&(<div>
-                        <h3><b>Nombre: </b>{selectedCategory.name}</h3>
-                        <h4><b>ID: </b>{selectedCategory._id}</h4>
-                        <p><b>Descripcion: </b>{selectedCategory.description}</p>
+                    {selectedCategory && (
+                        <div className={Styles.General}>
+                            <h3><b>Nombre: </b>{selectedCategory.name}</h3>
+                            <h4><b>ID: </b>{selectedCategory._id}</h4>
+                            <p><b>Descripcion: </b>{selectedCategory.description}</p>
                         </div>
                     )}
-                    <div>
-                        <button type='submit'>Borrar</button>
-                        <Link to="/CategoryCRUD">
-                            <button >Volver</button>
-                        </Link>
-                    </div>
+                    <p />
+                    <button className={Styles.button3} type='submit'>Borrar</button>
+                    <Link to="/CategoryCRUD">
+                        <button className={Styles.button3}>Volver</button>
+                    </Link>
                 </fieldset>
             </form>
         </div>
