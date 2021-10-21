@@ -7,15 +7,13 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCars, signin, userAdmin } from '../../../actions';
+import { getCars, signin, userAdmin,googleSignin } from '../../../actions';
 import { useEffect } from 'react';
 
 import { GoogleLogin } from 'react-google-login';
 
 
 const Login = () => {
-    
-    
     const [mail, setMail] = useState("")
     const [user, setUser] = useState('')
     const history = useHistory()
@@ -24,35 +22,31 @@ const Login = () => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState('')
     const dispatch = useDispatch()
-    const userState = localStorage.getItem('userAdmin')
-
-    
+    const stateAdmin = useSelector((state) => state.userInfo)
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         const local = localStorage.getItem('userInfo')
         if(local){
             history.push('/home/catalogo')
         }
-        
-    dispatch(signin(mail, password))
-    dispatch(userAdmin(mail, password))
-
-    // if(signin(mail) && signin(password) !== local){
-    //   setSuccess('You are logged succesfully!!')
-    //   setLoading(true)
-    //   history.push('/home/catalogo')
-    // }else{
-    //     setError('Your mail or password are wrong...')
-    // }
-    // setLoading(false)
-   
-    }
-    const responseFacebook = (response) => {
-        console.log(response)
-          }
-       
-    return(
-        <div className={styles.loginContainer}>
+        dispatch(signin(mail, password))
+        dispatch(userAdmin(mail, password))
+        }
+                    if(stateAdmin){
+                        console.log('ENTRO')
+                        handleSubmit()
+                    }
+                    const responseSuccessGoogle = (response) => {
+                        dispatch(googleSignin(response.tokenId))
+                        
+                    }
+                    
+                    const responseErrorGoogle = (response) => {
+                        console.log('ERR',response)
+                    }
+                    
+                    return(
+                        <div className={styles.loginContainer}>
             <div className={styles.imgdivd}>
                 <img src={lg} alt="lg" width="500px" />
             </div>
@@ -90,19 +84,18 @@ const Login = () => {
                     </Col>
                 </Row>
                 <Link to ='/'>
-                <Button className={styles.btnsubt}>Volver</Button>
+                    <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
-                {/* <div>
-                
+                <div>
+                {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
                 <GoogleLogin
-    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
-    cookiePolicy={'single_host_origin'}
-  />,
-            
-                </div> */}
+                    class="g-signin2"
+                    buttonText="Login"
+                    onSuccess={responseSuccessGoogle}
+                    onFailure={responseErrorGoogle}
+                    cookiePolicy={'single_host_origin'}
+                />
+                </div>
                 </div>
         </div>
         

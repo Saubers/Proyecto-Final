@@ -3,7 +3,7 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
-const { createUser, loginUser, getUserData, changeStateToInactive, administracion, getAllUser } = require('../controllers/userFunction');
+const { createUser, loginUser, getUserData, changeStateToInactive, administracion, getAllUser, googleLogin } = require('../controllers/userFunction');
 const { forgotPassword, resetPassword, protect, updatePassword } = require('../controllers/passwordFunctions')
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
 const {searchIdOrder} =require('../controllers/orderFunction')
@@ -68,6 +68,9 @@ module.exports = app => {
     router.patch('/updatePassword', protect, updatePassword )
 
     router.put('/promote/:id', administracion)
+
+    router.post('/googleLogin', googleLogin)
+
     // router.put('/new-password')
  
     ///////Carrito

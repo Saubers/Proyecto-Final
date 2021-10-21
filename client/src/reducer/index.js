@@ -102,12 +102,18 @@ function rootReducer(state = initialState, action) {
         loading: false,
         userInfo: action.payload,
       };
-    case "USER_SIGNIN_FAIL":
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+      case "USER_SIGNIN_FAIL":
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
+        };
+      case 'GOOGLE_SIGNIN':
+          return{
+            ...state,
+            loading: false,
+            userInfo:action.payload.token
+          }
     case "USER_SIGNOUT":
       return {
 

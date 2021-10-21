@@ -31,7 +31,6 @@ import { useSelector } from 'react-redux';
 function App() {
   const history = useHistory()
   const stateAdmin = useSelector((state) => state.userInfo)
-  console.log("estado app", stateAdmin)
   const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
   return (

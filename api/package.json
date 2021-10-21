@@ -28,6 +28,7 @@
         "flash": "^1.1.0",
         "fs-extra": "^10.0.0",
         "generate-token": "^1.0.1",
+        "google-auth-library": "^7.10.1",
         "jsonwebtoken": "^8.5.1",
         "md5": "^2.3.0",
         "mercadopago": "^1.5.8",
