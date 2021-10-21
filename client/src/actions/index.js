@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from './userConstants';
-import bcrypt from 'bcrypt'
 
 //Traemos al payload todos los autos
 export function getCars() {
