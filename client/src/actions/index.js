@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from './userConstants';
+import bcrypt from 'bcrypt'
 
 //Traemos al payload todos los autos
 export function getCars() {
@@ -23,10 +24,10 @@ export function getOrder() {
 }
 
 
-export function putCart(id, payload) {
-    console.log("ACTIONS", id, payload);
+export function putCart(payload) {
+    console.log("ACTIONS", payload);
     return async function (dispatch) {
-        const json = await axios.put("http://localhost:3002/orders/:id" + id, payload)
+        const json = await axios.put("http://localhost:3002/orders/" + payload.idOrder, payload)
         console.log(json);
         return dispatch({
             type: 'PUT_CART',
@@ -313,6 +314,15 @@ export function filterAge(payload) {
         payload
     }
 }
+export function searchId(payload) {
+    console.log('PAYLOAD', payload.input);
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/home/edit/" +payload.input)
+        return dispatch({
+            type: 'SEARCH_ID_ORDER',
+            payload :json
+    })
+}}
 
 //filtrado orderDetail
 

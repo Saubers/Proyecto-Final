@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCarDetail,postCart } from "../../actions/index";
 import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
-import Component_Carousel from "../Carousel/Carousel";
-import { useLocalStorage ,borrarItem} from '../../useStorage/useLocalStorage'
+import ComponentCarousel from "../Carousel/Carousel";
+import { useLocalStorage } from '../../useStorage/useLocalStorage'
 import {getReview, getOrderByUsuario} from '../../actions/index'
 
 
@@ -80,7 +80,7 @@ export default function Detail(props) {
 
                     {MyCar?.category ? <h3>{MyCar?.category.name}</h3> : null} */}
                     <div className='car_detail_carousel'>
-                        <Component_Carousel photos={MyCar?.img} width="90%"/>
+                        <ComponentCarousel photos={MyCar?.img} width="90%"/>
                     </div>
                     <hr />
                     <h3 className={styles.title}>Estados del auto</h3>

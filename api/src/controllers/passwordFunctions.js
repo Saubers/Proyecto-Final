@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const sendEmail = require('../utils/mail');
 const { error } = require('console');
 const generateToken = require('../generateToken');
+const { promisify } = require('util');
 
 const forgotPassword = async (req, res, next) => {
     // Agarro la informacion del email de usuario
@@ -39,7 +40,66 @@ const forgotPassword = async (req, res, next) => {
    }
    
    }
+
+
+   const protect = async (req, res, next) => {
+       let token;
+       if(
+           req.headers.authorization &&
+           req.headers.authorization.startsWith('bearer')
+       ) {
+           token = req.headers.authorization.split(' ')[1];
+       }
+
+       if(!token) {
+           return next(
+               Error
+           )
+       }
+
+       const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+
+       const currentUser = await User.findById(decoded.id);
+       if(!currentUser){
+           return next(
+               Error
+           )
+       }
+       if(currentUser.changePasswordAfter(decoded.iat)) {
+           return next(Error)
+       }
+       req.user = currentUser;
+       next();
+   }
+
    
+   const updatePassword = async (req,res,next) => {
+   // Agarrar usuario de la coleccion
+   const user = await User.findById(req.user.id).select('+password');
+     
+   // Verificar si la contraseña posteada es correcta
+   if (!(await user.matchPassword(req.body.currentPassword, password))) {
+       return next(Error, 401)
+   }
+
+   // Si pasa eso, actualiza el password
+   user.password = req.body.password
+   user.confirm_password = req.body.confirm_password
+   await user.save();
+
+   // Logear el usuario, enviar JWT
+   const token = generateToken(user._id)
+   
+   res.status(200).json({
+       status: 'success',
+       token,
+       data: {
+           user
+       }
+   })
+   }
+
+
    const resetPassword = async (req, res, next) => {
    // Obtener el usuario basado en el token
    const hashToken = crypto
@@ -73,5 +133,7 @@ const forgotPassword = async (req, res, next) => {
 
    module.exports = {
        forgotPassword,
-       resetPassword
+       resetPassword,
+       updatePassword,
+       protect
    }

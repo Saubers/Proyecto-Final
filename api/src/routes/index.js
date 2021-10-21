@@ -4,8 +4,9 @@ const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBra
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
 const { createUser, loginUser, getUserData, changeStateToInactive } = require('../controllers/userFunction');
-const { forgotPassword, resetPassword } = require('../controllers/passwordFunctions')
+const { forgotPassword, resetPassword, protect, updatePassword } = require('../controllers/passwordFunctions')
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
+const {searchIdOrder} =require('../controllers/orderFunction')
 const mercadopago = require ('mercadopago');
 
 mercadopago.configure({
@@ -62,6 +63,7 @@ module.exports = app => {
 
     router.put('/delete_user/:_id', changeStateToInactive)
 
+    router.patch('/updatePassword', protect, updatePassword )
     // router.put('/new-password')
  
     ///////Carrito
@@ -112,7 +114,8 @@ module.exports = app => {
     //GET /product/:id/review/
     router.get('/product/:id/review',getReview)
 
-
+    //searchId
+    router.get('/home/edit/:id', searchIdOrder)
 
 
     app.use(router);

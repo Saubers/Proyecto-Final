@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCarDetail } from "../../../../actions";
@@ -11,7 +11,7 @@ export default function ReadProductDetail(props) {
     useEffect(() => {
         dispatch(getCarDetail(props.match.params.id));
 
-    }, [dispatch])
+    },)
 
     const car = useSelector((state) => state.carDetail)
 

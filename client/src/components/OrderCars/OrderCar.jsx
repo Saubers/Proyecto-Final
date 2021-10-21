@@ -1,18 +1,19 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import {getOrder, getOrderByUsuario,DeleteCartId, filterStatus } from "../../actions";
+import {getOrder, getOrderByUsuario,DeleteCartId, filterStatus, searchId } from "../../actions";
 import {Link} from "react-router-dom";
 import style from '../OrderCars/OrderCar.module.css'
 import NavBar from '../NavBar/NavBar'
 import OrderDetail from './OrderDetail/OrderDetail.jsx'
 export default function OrderCar(props) {
     const dispatch = useDispatch()
+    const id = ''
     useEffect(()=>{
         dispatch(getOrder())
     },[dispatch])
     const [order, setOrder] = useState("")
+    const [input, setInput] = useState("")
     const OrderUser = useSelector((state) => state.orders)
-    console.log(OrderUser)
 
     function handleDelete(el) {
         dispatch(DeleteCartId(el._id))
@@ -24,6 +25,27 @@ export default function OrderCar(props) {
         ev.preventDefault()
         dispatch(filterStatus(ev.target.value))
     }
+
+    function handleChange(e) {
+        setInput({
+            ...input,
+            input:e.target.value
+        })
+    }
+    function handleClick(e) {
+        if (!input) {
+            alert('Tenes que ingresar una id existente')
+        }
+        e.preventDefault()
+        dispatch(searchId(input))
+        setInput({
+            input:""
+        })
+    }
+    function handleGetAll(e) {
+        dispatch(getOrder())
+    }
+
     return(
         <div className={style.body}>
             <NavBar/>
@@ -36,6 +58,16 @@ export default function OrderCar(props) {
                         <option value="cancelada">Cancelada</option>
                         <option value="completa">Completa</option>
                         </select>
+            
+            <input
+             type="text"
+             value={input.input}
+             name="input"
+             onChange = {(e) => handleChange(e)}
+             placeholder="Id"
+            ></input>
+            <button onClick = {(e) => handleClick(e)}></button>
+            <button onClick = {(e) => handleGetAll(e)}></button>
             </div>
             {OrderUser && OrderUser.map(el=>{
                 return(
