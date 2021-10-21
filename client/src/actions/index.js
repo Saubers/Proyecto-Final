@@ -313,6 +313,15 @@ export function filterAge(payload) {
         payload
     }
 }
+export function searchId(payload) {
+    console.log('PAYLOAD', payload.input);
+    return async function (dispatch) {
+        var json = await axios.get("http://localhost:3002/home/edit/" +payload.input)
+        return dispatch({
+            type: 'SEARCH_ID_ORDER',
+            payload :json
+    })
+}}
 
 //filtrado orderDetail
 

@@ -6,6 +6,7 @@ const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,
 const { createUser, loginUser, getUserData, changeStateToInactive } = require('../controllers/userFunction');
 const { forgotPassword, resetPassword } = require('../controllers/passwordFunctions')
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
+const {searchIdOrder} =require('../controllers/orderFunction')
 const mercadopago = require ('mercadopago');
 
 mercadopago.configure({
@@ -112,7 +113,8 @@ module.exports = app => {
     //GET /product/:id/review/
     router.get('/product/:id/review',getReview)
 
-
+    //searchId
+    router.get('/home/edit/:id', searchIdOrder)
 
 
     app.use(router);

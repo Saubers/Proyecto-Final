@@ -155,6 +155,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         users: action.payload,
       };
+    case "SEARCH_ID_ORDER":
+        return {
+          ...state,
+          orders: action.payload.data
+        };
     case "FILTER_BY_KM":
       let km = [];
       if (action.payload === "All") {
