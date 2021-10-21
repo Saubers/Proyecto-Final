@@ -79,6 +79,11 @@ export default function Cart(props){
     //boton post filtrar todos los que tengan
     
     function handleClickSumar(car){
+        // console.log("HOLAA",amount.map(el => el.cantidad), "HOLA",idAuto.map(el => el.stock));
+        // if (amount.map(el => el.cantidad) === idAuto.map(el => el.stock)) {
+        //     console.log('entro');
+        //     alert('No hay mas stock')
+        // }
         console.log('car',car)
         sumarCar(car)
         sumatotal()
@@ -166,7 +171,7 @@ export default function Cart(props){
     function handleSelect(e) {
       history.push(`/home/Catalogo/${e.target.value}`);
     }
-    return(
+      return(
         <div>
             <NavBar/>
             <hr />
@@ -197,7 +202,17 @@ export default function Cart(props){
                                     </div>
                                 </div>
                                 <div className={stylecart.cantidad}>
-                                    <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
+                            
+                                   {
+                                    el.stock === amount.map(ele => ele.cantidad)[0] ?
+                                   <p>No hay Stock</p>
+                                   :
+                                   <div>
+                                   <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
+                                   <p>Stock:{el?.stock}</p>
+                                   </div>
+                                    }
+                                    
                                 </div>
                                 <div className={stylecart.btnde}>
                                     <button onClick={()=>handleDeleteCar(el)} className={stylecart.btndelee}>X</button>
