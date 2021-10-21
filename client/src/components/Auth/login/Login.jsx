@@ -38,6 +38,9 @@ const Login = () => {
                     }
                     const responseSuccessGoogle = (response) => {
                         dispatch(googleSignin(response.tokenId))
+                        if(dispatch(googleSignin(response.tokenId))){
+                            history.push('/home/catalogo')
+                        }
                         
                     }
                     
