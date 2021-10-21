@@ -58,10 +58,12 @@ const forgotPassword = async (req, res, next) => {
                Error
            )
        }
-       console.log(process.env.JWT_SECRET)
+       console.log("JASDJASDJASDJ", jwt)
+       console.log("jwt secret",process.env.JWT_SECRET)
     // Verificar si existe el token
-    const jsonwt = jwt.sign()
-       const decoded = await promisify(jsonwt.verify)(token, process.env?.JWT_SECRET);
+    // const jsonwt = jwt.sign()
+    
+       const decoded = await promisify(jwt.verify(token, process.env.JWT_SECRET));
     console.log('decode', decoded)
        const currentUser = await User.findById(decoded.id);
        if(!currentUser){

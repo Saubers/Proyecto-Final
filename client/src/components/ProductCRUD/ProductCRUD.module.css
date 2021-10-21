@@ -18,22 +18,26 @@
   height: 500px;
   transition: 1s;
 border-radius: 5px;
+list-style: none;
 }
 .li2{
   width: 250px;
   height: 500px;
   transition: 1s;
+  list-style: none;
 border-radius: 5px;
 }
 .li3{
   width: 250px;
   height: 500px;
   transition: 1s;
+  list-style: none;
   border-radius: 5px;
 }
 .li4{
   width: 250px;
   height: 500px;
+  list-style: none;
   transition: 1s;
   border-radius: 5px;
 }
