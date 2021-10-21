@@ -40,8 +40,8 @@ const createUser = async ( req, res ,next) => {
     confirm_password: confirm_password,
     state: state
 })
+console.log(user)
 user.password = await user.encryptPassword(password);
-user.state = await user.encryptState(state)
     await user.save()
     req.flash('succes_msg', 'You are registered!')
     res.status(200).send(user)
