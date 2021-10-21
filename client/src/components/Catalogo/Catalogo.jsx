@@ -1,7 +1,6 @@
 import React,{useEffect} from "react";
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom';
 import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
@@ -82,7 +81,7 @@ return (
         {/* SELECT DE KM*/}
     <div className={styleCatalogo.divtotal}>
         <div className={styleCatalogo.divfiltros}>
-        <button className={styleCatalogo.btnreload} onClick={e=>handleClick(e) }><img width="50px" src={recargar}></img> </button>
+        <button className={styleCatalogo.btnreload} onClick={e=>handleClick(e) }><img width="50px" src={recargar} alt=''></img> </button>
         <br />
         {/* BOTON VOLVER */}
             <div className={styleCatalogo.divfilter}>
