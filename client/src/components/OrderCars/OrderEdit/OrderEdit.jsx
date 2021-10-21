@@ -3,7 +3,7 @@ import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
 import NavBar from '../../NavBar/NavBar'
 import {putCart} from '../../../actions/index'
-
+import {Link} from 'react-router-dom'
 export default function OrderEdit(props) {
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -19,7 +19,7 @@ export default function OrderEdit(props) {
         price : "",
         newState : ""
     })
-    console.log('OrderDetail',OrderDetail)
+
     function handleChange(e) {
         setInput({
             ...input,
@@ -36,7 +36,6 @@ export default function OrderEdit(props) {
         dispatch(putCart(input))
         alert("¡ESTADO CAMBIADO!")
     }
-    
     return(
         <div>
             <NavBar />
@@ -45,7 +44,7 @@ export default function OrderEdit(props) {
                     return(
                     <div>
                             <h3>Informacion de usuario</h3>
-                            <div>Nombre: {el.user.fullname} Mail: {el.user.mail} Tel: {el.user.phone}</div>
+                            <div>Nombre: {el.user?.fullname} Mail: {el.user?.mail} Tel: {el.user?.phone}</div>
                             <h3>Informacion de la publicacion: </h3>
                         <div>
                             <h3>Estado de la orden: {el.state}</h3>
@@ -72,6 +71,9 @@ export default function OrderEdit(props) {
                  <option value="Cancelada">Cancelada</option>
              </select>
              <button onClick={(e) => handleClick(e)}>Cambiar estado</button>
+             <Link to={'/home/ADMIN/orders'}>
+                        <button>Volver</button>
+                    </Link>
             </div> 
             )})}
             </div>)}

@@ -1,6 +1,9 @@
 const User = require('../models/User')
 const generateToken = require('../generateToken');
 require('../db.js')
+const jwt = require('jsonwebtoken')
+const {OAuth2Client} = require ('google-auth-library')
+const client = new OAuth2Client('635563607474-r1dntbc7n96ft9d0ik0iv5b7udbcdv2q.apps.googleusercontent.com')
 
 const getAllUser = async (req,res,next) =>{
     const users = await User.find()
@@ -112,6 +115,55 @@ const administracion = async (req, res,next)=>{
     }
 }
 
+const googleLogin = async (req,res) =>{
+    try{
+        const {tokenId} = req.body;
+        client.verifyIdToken({idToken: tokenId, audience: '635563607474-r1dntbc7n96ft9d0ik0iv5b7udbcdv2q.apps.googleusercontent.com'})
+        .then((response)=>{
+            const {email_verified,name,email} = response.payload;
+            if(email_verified){
+                User.findOne({mail: email}).exec((err,user)=>{
+                    if(err){
+                        return res.status(400).json({
+                            error:'algo salio mal'
+                        })
+                    }else{
+                        if(user){
+                            const token = jwt.sign({_id:user._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
+                            const {_id,name,mail}=user;
+                            res.json({
+                                token,
+                                user:{_id,name,mail}
+                            })
+                        }else{
+                            const create = async function() {
+                                const googleUser = await new User({ 
+                                    fullname: name,  
+                                    mail: email,
+                                })
+                                const token = jwt.sign({_id:googleUser._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
+                                await googleUser.save()
+                                const obj = {
+                                    token,
+                                    user:{
+                                        _id: googleUser._id,
+                                        name: googleUser.fullname,
+                                        mail: googleUser.mail
+                                    } 
+                                }
+                                res.status(200).send(obj)
+                            }
+                            create()
+                        }
+                    }
+                })
+            }
+        })
+    }catch(err){
+        console.log(err)
+    }
+}
+
 
 module.exports = {
     getAllUser,
@@ -120,5 +172,6 @@ module.exports = {
     getUserData,
     deleteUser,
     changeStateToInactive,
-    administracion
+    administracion,
+    googleLogin
 }

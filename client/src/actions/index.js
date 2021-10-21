@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS } from './userConstants';
+import { USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, GOOGLE_SIGNIN} from './userConstants';
 
 
 //Traemos al payload todos los autos
@@ -67,6 +67,7 @@ export function putCart(payload) {
 export function getOrderByID(id) {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/orders/" + id);
+        console.log(id);
         return dispatch({
             type: 'GET_ORDERS_BY_ID',
             payload: json.data
@@ -199,6 +200,19 @@ export const signin =(mail, password) => async (dispatch) => {
     })
 }
 }
+
+export function googleSignin(tokenId){
+    return async function(dispatch){
+        try {
+            const {data} = await axios.post('http://localhost:3002/googleLogin', {tokenId})
+            dispatch({type:GOOGLE_SIGNIN, payload: data})
+            localStorage.setItem('userInfo', JSON.stringify(data.token))
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+
 
 
 export function deleteUser(id) {

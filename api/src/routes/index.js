@@ -3,7 +3,7 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
-const { createUser, loginUser, getUserData, changeStateToInactive, administracion, getAllUser } = require('../controllers/userFunction');
+const { createUser, loginUser, getUserData, changeStateToInactive, administracion, getAllUser, googleLogin } = require('../controllers/userFunction');
 const { forgotPassword, resetPassword, protect, updatePassword } = require('../controllers/passwordFunctions')
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
 const {searchIdOrder} =require('../controllers/orderFunction')
@@ -59,15 +59,18 @@ module.exports = app => {
     
     router.get("/user", getAllUser)
 
-    router.post('/forgotPassword', forgotPassword)
+    router.put('/forgotPassword', forgotPassword)
 
-    router.patch('/resetPassword/:token', resetPassword)
+    router.put('/resetPassword', resetPassword)
 
     router.put('/delete_user/:_id', changeStateToInactive)
 
-    router.patch('/updatePassword', protect, updatePassword )
+    router.patch('/updatePassword', protect)
 
     router.put('/promote/:id', administracion)
+
+    router.post('/googleLogin', googleLogin)
+
     // router.put('/new-password')
  
     ///////Carrito

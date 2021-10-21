@@ -25,6 +25,7 @@ export default function Cards() {
         })
         e.preventDefault()
         dispatch(putAdmin(input))
+        window.location.reload()
     }
     function handleUser(e , id) {
         console.log(id);
@@ -35,6 +36,7 @@ export default function Cards() {
         })
         e.preventDefault()
         dispatch(putAdmin(input))
+        window.location.reload()
     } 
     console.log(input);
     return(
@@ -45,10 +47,10 @@ export default function Cards() {
                         <p>Nombre: {el.fullname}</p>
                         <p>Id: {el._id}</p>
                         <p>Estado: {el.state}</p>
-                        {el.state === "admin"?
-                        <button className={StyleUser.btnAdmin} onClick ={(e)=> handleUser(e, el._id)}>Cambiar estado a User</button>
-                        :
+                        {el.state === "user"?
                         <button className={StyleUser.btnAdmin} onClick ={(e)=> handleAdmin(e, el._id)}>Cambiar estado a Admin</button>
+                        :
+                        <button className={StyleUser.btnAdmin} onClick ={(e)=> handleUser(e, el._id)}>Cambiar estado a User</button>
                         }
                     </div>
                 )
