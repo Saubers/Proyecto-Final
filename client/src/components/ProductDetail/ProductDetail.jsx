@@ -48,10 +48,12 @@ export default function Detail(props) {
 
     const [idAuto, setIdAuto] = useLocalStorage('auto', [])
 
+    const [allAuto, setAllAuto] = useLocalStorage('Allauto', [])
 
     const [Isbotton, setIsButton] = useLocalStorage('button', [])
 
     async function addToCart() {
+        setAllAuto([...allAuto,MyCar])
         setIdAuto([...idAuto, {
             id : MyCar.id,
             brand : MyCar.brand,

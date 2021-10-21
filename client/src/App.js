@@ -75,12 +75,12 @@ function App() {
           <Route exact path="/home/Catalogo" component={Catalogo} />
           {!local && (<Route exact path="/user/login" component={Login} />)}
           {(<Route exact path='/home/compra' component={Cart} />)}
-          <Route exact path='/home/ADMIN/orders' component={OrderCar} />
           {local && <Route exact path='/user/me' component={ProfileInfo} />}
-          <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />
+          {isAdmin === '"admin"' &&  <Route exact path='/home/ADMIN/orders' component={OrderCar} />}
+          {isAdmin === '"admin"' &&  <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />}
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
-          <Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin}/>
+          {isAdmin === '"admin"' &&  <Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin}/>}
         </Switch>
       </div>
     </Router>
