@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getCars } from "../../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../../NavBar/NavBar";
+import Styles from "./ReadProduct.module.css"
 
 export default function ReadProduct() {
 
@@ -34,7 +35,7 @@ export default function ReadProduct() {
                 )}
             </div>
             <Link to="/ProductCRUD">
-                <button>Volver</button>
+                <button className={Styles.button3}>Volver</button>
             </Link>
         </div>
     )

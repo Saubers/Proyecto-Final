@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getCategories } from "../../../actions";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../NavBar/NavBar";
+import Styles from './CategoryRead.module.css'
 
 function CategoryRead() {
 
@@ -33,7 +34,7 @@ function CategoryRead() {
                 )}
             </div>
             <Link to="/CategoryCRUD">
-                <button>Volver</button>
+                <button className= {Styles.button3}>Volver</button>
             </Link>
         </div>
     )
