@@ -47,10 +47,13 @@ const Login = () => {
     // setLoading(false)
    
     }
-    const responseFacebook = (response) => {
+    const responseSuccessGoogle = (response) => {
         console.log(response)
           }
        
+    const responseErrorGoogle = (response) => {
+         console.log(response)
+          }      
     return(
         <div className={styles.loginContainer}>
             <div className={styles.imgdivd}>
@@ -92,17 +95,17 @@ const Login = () => {
                 <Link to ='/'>
                 <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
-                {/* <div>
+                <div>
                 
                 <GoogleLogin
-    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={responseGoogle}
-    onFailure={responseGoogle}
+    clientId="654735429732-hnthcr4ajqvstfs1iq9csjtsp2i31otg.apps.googleusercontent.com"
+    buttonText="Login with Google"
+    onSuccess={responseSuccessGoogle}
+    onFailure={responseErrorGoogle}
     cookiePolicy={'single_host_origin'}
   />,
             
-                </div> */}
+                </div>
                 </div>
         </div>
         

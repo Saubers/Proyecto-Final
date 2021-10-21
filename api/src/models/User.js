@@ -34,15 +34,19 @@ const UserSchema = new Schema(
       type:Date,
       default:Date.now
     },
-passwordResetToken:{
-   type: String
-  },
-passwordResetExpires:{
-  type: Date
-},
-passwordChangedAt:{
-  type: Date
-  }
+    resetLink:{
+      data:String,
+      default:''
+    },
+// passwordResetToken:{
+//    type: String
+//   },
+// passwordResetExpires:{
+//   type: Date
+// },
+// passwordChangedAt:{
+//   type: Date
+//   }
 }
 );
 
@@ -56,25 +60,25 @@ UserSchema.methods.matchPassword = async function(password) {
   return await bcrypt.compare(password, this.password)
 }
 
-UserSchema.methods.createPasswordResetToken = function() {
-const resetToken = crypto.randomBytes(10).toString('hex');
-this.passwordResetToken = crypto
-.createHash('sha256')
-.update(resetToken)
-.digest('hex');
+// UserSchema.methods.createPasswordResetToken = function() {
+// const resetToken = crypto.randomBytes(10).toString('hex');
+// this.passwordResetToken = crypto
+// .createHash('sha256')
+// .update(resetToken)
+// .digest('hex');
 
 
-this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+// this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
 
-return resetToken;
-}
+// return resetToken;
+// }
 
-UserSchema.methods.changedPasswordAfter = function(JWTTimestamp){
-  if(this.passwordChangedAt){
-    return console(this.passwordChangedAt, JWTTimestamp);
-  }
-  return false;
+// UserSchema.methods.changedPasswordAfter = function(JWTTimestamp){
+//   if(this.passwordChangedAt){
+//     return console(this.passwordChangedAt, JWTTimestamp);
+//   }
+//   return false;
 
-};
+// };
 
 module.exports = model("User", UserSchema);
