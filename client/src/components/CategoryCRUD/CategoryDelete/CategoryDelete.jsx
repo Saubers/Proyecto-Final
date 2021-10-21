@@ -10,16 +10,16 @@ function CategoryDelete() {
 
     const [id, setID] = useState("");
 
-    const categories = useSelector(state => state.allCategories);
+    const categories = useSelector(state => state.allcategories);
 
     useEffect(() => {
         dispatch(getCategories());
     }, [dispatch]);
 
     function handleSelect(e) {
-        setID({
-            id: e.target.value
-        })
+        setID(
+            e.target.value
+        )
     };
 
     function handleSubmit(e) {
@@ -27,15 +27,8 @@ function CategoryDelete() {
         e.preventDefault(e);
         dispatch(deleteCategory(id))
         alert("Categoria eliminada")
-        setID({
-            id: ""
-        })
+        setID("")
     };
-
-    const selectedCategory= categories?.find(el=> el._id=== id)
-
-    console.log(id)
-    console.log(selectedCategory)
 
     return (
         <div>
@@ -51,8 +44,8 @@ function CategoryDelete() {
                             <option value={el._id}>{el.name}</option>
                         ))}
                     </select>
-                    {id.id && (
-                        <h3><id><b>ID: </b></id>{id.id}</h3>
+                    {id && (
+                        <h3><id><b>ID: </b></id>{id}</h3>
 
                     )}
                     <div>

@@ -19,9 +19,9 @@ module.exports = app => {
     //Categories
     router.post('/categories',CreateCategory);
     
-    router.delete('/categories',DeleteCategory);
+    router.delete('/categories/:id',DeleteCategory);
     
-    router.put('/categoriesUpdate/:id',ModifiCategory);
+    router.put('/categories/:id',ModifiCategory);
 
     router.get('/categories/:categories', getByCategory);
 

@@ -143,6 +143,9 @@ export default function CreateProduct() {
             return setImageMessage("Select an image...")
         }
     }
+
+    console.log('INPUT: ', input)
+
     return (
         <div>
             <NavBar />
@@ -197,7 +200,6 @@ export default function CreateProduct() {
                                 type="file"
                                 name="img"
                                 onChange={(e) => postDetails(e)}
-                                required
                                 className={styleCrudPost.inputActivity}
                             />
 

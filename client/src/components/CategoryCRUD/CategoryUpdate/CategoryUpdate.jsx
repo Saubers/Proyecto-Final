@@ -29,6 +29,8 @@ function CategoryUpdate() {
             name: "",
             description: ""
         })
+        console.log ('JSON: ', input)
+        console.log('ID: ', id)
     };
 
     function handleChange(e) {
@@ -53,13 +55,9 @@ function CategoryUpdate() {
         });
     }, [id])
 
-    
-
-    console.log('ID: ', id)
+ /*    console.log('ID: ', id)
     console.log('CATEGORIES: ', categories)
-    console.log('SELECTED: ', selectedCategory)
-
-
+    console.log('SELECTED: ', selectedCategory) */
 
     return (
         <div>
