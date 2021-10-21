@@ -1,0 +1,92 @@
+.divto{
+  display: flex;
+  justify-content: center;
+}
+
+.title{
+  text-align: center;
+  margin-top: 50px;
+}
+.ultamaño{
+  display: flex;
+  flex-direction: row;
+  padding: 0px;
+}
+
+.li1{
+  width: 250px;
+  height: 500px;
+  transition: 1s;
+border-radius: 5px;
+list-style: none;
+}
+.li2{
+  width: 250px;
+  height: 500px;
+  transition: 1s;
+border-radius: 5px;
+list-style: none;
+}
+.li3{
+  width: 250px;
+  height: 500px;
+  transition: 1s;
+  border-radius: 5px;
+  list-style: none;
+}
+.li4{
+  width: 250px;
+  height: 500px;
+  transition: 1s;
+  border-radius: 5px;
+  list-style: none;
+}
+.li1 a{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: 250px;
+text-decoration: none;
+color:black;
+
+}
+.li2 a {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: 250px;
+  text-decoration: none;
+  color:black;
+
+}
+.li3 a{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: 250px;
+  color:black;
+  text-decoration: none;
+}
+.li4 a{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: 250px;
+  color:black;
+  text-decoration: none;
+}
+.li1:hover{
+  background-color:#fdfd96;
+}
+.li2:hover{
+  background-color:#84b6f4;
+}
+
+.li3:hover{
+  background-color:#77dd77;
+}
+
+.li4:hover{
+  background-color:#ff6961;
+}
+

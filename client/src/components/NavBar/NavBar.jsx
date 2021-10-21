@@ -21,15 +21,15 @@ const local = localStorage.getItem('userInfo')
                 <img src={nuevologo} alt="logo" width="50px" />
             </div>
             <ul>{ !local && (
-                <li><a href="/">Home</a></li>)}
-                <li><a href="/contactos">Contacts</a></li>
-                <li><a href="/home/catalogo ">Our Catalog</a></li>
-                <li><a href="# ">Payment Methods</a></li>
+                <li><a href="/">Inicio</a></li>)}
+                <li><a href="/contactos">Contacto</a></li>
+                <li><a href="/home/catalogo ">Catalogo</a></li>
+                <li><a href="# ">Metodos de Pago</a></li>
 
            { local ? (
             <li>
   <MenuDesp/></li>
-                  )  : (<li><a className={styleNav.logout} href='/user/login'>Login</a></li>)}
+                  )  : (<li><a className={styleNav.logout} href='/user/login'>Iniciar Sesion</a></li>)}
                 <a href="/home/compra"><img src={logocarrito} alt="carrito" width="40px" /></a>
                 
          

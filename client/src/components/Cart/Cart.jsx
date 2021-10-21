@@ -186,7 +186,7 @@ export default function Cart(props){
             <NavBar/>
             <hr />
             <div className={stylecart.divbtn}>
-                <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
+                <h3>PRODUCTOS EN CARRITO: {idAuto?.length}</h3>
                 <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
             </div>
             
@@ -214,8 +214,8 @@ export default function Cart(props){
                                 <div className={stylecart.cantidad}>
             
                                    <div>
-                                   <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
-                                   <p>Stock:{el?.stock}</p>
+                                   <p>Cantidad: </p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
+                                   <p>Stock: {el?.stock}</p>
                                    </div>
             
                                 </div>
@@ -232,18 +232,18 @@ export default function Cart(props){
             {user === null ?
                     <div> 
                         <button onClick={()=> goLogin() }>
-                        <h1>POR FAVOR INSERTA TUS DATOS </h1>
+                        <h1>POR FAVOR INGRESA TUS DATOS </h1>
 
                         </button>
                     </div>  
                     :<div >
-                    <h3>Historial de carrito del usuario:</h3>
+                    <h3>Historial de carrito del usuario: </h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
                    // console.log('elementCArbd',el)
                      return(
                         <option value={el._id} >
-                            {el.brand} {el.name} {el.price} stock : {el.stock}
+                            {el.brand} {el.name} {el.price} stock: {el.stock}
                         </option>
                   )   
                 }
@@ -263,7 +263,7 @@ export default function Cart(props){
                                 if(item.cantidad >0)
                                 return(
                                     <tr className={stylecart.trdiv}>
-                                        <li className={stylecart.listy}>{item.brand} {item.carname} {item.price} <br/>Cantidad:{item.cantidad}</li>
+                                        <li className={stylecart.listy}>{item.brand} {item.carname} {item.price} <br/>Cantidad: {item.cantidad}</li>
                                         <button  className={stylecart.btndelee} onClick={()=>handleClickRestark(item)}>X</button>
 
                                     </tr>
@@ -276,14 +276,13 @@ export default function Cart(props){
                     }
                     <hr />
                         <div>
-                        <h4>Total:{price}</h4>
+                        <h4>Total: {price}</h4>
                         </div>
                         <div>
                     <div>
-                    <tr className={stylecart.trdiv}>
-                    <ul className={stylecart.listy}>User:{user?.fullname}</ul>
-                    <ul className={stylecart.listy}>Mail:{user?.mail} </ul>
-
+                        <tr className={stylecart.trdiv}>
+                    <ul className={stylecart.listy}><b>Usuario </b>{user?.fullname}</ul>
+                    <ul className={stylecart.listy}><b>Mail </b>{user?.mail} </ul>
                     </tr>
                     </div>
                         {user === null ?

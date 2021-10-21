@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCars, signin, userAdmin } from '../../../actions';
 import { useEffect } from 'react';
 
+import { GoogleLogin } from 'react-google-login';
 
 
 const Login = () => {
@@ -32,7 +33,6 @@ const Login = () => {
         if(local){
             history.push('/home/catalogo')
         }
-
         
     dispatch(signin(mail, password))
     dispatch(userAdmin(mail, password))
@@ -47,7 +47,9 @@ const Login = () => {
     // setLoading(false)
    
     }
-            
+    const responseFacebook = (response) => {
+        console.log(response)
+          }
        
     return(
         <div className={styles.loginContainer}>
@@ -58,38 +60,49 @@ const Login = () => {
             <div className={styles.login}>
                 <form actions="/login" onSubmit={handleSubmit}>
                     <Form.Group controlId='formBasicEmail'>
-                        <Form.Label>Mail address</Form.Label>
+                        <Form.Label>Direccion de mail</Form.Label>
                         <Form.Control
                         required
                         type='email'
                         value={mail}
-                        placeholder='Enter your mail'
+                        placeholder='Ingresa tu mail'
                         onChange={(e) => setMail(e.target.value)}
                         />  
                     </Form.Group>
                     <Form.Group controlId='formBasicPassword'>
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label>Contraseña</Form.Label>
                         <Form.Control
                         required
                         type='password'
                         value={password}
-                        placeholder='Enter your password'
+                        placeholder='Ingresa tu contraseña'
                         onChange={(e) => setPassword(e.target.value)}
                         />  
                     </Form.Group>
-                    <Button type="submit" className={styles.btnsubt}>Login</Button>
+                    <Button type="submit" className={styles.btnsubt}>Iniciar sesión</Button>
                 </form>
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                 {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
             {loading && <Loading />}
                 <Row className="py-3">
                     <Col>
-                    New Customer ? <Link to="/user/register">Register Here</Link>
+                    Nuevo usuario? <Link to="/user/register">Registrate aqui</Link>
                     </Col>
                 </Row>
                 <Link to ='/'>
-                <Button className={styles.btnsubt}>Back home</Button>
+                <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
+                {/* <div>
+                
+                <GoogleLogin
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />,
+            
+                </div> */}
                 </div>
         </div>
         

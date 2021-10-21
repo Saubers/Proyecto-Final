@@ -66,15 +66,15 @@ export default function OrderCar(props) {
              onChange = {(e) => handleChange(e)}
              placeholder="Id"
             ></input>
-            <button onClick = {(e) => handleClick(e)}></button>
-            <button onClick = {(e) => handleGetAll(e)}></button>
+            <button onClick = {(e) => handleClick(e)}>Confirma la ID</button>
+            <button onClick = {(e) => handleGetAll(e)}>Mostrar todos</button>
             </div>
             {OrderUser && OrderUser.map(el=>{
                 return(
                 <div className={style.ticket}>
                     <table>
                     <tr>
-                    <th>id odrder : {el._id}</th>
+                    <th>Id de orden: {el._id}</th>
                     <th>{el.cantidad + ''}</th >
                     <th className={style.total}>{el.price}</th>
                     <th>{el.state}</th>

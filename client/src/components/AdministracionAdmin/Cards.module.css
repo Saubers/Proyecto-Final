@@ -1,9 +1,10 @@
-.divcontainertotal{
+
+.PROBANDO{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
-.divcontainer1{
+.Card{
     display: flex;
     flex-direction: column;
     border: 1px solid;
@@ -12,16 +13,12 @@
     padding: 10px;
     border-radius: 5px;
 }
-.btndetalle{
+.btnAdmin{
     padding: 5px 20px;
     border: none;
 }
-.btndetalle:hover{
+.btnAdmin:hover{
     background-color: cornflowerblue;
     color: white;
     transition:0.5s;
-}
-.titulousuariio{
-    display: flex;
-    justify-content: center;
 }

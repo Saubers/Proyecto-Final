@@ -1,7 +1,6 @@
 import React,{useEffect} from "react";
 import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { Link } from 'react-router-dom';
 import SearchBar from "../SearchBar/SearchBar";
 import Paginado from '../Paginado/Paginado'
 import ProductCard from '../ProductCard/ProductCard'
@@ -82,13 +81,13 @@ return (
         {/* SELECT DE KM*/}
     <div className={styleCatalogo.divtotal}>
         <div className={styleCatalogo.divfiltros}>
-        <button className={styleCatalogo.btnreload} onClick={e=>handleClick(e) }><img width="50px" src={recargar}></img> </button>
+        <button className={styleCatalogo.btnreload} onClick={e=>handleClick(e) }><img width="50px" src={recargar} alt=''></img> </button>
         <br />
         {/* BOTON VOLVER */}
             <div className={styleCatalogo.divfilter}>
                 <label>KILOMETRAJE</label>
                 <select onChange = {ev => hadleFiltroKm(ev)} className={styleCatalogo.btnfilter}>
-                    <option value ='All'>All</option>
+                    <option value ='All'>Todos</option>
                     <option value ='0'>0Km</option>
                     <option value ='0-10'>0km - 10km</option>
                     <option value ='10-40'>10km - 40km</option>
@@ -103,8 +102,8 @@ return (
             <div className={styleCatalogo.divfilter}>
                 <label>PRECIO</label>
                 <select onChange = {e => handleFilterPrice(e)} className={styleCatalogo.btnfilter}>
-                    <option value ='max'>$$++</option>
-                    <option value ='min'>$$--</option>
+                    <option value ='max'>Mayor</option>
+                    <option value ='min'>Menor</option>
                 </select>
             </div>
                 
@@ -112,7 +111,7 @@ return (
             <div className={styleCatalogo.divfilter}>
                 <label>TRACCION</label>
                 <select onChange = {ev => handleFilterTraction(ev)} className={styleCatalogo.btnfilter}>
-                    <option value ='All'>All</option>
+                    <option value ='All'>Todas</option>
                     <option value ='FWD'>FWD</option>
                     <option value ='RWD'>RWD</option>
                     <option value ='AWD'>AWD</option>
@@ -123,7 +122,7 @@ return (
             <div className={styleCatalogo.divfilter}>
                 <label>TRANSMISION</label>
                 <select onChange = {ev => handleFilterTransmission(ev)} className={styleCatalogo.btnfilter}>
-                    <option value ='All'>All</option>
+                    <option value ='All'>Todas</option>
                     <option value ='manual'>Manual</option>
                     <option value ='automatic'>Automatic</option>
                 </select>
@@ -133,7 +132,7 @@ return (
             <div className={styleCatalogo.divfilter}>
                 <label>AÑO</label>
                 <select onChange = {ev => handleFilterAge(ev)} className={styleCatalogo.btnfilter}>
-                    <option value ='All'>All</option>
+                    <option value ='All'>Todos</option>
                     <option value ='-2000'>-2000</option>
                     <option value ='2000-2005'>2000-2005</option>
                     <option value ='2006-2010'>2006-2010</option>

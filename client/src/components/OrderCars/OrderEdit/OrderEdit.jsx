@@ -45,21 +45,21 @@ export default function OrderEdit(props) {
                     return(
                     <div>
                             <h3>Informacion de usuario</h3>
-                            <div> Nombre: {el.user.fullname} Mail: {el.user.mail} Tel: {el.user.phone}</div>
+                            <div>Nombre: {el.user.fullname} Mail: {el.user.mail} Tel: {el.user.phone}</div>
                             <h3>Informacion de la publicacion: </h3>
                         <div>
-                            <h3> Estado de la orden :{el.state}</h3>
+                            <h3>Estado de la orden: {el.state}</h3>
                             <p>Precio total: {el.price}</p>
                         </div>
                         <p> {el.date}</p>
-                        <p>Order : {el._id}</p>
+                        <p>Order: {el._id}</p>
                         <p>-------------------</p>
                         <div>{el.publication.map(el1=>
                             <div>
-                                <p>Marca : {el1.brand} </p>
-                                <p>Nombre : {el1.name} </p>
-                                <p>Modelo : {el1.model} </p>
-                                <p>Precio unico  : {el1.price} </p>
+                                <p>Marca: {el1.brand} </p>
+                                <p>Nombre: {el1.name} </p>
+                                <p>Modelo: {el1.model} </p>
+                                <p>Precio unico: {el1.price} </p>
                                 <p>-------------------------</p>
                             </div>
                             )}  

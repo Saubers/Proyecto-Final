@@ -13,7 +13,8 @@ const initialState = {
   orderDetail:[],
   review: [],
   userState: [],
-  MPLink: ''
+  MPLink: '',
+  usersAll:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -25,6 +26,11 @@ function rootReducer(state = initialState, action) {
         allCars: action.payload,
         kilometraje: action.payload,
       };
+    case "GET_USERS":
+      return{
+        ...state,
+        usersAll:action.payload
+      }
     case "GET_ENGINE":
       return {
         ...state,
