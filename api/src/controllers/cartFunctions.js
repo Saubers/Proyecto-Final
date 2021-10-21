@@ -103,15 +103,17 @@ const cartOrderId = async function(req,res) {
 
 const putCart = async function(req,res){
     let idOrder = req.params.id
-    let {idItem,idUsuario,price,state} = req.boddy
+    let {idItem,idUsuario,price,newState} = req.body
+
     try{    
         const cart =  Cart.findByIdAndUpdate(idOrder,{
             user: idUsuario,
             publication:idItem,
             price : price,
-            state : state
+            state : newState
         });
-        res.send(cart);
+        console.log('ACAAAAAAA',cart._update);
+        res.send(cart._update);
     }catch(error){
         console.log(error)
     }
