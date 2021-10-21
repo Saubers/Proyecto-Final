@@ -99,44 +99,44 @@ const forgotPassword = async (req, res, next) => {
    }
 
    
-   const updatePassword = async (req,res,next) => {
-   // Agarrar usuario de la coleccion
-   const {mail} = req.body
-   const user = await User.findById(req.user.id).select('+password');
+//    const updatePassword = async (req,res,next) => {
+//    // Agarrar usuario de la coleccion
+//    const {mail} = req.body
+//    const user = await User.findById(req.user.id).select('+password');
      
-   // Verificar si la contraseña posteada es correcta
-   console.log(user.currentPassword)
-   if (!(await user.matchPassword(req.body.currentPassword, user.password))) {
-       return next(Error, 401)
-   }
+//    // Verificar si la contraseña posteada es correcta
+//    console.log(user.currentPassword)
+//    if (!(await user.matchPassword(req.body.currentPassword, user.password))) {
+//        return next(Error, 401)
+//    }
    
 
-   // Si pasa eso, actualiza el password
-   user.password = req.body.password
-   user.confirm_password = req.body.confirm_password
-   await user.save();
+//    // Si pasa eso, actualiza el password
+//    user.password = req.body.password
+//    user.confirm_password = req.body.confirm_password
+//    await user.save();
 
-   // Logear el usuario, enviar JWT
-   const token = generateToken(user._id)
+//    // Logear el usuario, enviar JWT
+//    const token = generateToken(user._id)
    
-   res.status(200).json({
-       status: 'success',
-       token,
-       data: {
-           user
-       }
-   })
-   }
+//    res.status(200).json({
+//        status: 'success',
+//        token,
+//        data: {
+//            user
+//        }
+//    })
+//    }
 
 
-   const resetPassword = async (req, res, next) => {
+   const resetPassword = (req, res, next) => {
    // Obtener el usuario basado en el token
    const {resetLink, newPass} = req.body;
    if(resetLink) {
 jwt.verify(resetLink, process.env.RESET_PASSWORD_KEY, function(error, decodedData){
 if(error){
     return res.status(401).json({
-        error: "Incorret or expired token"
+        error: "Incorrect or expired token"
     })
 }
   User.findOne({resetLink}, (err, user) => {
@@ -144,10 +144,18 @@ if(error){
           return res.status(400).json({error: "User with this token does not exists."})
       }
       const obj = {
-          password: newPass
+          password: newPass,
+          resetLink: ''
       }
 
       user = _.extend(user, obj);
+      user.save((err, result) => {
+        if(err) {
+            return res.status(400).json({error: "User password error."});
+        } else {
+            return res.status(200).json({message: 'Your password has been changed'})
+        }
+      })
 
   })
 })
@@ -186,6 +194,6 @@ if(error){
    module.exports = {
        forgotPassword,
        resetPassword,
-       updatePassword,
+
        protect
    }

@@ -61,11 +61,11 @@ module.exports = app => {
 
     router.put('/forgotPassword', forgotPassword)
 
-    router.patch('/resetPassword/:token', resetPassword)
+    router.put('/resetPassword', resetPassword)
 
     router.put('/delete_user/:_id', changeStateToInactive)
 
-    router.patch('/updatePassword', protect, updatePassword )
+    router.patch('/updatePassword', protect)
 
     router.put('/promote/:id', administracion)
     // router.put('/new-password')
