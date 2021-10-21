@@ -10,7 +10,7 @@ export default function ReadProduct() {
 
     useEffect(() => {
         dispatch(getCars());
-    }, )
+    }, [])
 
     const cars = useSelector(state => state.allCars);
 

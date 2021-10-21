@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken')
 const sendEmail = require('../utils/mail');
 const { error } = require('console');
 const generateToken = require('../generateToken');
@@ -46,26 +47,29 @@ const forgotPassword = async (req, res, next) => {
        let token;
        if(
            req.headers.authorization &&
-           req.headers.authorization.startsWith('bearer')
+           req.headers.authorization.startsWith('Bearer')
        ) {
            token = req.headers.authorization.split(' ')[1];
        }
+       console.log('TOKEN', token)
 
        if(!token) {
            return next(
                Error
            )
        }
-
-       const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
+       console.log(process.env.JWT_SECRET)
+    // Verificar si existe el token
+    const jsonwt = jwt.sign()
+       const decoded = await promisify(jsonwt.verify)(token, process.env?.JWT_SECRET);
+    console.log('decode', decoded)
        const currentUser = await User.findById(decoded.id);
        if(!currentUser){
            return next(
                Error
            )
        }
-       if(currentUser.changePasswordAfter(decoded.iat)) {
+       if(currentUser.changedPasswordAfter(decoded.iat)) {
            return next(Error)
        }
        req.user = currentUser;
@@ -78,9 +82,11 @@ const forgotPassword = async (req, res, next) => {
    const user = await User.findById(req.user.id).select('+password');
      
    // Verificar si la contraseña posteada es correcta
-   if (!(await user.matchPassword(req.body.currentPassword, password))) {
+   console.log(user.currentPassword)
+   if (!(await user.matchPassword(req.body.currentPassword, user.password))) {
        return next(Error, 401)
    }
+   
 
    // Si pasa eso, actualiza el password
    user.password = req.body.password

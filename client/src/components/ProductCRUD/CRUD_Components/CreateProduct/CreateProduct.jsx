@@ -149,11 +149,11 @@ export default function CreateProduct() {
     return (
         <div>
             <NavBar />
+            <h1>Agrega un nuevo auto</h1>
             <div className={styleCrudPost.General}>
-                <h1>Enter New Car information</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <fieldset >
-                        <label className={styleCrudPost.label}>Brand: </label>
+                        <label className={styleCrudPost.label}>Marca: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 type="text"
@@ -166,7 +166,7 @@ export default function CreateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudPost.label}>Titulo/Nombre del auto: </label>
+                        <label className={styleCrudPost.label}>Nombre: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 type="text"
@@ -194,7 +194,7 @@ export default function CreateProduct() {
                             )}
                         </div>
 
-                        <label className={styleCrudPost.label}>Image: </label>
+                        <label className={styleCrudPost.label}>Imagen: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 type="file"
@@ -205,10 +205,11 @@ export default function CreateProduct() {
 
                         </div>
 
-                        <label className={styleCrudPost.label}>Category: </label>
+                        <label className={styleCrudPost.label}>Categoria: </label>
                         <div className={styleCrudPost.subDiv}>
-                            <h5>Eliga una categoria</h5>
+                            {/* <h5 className={styleCrudPost.label}>Eliga una categoria</h5> */}
                             <select required className={styleCrudPost.selectCategory} onChange={(e) => handleSelect(e)}>
+                                <option disabled selected>Categorias</option>
                                 {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}
@@ -217,7 +218,7 @@ export default function CreateProduct() {
 
                         </div>
 
-                        <label className={styleCrudPost.label}>Description: </label>
+                        <label className={styleCrudPost.label}>Descripcion: </label>
                         <div className={styleCrudPost.subDiv}>
                             <textarea
                                 required
@@ -230,7 +231,7 @@ export default function CreateProduct() {
                                 className={styleCrudPost.textarea}
                             />
                         </div>
-                        <label className={styleCrudPost.label}>Price: </label>
+                        <label className={styleCrudPost.label}>Precio: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -248,9 +249,9 @@ export default function CreateProduct() {
                     </fieldset>
 
                     <fieldset>
-                        <h2 className={styleCrudPost.label}>Features</h2>
+                        <h2 className={styleCrudPost.subtitle}>Caracteristicas</h2>
 
-                        <label className={styleCrudPost.label}>Puertas</label>
+                        <label className={styleCrudPost.label}>Puertas: </label>
                         <div className={styleCrudPost.subDiv}>
 
                             <input
@@ -265,7 +266,7 @@ export default function CreateProduct() {
                                 <p className={styleCrudPost.errors}>{errors.features_doors}</p>
                             )}
                         </div>
-                        <label className={styleCrudPost.label}>Nombre motor</label>
+                        <label className={styleCrudPost.label}>Nombre del motor: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -277,7 +278,7 @@ export default function CreateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudPost.label}>Cv </label>
+                        <label className={styleCrudPost.label}>Cv: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -292,7 +293,7 @@ export default function CreateProduct() {
                             )}
                         </div>
 
-                        <label className={styleCrudPost.label}>Torque</label>
+                        <label className={styleCrudPost.label}>Torque: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -306,7 +307,7 @@ export default function CreateProduct() {
                                 <p className={styleCrudPost.errors}>{input.features_engine_torque}</p>
                             )}
                         </div>
-                        <label className={styleCrudPost.label}>Combustion</label>
+                        <label className={styleCrudPost.label}>Combustion: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -319,8 +320,8 @@ export default function CreateProduct() {
                         </div>
 
                         <div className={styleCrudPost.subDiv}>
-                            <h3>Transmision:</h3>
-                            <h5>Manual</h5>
+                            <h2 className={styleCrudPost.subtitle}>Transmision</h2>
+                            <label className={styleCrudPost.label}>Manual: </label>
                             <input
                                 required
                                 type="text"
@@ -333,7 +334,7 @@ export default function CreateProduct() {
                         </div>
 
                         <div className={styleCrudPost.subDiv}>
-                            <h5>Automatica</h5>
+                            <label className={styleCrudPost.label}>Automatica: </label>
                             <input
                                 required
                                 type="text"
@@ -345,7 +346,7 @@ export default function CreateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudPost.label}>Traccion:</label>
+                        <label className={styleCrudPost.label}>Traccion: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -358,7 +359,7 @@ export default function CreateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudPost.label}>Millage:</label>
+                        <label className={styleCrudPost.label}>Kilometraje: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -373,7 +374,7 @@ export default function CreateProduct() {
                             )}
                         </div>
 
-                        <label className={styleCrudPost.label}>Stock:</label>
+                        <label className={styleCrudPost.label}>Stock: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
@@ -391,11 +392,11 @@ export default function CreateProduct() {
                     </fieldset>
                     {
                         errors && (
-                            <button className={styleCrudPost.button3} type='submit'>Publicar</button>
+                            <button className={styleCrudPost.button3} type='submit'>Agregar</button>
                         )
                     }
                     <Link to="/ProductCRUD">
-                        <button className={styleCrudPost.button3}>Back</button>
+                        <button className={styleCrudPost.button3}>Volver</button>
                     </Link>
 
                 </form>

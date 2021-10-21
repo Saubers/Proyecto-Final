@@ -1,9 +1,14 @@
-
+h1{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
 .General{
     background-color: rgba(139, 133, 133, 0.651);
-    margin: 10px;
+    margin-left: 90px;
+    margin-right: 90px;
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 0px 2px 15px rgba(255, 255, 255, 0.747);
     align-content: center;
     
@@ -16,17 +21,21 @@
     background-color: rgba(53, 52, 52, 0.651);
     margin: auto;
     border: 0.5px solid;
+    border-radius: 5px;
     padding: 10px;
     text-align: center;
   }
   .label{
-    font-size:20px;
+    font-size:23px;
     color: white;
     text-shadow: 0 0 3px black, 0 0 5px black;
+    margin-top: 18px;
+    margin-left: 10px;
   }
   .subtitle{
     color: white;
     text-shadow: 0 0 3px black, 0 0 5px black;
+    margin-top: 20px;
   }
   .selectCategory{
     width: 20%;
@@ -54,7 +63,8 @@
     background-color: #525252;
     border: none;
     font-size: 10px;
-    color: #FFFFFF;
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black;
     padding: 20px 20px;
     width: 10%;
     text-align: center;
@@ -62,6 +72,10 @@
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-right: 20px;
   }
   .button3:after {
     content: "";

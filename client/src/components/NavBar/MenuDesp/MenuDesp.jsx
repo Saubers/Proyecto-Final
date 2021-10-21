@@ -20,14 +20,14 @@ const logoutFunct = () => {
         {usuario && usuario ? <div className={styledrop.divname}>
             <img src={Ff}/>
             {usuario.fullname}
-            </div> : <p>Login</p>}
+            </div> : <p>Iniciar Sesion</p>}
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem href="/ProductCRUD">Admin</DropdownItem>
-        <DropdownItem href="/user/me">Me</DropdownItem>
-        {isAdmin === '"admin"' && <DropdownItem href="/home/CrearCategoria">Crear Categoria</DropdownItem>}
+      {isAdmin === '"admin"' && <DropdownItem href="/ProductCRUD">Administrar Productos</DropdownItem>}
+        {isAdmin === '"admin"' && <DropdownItem href="/CategoryCRUD">Administrar Categorias</DropdownItem>}
+        <DropdownItem href="/user/me">Mi Cuenta</DropdownItem>
         <DropdownItem href="/pagos">Ticket</DropdownItem>
-        <DropdownItem onClick={() => logoutFunct()} href='/'>Logout</DropdownItem>
+        <DropdownItem onClick={() => logoutFunct()} href='/'>Cerrar Sesion</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

@@ -27,26 +27,26 @@ export default function Pagos() {
                     <div className={StylePagos.divcontainer1}>
                         
                         <div className={StylePagos.divcontainerticket}> 
-                            <h5>User Info</h5>
-                            <p>Name: {usuarioFiltrado.fullname} </p>
+                            <h5>Informacion de Usuario</h5>
+                            <p>Nombre: {usuarioFiltrado.fullname} </p>
                             <p>Mail: {usuarioFiltrado.mail}</p> 
                             <p>Tel: {usuarioFiltrado.phone}</p>
                         </div>
                         <div>
-                            <p> Order Status :{el.state}</p>
-                            <p>Total Price : {el.price}</p>
+                            <p>Estado de la Orden:{el.state}</p>
+                            <p>Precio Total: {el.price}</p>
                         </div>
                         <p> {el.date}</p>
-                        <p>Order : {el._id}</p>
+                        <p>ID de Orden: {el._id}</p>
                         <div>{el.publication.map(el1=>
                             <div>
-                                <p>Marca : {el1.brand} Nombre : {el1.name} Modelo : {el1.model} Unit price  : {el1.price}</p>
+                                <p>Marca : {el1.brand} Nombre : {el1.name} Modelo : {el1.model} Precio Unico: {el1.price}</p>
                                 <Link to={'/home/Catalogo/' + el1._id}>
                             <button>Detalle</button>
                                 </Link>
                             </div>
                             )}  
-                            <h3>Total quantity: {el.cantidad}</h3>
+                            <h3>Cantidad Total: {el.cantidad}</h3>
                             </div>
                     </div>
                 ))}

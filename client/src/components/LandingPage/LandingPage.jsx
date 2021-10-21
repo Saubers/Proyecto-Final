@@ -30,11 +30,11 @@ return(
                    </div>
                    <div>
                        <ul className={stylesLanding.ulli}>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/contactos">Contacts</a></li>
-                            <li><a href="/home/catalogo ">Our Catalog</a></li>
-                            <li><a href="# ">Payment Methods</a></li>
-                            <li><a href='/user/login'>Login</a></li>
+                            <li><a href="/">Inicio</a></li>
+                            <li><a href="/contactos">Contacto</a></li>
+                            <li><a href="/home/catalogo ">Catalogo</a></li>
+                            <li><a href="# ">Metodos de Pago</a></li>
+                            <li><a href='/user/login'>Iniciar Sesion</a></li>
                         </ul>
                    </div>
                    {/* <div>

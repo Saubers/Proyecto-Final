@@ -23,7 +23,7 @@ export default function Cart(props){
     const [input , setInput] = useState ({});
     const mpLink = useSelector(state => state.MPLink)
     const MPLINK = '5; URL='+mpLink
-    console.log('user',user)
+    //console.log('user',user)
     const orderPayload = {
         id : user?._id ,
         status : "Carrito"
@@ -35,7 +35,7 @@ export default function Cart(props){
      }, [])
     
     const cartBD = useSelector ((state) => state.orders)
-    console.log('cartDb',cartBD)
+    //console.log('cartDb',cartBD)
 
 
     function sumatotal() {
@@ -61,21 +61,28 @@ export default function Cart(props){
                 brand: idCar.brand,
                 carname :idCar.name,
                 price : idCar.price,
+                stock : idCar.stock,
                 cantidad : 1
            }])
            setPrice(idCar.price)
         }
+        else if(found?.cantidad === idCar.stock){
+            return(alert('item supero su stock'))
+        }
         else{
-            amount.forEach(element =>{
-                if(element.id === idCar.id){
-                    element.cantidad =  parseInt(element.cantidad + 1)
-                }
-            })
+             amount.forEach(element =>{
+                    if(element.id === idCar.id){
+                        element.cantidad =  parseInt(element.cantidad + 1)
+                    }
+                })
+            
         }
         sumatotal()
+        console.log('amount',amount)
 
     }
-    
+    console.log('amount',amount)
+
     //boton post filtrar todos los que tengan
     
     function handleClickSumar(car){
@@ -84,7 +91,7 @@ export default function Cart(props){
         //     console.log('entro');
         //     alert('No hay mas stock')
         // }
-        console.log('car',car)
+      //  console.log('car',car)
         sumarCar(car)
         sumatotal()
     }
@@ -101,7 +108,7 @@ export default function Cart(props){
             setPrice(numeroresta)
             
         }
-        else if (e.cantidad === 0){ 
+        if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
             setAmount(filter)
             setPrice(0)
@@ -176,7 +183,7 @@ export default function Cart(props){
             <NavBar/>
             <hr />
             <div className={stylecart.divbtn}>
-                <h3>PRODUCTOS EN CARRITO {idAuto?.length}</h3>
+                <h3>PRODUCTOS EN CARRITO: {idAuto?.length}</h3>
                 <button className={stylecart.btndeleall} onClick={()=> handleDelete()}>VACIAR CARRITO</button>
             </div>
             
@@ -202,17 +209,12 @@ export default function Cart(props){
                                     </div>
                                 </div>
                                 <div className={stylecart.cantidad}>
-                            
-                                   {
-                                    el.stock === amount.map(ele => ele.cantidad)[0] ?
-                                   <p>No hay Stock</p>
-                                   :
+            
                                    <div>
-                                   <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
-                                   <p>Stock:{el?.stock}</p>
+                                   <p>Cantidad: </p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
+                                   <p>Stock: {el?.stock}</p>
                                    </div>
-                                    }
-                                    
+            
                                 </div>
                                 <div className={stylecart.btnde}>
                                     <button onClick={()=>handleDeleteCar(el)} className={stylecart.btndelee}>X</button>
@@ -227,18 +229,18 @@ export default function Cart(props){
             {user === null ?
                     <div> 
                         <button onClick={()=> goLogin() }>
-                        <h1>POR FAVOR INSERTA TUS DATOS </h1>
+                        <h1>POR FAVOR INGRESA TUS DATOS </h1>
 
                         </button>
                     </div>  
                     :<div >
-                    <h3>Historial de carrito del usuario:</h3>
+                    <h3>Historial de carrito del usuario: </h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
                    // console.log('elementCArbd',el)
                      return(
                         <option value={el._id} >
-                            {el.brand} {el.name} {el.price} stock : {el.stock}
+                            {el.brand} {el.name} {el.price} stock: {el.stock}
                         </option>
                   )   
                 }
@@ -258,7 +260,7 @@ export default function Cart(props){
                                 if(item.cantidad >0)
                                 return(
                                     <tr className={stylecart.trdiv}>
-                                        <li className={stylecart.listy}>{item.brand} {item.carname} {item.price} <br/>Cantidad:{item.cantidad}</li>
+                                        <li className={stylecart.listy}>{item.brand} {item.carname} {item.price} <br/>Cantidad: {item.cantidad}</li>
                                         <button  className={stylecart.btndelee} onClick={()=>handleClickRestark(item)}>X</button>
 
                                     </tr>
@@ -271,13 +273,13 @@ export default function Cart(props){
                     }
                     <hr />
                         <div>
-                        <h4>Total:{price}</h4>
+                        <h4>Total: {price}</h4>
                         </div>
                         <div>
                     <div>
                     <tr className={stylecart.trdiv}>
-                    <ul className={stylecart.listy}>User:{user?.fullname}</ul>
-                    <ul className={stylecart.listy}>Mail:{user?.mail} </ul>
+                    <ul className={stylecart.listy}><b>Usuario </b>{user?.fullname}</ul>
+                    <ul className={stylecart.listy}><b>Mail </b>{user?.mail} </ul>
 
                     </tr>
                     </div>

@@ -1,0 +1,82 @@
+h1{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 35px;
+  }
+.button3 {
+    position: relative;
+    background-color: #525252;
+    border: none;
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black;
+    padding: 20px 20px;
+    width: 10%;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .button3:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  .button3:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+  .selectCategory{
+    width: 20%;
+    padding: 7px 14px;
+    font-size: 25px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    /* background-color: #52525259;
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black; */
+  }
+  .label{
+    font-size:23px;
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black;
+    margin-top: 18px;
+    margin-left: 10px;
+  }
+
+  .subtitle{
+    color: white;
+    text-shadow: 0 0 3px black, 0 0 5px black;
+    margin-top: 20px;
+  }
+
+  .General{
+    background-color: rgba(139, 133, 133, 0.651);
+    margin-right: 90px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 15px rgba(255, 255, 255, 0.747);
+    align-content: center;
+  }
+
+  .inputActivity[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;
+  }

@@ -20,12 +20,12 @@ import CategoryCreate from './components/CategoryCRUD/CategoryCreate/CategoryCre
 import CategoryUpdate from './components/CategoryCRUD/CategoryUpdate/CategoryUpdate';
 import CategoryDelete from './components/CategoryCRUD/CategoryDelete/CategoryDelete';
 import CategoryRead from './components/CategoryCRUD/CategoryRead/CategoryRead'
-import bcrypt from 'bcrypt'
 import OrderCar from './components/OrderCars/OrderCar';
 import { useHistory } from 'react-router';
 import Pagos from './components/pagos/pagos'
 import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 import ProfileInfo from './components/UserInfo/UserInfo'
+import AdministracionAdmin from './components/AdministracionAdmin/AdministracionAdmin'
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -34,7 +34,6 @@ function App() {
   console.log("estado app", stateAdmin)
   const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
-  bcrypt.compareSync("admin", isAdmin);
   return (
     <Router>
       <div className='container'>
@@ -44,9 +43,9 @@ function App() {
 
 
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD' component={ProductCRUD} />}
-          {isAdmin === '"admin"' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
-          {isAdmin === '"admin"' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
-          {isAdmin === '"admin"' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
 
@@ -81,6 +80,7 @@ function App() {
           <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
+          <Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin}/>
         </Switch>
       </div>
     </Router>

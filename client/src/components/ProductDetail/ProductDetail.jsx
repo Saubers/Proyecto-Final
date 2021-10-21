@@ -51,9 +51,16 @@ export default function Detail(props) {
 
     const [Isbotton, setIsButton] = useLocalStorage('button', [])
 
-    
     async function addToCart() {
-        setIdAuto([...idAuto, MyCar])
+        setIdAuto([...idAuto, {
+            id : MyCar.id,
+            brand : MyCar.brand,
+            name : MyCar.name,
+            img : MyCar.img,
+            price : MyCar.price,
+            stock  : MyCar.stock,
+            count : 0
+        }])
         setIsButton([...Isbotton, MyCar.id])
         setCarrito({
             user:user?._id,
@@ -106,7 +113,7 @@ export default function Detail(props) {
                          MyCar && MyCar? <Review
                         publication={MyCar}
                         ></Review>
-                        : <div>error</div> 
+                        : <div>Error</div> 
                        : <div> Solo puedes comentar cuando compras el auto</div>
                         }
                     </div>
@@ -123,14 +130,14 @@ export default function Detail(props) {
                     <button className={styles.buttonStock}>Sin Stock</button>
                     :
                     found === IdButton ? <div>
-                        Orden agregada al <Link to="/home/compra">carrito</Link>
+                        Orden agregada al <Link to="/home/compra">Carrito</Link>
                     </div>
                         :
-                        <button className={styles.button} onClick={() => addToCart(MyCar)} >Comprar</button>
+                        <button className={styles.button} onClick={() => addToCart(MyCar)} >Agregar al Carrito</button>
                 } 
                     <br />
                     <Link to="/home/catalogo">
-                        <button className={styles.buttonback}>Back</button>
+                        <button className={styles.buttonback}>Volver</button>
                     </Link>
                 </div>
             </div>
