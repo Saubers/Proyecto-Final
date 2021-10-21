@@ -1,5 +1,6 @@
-import { useDispatch  } from "react-redux";
-import {putAdmin} from '../../actions/index'
+import React,{useEffect} from "react";
+import { useDispatch, useSelector} from "react-redux";
+import {putAdmin, getAllUsers} from '../../actions/index'
 import { useState } from "react";
 import NavBar from '../NavBar/NavBar'
 
@@ -10,7 +11,12 @@ export default function AdministracionAdmin() {
         newBan:"",
         newState:""
     })
+    useEffect(()=>{
+        dispatch(getAllUsers())
+    },[dispatch])
 
+    const AllUsers = useSelector((state) => state.usersAll)
+    console.log(AllUsers?.map(el => el.fullname));
     function handleState(e) {
         console.log(e.target.value);
         setInput({
@@ -37,18 +43,21 @@ export default function AdministracionAdmin() {
         dispatch(putAdmin(input))
     }
     
-    return(
+    return(  
         <div>
             <NavBar/>
             <div>
-            <input 
-            name="id"
-            value={input.id}
-            type='text'
-            placeholder="Id exacto"
-            onChange={(e) => handleId(e)}
-            required 
-            ></input>
+            <select onChange={(e) => handleId(e)}>
+                 { AllUsers?.map((el) =>{
+                   // console.log('elementCArbd',el)
+                     return(
+                        <option value={el._id} >
+                        {el.fullname}| id: {el._id} | Estado:{el.state}
+                        </option>
+                  )   
+                }
+                )}
+                    </select>
             <select onChange={(e) => handleState(e)}>
                 <option value="admin">Admin</option>
                 <option value="user">User</option>

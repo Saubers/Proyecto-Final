@@ -238,7 +238,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 };
 export function putAdmin (payload){
 return async function (dispatch){
-    console.log(payload);
     try{
         var json = await axios.put("http://localhost:3002/promote/" +payload.id , payload)
         console.log("HOLALA",json);
@@ -361,6 +360,17 @@ export function getNameCars(name) {
         }
     };
 
+}
+
+
+export function getAllUsers(payload){
+    return async function (dispatch){
+        var json = await axios.get("http://localhost:3002/user")
+        return dispatch({
+            type:"GET_USERS",
+            payload:json.data
+        })
+    }
 }
 
 
