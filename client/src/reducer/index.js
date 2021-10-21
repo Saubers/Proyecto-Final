@@ -87,6 +87,7 @@ function rootReducer(state = initialState, action) {
         review: action.payload,
       };
     case "GET_ORDERS_BY_ID":
+      console.log('reducer',action.payload);
     return{
       ...state,
       orderDetail : action.payload

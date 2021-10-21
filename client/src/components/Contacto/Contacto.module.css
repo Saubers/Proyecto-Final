@@ -1,0 +1,9 @@
+.divprofile{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-evenly;
+}
+.imgradio{
+    border-radius: 50%;
+}

@@ -67,6 +67,7 @@ export function putCart(payload) {
 export function getOrderByID(id) {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/orders/" + id);
+        console.log(id);
         return dispatch({
             type: 'GET_ORDERS_BY_ID',
             payload: json.data
