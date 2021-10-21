@@ -189,9 +189,9 @@ export default function UpdateProduct() {
             <h1>Enter new car information</h1>
             <div className={styleCrudUpdate.General}>
                 
-                <h3>Select car</h3>
+                <h2 className={styleCrudUpdate.subtitle}>Select car</h2>
                 <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelectID(e)}>
-                    <option disabled selected>Selecciona un auto</option>
+                    <option disabled selected>Autos</option>
                     {cars?.map((el) => (
                         <option value={el._id}>{el.name}</option>
                     ))}
@@ -256,8 +256,9 @@ export default function UpdateProduct() {
 
                         <label className={styleCrudUpdate.label}>Category: </label>
                         <div className={styleCrudUpdate.subDiv}>
-                            <h5 className={styleCrudUpdate.label}>Eliga una categoria</h5>
+                            {/* <h5 className={styleCrudUpdate.label}>Eliga una categoria</h5> */}
                             <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
+                            <option disabled selected>Categorias</option>
                                 {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}
@@ -382,7 +383,7 @@ export default function UpdateProduct() {
                         </div>
 
                         <div className={styleCrudUpdate.subDiv}>
-                            <h3 className={styleCrudUpdate.subtitle}>Transmision:</h3>
+                            <h2 className={styleCrudUpdate.subtitle}>Transmision:</h2>
                             <h5 className={styleCrudUpdate.label}>Manual</h5>
                             <input
                                 required
