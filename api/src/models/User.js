@@ -48,6 +48,12 @@ UserSchema.methods.encryptPassword = async password => {
   return await bcrypt.hash(password, salt)
 }
 
+
+UserSchema.methods.encryptState = async state => {
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(state, salt)
+}
+
 UserSchema.methods.matchPassword = async function(password) {
   return await bcrypt.compare(password, this.password)
 }
