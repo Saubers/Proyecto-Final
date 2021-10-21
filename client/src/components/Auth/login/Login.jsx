@@ -9,8 +9,8 @@ import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCars, signin, userAdmin } from '../../../actions';
 import { useEffect } from 'react';
-import FacebookLogin from 'react-facebook-login';
 
+import { GoogleLogin } from 'react-google-login';
 
 
 const Login = () => {
@@ -92,14 +92,17 @@ const Login = () => {
                 <Link to ='/'>
                 <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
-                <div>
+                {/* <div>
                 
-            <FacebookLogin
-      appId="2984120755187172"
-      autoLoad={false}
-      callback={responseFacebook} />
+                <GoogleLogin
+    clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    cookiePolicy={'single_host_origin'}
+  />,
             
-                </div>
+                </div> */}
                 </div>
         </div>
         
