@@ -62,42 +62,6 @@ const forgotPassword = async (req, res, next) => {
    
    }
 
-
-   const protect = async (req, res, next) => {
-       let token;
-       if(
-           req.headers.authorization &&
-           req.headers.authorization.startsWith('Bearer')
-       ) {
-           token = req.headers.authorization.split(' ')[1];
-       }
-       console.log('TOKEN', token)
-
-       if(!token) {
-           return next(
-               Error
-           )
-       }
-       console.log("JASDJASDJASDJ", jwt)
-       console.log("jwt secret",process.env.JWT_SECRET)
-    // Verificar si existe el token
-    // const jsonwt = jwt.sign()
-    
-       const decoded = await promisify(jwt.verify(token, process.env.JWT_SECRET));
-    console.log('decode', decoded)
-       const currentUser = await User.findById(decoded.id);
-       if(!currentUser){
-           return next(
-               Error
-           )
-       }
-       if(currentUser.changedPasswordAfter(decoded.iat)) {
-           return next(Error)
-       }
-       req.user = currentUser;
-       next();
-   }
-
    
 //    const updatePassword = async (req,res,next) => {
 //    // Agarrar usuario de la coleccion
@@ -139,7 +103,7 @@ if(error){
         error: "Incorrect or expired token"
     })
 }
-  User.findOne({resetLink}, (err, user) => {
+  User.findOne({resetLink}, async (err, user) => {
       if(err || !user) {
           return res.status(400).json({error: "User with this token does not exists."})
       }
@@ -149,6 +113,8 @@ if(error){
       }
 
       user = _.extend(user, obj);
+      user.password = await user.encryptPassword(newPass);
+    await user.save()
       user.save((err, result) => {
         if(err) {
             return res.status(400).json({error: "User password error."});
@@ -194,6 +160,5 @@ if(error){
    module.exports = {
        forgotPassword,
        resetPassword,
-
-       protect
+     
    }

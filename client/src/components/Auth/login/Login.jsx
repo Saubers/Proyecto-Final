@@ -78,6 +78,11 @@ const Login = () => {
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                 {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
             {loading && <Loading />}
+            <Row className="py-3">
+       <Col>
+      <Link to="/user/forgotPass">¿Has olvidado tu contraseña?</Link>
+       </Col>
+            </Row>
                 <Row className="py-3">
                     <Col>
                     Nuevo usuario? <Link to="/user/register">Registrate aqui</Link>

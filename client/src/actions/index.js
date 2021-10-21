@@ -181,6 +181,26 @@ export function userRegister(payload) {
     }
 }
 
+export function forgotPassword(mail) {
+    return async function (dispatch) {
+        const json = await axios.put('http://localhost:3002/forgotPassword', {mail});
+        return dispatch({
+            type: 'FORGOT_PASSWORD',
+            payload: json
+        })
+    }
+}
+
+export function resetPassword(payload) {
+    return async function (dispatch) {
+        const json = await axios.put('http://localhost:3002/resetPassword', payload);
+        return dispatch({
+            type: 'RESET_PASSWORD',
+            payload: json
+        })
+    }
+}
+
 export const signin =(mail, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: {mail, password}})
     try {
