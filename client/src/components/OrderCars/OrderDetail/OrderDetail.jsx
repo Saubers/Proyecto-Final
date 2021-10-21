@@ -19,9 +19,9 @@ export default function OrderDetail(props) {
                     return(
                         <div>
                             <h3>Informacion de usuario</h3>
-                            <div>Nombre: {el.user.fullname} Mail: {el.user.mail} Tel: {el.user.phone}</div>
+                            <div>Nombre: {el.user?.fullname} Mail: {el.user?.mail} Tel: {el.user?.phone}</div>
                             <h3>Informacion de la publicacion: </h3>
-                            <div>{el.publication.map(el1=>
+                            <div>{el.publication?.map(el1=>
                             <div>
                                 <p>Marca: {el1.brand} Nombre : {el1.name} Modelo : {el1.model} Precio unico:  {el1.price}</p>
                                 <Link to={'/home/Catalogo/' + el1._id}>
@@ -37,6 +37,9 @@ export default function OrderDetail(props) {
                             </div>
                             <p> {el.date}</p>
                             <p>Order: {el._id}</p>
+                            <Link to={'/home/ADMIN/orders'}>
+                            <button>Volver</button>
+                                </Link>
                         </div>
                     ) }      
             )

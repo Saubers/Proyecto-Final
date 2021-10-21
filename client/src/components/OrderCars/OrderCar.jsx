@@ -66,8 +66,8 @@ export default function OrderCar(props) {
              onChange = {(e) => handleChange(e)}
              placeholder="Id"
             ></input>
-            <button onClick = {(e) => handleClick(e)}></button>
-            <button onClick = {(e) => handleGetAll(e)}></button>
+            <button onClick = {(e) => handleClick(e)}>Confirma la ID</button>
+            <button onClick = {(e) => handleGetAll(e)}>Mostrar todos</button>
             </div>
             {OrderUser && OrderUser.map(el=>{
                 return(
