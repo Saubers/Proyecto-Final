@@ -14,7 +14,7 @@ function CategoryUpdate() {
 
     const [id, setID] = useState("");
 
-    const categories = useSelector(state => state.allCategories);
+    const categories = useSelector(state => state.allcategories);
 
     const [input, setInput] = useState({
         name: "",
@@ -23,12 +23,14 @@ function CategoryUpdate() {
 
     function HandleSubmit(e) {
         e.preventDefault(e);
-        dispatch(updateCategory(input))
+        dispatch(updateCategory(id, input))
         alert("CATEGORIA ACTUALIZADA")
         setInput({
             name: "",
             description: ""
         })
+        console.log ('JSON: ', input)
+        console.log('ID: ', id)
     };
 
     function handleChange(e) {
@@ -38,19 +40,24 @@ function CategoryUpdate() {
         })
     };
 
-    function handleSelectID(e) {
-        setID({
-            id: e.target.value
-        })
-        setInput({
-            name: "",
-            description: ""
-        })
-    }
-
     const selectedCategory= categories?.find((el)=> el._id === id);
 
-    console.log(categories, id, selectedCategory)
+    function handleSelectID(e) {
+        setID(
+            e.target.value
+        )
+    }
+
+    useEffect(() => {
+        setInput({
+            name: selectedCategory?.name ,
+            description: selectedCategory?.description
+        });
+    }, [id])
+
+ /*    console.log('ID: ', id)
+    console.log('CATEGORIES: ', categories)
+    console.log('SELECTED: ', selectedCategory) */
 
     return (
         <div>

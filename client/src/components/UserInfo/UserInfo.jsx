@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../NavBar/NavBar';
 import Styleinfo from '../UserInfo/UserInfo.module.css';
 import Footer from '../LandingPage/Footer/Footer'
+import UserDelete from '../ProfileInfo/ProfileDelete';
 
 const UserInfo = () => {
     const userInformacion = localStorage.getItem("userInformacion");
@@ -41,6 +42,7 @@ const UserInfo = () => {
                             <label>Estado</label>
                             <p>{usuario.state}</p>
                         </div>
+                        <UserDelete />
                 </div>
                
             </div>

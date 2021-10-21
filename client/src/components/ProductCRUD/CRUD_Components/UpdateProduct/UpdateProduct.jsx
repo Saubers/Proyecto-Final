@@ -61,8 +61,6 @@ export default function UpdateProduct() {
 
     const [id, setID] = useState("")
 
-    /* const selectedCar = cars.find((el) => el._id === id); */
-
     const [input, setInput] = useState({
         brand: "",
         name: "",
@@ -98,38 +96,7 @@ export default function UpdateProduct() {
         console.log(input)
         e.preventDefault(e);
         dispatch(putProduct(id, input))
-        alert("¡PRODUCTO AÑADIDO!")
-        setInput({
-            brand: "",
-            name: "",
-            model: "",
-            category: "",
-            description: "",
-            features_doors: "",
-            features_engine_name: "",
-            features_engine_cv: "",
-            features_engine_torque: "",
-            features_engine_combustion: "",
-            features_transmission_manual: "",
-            features_transmission_automatic: "",
-            features_traction: "",
-            features_mileage: "",
-            price: "",
-            stock:""
-        })
-    };
-
-    function handleSelect(e) {
-        setInput({
-            ...input,
-            category: e.target.value
-        })
-    }
-
-    function handleSelectID(e) {
-        setID({
-            id: e.target.value
-        })
+        alert("¡PRODUCTO ACTUALIZADO!")
         setInput({
             brand: "",
             name: "",
@@ -148,11 +115,46 @@ export default function UpdateProduct() {
             price: "",
             stock: ""
         })
+    };
+
+    function handleSelect(e) {
+        setInput({
+            ...input,
+            category: e.target.value
+        })
     }
 
-    const autoq= cars?.find((el)=>el._id=== id);
+    const selectedCar = cars?.find((el) => el._id === id)
 
-    console.log(autoq)
+    function handleSelectID(e) {
+        setID(
+            e.target.value
+        )
+
+    }
+
+    useEffect(() => {
+        setInput({
+            brand: selectedCar?.brand,
+            name: selectedCar?.name,
+            model: selectedCar?.model,
+            category: selectedCar?.category.name,
+            description: selectedCar?.description,
+            features_doors: selectedCar?.features.doors,
+            features_engine_name: selectedCar?.features.engine[0].name,
+            features_engine_cv: selectedCar?.features.engine[0].cv,
+            features_engine_torque: selectedCar?.features.engine[0].torque,
+            features_engine_combustion: selectedCar?.features.engine[0].combustion,
+            features_transmission_manual: selectedCar?.features.transmission.manual,
+            features_transmission_automatic: selectedCar?.features.transmission.automatic,
+            features_traction: selectedCar?.features.traction,
+            features_mileage: selectedCar?.features.mileage,
+            price: selectedCar?.price,
+            stock: selectedCar?.stock
+        });
+    }, [id])
+
+    console.log('ID: ', id)
 
     const postDetails = (images) => {
         if (
@@ -184,17 +186,18 @@ export default function UpdateProduct() {
     return (
         <div>
             <NavBar />
+            <h1>Enter new car information</h1>
             <div className={styleCrudUpdate.General}>
-                <h1>Update car information</h1>
+                
                 <h3>Select car</h3>
-                <select required onChange={(e) => handleSelectID(e)}>
-                        <option disabled selected>Selecciona un auto</option>
+                <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelectID(e)}>
+                    <option disabled selected>Selecciona un auto</option>
                     {cars?.map((el) => (
                         <option value={el._id}>{el.name}</option>
                     ))}
                 </select>
 
-                <h2>Enter new car information</h2>
+                {/* <h2 className={styleCrudUpdate.subtitle}>Enter new car information</h2> */}
 
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <fieldset >
@@ -253,7 +256,7 @@ export default function UpdateProduct() {
 
                         <label className={styleCrudUpdate.label}>Category: </label>
                         <div className={styleCrudUpdate.subDiv}>
-                            <h5>Eliga una categoria</h5>
+                            <h5 className={styleCrudUpdate.label}>Eliga una categoria</h5>
                             <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
                                 {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
@@ -291,10 +294,24 @@ export default function UpdateProduct() {
                                 <p className={styleCrudUpdate.errors}>{errors.price}</p>
                             )}
                         </div>
+                        <label className={styleCrudUpdate.label}>Stock:</label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="text"
+                                value={input.stock}
+                                name="stock"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Disponibles'
+                                className={styleCrudUpdate.inputActivity} />
+                            {errors.stock && (
+                                <p className={styleCrudUpdate.errors}>{errors.stock}</p>
+                            )}
+                        </div>
                     </fieldset>
 
                     <fieldset>
-                        <h2 className={styleCrudUpdate.label}>Features</h2>
+                        <h2 className={styleCrudUpdate.subtitle}>Features</h2>
 
                         <label className={styleCrudUpdate.label}>Puertas</label>
                         <div className={styleCrudUpdate.subDiv}>
@@ -365,8 +382,8 @@ export default function UpdateProduct() {
                         </div>
 
                         <div className={styleCrudUpdate.subDiv}>
-                            <h3>Transmision:</h3>
-                            <h5>Manual</h5>
+                            <h3 className={styleCrudUpdate.subtitle}>Transmision:</h3>
+                            <h5 className={styleCrudUpdate.label}>Manual</h5>
                             <input
                                 required
                                 type="text"
@@ -379,7 +396,7 @@ export default function UpdateProduct() {
                         </div>
 
                         <div className={styleCrudUpdate.subDiv}>
-                            <h5>Automatica</h5>
+                            <h5 className={styleCrudUpdate.label}>Automatica</h5>
                             <input
                                 required
                                 type="text"
@@ -416,21 +433,6 @@ export default function UpdateProduct() {
                                 className={styleCrudUpdate.inputActivity} />
                             {errors.features_mileage && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
-                            )}
-                        </div>
-
-                        <label className={styleCrudUpdate.label}>Stock:</label>
-                        <div className={styleCrudUpdate.subDiv}>
-                            <input
-                                required
-                                type="text"
-                                value={input.stock}
-                                name="stock"
-                                onChange={(e) => handleChange(e)}
-                                placeholder='Disponibles'
-                                className={styleCrudUpdate.inputActivity} />
-                            {errors.stock && (
-                                <p className={styleCrudUpdate.errors}>{errors.stock}</p>
                             )}
                         </div>
 

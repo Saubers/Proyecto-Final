@@ -30,12 +30,24 @@ const DeleteCategory = async (req,res,next) =>{
 }
 }
 
-const ModifiCategory = async(req,res) =>{
+/* const ModifiCategory = async(req,res) =>{
     const { id } = req.params;
     const updates = req.body;
     console.log(updates)
     try {
-    await Cars.findByIdAndUpdate(id,updates)
+    await Categories.findByIdAndUpdate(id, updates)
+    res.send("Categoria actualizada correctamente");
+} catch (error) {
+    console.log(error)
+}
+} */
+
+const ModifiCategory = async(req,res) =>{
+    const {id} = req.params;
+    const updates = req.body;
+    console.log(updates)
+    try {
+    await Categories.findByIdAndUpdate(id, updates)
     res.send("Categoria actualizada correctamente");
 } catch (error) {
     console.log(error)

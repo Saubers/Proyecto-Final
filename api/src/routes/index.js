@@ -4,7 +4,7 @@ const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBra
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
 const { createUser, loginUser, getUserData, changeStateToInactive } = require('../controllers/userFunction');
-const { forgotPassword, resetPassword } = require('../controllers/passwordFunctions')
+const { forgotPassword, resetPassword, protect, updatePassword } = require('../controllers/passwordFunctions')
 const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
 const {searchIdOrder} =require('../controllers/orderFunction')
 const mercadopago = require ('mercadopago');
@@ -20,9 +20,9 @@ module.exports = app => {
     //Categories
     router.post('/categories',CreateCategory);
     
-    router.delete('/categories',DeleteCategory);
+    router.delete('/categories/:id',DeleteCategory);
     
-    router.put('/categories',ModifiCategory);
+    router.put('/categories/:id',ModifiCategory);
 
     router.get('/categories/:categories', getByCategory);
 
@@ -63,6 +63,7 @@ module.exports = app => {
 
     router.put('/delete_user/:_id', changeStateToInactive)
 
+    router.patch('/updatePassword', protect, updatePassword )
     // router.put('/new-password')
  
     ///////Carrito

@@ -12,7 +12,7 @@ function CategoryRead() {
         dispatch(getCategories());
     }, [dispatch])
 
-    const categories = useSelector(state => state.allCategories);
+    const categories = useSelector(state => state.allcategories);
 
     console.log(categories)
 

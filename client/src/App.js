@@ -20,20 +20,21 @@ import CategoryCreate from './components/CategoryCRUD/CategoryCreate/CategoryCre
 import CategoryUpdate from './components/CategoryCRUD/CategoryUpdate/CategoryUpdate';
 import CategoryDelete from './components/CategoryCRUD/CategoryDelete/CategoryDelete';
 import CategoryRead from './components/CategoryCRUD/CategoryRead/CategoryRead'
-
+import bcrypt from 'bcrypt'
 import OrderCar from './components/OrderCars/OrderCar';
 import { useHistory } from 'react-router';
-import Profile from './components/ProfileInfo/Profile';
 import Pagos from './components/pagos/pagos'
 import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 import ProfileInfo from './components/UserInfo/UserInfo'
-import OrderEdit from './components/OrderCars/OrderEdit/OrderEdit'
+import { useSelector } from 'react-redux';
 
 function App() {
   const history = useHistory()
+  const stateAdmin = useSelector((state) => state.userInfo)
+  console.log("estado app", stateAdmin)
   const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
-  console.log(isAdmin)
+  bcrypt.compareSync("admin", isAdmin);
   return (
     <Router>
       <div className='container'>
@@ -49,7 +50,7 @@ function App() {
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
 
-          {/* <Route exact path='/ProductCRUD' component={ProductCRUD} />
+          {/*  <Route exact path='/ProductCRUD' component={ProductCRUD} />
           <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />
           <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />
           <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />
@@ -74,12 +75,10 @@ function App() {
           {!local && (<Route exact path='/user/register' component={Register} />)}
           <Route exact path="/home/Catalogo" component={Catalogo} />
           {!local && (<Route exact path="/user/login" component={Login} />)}
-          {local && (<Route exact path='/user/profile' component={Profile} />)}
           {(<Route exact path='/home/compra' component={Cart} />)}
           <Route exact path='/home/ADMIN/orders' component={OrderCar} />
-          <Route exact path='/user/me' component={ProfileInfo} />
+          {local && <Route exact path='/user/me' component={ProfileInfo} />}
           <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />
-          <Route exact path='/home/ADMIN/edit/:id' component={OrderEdit}/>
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
         </Switch>

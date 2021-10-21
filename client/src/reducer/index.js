@@ -87,15 +87,18 @@ function rootReducer(state = initialState, action) {
     }
     case "USER_SIGNIN_REQUEST":
       return {
+        ...state,
         loading: true,
       };
     case "USER_SIGNIN_SUCCESS":
       return {
+        ...state,
         loading: false,
         userInfo: action.payload,
       };
     case "USER_SIGNIN_FAIL":
       return {
+        ...state,
         loading: false,
         error: action.payload,
       };
@@ -109,14 +112,17 @@ function rootReducer(state = initialState, action) {
         }
     case "USER_DETAILS_REQUEST":
       return { 
+        ...state,
         loading: true 
       };
     case "USER_DETAILS_SUCCESS":
       return { 
+        ...state,
         loading: false, usersUpdate: action.payload
        };
     case "USER_DETAILS_FAIL":
       return { 
+        ...state,
         loading: false, error: action.payload
        };
     case 'USER_UPDATE_PROFILE_RESET':
