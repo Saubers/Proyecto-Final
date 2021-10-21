@@ -1,6 +1,6 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import { postCart,postMg, getUserOrder ,getUserOrderStatus} from "../../actions";
+import { postCart,postMg, getUserOrder ,getUserOrderStatus,putProductStock} from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link, useHistory} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
@@ -13,6 +13,7 @@ export default function Cart(props){
 
     
     const dispatch = useDispatch()
+    const [allAuto, setAllAuto] = useLocalStorage('Allauto')
     const [idAuto, setIdAuto] = useLocalStorage('auto')
     const userInformacion = localStorage.getItem("userInformacion")
     const user = JSON.parse(userInformacion)
@@ -33,7 +34,6 @@ export default function Cart(props){
     useEffect(() => {
         dispatch(getUserOrderStatus(orderPayload))
      }, [])
-    
     const cartBD = useSelector ((state) => state.orders)
     //console.log('cartDb',cartBD)
 
@@ -51,11 +51,7 @@ export default function Cart(props){
             numero = numero + element
             setPrice(numero)
         })
-    }
-
-    
-    
-    
+    }    
     function sumarCar(idCar){
         const found = amount.find(element => element.id === idCar.id)
         if(found?.id !== idCar.id){
@@ -68,11 +64,22 @@ export default function Cart(props){
                 cantidad : 1
            }])
            setPrice(price + idCar.price)
+           allAuto.forEach(element =>{
+            if(element.id === idCar.id){
+                element.stock =  parseInt(element.stock - 1) 
+            }
+        })
         }
         else if(found?.cantidad !== idCar.stock){
             amount.forEach(element =>{
                 if(element.id === idCar.id){
                     element.cantidad =  parseInt(element.cantidad + 1)
+                }
+            })
+            allAuto.forEach(element =>{
+                if(element.id === idCar.id){
+                    element.stock =  parseInt(element.stock - 1) 
+                    console.log('foreach',element)
                 }
             })
             setPrice(price + idCar.price)
@@ -90,13 +97,8 @@ export default function Cart(props){
     //boton post filtrar todos los que tengan
     
     function handleClickSumar(car){
-        // console.log("HOLAA",amount.map(el => el.cantidad), "HOLA",idAuto.map(el => el.stock));
-        // if (amount.map(el => el.cantidad) === idAuto.map(el => el.stock)) {
-        //     console.log('entro');
-        //     alert('No hay mas stock')
-        // }
-      //  console.log('car',car)
         sumarCar(car)
+
     }
     function handleClickRestark(e){
         let numeroresta = 0
@@ -107,13 +109,20 @@ export default function Cart(props){
                     element.cantidad =  parseInt(element.cantidad - 1)
                 }
             })
+            allAuto.forEach(element =>{
+                if(element.id === e.id){
+                    element.stock =  parseInt(element.stock + 1)
+                }
+            })
             numeroresta = price - e.price
             setPrice(numeroresta)
             
         }
         if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
+            const filterAll= allAuto.filter(car => car !== e)
             setAmount(filter)
+            setAllAuto(filterAll)
             setPrice(price - e.price)
         }
     }
@@ -124,6 +133,7 @@ export default function Cart(props){
         if (idAuto?.length === 1) {
         borrarItem('auto')
         borrarItem('button')
+        borrarItem('Allauto')
         setAmount([])
         }
         window.location.reload()
@@ -145,11 +155,16 @@ export default function Cart(props){
             price: price,
             state:"En proceso"
         })
-        if(input.user && input.publication && input.cantidad && input.price){
+        if(input.user && input.publication && input.cantidad && input.price && allAuto){
             dispatch(postCart(cart))
-            dispatch(postMg(input))
+           // dispatch(postMg(input))
+            for (let i = 0; i < allAuto.length; i++) {
+               console.log(allAuto[i])
+                dispatch(putProductStock(allAuto[i]))         
+            }
+            //putProductStock(putProduct)
             alert('Compra exitosa')
-            // handleDelete()
+             handleDelete()
         }
         else{
             alert('Vuelva a tocar el boton para confirmar')
@@ -158,6 +173,7 @@ export default function Cart(props){
     }
     function handleDelete() {
         borrarItem('auto')
+        borrarItem('Allauto')
         borrarItem('button')
         setAmount([])
     }
