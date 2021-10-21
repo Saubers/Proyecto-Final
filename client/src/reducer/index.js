@@ -143,6 +143,10 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "PUT_ADMIN":
+      return{
+        ...state
+      }
     case "POST_CATEGORY":
       return {
         ...state,
