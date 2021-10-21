@@ -42,9 +42,9 @@ function App() {
 
 
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD' component={ProductCRUD} />}
-          {isAdmin === '"admin"' && <Route exact path='/CRUD/CreateProduct' component={CreateProduct} />}
-          {isAdmin === '"admin"' && <Route exact path='/CRUD/DeleteProduct' component={DeleteProduct} />}
-          {isAdmin === '"admin"' && <Route exact path='/CRUD/UpdateProduct' component={UpdateProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />}
+          {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
 
