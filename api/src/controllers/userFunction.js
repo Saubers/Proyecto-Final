@@ -88,20 +88,20 @@ const deleteUser = async (req,res,next) =>{
 const administracion = async (req, res,next)=>{
     const UserAdmin = await User.findById(req.params.id);
     const {newBan, newState} = req.body 
+    console.log(UserAdmin);
     try{
     const admin = await User.findByIdAndUpdate(UserAdmin._id,{
-        _id: UserAdmin._id,
         fullname: UserAdmin.fullname,
         phone: UserAdmin.phone,
         mail : UserAdmin.mail,
-        ban : newBan,
+        ban : newBan? newBan :UserAdmin.ban, 
         password: UserAdmin.password,
-        state: newState,
+        state: newState? newState : UserAdmin.state,
         date: UserAdmin.date,
     });
     res.status(200).json(admin);
     }catch(err){
-        console.log(err);
+        res.status(400).send(alert('La id no existe'))
     }
 }
 

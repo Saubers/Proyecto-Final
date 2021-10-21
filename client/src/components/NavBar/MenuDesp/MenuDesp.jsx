@@ -23,9 +23,10 @@ const logoutFunct = () => {
             </div> : <p>Login</p>}
       </DropdownToggle>
       <DropdownMenu>
-        <DropdownItem href="/ProductCRUD">Admin</DropdownItem>
+      {isAdmin === '"admin"' && <DropdownItem href="/ProductCRUD">Admin</DropdownItem>}
         <DropdownItem href="/user/me">Me</DropdownItem>
         {isAdmin === '"admin"' && <DropdownItem href="/home/CrearCategoria">Crear Categoria</DropdownItem>}
+        {isAdmin === '"admin"'   && <DropdownItem href="/home/ADMIN/Administracion">Administracion</DropdownItem>}
         <DropdownItem href="/pagos">Ticket</DropdownItem>
         <DropdownItem onClick={() => logoutFunct()} href='/'>Logout</DropdownItem>
       </DropdownMenu>
