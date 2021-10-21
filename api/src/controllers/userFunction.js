@@ -2,6 +2,14 @@ const User = require('../models/User')
 const generateToken = require('../generateToken');
 require('../db.js')
 
+const getAllUser = async (req,res,next) =>{
+    const users = await User.find()
+    if (users) {
+        res.send(users)
+    }else {
+        res.status(404).send({ message: 'User not found...' })
+    }
+}
 const getUserData = async (req, res, next) => {
     const user = await User.findById(req.params.id);
     if(user) {
@@ -85,11 +93,32 @@ const deleteUser = async (req,res,next) =>{
     }
 }
 
+const administracion = async (req, res,next)=>{
+    const UserAdmin = await User.findById(req.params.id)
+    const {newBan, newState} = req.body 
+    try{
+    const admin = await User.findByIdAndUpdate(UserAdmin._id,{
+        fullname: UserAdmin.fullname,
+        phone: UserAdmin.phone,
+        mail : UserAdmin.mail,
+        ban : newBan? newBan  :UserAdmin.ban, 
+        password: UserAdmin.password,
+        state: newState? newState : UserAdmin.state,
+        date: UserAdmin.date,
+    });
+    res.status(200).json(admin);
+    }catch(err){
+        console.log(err);
+    }
+}
+
 
 module.exports = {
+    getAllUser,
     createUser,
     loginUser,
     getUserData,
     deleteUser,
     changeStateToInactive,
+    administracion
 }
