@@ -64,7 +64,10 @@ function CategoryUpdate() {
         <div>
             <NavBar />
             <h1>Actualiza una categoria</h1>
-            <div className={Styles.General}>
+            
+            <form onSubmit={(e) => HandleSubmit(e)}>
+<div className={Styles.General}>
+            <div >
             <p className={Styles.label}>Selecciona la categoria a editar</p>
                 <select className={Styles.selectCategory} required onChange={(e) => handleSelectID(e)}>
                     <option disabled selected>Categorias</option>
@@ -73,8 +76,8 @@ function CategoryUpdate() {
                     ))}
                 </select>
             </div>
-            <form onSubmit={(e) => HandleSubmit(e)}>
-                <div className={Styles.General}>
+
+                <div >
                     <label className={Styles.label}>Nombre:</label>
                     <input
                         className={Styles.inputActivity}
@@ -85,7 +88,8 @@ function CategoryUpdate() {
                         onChange={(e) => handleChange(e)}
                         required />
                 </div>
-                <div className={Styles.General}>
+
+                <div >
                     <p className={Styles.label}>Descripcion</p>
                     <textarea
                         className={Styles.inputActivity}
@@ -96,6 +100,7 @@ function CategoryUpdate() {
                         placeholder="Descripcion..."
                         onChange={(e) => handleChange(e)}
                         required />
+                </div>
                 </div>
                 <Link to="/CategoryCRUD">
                     <button className={Styles.button3}>Volver</button>

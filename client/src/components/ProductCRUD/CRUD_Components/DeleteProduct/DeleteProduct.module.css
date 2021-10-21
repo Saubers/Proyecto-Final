@@ -1,21 +1,21 @@
 .button3 {
-    position: relative;
-    background-color: #525252;
-    border: none;
-    color: white;
-    text-shadow: 0 0 3px black, 0 0 5px black;
-    padding: 20px 20px;
-    width: 10%;
-    text-align: center;
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
-    font-size: 20px;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-right: 20px;
-  }
+  position: relative;
+  background-color: #525252;
+  border: none;
+  font-size: 10px;
+  color: white;
+  text-shadow: 0 0 3px black, 0 0 5px black;
+  padding: 10px 20px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-right: 20px;
+}
   .button3:after {
     content: "";
     background: #f1f1f1;
