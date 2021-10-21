@@ -149,8 +149,8 @@ export default function CreateProduct() {
     return (
         <div>
             <NavBar />
+            <h1>Enter New Car information</h1>
             <div className={styleCrudPost.General}>
-                <h1>Enter New Car information</h1>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <fieldset >
                         <label className={styleCrudPost.label}>Brand: </label>
@@ -207,8 +207,9 @@ export default function CreateProduct() {
 
                         <label className={styleCrudPost.label}>Category: </label>
                         <div className={styleCrudPost.subDiv}>
-                            <h5>Eliga una categoria</h5>
+                            {/* <h5 className={styleCrudPost.label}>Eliga una categoria</h5> */}
                             <select required className={styleCrudPost.selectCategory} onChange={(e) => handleSelect(e)}>
+                                <option disabled selected>Categorias</option>
                                 {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}
@@ -248,7 +249,7 @@ export default function CreateProduct() {
                     </fieldset>
 
                     <fieldset>
-                        <h2 className={styleCrudPost.label}>Features</h2>
+                        <h2 className={styleCrudPost.subtitle}>Features</h2>
 
                         <label className={styleCrudPost.label}>Puertas</label>
                         <div className={styleCrudPost.subDiv}>
@@ -319,8 +320,8 @@ export default function CreateProduct() {
                         </div>
 
                         <div className={styleCrudPost.subDiv}>
-                            <h3>Transmision:</h3>
-                            <h5>Manual</h5>
+                            <h2 className={styleCrudPost.subtitle}>Transmision:</h2>
+                            <h5 className={styleCrudPost.label}>Manual</h5>
                             <input
                                 required
                                 type="text"
@@ -333,7 +334,7 @@ export default function CreateProduct() {
                         </div>
 
                         <div className={styleCrudPost.subDiv}>
-                            <h5>Automatica</h5>
+                            <h5 className={styleCrudPost.label}>Automatica</h5>
                             <input
                                 required
                                 type="text"
