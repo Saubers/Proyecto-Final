@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCarDetail } from "../../../../actions";
 import NavBar from "../../../NavBar/NavBar";
+import Styles from "./ReadProductDetail.module.css";
 
 export default function ReadProductDetail(props) {
 
@@ -50,7 +51,7 @@ export default function ReadProductDetail(props) {
 
             </div>
             <Link to='/ProductCRUD/ReadProduct'>
-                <button>Volver</button>
+                <button className={Styles.button3}>Volver</button>
             </Link>
         </div>
     )

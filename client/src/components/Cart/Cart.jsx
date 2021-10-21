@@ -277,10 +277,9 @@ export default function Cart(props){
                         </div>
                         <div>
                     <div>
-                    <tr className={stylecart.trdiv}>
+                        <tr className={stylecart.trdiv}>
                     <ul className={stylecart.listy}><b>Usuario </b>{user?.fullname}</ul>
                     <ul className={stylecart.listy}><b>Mail </b>{user?.mail} </ul>
-
                     </tr>
                     </div>
                         {user === null ?
