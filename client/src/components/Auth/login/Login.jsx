@@ -9,6 +9,7 @@ import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCars, signin, userAdmin } from '../../../actions';
 import { useEffect } from 'react';
+import FacebookLogin from 'react-facebook-login';
 
 
 
@@ -32,7 +33,6 @@ const Login = () => {
         if(local){
             history.push('/home/catalogo')
         }
-
         
     dispatch(signin(mail, password))
     dispatch(userAdmin(mail, password))
@@ -47,7 +47,9 @@ const Login = () => {
     // setLoading(false)
    
     }
-            
+    const responseFacebook = (response) => {
+        console.log(response)
+          }
        
     return(
         <div className={styles.loginContainer}>
@@ -90,6 +92,14 @@ const Login = () => {
                 <Link to ='/'>
                 <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
+                <div>
+                
+            <FacebookLogin
+      appId="2984120755187172"
+      autoLoad={false}
+      callback={responseFacebook} />
+            
+                </div>
                 </div>
         </div>
         
