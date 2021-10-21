@@ -236,7 +236,21 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         dispatch({ type: 'USER_UPDATE_PROFILE_FAIL', payload: message });
     }
 };
-
+export function putAdmin (payload){
+return async function (dispatch){
+    console.log(payload);
+    try{
+        var json = await axios.put("http://localhost:3002/promote/" +payload.id , payload)
+        console.log("HOLALA",json);
+        return dispatch({
+            type:"PUT_ADMIN",
+            payload:json
+        })
+    }catch(err){
+        console.log(err);
+    }
+}
+}
 
 export function DeleteCar(id) {
     return async function (dispatch) {

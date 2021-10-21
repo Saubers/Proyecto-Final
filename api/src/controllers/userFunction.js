@@ -85,6 +85,26 @@ const deleteUser = async (req,res,next) =>{
     }
 }
 
+const administracion = async (req, res,next)=>{
+    const UserAdmin = await User.findById(req.params.id);
+    const {newBan, newState} = req.body 
+    try{
+    const admin = await User.findByIdAndUpdate(UserAdmin._id,{
+        _id: UserAdmin._id,
+        fullname: UserAdmin.fullname,
+        phone: UserAdmin.phone,
+        mail : UserAdmin.mail,
+        ban : newBan,
+        password: UserAdmin.password,
+        state: newState,
+        date: UserAdmin.date,
+    });
+    res.status(200).json(admin);
+    }catch(err){
+        console.log(err);
+    }
+}
+
 
 module.exports = {
     createUser,
@@ -92,4 +112,5 @@ module.exports = {
     getUserData,
     deleteUser,
     changeStateToInactive,
+    administracion
 }

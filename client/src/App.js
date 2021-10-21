@@ -25,6 +25,7 @@ import { useHistory } from 'react-router';
 import Pagos from './components/pagos/pagos'
 import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 import ProfileInfo from './components/UserInfo/UserInfo'
+import AdministracionAdmin from './components/AdministracionAdmin/AdministracionAdmin'
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
           <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
+          <Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin}/>
         </Switch>
       </div>
     </Router>
