@@ -51,9 +51,16 @@ export default function Detail(props) {
 
     const [Isbotton, setIsButton] = useLocalStorage('button', [])
 
-    
     async function addToCart() {
-        setIdAuto([...idAuto, MyCar])
+        setIdAuto([...idAuto, {
+            id : MyCar.id,
+            brand : MyCar.brand,
+            name : MyCar.name,
+            img : MyCar.img,
+            price : MyCar.price,
+            stock  : MyCar.stock,
+            count : 0
+        }])
         setIsButton([...Isbotton, MyCar.id])
         setCarrito({
             user:user?._id,

@@ -23,7 +23,7 @@ export default function Cart(props){
     const [input , setInput] = useState ({});
     const mpLink = useSelector(state => state.MPLink)
     const MPLINK = '5; URL='+mpLink
-    console.log('user',user)
+    //console.log('user',user)
     const orderPayload = {
         id : user?._id ,
         status : "Carrito"
@@ -35,7 +35,7 @@ export default function Cart(props){
      }, [])
     
     const cartBD = useSelector ((state) => state.orders)
-    console.log('cartDb',cartBD)
+    //console.log('cartDb',cartBD)
 
 
     function sumatotal() {
@@ -61,21 +61,28 @@ export default function Cart(props){
                 brand: idCar.brand,
                 carname :idCar.name,
                 price : idCar.price,
+                stock : idCar.stock,
                 cantidad : 1
            }])
            setPrice(idCar.price)
         }
+        else if(found?.cantidad === idCar.stock){
+            return(alert('item supero su stock'))
+        }
         else{
-            amount.forEach(element =>{
-                if(element.id === idCar.id){
-                    element.cantidad =  parseInt(element.cantidad + 1)
-                }
-            })
+             amount.forEach(element =>{
+                    if(element.id === idCar.id){
+                        element.cantidad =  parseInt(element.cantidad + 1)
+                    }
+                })
+            
         }
         sumatotal()
+        console.log('amount',amount)
 
     }
-    
+    console.log('amount',amount)
+
     //boton post filtrar todos los que tengan
     
     function handleClickSumar(car){
@@ -84,7 +91,7 @@ export default function Cart(props){
         //     console.log('entro');
         //     alert('No hay mas stock')
         // }
-        console.log('car',car)
+      //  console.log('car',car)
         sumarCar(car)
         sumatotal()
     }
@@ -101,7 +108,7 @@ export default function Cart(props){
             setPrice(numeroresta)
             
         }
-        else if (e.cantidad === 0){ 
+        if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
             setAmount(filter)
             setPrice(0)
@@ -202,17 +209,12 @@ export default function Cart(props){
                                     </div>
                                 </div>
                                 <div className={stylecart.cantidad}>
-                            
-                                   {
-                                    el.stock === amount.map(ele => ele.cantidad)[0] ?
-                                   <p>No hay Stock</p>
-                                   :
+            
                                    <div>
                                    <p>Cantidad:</p><button className={stylecart.btn1} onClick={()=>handleClickSumar(el)}>+1</button>
                                    <p>Stock:{el?.stock}</p>
                                    </div>
-                                    }
-                                    
+            
                                 </div>
                                 <div className={stylecart.btnde}>
                                     <button onClick={()=>handleDeleteCar(el)} className={stylecart.btndelee}>X</button>
