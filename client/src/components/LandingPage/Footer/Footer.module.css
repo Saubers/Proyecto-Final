@@ -29,9 +29,9 @@
 }
 .container12 a{
     text-decoration: none;
-    color: #fff;
+    color: #fff  !important;
 }
 .container2 a{ 
     text-decoration: none;
-    color: #fff;
+    color: #fff  !important;
 }
