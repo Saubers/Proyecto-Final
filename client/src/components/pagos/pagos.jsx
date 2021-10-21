@@ -14,7 +14,7 @@ export default function Pagos() {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getOrderByUsuario(usuario._id))
-    },)
+    },[dispatch])
 
     let filter = ticket?.filter(element => element.state !== "Carrito")
     // console.log('filter', filter[0].user)
