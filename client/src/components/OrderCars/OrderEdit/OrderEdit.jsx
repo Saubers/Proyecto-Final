@@ -6,26 +6,28 @@ import {putCart} from '../../../actions/index'
 
 export default function OrderEdit(props) {
     const dispatch = useDispatch()
-    const userInformacion = localStorage.getItem("userInformacion");
     useEffect(()=>{
         dispatch(getOrderByID(props.match.params.id))
     },[dispatch],props.match.params.id)
     const OrderDetail = useSelector((state) => state.orderDetail)
+    const userInformacion = localStorage.getItem("userInformacion");
     const usuario = JSON.parse(userInformacion)
     const [input, setInput] = useState({
         idUsuario: usuario?._id,
         idOrder:"",
-        idItem: "",
+        idItem: [],
         price : "",
         newState : ""
     })
-
+    console.log('OrderDetail',OrderDetail)
     function handleChange(e) {
         setInput({
             ...input,
-            idItem:OrderDetail[0].publication.map(el => el._id),
+            idUsuario: usuario?._id,
+            idItem:OrderDetail[0].publication.map((e) => e._id),
             idOrder:OrderDetail[0]._id,
             price : OrderDetail[0].price,
+            cantidad : OrderDetail[0].cantidad,
             newState: e.target.value
         })
     }
