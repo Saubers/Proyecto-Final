@@ -59,7 +59,7 @@ module.exports = app => {
     
     router.get("/user", getAllUser)
 
-    router.post('/forgotPassword', forgotPassword)
+    router.put('/forgotPassword', forgotPassword)
 
     router.patch('/resetPassword/:token', resetPassword)
 
