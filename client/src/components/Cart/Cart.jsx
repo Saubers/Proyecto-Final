@@ -37,6 +37,9 @@ export default function Cart(props){
     const cartBD = useSelector ((state) => state.orders)
     //console.log('cartDb',cartBD)
 
+    useEffect(() => {
+        sumatotal()
+     }, [amount])
 
     function sumatotal() {
         let suma = [];
@@ -64,20 +67,20 @@ export default function Cart(props){
                 stock : idCar.stock,
                 cantidad : 1
            }])
-           setPrice(idCar.price)
+           setPrice(price + idCar.price)
         }
-        else if(found?.cantidad === idCar.stock){
-            return(alert('item supero su stock'))
-        }
-        else{
-             amount.forEach(element =>{
-                    if(element.id === idCar.id){
-                        element.cantidad =  parseInt(element.cantidad + 1)
-                    }
-                })
+        else if(found?.cantidad !== idCar.stock){
+            amount.forEach(element =>{
+                if(element.id === idCar.id){
+                    element.cantidad =  parseInt(element.cantidad + 1)
+                }
+            })
             
         }
-        sumatotal()
+        else{
+            return(alert('item supero su stock'))
+        }
+     //   sumatotal()
         console.log('amount',amount)
 
     }
@@ -93,7 +96,7 @@ export default function Cart(props){
         // }
       //  console.log('car',car)
         sumarCar(car)
-        sumatotal()
+      //  sumatotal()
     }
     function handleClickRestark(e){
         let numeroresta = 0
@@ -111,7 +114,7 @@ export default function Cart(props){
         if (e.cantidad === 0){ 
             const filter = amount.filter(car => car !== e)
             setAmount(filter)
-            setPrice(0)
+            setPrice(price - e.price)
         }
     }
 
