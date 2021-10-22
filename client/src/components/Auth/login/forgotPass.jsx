@@ -8,7 +8,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 const ForgotPass = () => {
   const [mail, setMail] = useState("");
   const dispatch = useDispatch();
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(forgotPassword(mail));
   };
@@ -51,7 +51,7 @@ const ForgotPass = () => {
       </form>
       <Button
         type="submit"
-        onClick={((e) => handleSubmit(e), toggle1)}
+        onClick={((e) => handleSubmit(e) + toggle1())}
         variant="success"
       >
         Enviar mail
