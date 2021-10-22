@@ -61,7 +61,7 @@ function App() {
           {!local && (<Route exact path='/user/forgotPass' component={ForgotPass} />)}
           {!local && (<Route exact path='/user/register' component={Register} />)}
           {!local && (<Route exact path="/user/login" component={Login} />)}
-          {(<Route exact path='/home/compra' component={Cart} />)}
+          <Route exact path='/home/compra' component={Cart} />
           {local && <Route exact path='/user/me' component={ProfileInfo} />}
           {isAdmin === '"admin"' && <Route exact path='/home/ADMIN/edit/:id' component={OrderEdit} />}
           {isAdmin === '"admin"' && <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />}

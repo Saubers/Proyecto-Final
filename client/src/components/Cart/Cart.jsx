@@ -248,8 +248,8 @@ export default function Cart(props){
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
                      return(
-                        <option value={el._id} >
-                            {el.brand} {el.name} {el.price} stock: {el.stock}
+                        <option value={el?._id} >
+                            {el?.brand} {el?.name} {el?.price} stock: {el?.stock}
                         </option>
                   )   
                 }
