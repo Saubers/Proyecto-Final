@@ -57,15 +57,19 @@ const loginUser = async (req,res,next) => {
     
     const user = await User.findOne({ mail });
     if(user && (await user.matchPassword(password))) {
-        res.status(200).json({
-            _id: user._id,
-            fullname: user.fullname,
-            password: user.password,
-            mail: user.mail,
-            phone: user.phone,
-            state: user.state,
-            token: generateToken(user._id),
-        })
+        if(user.state === 'inactive'){
+            res.status(200).json({error:'esta cuenta ha sido deshabilitada'})
+        }else {
+            res.status(200).json({
+                _id: user._id,
+                fullname: user.fullname,
+                password: user.password,
+                mail: user.mail,
+                phone: user.phone,
+                state: user.state,
+                token: generateToken(user._id),
+            })
+        }
     } else {
         res.status(200).json({error:'Invalid mail or password'})
     }
@@ -128,11 +132,15 @@ const googleLogin = async (req,res) =>{
                         if(user){
                             const token = jwt.sign({_id:user._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
                             const {_id,fullname,mail,state, phone, password}=user;
-                            res.json({
-                                token,
-                                user:{_id, fullname, mail, phone, password},
-                                state
-                            })
+                            if(state === 'inactive'){
+                                res.status(200).json({error:'esta cuenta ha sido deshabilitada'})
+                            }else {
+                                res.json({
+                                    token,
+                                    user:{_id, fullname, mail, phone, password},
+                                    state
+                                })
+                            }
                         }else{
                             const create = async function() {
                                 const googleUser = await new User({ 

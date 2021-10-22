@@ -219,10 +219,17 @@ export function googleSignin(tokenId){
     return async function(dispatch){
         try {
             const {data} = await axios.post('http://localhost:3002/googleLogin', {tokenId})
-            dispatch({type:GOOGLE_SIGNIN, payload: data})
-            localStorage.setItem('userInfo', JSON.stringify(data.token))
-            localStorage.setItem('userInformacion', JSON.stringify(data.user))
-            localStorage.setItem('userAdmin', JSON.stringify(data.state))
+            if(data.error){
+                dispatch({
+                    type: USER_SIGNIN_FAIL,
+                    payload: data.error
+                })
+            }else{
+                dispatch({type:GOOGLE_SIGNIN, payload: data})
+                localStorage.setItem('userInfo', JSON.stringify(data.token))
+                localStorage.setItem('userInformacion', JSON.stringify(data.user))
+                localStorage.setItem('userAdmin', JSON.stringify(data.state))
+            }
         }catch(err){
             console.log(err)
         }
