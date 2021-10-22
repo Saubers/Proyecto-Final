@@ -15,7 +15,7 @@ const Login = () => {
   const [mail, setMail] = useState("");
   const history = useHistory();
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
+  const error = useSelector((state)=> state.error)
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
   const dispatch = useDispatch();
@@ -85,7 +85,10 @@ const Login = () => {
           </Button>
         </form>
         <div>
-          {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
+        </div>
+        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+        {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
+        {loading && <Loading />}
           <GoogleLogin
             class="g-signin2"
             buttonText="Login with google"
@@ -93,10 +96,6 @@ const Login = () => {
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
           />
-        </div>
-        {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-        {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
-        {loading && <Loading />}
         <Row className="py-3">
           <Col>
             <Button color="danger" onClick={toggle}>

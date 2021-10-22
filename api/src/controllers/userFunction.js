@@ -67,7 +67,7 @@ const loginUser = async (req,res,next) => {
             token: generateToken(user._id),
         })
     } else {
-        res.status(400).send('Invalid mail or password')
+        res.status(200).json({error:'Invalid mail or password'})
     }
 }
  
