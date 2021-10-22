@@ -25,10 +25,8 @@ export function getAllUsers(payload){
 
 export function putAdmin (payload){
     return async function (dispatch){
-        console.log(payload);
         try{
             var json = await axios.put("http://localhost:3002/promote/" +payload.id , payload)
-            console.log("HOLALA",json);
             return dispatch({
                 type:"PUT_ADMIN",
                 payload:json
@@ -51,10 +49,8 @@ export function getOrder() {
 
 
 export function putCart(payload) {
-    console.log("ACTIONS", payload);
     return async function (dispatch) {
         const json = await axios.put("http://localhost:3002/orders/" + payload.idOrder, payload)
-        console.log(json);
         return dispatch({
             type: 'PUT_CART',
             payload:json
@@ -67,7 +63,6 @@ export function putCart(payload) {
 export function getOrderByID(id) {
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/orders/" + id);
-        console.log(id);
         return dispatch({
             type: 'GET_ORDERS_BY_ID',
             payload: json.data
@@ -161,7 +156,6 @@ export function postMg (payload){
 }
 
 export function postCart(payload) {
-    console.log(payload)
     return async function (dispatch) {
         const json = await axios.post("http://localhost:3002/users/"+payload.user+"/cart", payload);
         return dispatch({
@@ -221,8 +215,6 @@ export const signin =(mail, password) => async (dispatch) => {
         localStorage.setItem('userInfo', JSON.stringify(data.token))
         localStorage.setItem('userInformacion', JSON.stringify(data))
         localStorage.setItem('userID', data._id)
-        
-        
     } catch (error){
         dispatch({
         type: USER_SIGNIN_FAIL,
@@ -310,7 +302,6 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
         const { data } = await axios.put(`http://localhost:3002/user/profile`, user, {
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
-        console.log(data)
         dispatch({ type: 'USER_UPDATE_PROFILE_SUCCESS', payload: data });
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         localStorage.setItem('userDetails', JSON.stringify(data));
@@ -340,7 +331,6 @@ export function DeleteCar(id) {
 }
 
 export function DeleteCartId(id) {
-    console.log('id',id)
     return async function (dispatch) {
         var json = await axios.delete("http://localhost:3002/cart/delete/" + id);
         return dispatch({
@@ -400,7 +390,6 @@ export function filterAge(payload) {
     }
 }
 export function searchId(payload) {
-    console.log('PAYLOAD', payload.input);
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/home/edit/" +payload.input)
         return dispatch({
@@ -412,7 +401,6 @@ export function searchId(payload) {
 //filtrado orderDetail
 
 export function filterStatus(payload) {
-    console.log(payload);
     return{
         type: 'FILTER_STATUS',
         payload
@@ -420,7 +408,6 @@ export function filterStatus(payload) {
 }
 
 export function getNameCars(name) {
-    console.log('action', name)
     return async function (dispatch) {
         try {
             var json = await axios.get("http://localhost:3002/searchCars?name=" + name);
