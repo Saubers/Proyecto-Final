@@ -9,7 +9,7 @@ export default function OrderDetail(props) {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getOrderByID(props.match.params.id))
-    },[dispatch],props.match.params.id)
+    },[])
     const OrderDetail = useSelector((state) => state.orderDetail)
 
     return(

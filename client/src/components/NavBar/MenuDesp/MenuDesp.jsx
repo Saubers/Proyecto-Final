@@ -17,7 +17,7 @@ const logoutFunct = () => {
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle className={styledrop.divbtn} caret>
         {usuario && usuario ? <div className={styledrop.divname}>
-            <img src={Ff}/>
+            <img src={Ff} alt="Ff"/>
             {usuario.fullname}
             </div> : <p>Iniciar Sesion</p>}
       </DropdownToggle>

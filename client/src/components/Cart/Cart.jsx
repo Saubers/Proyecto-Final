@@ -1,6 +1,6 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import { postCart,postMg, getUserOrder ,getUserOrderStatus,putProductStock} from "../../actions";
+import { postCart,postMg ,getUserOrderStatus,putProductStock} from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link, useHistory} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
