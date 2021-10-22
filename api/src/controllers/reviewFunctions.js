@@ -21,8 +21,6 @@ const putReview = async function(req,res){
     let idReview = req.params.idReview
     let publication = req.params.id
     let {user,description,calification, title} = req.body
-    // console.log('params',req.params)
-    // console.log('body',calification)
     try{    
         const review = await Review.findByIdAndUpdate(idReview,{
             user: user,
@@ -31,7 +29,6 @@ const putReview = async function(req,res){
             title : title,
             description : description,
         });
-        //console.log('review',review)
         res.status(200).send(review);
     }catch(error){
         console.log(error)
@@ -40,7 +37,6 @@ const putReview = async function(req,res){
 
 const delReview = async function(req,res) {
     let idReview = req.params.idReview
-    // console.log(idReview)
     try {
         const ReviewDB = await Review.findByIdAndDelete(idReview)
         if(ReviewDB !== null){
@@ -55,7 +51,6 @@ const getReview = async function (req,res) {
     let id = req.params.id  
     try {
         const getreview = await Review.find({publication : id}).populate('user')
-        // console.log(getreview)
         res.status(200).send(getreview)
     } catch (error) {
         console.log(error)

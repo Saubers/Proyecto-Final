@@ -43,7 +43,6 @@ const createUser = async ( req, res ,next) => {
     confirm_password: confirm_password,
     state: state
 })
-console.log(user)
 user.password = await user.encryptPassword(password);
     await user.save()
     req.flash('succes_msg', 'You are registered!')
@@ -75,7 +74,6 @@ const loginUser = async (req,res,next) => {
 
 const changeStateToInactive = async (req, res) => {
     const userId = await User.findById(req.params._id);
-    console.log(userId)
     if (userId){
         userId.state = "inactive"
         await userId.save()
@@ -85,7 +83,6 @@ const changeStateToInactive = async (req, res) => {
 
 const deleteUser = async (req,res,next) =>{
     const userData = await User.findById(req.params.id);
-    console.log(id)
     try {
         const productDB = User.findByIdAndDelete(userData)
         if(productDB !== null){

@@ -1,11 +1,7 @@
 const User = require('../models/User');
-const crypto = require('crypto');
 const jwt = require('jsonwebtoken')
 const _ = require('lodash')
 const sendEmail = require('../utils/mail');
-const { error } = require('console');
-const generateToken = require('../generateToken');
-const { promisify } = require('util');
 
 const forgotPassword = async (req, res, next) => {
     // Agarro la informacion del email de usuario
