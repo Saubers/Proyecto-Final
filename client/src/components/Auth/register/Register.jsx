@@ -41,7 +41,7 @@ export default function Register () {
                             }
                         }
                         setLoading(true)
-                        const { data } = await axios.post("http://localhost:3002/register", {
+                        const { data } = await axios.post("https://pf-car-shop.herokuapp.com/register", {
                             fullname,
                             mail,
                             password,

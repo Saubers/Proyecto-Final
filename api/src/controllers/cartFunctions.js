@@ -153,9 +153,9 @@ const checkout = async function(req,res){
             external_reference: user, 
             back_urls:{
                 // https://proyecto-final-rho.vercel.app/pagos
-                success:'localhost:3000/pagos',
-                pending:'localhost:3000/pagos',
-                failure:'localhost:3000/pagos',
+                success:'https://proyecto-final-rho.vercel.app//pagos',
+                pending:'https://proyecto-final-rho.vercel.app//pagos',
+                failure:'https://proyecto-final-rho.vercel.app//pagos',
             },
             auto_return:'approved'
         }
