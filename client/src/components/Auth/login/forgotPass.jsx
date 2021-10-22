@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import { forgotPassword, resetPassword } from '../../../actions';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const ForgotPass = () => {
 
@@ -11,14 +12,12 @@ const dispatch = useDispatch()
     const handleSubmit = async (e) => {
         e.preventDefault();
         dispatch(forgotPassword(mail))
- 
-
  }
- 
- 
+
+
  return (
      <div>
-                        <form actions="/login" onSubmit={handleSubmit}>
+            <form actions="/login" onSubmit={handleSubmit}>
                     <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Recupera tu contraseña</Form.Label>
                         <Form.Control
@@ -30,7 +29,7 @@ const dispatch = useDispatch()
                         />  
                     </Form.Group>
                     
-                    </form>
+            </form>
                     <Button type="submit" onClick={(e) => handleSubmit(e)} variant="success">Enviar mail</Button>
                     <div>
                     <Link to ='/'>
