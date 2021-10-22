@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../../../NavBar/NavBar";
 
 
-function validate(input) {
+/* function validate(input) {
     var valoresAceptados = /^[0-9]+$/;
     let errors = {};
     if (!input.model.match(valoresAceptados)) {
@@ -27,12 +27,15 @@ function validate(input) {
     else if (!input.features_mileage.match(valoresAceptados)) {
         errors.features_mileage = '*SOLO SE PUEDEN AGREGAR NUMEROS*'
     }
+    else if (!input.stock.match(valoresAceptados)) {
+        errors.stock = '*SOLO SE PUEDEN AGREGAR NUMEROS*'
+    }
     else {
         errors.ok = true;
     }
     return errors
 }
-
+ */
 
 export default function UpdateProduct() {
 
@@ -50,20 +53,19 @@ export default function UpdateProduct() {
 
     const cars = useSelector(state => state.allCars)
 
-    const [errors, setErrors] = useState({})
+    /* const [errors, setErrors] = useState({})
 
     const [imageMessage, setImageMessage] = useState(null)
 
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState("") */
 
     const [id, setID] = useState("")
-
-    const selectedCar = cars?.find((el) => el._id === id); /* probar con .map y ruta de getDetail */
 
     const [input, setInput] = useState({
         brand: "",
         name: "",
         model: "",
+        img: "",
         category: "",
         description: "",
         features_doors: "",
@@ -75,7 +77,8 @@ export default function UpdateProduct() {
         features_transmission_automatic: "",
         features_traction: "",
         features_mileage: "",
-        price: ""
+        price: "",
+        stock: ""
     });
 
 
@@ -84,21 +87,20 @@ export default function UpdateProduct() {
             ...input,
             [e.target.name]: e.target.value
         })
-        setErrors(validate({
+        /* setErrors(validate({
             ...input,
             [e.target.name]: e.target.value
-        }))
+        })) */
     };
 
-    function handleSubmit(e) {
-        console.log(input)
-        e.preventDefault(e);
+    function handleSubmit() {
         dispatch(putProduct(id, input))
-        alert("¡PRODUCTO AÑADIDO!")
+        alert("¡PRODUCTO ACTUALIZADO!")
         setInput({
             brand: "",
             name: "",
             model: "",
+            img: "",
             category: "",
             description: "",
             features_doors: "",
@@ -110,7 +112,8 @@ export default function UpdateProduct() {
             features_transmission_automatic: "",
             features_traction: "",
             features_mileage: "",
-            price: ""
+            price: "",
+            stock: ""
         })
     };
 
@@ -121,31 +124,37 @@ export default function UpdateProduct() {
         })
     }
 
+    const selectedCar = cars?.find((el) => el._id === id)
+
     function handleSelectID(e) {
-        setID({
-            id: e.target.value
-        })
-        console.log(id, selectedCar)
-        setInput({
-            brand: "",
-            name: "",
-            model: "",
-            category: "",
-            description: "",
-            features_doors: "",
-            features_engine_name: "",
-            features_engine_cv: "",
-            features_engine_torque: "",
-            features_engine_combustion: "",
-            features_transmission_manual: "",
-            features_transmission_automatic: "",
-            features_traction: "",
-            features_mileage: "",
-            price: ""
-        })
+        setID(
+            e.target.value
+        )
     }
 
-    const postDetails = (images) => {
+    useEffect(() => {
+        setInput({
+            brand: selectedCar?.brand,
+            name: selectedCar?.name,
+            model: selectedCar?.model,
+            img: selectedCar?.img[0],
+            category: selectedCar?.category.name,
+            description: selectedCar?.description,
+            features_doors: selectedCar?.features.doors,
+            features_engine_name: selectedCar?.features.engine[0].name,
+            features_engine_cv: selectedCar?.features.engine[0].cv,
+            features_engine_torque: selectedCar?.features.engine[0].torque,
+            features_engine_combustion: selectedCar?.features.engine[0].combustion,
+            features_transmission_manual: selectedCar?.features.transmission.manual,
+            features_transmission_automatic: selectedCar?.features.transmission.automatic,
+            features_traction: selectedCar?.features.traction,
+            features_mileage: selectedCar?.features.mileage,
+            price: selectedCar?.price,
+            stock: selectedCar?.stock
+        });
+    },[setInput, selectedCar])
+
+    /* const postDetails = (images) => {
         if (
             images === undefined
         ) {
@@ -170,24 +179,29 @@ export default function UpdateProduct() {
         } else {
             return setImageMessage("Select an image...")
         }
-    }
+    } */
+
     return (
         <div>
             <NavBar />
+            <h1>Actualiza la informacion del auto</h1>
             <div className={styleCrudUpdate.General}>
-                <h1>Update car information</h1>
-                <h3>Select car</h3>
-                <select required onChange={(e) => handleSelectID(e)}>
+
+                <h2 className={styleCrudUpdate.subtitle}>Selecciona un auto</h2>
+                <select required
+                    className={styleCrudUpdate.selectCategory}
+                    onChange={(e) => handleSelectID(e)}>
+                    <option defaultValue='Autos' hidden disabled selected>Autos</option>
                     {cars?.map((el) => (
-                        <option value={el._id}>{el.name}</option>
+                        <option key={el._id} value={el._id}>{el.name}</option>
                     ))}
                 </select>
 
-                <h2>Enter new car information</h2>
+                {/* <h2 className={styleCrudUpdate.subtitle}>Enter new car information</h2> */}
 
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <fieldset >
-                        <label className={styleCrudUpdate.label}>Brand: </label>
+                        <label className={styleCrudUpdate.label}>Marca: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 type="text"
@@ -200,7 +214,7 @@ export default function UpdateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Titulo/Nombre del auto: </label>
+                        <label className={styleCrudUpdate.label}>Nombre: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 type="text"
@@ -212,6 +226,7 @@ export default function UpdateProduct() {
                                 required
                             />
                         </div>
+
                         <label className={styleCrudUpdate.label}>Modelo: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
@@ -223,36 +238,42 @@ export default function UpdateProduct() {
                                 required
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.model && (
+                            {/* {errors.model && (
                                 <p className="errors">{errors.model}</p>
-                            )}
+                            )} */}
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Image: </label>
+                        <label className={styleCrudUpdate.label}>Imagen: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
-                                type="file"
+                                type="text"
                                 name="img"
-                                onChange={(e) => postDetails(e)}
+                                value={input.img}
+                                placeholder="Link de imagen"
                                 required
+                                onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
 
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Category: </label>
+                        <label className={styleCrudUpdate.label}>Categoria: </label>
                         <div className={styleCrudUpdate.subDiv}>
-                            <h5>Eliga una categoria</h5>
-                            <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
+                            {/* <h5 className={styleCrudUpdate.label}>Eliga una categoria</h5> */}
+                            <select required
+                                className={styleCrudUpdate.selectCategory}
+                                onChange={(e) => handleSelect(e)}>
+                                <option defaultValue='Categorias'
+                                    hidden disabled selected>Categorias</option>
                                 {categories?.map((el) => (
-                                    <option value={el._id}>{el.name}</option>
+                                    <option key={el._id} value={el._id}>{el.name}</option>
                                 ))}
 
                             </select>
 
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Description: </label>
+                        <label className={styleCrudUpdate.label}>Descripcion: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <textarea
                                 required
@@ -265,6 +286,7 @@ export default function UpdateProduct() {
                                 className={styleCrudUpdate.textarea}
                             />
                         </div>
+
                         <label className={styleCrudUpdate.label}>Price: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
@@ -276,31 +298,46 @@ export default function UpdateProduct() {
                                 placeholder='$$$$$$$$'
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.price && (
+                            {/* {errors.price && (
                                 <p className={styleCrudUpdate.errors}>{errors.price}</p>
-                            )}
+                            )} */}
+                        </div>
+                        <label className={styleCrudUpdate.label}>Stock: </label>
+                        <div className={styleCrudUpdate.subDiv}>
+                            <input
+                                required
+                                type="number"
+                                value={input.stock}
+                                name="stock"
+                                onChange={(e) => handleChange(e)}
+                                placeholder='Disponibles'
+                                className={styleCrudUpdate.inputActivity} />
+                            {/* {errors.stock && (
+                                <p className={styleCrudUpdate.errors}>{errors.stock}</p>
+                            )} */}
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <h2 className={styleCrudUpdate.label}>Features</h2>
+                        <h2 className={styleCrudUpdate.subtitle}>Caracteristicas</h2>
 
-                        <label className={styleCrudUpdate.label}>Puertas</label>
+                        <label className={styleCrudUpdate.label}>Puertas: </label>
                         <div className={styleCrudUpdate.subDiv}>
 
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder='Cantidad de puertas'
                                 value={input.features_doors}
                                 name="features_doors"
                                 onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.features_doors && (
+                            {/* {errors.features_doors && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_doors}</p>
-                            )}
+                            )} */}
                         </div>
-                        <label className={styleCrudUpdate.label}>Nombre motor</label>
+                        <label className={styleCrudUpdate.label}>Nombre del motor:</label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 required
@@ -312,36 +349,39 @@ export default function UpdateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Cv </label>
+                        <label className={styleCrudUpdate.label}>Cv: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder= "cv"
                                 value={input.features_engine_cv}
                                 name="features_engine_cv"
                                 onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.features_engine_cv && (
+                            {/* {errors.features_engine_cv && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_engine_cv}</p>
-                            )}
+                            )} */}
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Torque</label>
+                        <label className={styleCrudUpdate.label}>Torque: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder="Torque"
                                 value={input.features_engine_torque}
                                 name="features_engine_torque"
                                 onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.features_torque && (
+                            {/* {errors.features_torque && (
                                 <p className={styleCrudUpdate.errors}>{input.features_engine_torque}</p>
-                            )}
+                            )} */}
                         </div>
-                        <label className={styleCrudUpdate.label}>Combustion</label>
+
+                        <label className={styleCrudUpdate.label}>Combustion: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 required
@@ -353,9 +393,10 @@ export default function UpdateProduct() {
                             />
                         </div>
 
+                        <h2 className={styleCrudUpdate.subtitle}>Transmision </h2>
+                        <label className={styleCrudUpdate.label}>Manual: </label>
                         <div className={styleCrudUpdate.subDiv}>
-                            <h3>Transmision:</h3>
-                            <h5>Manual</h5>
+
                             <input
                                 required
                                 type="text"
@@ -367,8 +408,9 @@ export default function UpdateProduct() {
                             />
                         </div>
 
+                        <label className={styleCrudUpdate.label}>Automatica: </label>
                         <div className={styleCrudUpdate.subDiv}>
-                            <h5>Automatica</h5>
+
                             <input
                                 required
                                 type="text"
@@ -380,43 +422,46 @@ export default function UpdateProduct() {
                             />
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Traccion:</label>
+                        <label className={styleCrudUpdate.label}>Traccion: </label>
                         <div className={styleCrudUpdate.subDiv}>
-                            <input
+                            <select
                                 required
-                                type="text"
-                                value={input.features_traction}
                                 name="features_traction"
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Tipo de traccion'
-                                className={styleCrudUpdate.inputActivity}
-                            />
+                                className={styleCrudUpdate.selectCategory}
+                            >
+                                <option defaultValue='AWD' hidden disabled selected> Traccion </option>
+                                <option value='AWD'> AWD</option>
+                                <option value='RWD'> RWD</option>
+                                <option value='FWD'> FWD</option>
+                            </select>
                         </div>
 
-                        <label className={styleCrudUpdate.label}>Millage:</label>
+                        <label className={styleCrudUpdate.label}>Kilometraje:</label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
                                 value={input.features_mileage}
                                 name="features_mileage"
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Nro de Km totales'
                                 className={styleCrudUpdate.inputActivity} />
-                            {errors.features_mileage && (
+                            {/* {errors.features_mileage && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
-                            )}
+                            )} */}
                         </div>
                     </fieldset>
-                    {
-                        errors && (
-                            <button className={styleCrudUpdate.button3} type='submit'>Publicar</button>
-                        )
-                    }
-                    <Link to="/CRUD">
-                        <button className={styleCrudUpdate.button3}>Back</button>
-                    </Link>
 
+                    {/* {errors && (
+                            <button className={styleCrudUpdate.button3} type='submit'>Actualizar</button>
+                        )} */}
+
+                    <button className={styleCrudUpdate.button3} type='submit'>Actualizar</button>
+                    <Link to="/ProductCRUD">
+                        <button className={styleCrudUpdate.button3}>Volver</button>
+                    </Link>
                 </form>
             </div>
         </div>

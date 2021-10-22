@@ -4,6 +4,17 @@ body {
     font-size: 20px;
     margin: 3em;
     padding: 0;
+   
+  }
+  .btnbtn{
+    padding: 5px 30px;
+    border: none;
+    border-style: groove;
+  }
+  .divbtn{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
   }
   #register {
     width: 20em;

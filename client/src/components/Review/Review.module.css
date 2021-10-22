@@ -1,0 +1,74 @@
+.divall{
+    display: flex;
+    flex-direction: column;
+}
+
+/*CALIFICAR ESTRELLA */
+label{ color:grey;}
+
+input[type = "radio"]{ display:none;}
+
+.clasificacion{
+    direction:rtl;/* right to left */
+    unicode-bidi: bidi-override;/* bidi de bidireccional */
+    font-size: 34px;
+}
+label:hover,
+label:hover ~ label {
+  color: cornflowerblue;
+}
+.btnagregar{
+    display: flex;
+    background-color:cornflowerblue;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: none;
+    flex-direction: row;
+    justify-content: center;
+}
+.formstyle{
+    display: flex;
+    justify-content: center;
+}
+
+input[type = "radio"]:checked ~ label{color:cornflowerblue;}
+
+
+.divbtn{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.divestre{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.containerproduct{
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.divbtn{
+    display: center;
+    height: auto;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+}
+.divcart{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.title{
+    color:cornflowerblue;
+}
+.divReview{
+    display: flex;
+    flex-direction: column;
+    width:70%;
+}

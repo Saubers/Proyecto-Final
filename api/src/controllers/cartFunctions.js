@@ -1,21 +1,18 @@
 const Cart = require('../models/Cart');
-
-const mercadopago = require ('mercadopago');
-
-mercadopago.configure({
-    access_token: 'TEST-6136905946660486-101322-d3c2d7427e978b5bd98fac6c652b25e8-378799934',
-});
+const Car = require('../models/Cars.js');
+require('dotenv').config();
+const { PROD_ACCESS_TOKEN } = process.env;
 
 const agregarOrden = async function(req,res){
     var myId = req.params.id
     let {publication,price,state,cantidad} = req.body
     try{    
         const cart = new Cart({
-        user: myId,
-        publication: publication,
-        cantidad : cantidad,
-        price : price,
-        state : state
+            user: myId,
+            publication: publication,
+            cantidad : cantidad,
+            price : price,
+            state : state
         });
         await cart.save()
         res.status(200).json(cart)
@@ -41,12 +38,12 @@ const CartUser = async function(req,res){
 
 /*
 Esta ruta puede recibir el query string status
- y deberá devolver sólo las ordenes con ese status. */
+y deberá devolver sólo las ordenes con ese status. */
 const AllOrders = async function (req,res){
     let {status } = req.query     
     if(status ){
         try {
-            const AllOrders = await Cart.find({status : status }).populate('publication')
+            const AllOrders = await Cart.find({status : status }).populate('publication').populate('user')
             return res.status(200).send(AllOrders);
         } catch (error) {
             console.log(error)
@@ -54,35 +51,46 @@ const AllOrders = async function (req,res){
     }
     else{
         try {
-            const AllOrders = await Cart.find().populate('publication')
-          //  console.log('allOrders',AllOrders)
-        return res.status(200).send(AllOrders);
-
-    } catch (error) {
-        console.log(error)
+            const AllOrders = await Cart.find().populate('publication').populate('user')
+            //  console.log('allOrders',AllOrders)
+            return res.status(200).send(AllOrders);
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
-}
 }
 
 const OrdenesByUsuario= async function (req,res) {
     const {id} = req.params;
-    try {
-        let Ordenes = await Cart.find({user : id}).populate('publication').populate('user')
-        res.status(200).send(Ordenes)
-
-    } catch (error) {
-        res.status(200).send(error)
+    const {status} = req.query;
+    if(status){
+        try {
+            let Ordenes = await Cart.find({user : id}).find({ state : status  }).populate('publication')
+            res.status(200).send(Ordenes)
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        try {
+            let Ordenes = await Cart.find({user : id}).populate('publication')
+            res.status(200).send(Ordenes)
+            
+        } catch (error) {
+            res.status(200).send(error)
+        }
     }
 }
 
 
 const cartOrderId = async function(req,res) {
-    try {
-        const {idOrder} = req.params;
-        try {
-            let Ordenes = await Cart.find({_id: idOrder}).populate('publication').populate('user')
-            res.status(200).send(Ordenes)
     
+    try {
+        const id = req.params.id;
+        try {
+            let Ordenes = await Cart.find({_id: id}).populate('publication').populate('user')
+            res.status(200).send(Ordenes)
+            
         } catch (error) {
             res.status(200).send(Ordenes)
         } 
@@ -92,29 +100,27 @@ const cartOrderId = async function(req,res) {
 }
 
 const putCart = async function(req,res){
-    let idOrder = req.params
-    let {idItem,idUsuario,price,state} = req.boddy
+    let idOrder = req.params.id
+    let {idItem,idUsuario,price,newState,cantidad} = req.body
     try{    
-        const cart =  Cart.findByIdAndUpdate(idOrder,{
-        user: idUsuario,
-        publication:idItem,
-        price : price,
-        state : state
+        const cart =  await Cart.findByIdAndUpdate(idOrder,{
+            user: idUsuario,
+            publication: idItem,
+            cantidad : cantidad,
+            price : price,
+            state : newState
         });
-        await cart.save()
-        res.send("Auto actualizado correctamente");
+        res.send(cart._update);
     }catch(error){
         console.log(error)
     }
-
+    
 }
 
 const deleteCart = async function(req,res){
-    const { id } = req.params.id;
-    console.log(req.params)
+    const  id  = req.params.id;
     try {
-        const ProductDB = await Cart.findByIdAndDelete(id)
-        console.log('ProductDB',ProductDB)
+        const ProductDB = await Cart.findOneAndRemove({_id : id})
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }
@@ -123,29 +129,39 @@ const deleteCart = async function(req,res){
     }
 }
 const checkout = async function(req,res){
+    const {user, publication, cantidad} = req.body
+    const mercadopago = require ('mercadopago');
+    
+    mercadopago.configure({
+        access_token: PROD_ACCESS_TOKEN,
+    });
     try{
+        
+        const items = []
+        for(let i = 0; i < publication.length; i++){
+            const car = await Car.findById(publication[i])
+            const oneProduct = {
+                title: car.name, 
+                quantity: cantidad[i], 
+                unit_price: car.price,
+                currency_id: 'ARS', 
+            }
+            items.push(oneProduct)
+        }
         let preferences = {
-            items:[
-                {
-                    _id: req.body._id,
-                    title: req.body.title,
-                    description: req.body.description,
-                    unit_price: req.body.unit_price,
-                    quantity: req.body.quantity,
-                    currency_id: 'ARS'
-                }
-            ],
-            // back_urls:{
-            //     success:'http://localhost:3002/success',
-            //     pending:'http://localhost:3002/pending',
-            //     failure:'http://localhost:3002/failure',
-            // },
-            // auto_return:'approved'
+            items: items,
+            external_reference: user, 
+            back_urls:{
+                // https://proyecto-final-rho.vercel.app/pagos
+                success:'https://proyecto-final-rho.vercel.app//pagos',
+                pending:'https://proyecto-final-rho.vercel.app//pagos',
+                failure:'https://proyecto-final-rho.vercel.app//pagos',
+            },
+            auto_return:'approved'
         }
         mercadopago.preferences.create(preferences)
         .then((response)=>{
-            console.log(response.body.init_point)
-            res.redirect(response.body.init_point)
+            res.send(response.body.init_point)
         })
     }catch(err){
         console.log(err)

@@ -2,79 +2,69 @@ import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import {useDispatch} from 'react-redux'
-import { Link, useHistory } from 'react-router-dom';
-import { userRegister } from '../../../actions';
-import NavBar from '../../NavBar/NavBar'
+import { Link} from 'react-router-dom';
+
 import ErrorMessage from '../login/ErrorMessage';
 import Loading from '../login/Loading';
 import styles from '../register/Register.module.css';
 import registre from '../../image/registre.jpg';
 
 export default function Register () {
-    const dispatch = useDispatch()
     
     const [fullname, setFullname] = useState("")
     const [mail, setMail] = useState("")
     const [password, setPassword] = useState("")
     const [confirm_password, setConfirmPassword] = useState("")
     const [phone, setPhone] = useState("")
-    const [isAdmin, setIsAdmin] = useState(false)
-
     const [message, setMessage] = useState(null)
-    const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     
    // const history = useHistory()
-
+   
 
     const handleSubmit = async (e) => {
-        
         e.preventDefault()
-      
-    
-
-    if(password !== confirm_password) {
-        setMessage('Passwords do not match')
-    } else {
-    setMessage(null)
-    try{
-    const config = {
-        headers: {
-            "Content-type": "application/json"
+        if(password.length<6 || password.length>25){
+            setMessage('la contraseña debe tener entre 6 y 25 caracteres')
+        } else{
+            if(6>confirm_password.length || 25<confirm_password.length){
+                setMessage('la contraseña debe tener entre 6 y 25 caracteres')
+            }else {
+                if(password !== confirm_password) {
+                    setMessage('Passwords do not match')
+                } else{
+                    setMessage(null)
+                    try{
+                        const config = {
+                            headers: {
+                                "Content-type": "application/json"
+                            }
+                        }
+                        setLoading(true)
+                        const { data } = await axios.post("https://pf-car-shop.herokuapp.com/register", {
+                            fullname,
+                            mail,
+                            password,
+                            confirm_password,
+                            phone,
+                        }, config
+                        );
+                        setLoading(false);
+                        localStorage.setItem("userInfo", JSON.stringify(data));
+                    } catch (error) {
+                        setMessage("You should check all fields");
+                    }
+                }
+            }
         }
-    }
-    setLoading(true)
-    const { data } = await axios.post("http://localhost:3002/register", {
-        fullname,
-        mail,
-        password,
-        confirm_password,
-        phone,
-        isAdmin
-}, config
-);
-
-setLoading(false);
-localStorage.setItem("userInfo", JSON.stringify(data));
-    } catch (error) {
-    setMessage("You should check all fields");
-    }
-    }
     
     }
-
-    function handleChange(e){
-    e.preventDefault()
-    }
-   
     return (
         <div className={styles.regContainer}>
             <div className={styles.imgdiv}>
                 <img src={registre} alt="img" width="500px" />
             </div>
         <div className={styles.login}>
-        {error && <ErrorMessage variant='danger'></ErrorMessage>}
         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
         {loading && <Loading />}
             <form actions="/login" onSubmit={handleSubmit}>
@@ -103,6 +93,8 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                     <Form.Control
                     required
                     type='password'
+                    max= {25}
+                    min= {6}
                     value={password}
                     placeholder='Enter your password'
                     onChange={(e) => setPassword(e.target.value)}
@@ -113,6 +105,8 @@ localStorage.setItem("userInfo", JSON.stringify(data));
                     <Form.Control
                     required
                     type='password'
+                    max= {25}
+                    min= {6}
                     value={confirm_password}
                     placeholder='Confirm your password'
                     onChange={(e) => setConfirmPassword(e.target.value)}

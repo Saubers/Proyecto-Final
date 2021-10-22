@@ -1,0 +1,24 @@
+
+.PROBANDO{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.Card{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    width: 350px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.btnAdmin{
+    padding: 5px 20px;
+    border: none;
+}
+.btnAdmin:hover{
+    background-color: cornflowerblue;
+    color: white;
+    transition:0.5s;
+}

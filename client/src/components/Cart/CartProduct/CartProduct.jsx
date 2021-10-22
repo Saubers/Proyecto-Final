@@ -7,11 +7,11 @@ const CartProduct = ({name,img,price,brand}) => {
                 <img src={img} alt="img" width="150px"/>
             </div>
             <div>
-                <h2>Name:</h2>
+                <h2>Nombre:</h2>
                 <h2>{brand}{name}</h2>
             </div>
             <div>
-                <h3>Price:</h3>
+                <h3>Precio:</h3>
                 <h3>{price}</h3>
             </div>
         </div>

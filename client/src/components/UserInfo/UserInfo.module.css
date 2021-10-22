@@ -1,0 +1,17 @@
+.divcontainer{
+    margin: 0 auto;
+}
+.divinfo{
+    border: 1px solid gainsboro;
+    display: flex;
+    border-radius: 5px;
+    width: 60%;
+    flex-direction: row;
+
+}
+.divinfo p {
+    padding: 0px 100px;
+}
+.divinfo label{
+    width: 10%;
+}

@@ -3,11 +3,14 @@ const router = express.Router();
 const {idCars, GetAllCars, CreateProduct,DeleteCar,ModifiCar, SearchCars, carBrands, uploadFile} = require('../controllers/carsFunction');
 const { CreateCategory, DeleteCategory, ModifiCategory, getByCategory,GetAllCategories} = require('../controllers/categoriesFunction.js')
 const { agregarOrden,AllOrders,OrdenesByUsuario,cartOrderId,putCart, deleteCart,CartUser,checkout} = require('../controllers/cartFunctions')
-const { createUser, getAllUser, loginUser } = require('../controllers/userFunction');
+const { createUser, loginUser, getUserData, changeStateToInactive, administracion, getAllUser,googleLogin } = require('../controllers/userFunction');
+const { forgotPassword, resetPassword } = require('../controllers/passwordFunctions')
+const {addReview, putReview,delReview,getReview} = require('../controllers/reviewFunctions')
+const {searchIdOrder} =require('../controllers/orderFunction')
 const mercadopago = require ('mercadopago');
 
 mercadopago.configure({
-    access_token: 'APP_USR-2749767482103662-101420-561af7e27dc34122c3662d5282e6772b-1000552229',
+    access_token: 'PROD_ACCESS_TOKEN',
 });
 // const {getUsers, createUser} = require('../controllers/userFunction')
 module.exports = app => {
@@ -17,9 +20,9 @@ module.exports = app => {
     //Categories
     router.post('/categories',CreateCategory);
     
-    router.delete('/categories',DeleteCategory);
+    router.delete('/categories/:id',DeleteCategory);
     
-    router.put('/categories',ModifiCategory);
+    router.put('/categories/:id',ModifiCategory);
 
     router.get('/categories/:categories', getByCategory);
 
@@ -52,11 +55,21 @@ module.exports = app => {
 
     router.post('/login', loginUser)
 
-    router.get("/alluser", getAllUser)
+    router.get("/user/:id", getUserData)
+    
+    router.get("/user", getAllUser)
+    
+    router.post('/googleLogin', googleLogin) 
 
+    router.put('/forgotPassword', forgotPassword)
 
+    router.put('/resetPassword', resetPassword)
 
+    router.put('/delete_user/:_id', changeStateToInactive)
 
+    router.put('/promote/:id', administracion)
+    // router.put('/new-password')
+ 
     ///////Carrito
 
     ///todos los items del Carrito con query 
@@ -79,6 +92,9 @@ module.exports = app => {
     //Ordener de usuario
     router.get('/users/:id/orders', OrdenesByUsuario)
 
+    
+    
+
     //Vaciar carrito
     router.delete('/cart/delete/:id/',deleteCart)
 
@@ -87,6 +103,25 @@ module.exports = app => {
     ///// mercadopago
 
     router.post('/checkout', checkout)
+    
+    
+    //POST /product/:id/review
+    router.post('/product/:id/review',addReview)
+    
+    // PUT /product/:id/review/:idReview
+    
+    router.put('/product/:id/review/:idReview', putReview)
+    
+    //DELETE /product/:id/review/:idReview
+    router.delete('/product/review/:idReview',delReview)
+    
+    //GET /product/:id/review/
+    router.get('/product/:id/review',getReview)
+
+    //searchId
+    router.get('/home/edit/:id', searchIdOrder)
+
+
     app.use(router);
 }
 

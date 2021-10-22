@@ -13,7 +13,7 @@ const Paginado = ({AllProducts,productsXpage, paginado}) => {
       
                 {
                     NumberPage.length === 1 ? null : NumberPage.map(num => (
-                        <button className={style.button} onClick={()=> paginado(num)}>{num} </button> 
+                        <button key={num} className={style.button} onClick={()=> paginado(num)}>{num} </button> 
                         // <a href="# " className={style.button} onClick={()=> paginado(num)}>{num}</a>
                     ))
                 }
