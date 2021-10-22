@@ -8,8 +8,8 @@ import lg from "../../image/lg.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { signin, userAdmin, googleSignin } from "../../../actions";
 import { GoogleLogin } from "react-google-login";
-import ForgotPass from './forgotPass'
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import ForgotPass from "./forgotPass";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 const Login = () => {
   const [mail, setMail] = useState("");
@@ -35,6 +35,7 @@ const Login = () => {
   const responseErrorGoogle = (response) => {
     console.log("ERR", response);
   };
+
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -42,6 +43,8 @@ const Login = () => {
   const [modal1, setModal1] = useState(false);
 
   const toggle1 = () => setModal1(!modal1);
+
+  
   return (
     <div className={styles.loginContainer}>
       <Modal isOpen={modal} toggle={toggle}>
@@ -53,7 +56,7 @@ const Login = () => {
           {/* <input type="email" placeholder="Ingresa tu mail" onChange={(e) => setMaill(e.target.value)} value={maill}></input> */}
         </ModalBody>
         <ModalFooter>
-          {/* <Button color="primary" onClick={(e)=> handleSubmitt(e),toggle1}>Enviar email</Button>{' '} */}
+          <Button color="primary" onClick={toggle1}>Enviar email</Button>{' '}
           <Button color="secondary" onClick={toggle}>
             Cancelar
           </Button>
@@ -114,7 +117,9 @@ const Login = () => {
         {loading && <Loading />}
         <Row className="py-3">
           <Col>
-          <Button color="danger" onClick={toggle}>¿Has olvidado tu contraseña?</Button>
+            <Button color="danger" onClick={toggle}>
+              ¿Has olvidado tu contraseña?
+            </Button>
           </Col>
         </Row>
         <Row className="py-3">
