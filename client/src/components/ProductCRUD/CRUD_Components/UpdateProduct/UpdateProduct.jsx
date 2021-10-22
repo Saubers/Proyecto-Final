@@ -152,7 +152,7 @@ export default function UpdateProduct() {
             price: selectedCar?.price,
             stock: selectedCar?.stock
         });
-    },[ selectedCar.brand,selectedCar.name,selectedCar.model,selectedCar.img,selectedCar.category.name,selectedCar.description,selectedCar.features,selectedCar.price,selectedCar.stock])
+    },[id])
 
     /* const postDetails = (images) => {
         if (

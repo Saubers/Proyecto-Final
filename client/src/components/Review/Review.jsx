@@ -15,7 +15,7 @@ const Review = (props) =>{
         dispatch(getCarDetail(props.publication.id));
         dispatch(getReview(props.publication.id))
         sumAverage()
-    },);
+    },[dispatch]);
 
     let infoReview = {
         id : user?._id,
@@ -23,11 +23,11 @@ const Review = (props) =>{
     }
     useEffect(() => {
        dispatch(getUserOrderStatus(infoReview))
-    },)
+    },[dispatch])
 
     useEffect(()=>{
         OrdenState()
-    },)    
+    },[])    
     const MyCar = useSelector((state) => state.carDetail)
 
     const userAllOrders = useSelector((state) => state.orders)

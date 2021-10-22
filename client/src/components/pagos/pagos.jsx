@@ -25,7 +25,7 @@ export default function Pagos() {
     })
     useEffect(()=>{
         dispatch(getOrderByUsuario(usuario._id))
-    },)
+    },[dispatch])
     function handleClick(e , idP , idO , precio , cant) {
         e.preventDefault(e);
         setInput({
