@@ -14,14 +14,16 @@ import Review from '../Review/Review'
 
 export default function Detail(props) {
     const dispatch = useDispatch()
+    const id = props.match.params.id
+    
+    useEffect(() => {
+        dispatch(getCarDetail(id));
+    }, [dispatch,id])
 
     useEffect(() => {
-        dispatch(getCarDetail(props.match.params.id));
-    }, [dispatch, props.match.params.id])
-
-    useEffect(() => {
-        dispatch(getReview(props.match.params.id))
-    }, [dispatch, props.match.params.id])
+        dispatch(getReview(id))
+    }, [dispatch,id])
+ 
 
 
     const userInformacion = localStorage.getItem("userInformacion")
