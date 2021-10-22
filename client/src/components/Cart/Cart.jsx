@@ -22,7 +22,6 @@ export default function Cart(props){
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({});
     const mpLink = useSelector(state => state.MPLink)
-    console.log('MPLINK',mpLink)
     const MPLINK = '3; URL='+mpLink
     const orderPayload = {
         id : user?._id ,
@@ -33,12 +32,12 @@ export default function Cart(props){
     useEffect(() => {
         dispatch(getUserOrderStatus(orderPayload))
 
-     }, [dispatch])
+     }, )
     const cartBD = useSelector ((state) => state.orders)
 
     useEffect(() => {
         sumatotal()
-     }, [amount])
+     }, )
 
     function sumatotal() {
         let suma = [];
@@ -277,7 +276,7 @@ export default function Cart(props){
                               
                             )
                             else{
-                                <p>Elija cantidad</p>                            
+                                return <p>Elija cantidad</p>                            
                             }
                         })
                     }
