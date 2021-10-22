@@ -9,6 +9,7 @@ export default function CRUD() {
         <div>
             <NavBar />
             <h1 className={styles.title}>Administracion de productos</h1>
+            <hr />
             <div className={styles.divto}>
                 <ul className={styles.ultamaño}>
                     <li className={styles.li1}>

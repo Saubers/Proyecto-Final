@@ -10,6 +10,7 @@ export default function CategoryCRUD() {
                 <NavBar />
             
             <h1 className={styleCRUD.title}>Administracion de categorias</h1>
+            <hr />
             <div className={styleCRUD.divto}>
                 <ul className={styleCRUD.ultamaño}>
                     <li className={styleCRUD.li1}>

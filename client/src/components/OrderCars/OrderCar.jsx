@@ -49,8 +49,9 @@ export default function OrderCar(props) {
     return(
         <div className={style.body}>
             <NavBar/>
-            <div>Todas las ordenes</div>
+            
             <div>
+            <div>Todas las ordenes</div>
             <label>Fitrado</label>
                         <select onChange={ev => handleSelect(ev)}>
                         <option value="carrito">En el carrito</option>
@@ -66,8 +67,8 @@ export default function OrderCar(props) {
              onChange = {(e) => handleChange(e)}
              placeholder="Id"
             ></input>
-            <button onClick = {(e) => handleClick(e)}>Confirma la ID</button>
-            <button onClick = {(e) => handleGetAll(e)}>Mostrar todos</button>
+            <button className={style.btnbtn} onClick = {(e) => handleClick(e)}>Confirma la ID</button>
+            <button className={style.btnbtn} onClick = {(e) => handleGetAll(e)}>Mostrar todos</button>
             </div>
             
             {OrderUser && OrderUser.map(el=>{

@@ -13,6 +13,8 @@ export default function AdministracionAdmin() {
     return(  
         <div>
             <NavBar/>
+            <h1>Administrar cuentas</h1>
+            <hr />
             <div className = {StyleUser.ContainerCardsAdmin}>
                 <Cards></Cards>
             </div>
