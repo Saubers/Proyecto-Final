@@ -28,5 +28,5 @@ export function useLocalStorage (key,initialValue){
 }   
   export function borrarItem(item){
     window.localStorage.removeItem(item);
-    window.location.reload()
+    // window.location.reload()
   } 
