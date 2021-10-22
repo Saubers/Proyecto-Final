@@ -22,7 +22,7 @@ export default function ReadProduct() {
                 <h1>Autos</h1>
                 <hr />
                 {cars?.map((el) =>
-                    <div>
+                    <div key= {el._id}>
                         <Link to={'/ProductCRUD/ReadProduct/' + el._id}>
                             <h3>{el.name}</h3>
                         </Link>

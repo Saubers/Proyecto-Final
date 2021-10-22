@@ -51,7 +51,7 @@ function CategoryUpdate() {
             name: selectedCategory?.name,
             description: selectedCategory?.description
         });
-    }, [id])
+    },)
 
     return (
         <div>

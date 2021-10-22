@@ -41,14 +41,14 @@ export default function Contact() {
                     <img src={github} alt="github" />
                 </div>
                 <hr />
-                <div className={stylepro.imgradio} className={stylepro.divprofile}>
+                <div  className={stylepro.divprofile}>
                     <img className={stylepro.imgradio} src='https://avatars.githubusercontent.com/u/81446337?v=4' alt="mcclovin" width="100px" />
                     <img src={gmail} alt="gmail" />
                     <img src={linkedin} alt="linkedin" />
                     <img src={github} alt="github" />
                 </div>
                 <hr />
-                <div className={stylepro.imgradio} className={stylepro.divprofile}>
+                <div  className={stylepro.divprofile}>
                     <img className={stylepro.imgradio} src='https://avatars.githubusercontent.com/u/82107622?v=4' alt="mcclovin" width="100px" />
                     <img src={gmail} alt="gmail" />
                     <img src={linkedin} alt="linkedin" />
