@@ -446,6 +446,7 @@ export function getAllOrderStatus(payload) {
     }
 }
 export function getUserOrderStatus(payload) {
+    console.log('payload',payload)
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/users/"+payload.id+"/orders/?status="+ payload.status);
         return dispatch({

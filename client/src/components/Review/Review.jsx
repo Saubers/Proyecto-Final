@@ -1,17 +1,54 @@
 import {useDispatch, useSelector } from "react-redux";
-import {getReview, postReview} from '../../actions/index'
+import {getReview, postReview, getCarDetail,getUserOrderStatus} from '../../actions/index'
 import IconUser from '../image/userre.png';
 import { useEffect, useState } from "react";
 import style from './Review.module.css'
 const Review = (props) =>{
     const [average,setAverage] = useState(0)
     
+    const userInformacion = localStorage.getItem("userInformacion")
+    const user = JSON.parse(userInformacion)
+
     const dispatch = useDispatch()
+
     useEffect(() => {
+        dispatch(getCarDetail(props.publication.id));
         dispatch(getReview(props.publication.id))
         sumAverage()
-    },)
-    const userInformacion = localStorage.getItem("userInformacion");
+    },[dispatch]);
+
+    let infoReview = {
+        id : user?._id,
+        status : "Completa"
+    }
+    useEffect(() => {
+       dispatch(getUserOrderStatus(infoReview))
+    }, [dispatch])
+
+    useEffect(()=>{
+        OrdenState()
+    },[])    
+    const MyCar = useSelector((state) => state.carDetail)
+
+    const userAllOrders = useSelector((state) => state.orders)
+
+    console.log('MyCar',MyCar)
+    console.log('allorders',userAllOrders)
+    const [isReview,setIsReview] = useState(false)
+    
+    function OrdenState() {
+        if(userAllOrders){
+            for (let i = 0; i < userAllOrders.length; i++) {
+                if(userAllOrders[i]._id === props.publication.id ) {
+                    console.log("entre",userAllOrders[i]._id,  )
+                    setIsReview(true)
+            }           
+        }
+    }
+}
+    console.log('is review',isReview)
+
+
     const review = useSelector((state) => state.review)
     const data = useSelector((state)=> state.carDetail)
     const usuario = JSON.parse(userInformacion)
@@ -112,7 +149,7 @@ const Review = (props) =>{
              ))
             }
            </div>
-
+           {isReview && isReview ?
            <div className={style.containerproduct}>
            <label>Calificar</label>
            <form className={style.formstyle}>
@@ -139,8 +176,10 @@ const Review = (props) =>{
                 </div>
                
             </div>
-            
            </div>
+           : <div>
+            <h4>Puedes comentar una vez que compres el articulo!</h4>   
+            </div>}
 
        </div>
     )
