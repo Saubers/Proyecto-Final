@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import ComponentCarousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
-import { getReview, getUserOrderStatus } from '../../actions/index'
+import { getReview } from '../../actions/index'
 
 
 import Review from '../Review/Review'

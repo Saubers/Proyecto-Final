@@ -15,7 +15,6 @@ export default function UserDelete(){
 
 const dispatch = useDispatch()  
 const userState = useSelector((state) => state.userState)
-const isAdmin = localStorage.getItem('userAdmin')
 console.log(userState)
     const handleSubmit = async (e) => {
         e.preventDefault(e);
