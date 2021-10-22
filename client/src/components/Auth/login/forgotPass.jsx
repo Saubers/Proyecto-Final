@@ -7,11 +7,18 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
 const ForgotPass = () => {
   const [mail, setMail] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [resetLink, setResetLink] = useState("");
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(forgotPassword(mail));
   };
+
+  const submitToken = (e) => {
+      e.preventDefault();
+      dispatch(resetPassword(newPass, resetLink))
+  }
   const [modal1, setModal1] = useState(false);
 
   const toggle1 = () => setModal1(!modal1);
@@ -21,15 +28,25 @@ const ForgotPass = () => {
       <Modal isOpen={modal1} toggle={toggle1}>
         <ModalHeader toggle={toggle1}>Confirmar datos</ModalHeader>
         <ModalBody>
-          <label>Nueva contraseña</label>
-          <input type="password"></input>
-          <br />
-          <hr />
-          <label>Token</label>
-          <input type="text"></input>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Control
+            required
+            type="password"
+            value={newPass}
+            placeholder="Ingresa tu nueva contraseña"
+            onChange={(e) => setNewPass(e.target.value)}
+          />
+          <Form.Control
+            required
+            type="text"
+            value={resetLink}
+            placeholder="Ingresa el token enviado a tu mail"
+            onChange={(e) => setResetLink(e.target.value)}
+          />
+        </Form.Group>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle1}>
+          <Button color="primary" onClick={(e) => submitToken(e) + toggle1(e)}>
             Enviar
           </Button>{" "}
           <Button color="secondary" onClick={toggle1}>
@@ -39,7 +56,6 @@ const ForgotPass = () => {
       </Modal>
       <form actions="/login" onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
-          <Form.Label>Recupera tu contraseña</Form.Label>
           <Form.Control
             required
             type="email"

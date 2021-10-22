@@ -197,9 +197,9 @@ export function forgotPassword(mail) {
     }
 }
 
-export function resetPassword(payload) {
+export function resetPassword(newPass, resetLink) {
     return async function (dispatch) {
-        const json = await axios.put('http://localhost:3002/resetPassword', payload);
+        const json = await axios.put('http://localhost:3002/resetPassword', {newPass, resetLink});
         return dispatch({
             type: 'RESET_PASSWORD',
             payload: json
