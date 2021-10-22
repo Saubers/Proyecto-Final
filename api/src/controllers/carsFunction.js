@@ -133,7 +133,8 @@ const SearchCars = async (req, res, next) => {
         const ProductBrand = await ProductsDB.filter((el) => el.brand.toLowerCase().includes(name.toLowerCase()));
         console.log(ProductDB)
         if (ProductDB !== null || ProductBrand !== null) {
-            return res.status(200).send(ProductDB.concat(ProductBrand));
+        const results= ProductDB.concat(ProductBrand);
+            return res.status(200).send([...new Set(results)]);
         }
     } catch (error) {
         next(error);

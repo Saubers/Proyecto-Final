@@ -59,6 +59,7 @@ export default function CreateProduct() {
         brand: "",
         name: "",
         model: "",
+        img: "",
         category: "",
         description: "",
         features_doors: "",
@@ -90,7 +91,7 @@ export default function CreateProduct() {
         e.preventDefault(e);
         dispatch(postProduct(input))
         alert("¡PRODUCTO AÑADIDO!")
-        setInput({
+        /* setInput({
             brand: "",
             name: "",
             model: "",
@@ -107,7 +108,7 @@ export default function CreateProduct() {
             features_mileage: "",
             price: "",
             stock: ""
-        })
+        }) */
     };
 
     function handleSelect(e) {
@@ -117,7 +118,7 @@ export default function CreateProduct() {
         })
     }
 
-    const postDetails = (images) => {
+    /* const postDetails = (images) => {
         if (
             images === undefined
         ) {
@@ -142,7 +143,7 @@ export default function CreateProduct() {
         } else {
             return setImageMessage("Select an image...")
         }
-    }
+    } */
 
     console.log('INPUT: ', input)
 
@@ -153,6 +154,7 @@ export default function CreateProduct() {
             <div className={styleCrudPost.General}>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <fieldset >
+
                         <label className={styleCrudPost.label}>Marca: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
@@ -178,6 +180,7 @@ export default function CreateProduct() {
                                 required
                             />
                         </div>
+
                         <label className={styleCrudPost.label}>Modelo: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
@@ -197,12 +200,14 @@ export default function CreateProduct() {
                         <label className={styleCrudPost.label}>Imagen: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
-                                type="file"
+                                type="text"
                                 name="img"
-                                onChange={(e) => postDetails(e)}
+                                value={input.img}
+                                placeholder="Link de imagen"
+                                required
+                                onChange={(e) => handleChange(e)}
                                 className={styleCrudPost.inputActivity}
                             />
-
                         </div>
 
                         <label className={styleCrudPost.label}>Categoria: </label>
@@ -213,9 +218,7 @@ export default function CreateProduct() {
                                 {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}
-
                             </select>
-
                         </div>
 
                         <label className={styleCrudPost.label}>Descripcion: </label>
@@ -231,6 +234,7 @@ export default function CreateProduct() {
                                 className={styleCrudPost.textarea}
                             />
                         </div>
+
                         <label className={styleCrudPost.label}>Precio: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
@@ -246,6 +250,7 @@ export default function CreateProduct() {
                                 <p className={styleCrudPost.errors}>{errors.price}</p>
                             )}
                         </div>
+
                     </fieldset>
 
                     <fieldset>
@@ -253,7 +258,6 @@ export default function CreateProduct() {
 
                         <label className={styleCrudPost.label}>Puertas: </label>
                         <div className={styleCrudPost.subDiv}>
-
                             <input
                                 required
                                 type="text"
@@ -266,6 +270,7 @@ export default function CreateProduct() {
                                 <p className={styleCrudPost.errors}>{errors.features_doors}</p>
                             )}
                         </div>
+
                         <label className={styleCrudPost.label}>Nombre del motor: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
@@ -307,6 +312,7 @@ export default function CreateProduct() {
                                 <p className={styleCrudPost.errors}>{input.features_engine_torque}</p>
                             )}
                         </div>
+
                         <label className={styleCrudPost.label}>Combustion: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input

@@ -101,6 +101,7 @@ export default function UpdateProduct() {
             brand: "",
             name: "",
             model: "",
+            img: "",
             category: "",
             description: "",
             features_doors: "",
@@ -138,6 +139,7 @@ export default function UpdateProduct() {
             brand: selectedCar?.brand,
             name: selectedCar?.name,
             model: selectedCar?.model,
+            img: selectedCar?.img,
             category: selectedCar?.category.name,
             description: selectedCar?.description,
             features_doors: selectedCar?.features.doors,
@@ -156,7 +158,7 @@ export default function UpdateProduct() {
 
     console.log('ID: ', id)
 
-    const postDetails = (images) => {
+    /* const postDetails = (images) => {
         if (
             images === undefined
         ) {
@@ -181,7 +183,7 @@ export default function UpdateProduct() {
         } else {
             return setImageMessage("Select an image...")
         }
-    }
+    } */
 
     return (
         <div>
@@ -245,10 +247,12 @@ export default function UpdateProduct() {
                         <label className={styleCrudUpdate.label}>Imagen: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             <input
-                                type="file"
+                                type="text"
                                 name="img"
-                                onChange={(e) => postDetails(e)}
+                                value={input.img}
+                                placeholder="Link de imagen"
                                 required
+                                onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
 
