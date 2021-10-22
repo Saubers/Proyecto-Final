@@ -37,9 +37,9 @@ export default function DeleteProduct() {
             <form onSubmit={(e) => handleSubmit(e)}>
                 <fieldset>
                     <select className={styles.selectCategory} required onChange={(e) => handleSelect(e)}>
-                    <option disabled selected>Autos</option>
+                    <option disabled selected hidden>Autos</option>
                         {cars?.map((el) => (
-                            <option value={el._id}>{el.name}</option>
+                            <option key={el._id} value={el._id}>{el.name}</option>
                         ))}
                     </select>
                     {selectedCar && (
