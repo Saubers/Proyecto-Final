@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signin, userAdmin, googleSignin } from "../../../actions";
 import { GoogleLogin } from "react-google-login";
 import ForgotPass from "./forgotPass";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
 
 const Login = () => {
   const [mail, setMail] = useState("");
@@ -84,6 +84,16 @@ const Login = () => {
             Iniciar sesión
           </Button>
         </form>
+        <div>
+          {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
+          <GoogleLogin
+            class="g-signin2"
+            buttonText="Login with google"
+            onSuccess={responseSuccessGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
+        </div>
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
         {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
         {loading && <Loading />}
@@ -102,16 +112,6 @@ const Login = () => {
         <Link to="/">
           <Button className={styles.btnsubt}>Volver</Button>
         </Link>
-        <div>
-          {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
-          <GoogleLogin
-            class="g-signin2"
-            buttonText="Login"
-            onSuccess={responseSuccessGoogle}
-            onFailure={responseErrorGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-        </div>
       </div>
     </div>
   );

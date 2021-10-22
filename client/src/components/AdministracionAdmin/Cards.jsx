@@ -1,7 +1,6 @@
 import React,{useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import {putAdmin , getAllUsers} from '../../actions/index'
 import StyleUser from './Cards.module.css'
 export default function Cards() {
