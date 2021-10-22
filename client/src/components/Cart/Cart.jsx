@@ -22,7 +22,8 @@ export default function Cart(props){
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({});
     const mpLink = useSelector(state => state.MPLink)
-    const MPLINK = '5; URL='+mpLink
+    console.log('MPLINK',mpLink)
+    const MPLINK = '3; URL='+mpLink
     const orderPayload = {
         id : user?._id ,
         status : "Carrito"
@@ -31,7 +32,8 @@ export default function Cart(props){
     
     useEffect(() => {
         dispatch(getUserOrderStatus(orderPayload))
-     }, [])
+
+     }, [dispatch])
     const cartBD = useSelector ((state) => state.orders)
 
     useEffect(() => {
@@ -129,7 +131,7 @@ export default function Cart(props){
         borrarItem('Allauto')
         setAmount([])
         }
-        window.location.reload()
+        // window.location.reload()
     }
 
     function handlePost(ev){
@@ -150,7 +152,7 @@ export default function Cart(props){
         })
         if(input.user && input.publication && input.cantidad && input.price && allAuto){
             dispatch(postCart(cart))
-           // dispatch(postMg(input))
+           dispatch(postMg(input))
             for (let i = 0; i < allAuto.length; i++) {
                 dispatch(putProductStock(allAuto[i]))         
             }

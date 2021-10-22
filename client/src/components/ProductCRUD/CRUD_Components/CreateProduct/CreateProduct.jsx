@@ -148,7 +148,7 @@ export default function CreateProduct() {
                         <label className={styleCrudPost.label}>Modelo: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
-                                type="text"
+                                type="number"
                                 value={input.model}
                                 name="model"
                                 onChange={(e) => handleChange(e)}
@@ -223,7 +223,7 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
                                 value={input.features_doors}
                                 name="features_doors"
                                 onChange={(e) => handleChange(e)}
@@ -293,7 +293,7 @@ export default function CreateProduct() {
                             <label className={styleCrudPost.label}>Manual: </label>
                             <input
                                 required
-                                type="text"
+                                type="number"
                                 value={input.features_transmission_manual}
                                 name="features_transmission_manual"
                                 onChange={(e) => handleChange(e)}
@@ -306,7 +306,7 @@ export default function CreateProduct() {
                             <label className={styleCrudPost.label}>Automatica: </label>
                             <input
                                 required
-                                type="text"
+                                type="number"
                                 value={input.features_transmission_automatic}
                                 name="features_transmission_automatic"
                                 onChange={(e) => handleChange(e)}
@@ -317,15 +317,18 @@ export default function CreateProduct() {
 
                         <label className={styleCrudPost.label}>Traccion: </label>
                         <div className={styleCrudPost.subDiv}>
-                            <input
+                            <select
                                 required
-                                type="text"
-                                value={input.features_traction}
                                 name="features_traction"
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Tipo de traccion'
                                 className={styleCrudPost.inputActivity}
-                            />
+                            >
+                                <option defaultValue='AWD'> traccion </option>
+                                <option value='AWD'> AWD</option>
+                                <option value='RWD'> RWD</option>
+                                <option value='FWD'> FWD</option>
+                            </select>
                         </div>
 
                         <label className={styleCrudPost.label}>Kilometraje: </label>
