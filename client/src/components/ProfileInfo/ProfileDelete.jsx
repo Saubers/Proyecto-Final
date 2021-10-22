@@ -11,11 +11,12 @@ export default function UserDelete(){
 const dispatch = useDispatch()  
 const userState = useSelector((state) => state.userState)
 
-
+console.log(userState)
     const handleSubmit = async (e) => {
         e.preventDefault(e);
         dispatch(deleteUser(id))
         if(userState){
+            localStorage.removeItem('userAdmin')
             localStorage.setItem('userAdmin', userState.data)
         } else {
             return "No se pudo borrar el usuario..."

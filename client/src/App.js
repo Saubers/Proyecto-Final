@@ -31,8 +31,6 @@ import OrderEdit from './components/OrderCars/OrderEdit/OrderEdit'
 import ForgotPass from './components/Auth/login/forgotPass';
 
 function App() {
-  const history = useHistory()
-  const stateAdmin = useSelector((state) => state.userInfo)
   const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
 
