@@ -12,10 +12,6 @@ export default function LandingPage({history}) {
 
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo");
- 
-        if(userInfo) {
-            history.push("/home/catalogo")
-        }
     }, [history])
 
 return(
