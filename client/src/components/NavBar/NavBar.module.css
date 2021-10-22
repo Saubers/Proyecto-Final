@@ -33,7 +33,7 @@ nav ul{
   align-items: center;
 }
 nav ul li{
-  margin: 0 5px;
+  margin: 0 40px;
 }
 nav ul li a{
   color: black;
@@ -58,12 +58,12 @@ nav .menu-btn i{
 input[type="checkbox"]{
   display: none;
 }
-@media (max-width: 1000px){
+@media (max-width: 600px){
   nav{
     padding: 0 40px 0 50px;
   }
 }
-@media (max-width: 920px) {
+@media (max-width: 600px) {
   nav .menu-btn i{
     display: block;
   }

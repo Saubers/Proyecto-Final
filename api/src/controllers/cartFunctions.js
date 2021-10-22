@@ -64,7 +64,6 @@ const AllOrders = async function (req,res){
 const OrdenesByUsuario= async function (req,res) {
     const {id} = req.params;
     const {status} = req.query;
-    console.log('req.query',status)
     if(status){
         try {
             let Ordenes = await Cart.find({user : id}).find({ state : status  }).populate('publication')
@@ -88,7 +87,6 @@ const cartOrderId = async function(req,res) {
     
     try {
         const id = req.params.id;
-        console.log(id)
         try {
             let Ordenes = await Cart.find({_id: id}).populate('publication').populate('user')
             res.status(200).send(Ordenes)
@@ -112,7 +110,6 @@ const putCart = async function(req,res){
             price : price,
             state : newState
         });
-        console.log('ACAAAAAAA',cart);
         res.send(cart._update);
     }catch(error){
         console.log(error)
@@ -122,10 +119,8 @@ const putCart = async function(req,res){
 
 const deleteCart = async function(req,res){
     const  id  = req.params.id;
-    console.log('id',id)
     try {
         const ProductDB = await Cart.findOneAndRemove({_id : id})
-        console.log('ProductDB',ProductDB)
         if(ProductDB !== null){
             res.status(200).json(ProductDB)
         }

@@ -15,8 +15,6 @@ export default function ReadProductDetail(props) {
 
     const car = useSelector((state) => state.carDetail)
 
-    console.log(car)
-
     return (
         <div>
             <NavBar />

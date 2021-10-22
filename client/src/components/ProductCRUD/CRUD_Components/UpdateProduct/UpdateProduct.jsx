@@ -53,11 +53,11 @@ export default function UpdateProduct() {
 
     const cars = useSelector(state => state.allCars)
 
-    const [errors, setErrors] = useState({})
+    /* const [errors, setErrors] = useState({})
 
     const [imageMessage, setImageMessage] = useState(null)
 
-    const [image, setImage] = useState("")
+    const [image, setImage] = useState("") */
 
     const [id, setID] = useState("")
 
@@ -96,10 +96,8 @@ export default function UpdateProduct() {
     function handleSubmit(e) {
         e.preventDefault(e);
         dispatch(putProduct(id, input))
-        console.log('auto: ', input)
-        console.log('id: ', id)
         alert("¡PRODUCTO ACTUALIZADO!")
-        /* setInput({
+        setInput({
             brand: "",
             name: "",
             model: "",
@@ -117,7 +115,7 @@ export default function UpdateProduct() {
             features_mileage: "",
             price: "",
             stock: ""
-        }) */
+        })
     };
 
     function handleSelect(e) {
@@ -157,9 +155,6 @@ export default function UpdateProduct() {
             stock: selectedCar?.stock
         });
     }, [id])
-
-    console.log('SELECTED CAR: ', selectedCar)
-    console.log ('INPUT: ', input)
 
     /* const postDetails = (images) => {
         if (
@@ -244,9 +239,9 @@ export default function UpdateProduct() {
                                 required
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.model && (
+                            {/* {errors.model && (
                                 <p className="errors">{errors.model}</p>
-                            )}
+                            )} */}
                         </div>
 
                         <label className={styleCrudUpdate.label}>Imagen: </label>
@@ -302,9 +297,9 @@ export default function UpdateProduct() {
                                 placeholder='$$$$$$$$'
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.price && (
+                            {/* {errors.price && (
                                 <p className={styleCrudUpdate.errors}>{errors.price}</p>
-                            )}
+                            )} */}
                         </div>
                         <label className={styleCrudUpdate.label}>Stock: </label>
                         <div className={styleCrudUpdate.subDiv}>
@@ -316,9 +311,9 @@ export default function UpdateProduct() {
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Disponibles'
                                 className={styleCrudUpdate.inputActivity} />
-                            {errors.stock && (
+                            {/* {errors.stock && (
                                 <p className={styleCrudUpdate.errors}>{errors.stock}</p>
-                            )}
+                            )} */}
                         </div>
                     </fieldset>
 
@@ -336,9 +331,9 @@ export default function UpdateProduct() {
                                 onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.features_doors && (
+                            {/* {errors.features_doors && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_doors}</p>
-                            )}
+                            )} */}
                         </div>
                         <label className={styleCrudUpdate.label}>Nombre del motor:</label>
                         <div className={styleCrudUpdate.subDiv}>
@@ -362,9 +357,9 @@ export default function UpdateProduct() {
                                 onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.features_engine_cv && (
+                            {/* {errors.features_engine_cv && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_engine_cv}</p>
-                            )}
+                            )} */}
                         </div>
 
                         <label className={styleCrudUpdate.label}>Torque: </label>
@@ -377,9 +372,9 @@ export default function UpdateProduct() {
                                 onChange={(e) => handleChange(e)}
                                 className={styleCrudUpdate.inputActivity}
                             />
-                            {errors.features_torque && (
+                            {/* {errors.features_torque && (
                                 <p className={styleCrudUpdate.errors}>{input.features_engine_torque}</p>
-                            )}
+                            )} */}
                         </div>
                         <label className={styleCrudUpdate.label}>Combustion: </label>
                         <div className={styleCrudUpdate.subDiv}>
@@ -443,17 +438,15 @@ export default function UpdateProduct() {
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Nro de Km totales'
                                 className={styleCrudUpdate.inputActivity} />
-                            {errors.features_mileage && (
+                            {/* {errors.features_mileage && (
                                 <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
-                            )}
+                            )} */}
                         </div>
 
                     </fieldset>
-                    {
-                        errors && (
+                    {/* {errors && (
                             <button className={styleCrudUpdate.button3} type='submit'>Actualizar</button>
-                        )
-                    }
+                        )} */}
                     <Link to="/ProductCRUD">
                         <button className={styleCrudUpdate.button3}>Volver</button>
                     </Link>

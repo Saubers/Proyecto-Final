@@ -11,7 +11,7 @@ export default function ReadProduct() {
 
     useEffect(() => {
         dispatch(getCars());
-    }, [])
+    }, [dispatch])
 
     const cars = useSelector(state => state.allCars);
 
@@ -20,7 +20,6 @@ export default function ReadProduct() {
             <NavBar />
             <div>
                 <h1>Autos</h1>
-                {/* <p>&nbsp;</p> */}
                 <hr />
                 {cars?.map((el) =>
                     <div>

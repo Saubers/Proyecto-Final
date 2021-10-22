@@ -94,7 +94,6 @@ const CreateProduct = async (req, res, next) => {
             price: price,
             stock: stock
         });
-        console.log(req.file)
         await NewProduct.save()
         res.status(200).json(NewProduct)
     } catch (error) {
@@ -103,7 +102,6 @@ const CreateProduct = async (req, res, next) => {
 }
 
 const uploadFile = async (req, res, next) => {
-    console.log(req.file)
 }
 
 const carBrands = async (req, res, next) => {
@@ -111,7 +109,6 @@ const carBrands = async (req, res, next) => {
     const productsBrand = await Car.find().populate('category')
     try {
         const productBrand = await productsBrand.filter((el) => el.brand.toLowerCase().includes(brand.toLowerCase()));
-        console.log(productBrand)
         if (productBrand !== null) {
             return res.status(200).send(productBrand)
         }
@@ -131,7 +128,6 @@ const SearchCars = async (req, res, next) => {
         /* const ProductsDB = await Car.find({name:name}).populate('category') */
         const ProductDB = await ProductsDB.filter((el) => el.name.toLowerCase().includes(name.toLowerCase()));
         const ProductBrand = await ProductsDB.filter((el) => el.brand.toLowerCase().includes(name.toLowerCase()));
-        console.log(ProductDB)
         if (ProductDB !== null || ProductBrand !== null) {
             const results = ProductDB.concat(ProductBrand);
             return res.status(200).send([...new Set(results)]);
@@ -143,7 +139,6 @@ const SearchCars = async (req, res, next) => {
 
 const DeleteCar = async (req, res, next) => {
     const { id } = req.params.id;
-    console.log(id)
     try {
         const ProductDB = await Car.findByIdAndDelete(id)
         if (ProductDB !== null) {
@@ -157,7 +152,6 @@ const DeleteCar = async (req, res, next) => {
 const ModifiCar = async (req, res) => {
     const { id } = req.params;
     const updates = req.body;
-    console.log(updates)
     try {
         await Car.findByIdAndUpdate(id, updates)
         res.send("Auto actualizado correctamente");

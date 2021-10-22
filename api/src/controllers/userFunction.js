@@ -43,7 +43,6 @@ const createUser = async ( req, res ,next) => {
     confirm_password: confirm_password,
     state: state
 })
-console.log(user)
 user.password = await user.encryptPassword(password);
     await user.save()
     req.flash('succes_msg', 'You are registered!')
@@ -75,7 +74,6 @@ const loginUser = async (req,res,next) => {
 
 const changeStateToInactive = async (req, res) => {
     const userId = await User.findById(req.params._id);
-    console.log(userId)
     if (userId){
         userId.state = "inactive"
         await userId.save()
@@ -85,7 +83,6 @@ const changeStateToInactive = async (req, res) => {
 
 const deleteUser = async (req,res,next) =>{
     const userData = await User.findById(req.params.id);
-    console.log(id)
     try {
         const productDB = User.findByIdAndDelete(userData)
         if(productDB !== null){
@@ -130,10 +127,11 @@ const googleLogin = async (req,res) =>{
                     }else{
                         if(user){
                             const token = jwt.sign({_id:user._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
-                            const {_id,name,mail}=user;
+                            const {_id,fullname,mail,state, phone, password}=user;
                             res.json({
                                 token,
-                                user:{_id,name,mail}
+                                user:{_id, fullname, mail, phone, password},
+                                state
                             })
                         }else{
                             const create = async function() {
@@ -143,13 +141,11 @@ const googleLogin = async (req,res) =>{
                                 })
                                 const token = jwt.sign({_id:googleUser._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
                                 await googleUser.save()
+                                const {_id,fullname,mail,state} = googleUser
                                 const obj = {
                                     token,
-                                    user:{
-                                        _id: googleUser._id,
-                                        name: googleUser.fullname,
-                                        mail: googleUser.mail
-                                    } 
+                                    user:{_id, fullname, mail},
+                                    state 
                                 }
                                 res.status(200).send(obj)
                             }

@@ -9,7 +9,6 @@ import stylecart from '../Cart/Cart.module.css';
 export default function Cart(props){
     // const idCar = useSelector((state)=> state.idCar)
     //const carrito = u seSelector ((state)=> state.cart)
-    // console.log("ACA",idCar);
 
     
     const dispatch = useDispatch()
@@ -23,8 +22,8 @@ export default function Cart(props){
     const [price,setPrice] = useState(0)
     const [input , setInput] = useState ({});
     const mpLink = useSelector(state => state.MPLink)
-    const MPLINK = '5; URL='+mpLink
-    //console.log('user',user)
+    console.log('MPLINK',mpLink)
+    const MPLINK = '3; URL='+mpLink
     const orderPayload = {
         id : user?._id ,
         status : "Carrito"
@@ -33,9 +32,9 @@ export default function Cart(props){
     
     useEffect(() => {
         dispatch(getUserOrderStatus(orderPayload))
-     }, [])
+
+     }, [dispatch])
     const cartBD = useSelector ((state) => state.orders)
-    //console.log('cartDb',cartBD)
 
     useEffect(() => {
         sumatotal()
@@ -79,20 +78,16 @@ export default function Cart(props){
             allAuto.forEach(element =>{
                 if(element.id === idCar.id){
                     element.stock =  parseInt(element.stock - 1) 
-                    console.log('foreach',element)
                 }
             })
             setPrice(price + idCar.price)
         }
         else{
-            return(alert('item supero su stock'),
-            console.log('found cantidad',found?.cantidad),
-            console.log('idcar stocks',idCar.stock)
-            )
+            return(alert('item supero su stock'))
+
         }
 
     }
-    console.log('amount',amount)
 
     //boton post filtrar todos los que tengan
     
@@ -136,7 +131,7 @@ export default function Cart(props){
         borrarItem('Allauto')
         setAmount([])
         }
-        window.location.reload()
+        // window.location.reload()
     }
 
     function handlePost(ev){
@@ -157,9 +152,8 @@ export default function Cart(props){
         })
         if(input.user && input.publication && input.cantidad && input.price && allAuto){
             dispatch(postCart(cart))
-           // dispatch(postMg(input))
+           dispatch(postMg(input))
             for (let i = 0; i < allAuto.length; i++) {
-               console.log(allAuto[i])
                 dispatch(putProductStock(allAuto[i]))         
             }
             //putProductStock(putProduct)
@@ -185,11 +179,9 @@ export default function Cart(props){
     //  setIdAuto(cartBD) 
     //     window.location.reload()
     //sumarCar(item)
-    console.log(cartBD)
    
     }
 
-    console.log('idAuto',idAuto)
     function goLogin() {
         history.push(`/user/login`)
     }
@@ -256,7 +248,6 @@ export default function Cart(props){
                     <h3>Historial de carrito del usuario: </h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{
-                   // console.log('elementCArbd',el)
                      return(
                         <option value={el._id} >
                             {el.brand} {el.name} {el.price} stock: {el.stock}

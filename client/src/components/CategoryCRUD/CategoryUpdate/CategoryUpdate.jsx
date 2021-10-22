@@ -22,16 +22,13 @@ function CategoryUpdate() {
         description: ""
     });
 
-    function HandleSubmit(e) {
-        e.preventDefault(e);
+    function HandleSubmit() {
         dispatch(updateCategory(id, input))
         alert("CATEGORIA ACTUALIZADA")
         setInput({
             name: "",
             description: ""
         })
-        console.log('JSON: ', input)
-        console.log('ID: ', id)
     };
 
     function handleChange(e) {
@@ -56,10 +53,6 @@ function CategoryUpdate() {
         });
     }, [id])
 
-    /*    console.log('ID: ', id)
-       console.log('CATEGORIES: ', categories)
-       console.log('SELECTED: ', selectedCategory) */
-
     return (
         <div>
             <NavBar />
@@ -70,9 +63,9 @@ function CategoryUpdate() {
                     <div >
                         <p className={Styles.label}>Selecciona la categoria a editar</p>
                         <select className={Styles.selectCategory} required onChange={(e) => handleSelectID(e)}>
-                            <option disabled selected>Categorias</option>
+                            <option value="" selected disabled hidden>Categorias</option>
                             {categories?.map((el) => (
-                                <option value={el._id}>{el.name}</option>
+                                <option key={el._id} value={el._id}>{el.name}</option>
                             ))}
                         </select>
                     </div>

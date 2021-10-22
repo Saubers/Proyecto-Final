@@ -1,13 +1,11 @@
 import React from 'react';
 import NavBar from '../NavBar/NavBar';
 import Styleinfo from '../UserInfo/UserInfo.module.css';
-import Footer from '../LandingPage/Footer/Footer'
 import UserDelete from '../ProfileInfo/ProfileDelete';
 
 const UserInfo = () => {
     const userInformacion = localStorage.getItem("userInformacion");
     const usuario = JSON.parse(userInformacion)
-    console.log(userInformacion);
     return (
         <div>
             <NavBar />
@@ -46,7 +44,6 @@ const UserInfo = () => {
                 </div>
                
             </div>
-            {/* <Footer/> */}
         </div>
     )
 }

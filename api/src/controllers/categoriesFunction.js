@@ -45,7 +45,6 @@ const DeleteCategory = async (req, res, next) => {
 const ModifiCategory = async (req, res) => {
     const { id } = req.params;
     const updates = req.body;
-    console.log(updates)
     try {
         await Categories.findByIdAndUpdate(id, updates)
         res.send("Categoria actualizada correctamente");
@@ -58,7 +57,6 @@ const getByCategory = async (req, res, next) => {
     if (Categories = req.query) {
         try {
             const carByCategories = await Cars.find({ "category": Categories })
-            console.log(carByCategories);
             if (carByCategories !== null || carByCategories.length > 0) {
                 res.status(200).json(carByCategories);
             }

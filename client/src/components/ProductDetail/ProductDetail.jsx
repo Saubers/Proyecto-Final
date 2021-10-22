@@ -49,7 +49,7 @@ export default function Detail(props) {
     const [Isbotton, setIsButton] = useLocalStorage('button', [])
 
     async function addToCart() {
-        setAllAuto([...allAuto,MyCar])
+        setAllAuto([...allAuto, MyCar])
         setIdAuto([...idAuto, {
             id: MyCar.id,
             brand: MyCar.brand,
@@ -73,8 +73,6 @@ export default function Detail(props) {
         }
     }
     const found = Isbotton.find(element => element === IdButton)
-    console.log('My car: ', MyCar)
-    /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>
             <NavBar />
@@ -82,9 +80,6 @@ export default function Detail(props) {
             <div className={styles.containerprin}>
 
                 <div className={styles.container}>
-                    {/* <h1 className={styles.name}>{MyCar?.brand} {MyCar?.name}</h1>
-
-                    {MyCar?.category ? <h3>{MyCar?.category.name}</h3> : null} */}
                     <div className='car_detail_carousel'>
                         <ComponentCarousel photos={MyCar?.img} width="90%" />
                         <hr />
@@ -92,7 +87,7 @@ export default function Detail(props) {
 
                     <div>
                         <h3 className={styles.title}>Informacion </h3>
-                        <p>{/* <b>Descripcion: </b> */}{MyCar?.description}</p>
+                        <p>{MyCar?.description}</p>
                         <hr />
                         <h3 className={styles.title}>Caracteristicas</h3>
                         <p><b>Puertas: </b>{MyCar?.features.doors}</p>

@@ -15,7 +15,6 @@ function CategoryRead() {
 
     const categories = useSelector(state => state.allcategories);
 
-    console.log(categories)
 
     return (
         <div>

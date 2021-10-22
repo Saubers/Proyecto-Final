@@ -82,7 +82,6 @@ const Review = (props) =>{
         else{
             console.log('error')
         }
-        // console.log('avrg lenght' ,review?.length)
     } 
 
     //REVIEW

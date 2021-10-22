@@ -1,11 +1,7 @@
 const User = require('../models/User');
-const crypto = require('crypto');
 const jwt = require('jsonwebtoken')
 const _ = require('lodash')
 const sendEmail = require('../utils/mail');
-const { error } = require('console');
-const generateToken = require('../generateToken');
-const { promisify } = require('util');
 
 const forgotPassword = async (req, res, next) => {
     // Agarro la informacion del email de usuario
@@ -26,7 +22,7 @@ const forgotPassword = async (req, res, next) => {
             subject: 'Your password reset token (valid for 10 min)',
             message:`
             Please click on given link to reset your password:
-            ${process.env.CLIENT_URL}/resetpassword/${token}
+            COPY THIS TOKEN AND PASTE IT IN THE CAR SHOP: ${token}
             `
         });
         res.status(200).json({

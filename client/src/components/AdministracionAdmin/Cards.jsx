@@ -1,7 +1,6 @@
 import React,{useEffect} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import {putAdmin , getAllUsers} from '../../actions/index'
 import StyleUser from './Cards.module.css'
 export default function Cards() {
@@ -23,10 +22,14 @@ export default function Cards() {
             id:id,
             newState:"admin"
         })
+        if(input.id && input.newState){
         e.preventDefault()
         dispatch(putAdmin(input))
         window.location.reload()
-    }
+    }else{
+    alert('Vuelve a tocar el boton para confirmar')
+}
+}
     function handleUser(e , id) {
         console.log(id);
         setInput({
@@ -34,11 +37,15 @@ export default function Cards() {
             id:id,
             newState:"user"
         })
-        e.preventDefault()
-        dispatch(putAdmin(input))
-        window.location.reload()
+        if(input.id && input.newState){
+            e.preventDefault()
+            dispatch(putAdmin(input))
+            window.location.reload()
+        }else{
+        alert('Vuelve a tocar el boton para confirmar')
+    }
     } 
-    console.log(input);
+    console.log(AllUsers);
     return(
          <div className={StyleUser.PROBANDO}>
              {
