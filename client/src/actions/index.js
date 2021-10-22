@@ -308,7 +308,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
 export function DeleteCar(id) {
     return async function (dispatch) {
         try {
-            var json = await axios.delete("http://localhost:3002/productsDelete/:id" + id);
+            var json = await axios.delete("http://localhost:3002/productsDelete/" + id);
             return dispatch({
                 type: "DELETE_CAR",
                 payload: json

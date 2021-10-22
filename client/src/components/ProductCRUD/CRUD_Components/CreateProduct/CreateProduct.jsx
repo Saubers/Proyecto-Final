@@ -80,8 +80,7 @@ export default function CreateProduct() {
         }))
     };
 
-    function handleSubmit(e) {
-        e.preventDefault(e);
+    function handleSubmit() {
         dispatch(postProduct(input))
         alert("¡PRODUCTO AÑADIDO!")
         setInput({
@@ -219,8 +218,8 @@ export default function CreateProduct() {
                     </fieldset>
 
                     <fieldset>
-                        <h2 className={styleCrudPost.subtitle}>Caracteristicas</h2>
 
+                        <h2 className={styleCrudPost.subtitle}>Caracteristicas</h2>
                         <label className={styleCrudPost.label}>Puertas: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
@@ -253,7 +252,8 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder="cv"
                                 value={input.features_engine_cv}
                                 name="features_engine_cv"
                                 onChange={(e) => handleChange(e)}

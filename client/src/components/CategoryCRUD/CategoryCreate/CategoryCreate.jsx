@@ -14,8 +14,7 @@ function CategoryCreate() {
         description: ""
     });
 
-    function HandleSubmit(e) {
-        e.preventDefault(e);
+    function HandleSubmit() {
         dispatch(postCategory(input))
         alert("CATEGORIA AÑADIDA")
         setInput({

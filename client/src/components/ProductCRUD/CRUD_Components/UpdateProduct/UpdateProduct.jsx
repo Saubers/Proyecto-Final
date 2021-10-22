@@ -93,8 +93,7 @@ export default function UpdateProduct() {
         })) */
     };
 
-    function handleSubmit(e) {
-        e.preventDefault(e);
+    function handleSubmit() {
         dispatch(putProduct(id, input))
         alert("¡PRODUCTO ACTUALIZADO!")
         setInput({
@@ -131,7 +130,6 @@ export default function UpdateProduct() {
         setID(
             e.target.value
         )
-
     }
 
     useEffect(() => {
@@ -355,7 +353,8 @@ export default function UpdateProduct() {
                         <div className={styleCrudUpdate.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder= "cv"
                                 value={input.features_engine_cv}
                                 name="features_engine_cv"
                                 onChange={(e) => handleChange(e)}
@@ -371,7 +370,7 @@ export default function UpdateProduct() {
                             <input
                                 required
                                 type="number"
-                                placeholder= "Torque"
+                                placeholder="Torque"
                                 value={input.features_engine_torque}
                                 name="features_engine_torque"
                                 onChange={(e) => handleChange(e)}
@@ -453,15 +452,16 @@ export default function UpdateProduct() {
                                 <p className={styleCrudUpdate.errors}>{errors.features_mileage}</p>
                             )} */}
                         </div>
-
                     </fieldset>
+
                     {/* {errors && (
                             <button className={styleCrudUpdate.button3} type='submit'>Actualizar</button>
                         )} */}
+
+                    <button className={styleCrudUpdate.button3} type='submit'>Actualizar</button>
                     <Link to="/ProductCRUD">
                         <button className={styleCrudUpdate.button3}>Volver</button>
                     </Link>
-
                 </form>
             </div>
         </div>

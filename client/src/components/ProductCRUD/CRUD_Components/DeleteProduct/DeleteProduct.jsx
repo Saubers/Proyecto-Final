@@ -21,8 +21,7 @@ export default function DeleteProduct() {
         setID(e.target.value)
     }
 
-    function handleSubmit(e) {
-        e.preventDefault(e);
+    function handleSubmit() {
         dispatch(DeleteCar(id))
         alert("Publicacion eliminada")
         setID("")
