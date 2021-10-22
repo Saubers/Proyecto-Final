@@ -185,9 +185,9 @@ export function forgotPassword(mail) {
     }
 }
 
-export function resetPassword(newPass, resetLink) {
+export function resetPassword(payload) {
     return async function (dispatch) {
-        const json = await axios.put('http://localhost:3002/resetPassword', {newPass, resetLink});
+        const json = await axios.put('http://localhost:3002/resetPassword', payload);
         return dispatch({
             type: 'RESET_PASSWORD',
             payload: json
@@ -327,9 +327,6 @@ export function DeleteCartId(id) {
         })
     }
 }
-
-
-
 
 export function filterEngine(payload) {
     return {
