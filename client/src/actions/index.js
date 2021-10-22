@@ -239,6 +239,7 @@ export function googleSignin(tokenId){
             const {data} = await axios.post('http://localhost:3002/googleLogin', {tokenId})
             dispatch({type:GOOGLE_SIGNIN, payload: data})
             localStorage.setItem('userInfo', JSON.stringify(data.token))
+            localStorage.setItem('userInformacion', JSON.stringify(data.user))
         }catch(err){
             console.log(err)
         }

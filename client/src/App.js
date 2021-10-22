@@ -29,18 +29,22 @@ import AdministracionAdmin from './components/AdministracionAdmin/Administracion
 import { useSelector } from 'react-redux';
 import OrderEdit from './components/OrderCars/OrderEdit/OrderEdit'
 import ForgotPass from './components/Auth/login/forgotPass';
+
 function App() {
   const history = useHistory()
   const stateAdmin = useSelector((state) => state.userInfo)
   const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
+
   return (
     <Router>
       <div className='container'>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/home/Catalogo/:id" component={ProductDetail} />
+          <Route exact path="/home/Catalogo" component={Catalogo} />
 
+          {/* Rutas CRUD de Productos */}
 
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD' component={ProductCRUD} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />}
@@ -49,13 +53,8 @@ function App() {
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />}
           {isAdmin === '"admin"' && <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} />}
 
-          {/*  <Route exact path='/ProductCRUD' component={ProductCRUD} />
-          <Route exact path='/ProductCRUD/CreateProduct' component={CreateProduct} />
-          <Route exact path='/ProductCRUD/DeleteProduct' component={DeleteProduct} />
-          <Route exact path='/ProductCRUD/UpdateProduct' component={UpdateProduct} />
-          <Route exact path='/ProductCRUD/ReadProduct' component={ReadProduct} />
-          <Route exact path='/ProductCRUD/ReadProduct/:id' component={ReadProductDetail} /> */}
 
+          {/* Rutas CRUD de Categorias */}
 
           {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD" component={CategoryCRUD} />}
           {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CrearCategoria" component={CategoryCreate} />}
@@ -63,25 +62,18 @@ function App() {
           {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />}
           {isAdmin === '"admin"' && <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} />}
 
-
-          {/* <Route exact path="/CategoryCRUD" component={CategoryCRUD} />
-          <Route exact path="/CategoryCRUD/CrearCategoria" component={CategoryCreate} />
-          <Route exact path="/CategoryCRUD/CategoryUpdate" component={CategoryUpdate} />
-          <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />
-          <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} /> */}
-
           {!local && (<Route exact path='/user/forgotPass' component={ForgotPass} />)}
           {!local && (<Route exact path='/user/register' component={Register} />)}
-          <Route exact path="/home/Catalogo" component={Catalogo} />
           {!local && (<Route exact path="/user/login" component={Login} />)}
           {(<Route exact path='/home/compra' component={Cart} />)}
           {local && <Route exact path='/user/me' component={ProfileInfo} />}
-          {isAdmin === '"admin"' &&<Route exact path='/home/ADMIN/edit/:id' component={OrderEdit} />}
-          {isAdmin === '"admin"' &&<Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />}
+          {isAdmin === '"admin"' && <Route exact path='/home/ADMIN/edit/:id' component={OrderEdit} />}
+          {isAdmin === '"admin"' && <Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />}
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
-          {isAdmin === '"admin"' &&  <Route exact path='/home/ADMIN/orders' component={OrderCar} />}
-          {isAdmin === '"admin"' &&<Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin}/>}
+          {isAdmin === '"admin"' && <Route exact path='/home/ADMIN/orders' component={OrderCar} />}
+          {isAdmin === '"admin"' && <Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin} />}
+
         </Switch>
       </div>
     </Router>
