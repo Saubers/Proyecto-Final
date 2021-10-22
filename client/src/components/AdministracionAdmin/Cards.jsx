@@ -22,10 +22,14 @@ export default function Cards() {
             id:id,
             newState:"admin"
         })
+        if(input.id && input.newState){
         e.preventDefault()
         dispatch(putAdmin(input))
         window.location.reload()
-    }
+    }else{
+    alert('Vuelve a tocar el boton para confirmar')
+}
+}
     function handleUser(e , id) {
         console.log(id);
         setInput({
@@ -33,11 +37,15 @@ export default function Cards() {
             id:id,
             newState:"user"
         })
-        e.preventDefault()
-        dispatch(putAdmin(input))
-        window.location.reload()
+        if(input.id && input.newState){
+            e.preventDefault()
+            dispatch(putAdmin(input))
+            window.location.reload()
+        }else{
+        alert('Vuelve a tocar el boton para confirmar')
+    }
     } 
-    console.log(input);
+    console.log(AllUsers);
     return(
          <div className={StyleUser.PROBANDO}>
              {
