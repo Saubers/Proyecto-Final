@@ -1,17 +1,14 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import {getOrder, getOrderByUsuario,DeleteCartId, filterStatus, searchId } from "../../actions";
+import {getOrder,DeleteCartId, filterStatus, searchId } from "../../actions";
 import {Link} from "react-router-dom";
 import style from '../OrderCars/OrderCar.module.css'
 import NavBar from '../NavBar/NavBar'
-import OrderDetail from './OrderDetail/OrderDetail.jsx'
 export default function OrderCar(props) {
     const dispatch = useDispatch()
-    const id = ''
     useEffect(()=>{
         dispatch(getOrder())
     },[dispatch])
-    const [order, setOrder] = useState("")
     const [input, setInput] = useState("")
     const OrderUser = useSelector((state) => state.orders)
 

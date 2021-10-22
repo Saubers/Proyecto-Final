@@ -1,5 +1,5 @@
 import { useDispatch, useSelector  } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {getOrderByID} from "../../../actions/index";
 import {Link} from "react-router-dom";
 
@@ -10,7 +10,6 @@ export default function OrderDetail(props) {
         dispatch(getOrderByID(props.match.params.id))
     },[dispatch],props.match.params.id)
     const OrderDetail = useSelector((state) => state.orderDetail)
-    console.log('OrderDetail',OrderDetail)
 
     return(
     <div>

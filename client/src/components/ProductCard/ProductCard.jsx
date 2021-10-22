@@ -5,14 +5,6 @@ import { Link } from 'react-router-dom';
 
 const ProductCard = ({ name, brand, img, price, model, mileage, stock, _id }) => {
 
-    // localStorage.setItem('auto',[])
-    // let array = []
-    // async function addToCart(_id){
-    //  const idItem = await dispatch(getCarDetail(_id))
-    // array.push(idItem.payload)
-    // localStorage.setItem('auto',array)
-    // console.log(array)
-    // }
     return (
         <div className={styleCars.containerproduct}>
             <div className={styleCars.divimg}>

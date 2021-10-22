@@ -1,8 +1,5 @@
 import stylesLanding from '../LandingPage/LangingPage.module.css'
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import Nuevologo from '../image/nuevologo.png';
-import usuario from '../image/usuario.png';
 import Carousel from 'nuka-carousel';
 import image1 from '../image/imgcarousellandin/image1.jpg';
 import image2 from '../image/imgcarousellandin/image2.jpg';

@@ -30,8 +30,6 @@ function CategoryUpdate() {
             name: "",
             description: ""
         })
-        console.log('JSON: ', input)
-        console.log('ID: ', id)
     };
 
     function handleChange(e) {
@@ -55,10 +53,6 @@ function CategoryUpdate() {
             description: selectedCategory?.description
         });
     }, [id])
-
-    /*    console.log('ID: ', id)
-       console.log('CATEGORIES: ', categories)
-       console.log('SELECTED: ', selectedCategory) */
 
     return (
         <div>

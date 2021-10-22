@@ -77,7 +77,6 @@ export default function Detail(props) {
         }
     }
     const found = Isbotton.find(element => element === IdButton)
-    console.log('My car: ', MyCar)
     /* const carCategories = useSelector((state) => state.categories) */
     return (
         <div>

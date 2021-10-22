@@ -24,7 +24,6 @@ function CategoryDelete() {
     };
 
     function handleSubmit(e) {
-        console.log(id)
         e.preventDefault(e);
         dispatch(deleteCategory(id))
         alert("Categoria eliminada")

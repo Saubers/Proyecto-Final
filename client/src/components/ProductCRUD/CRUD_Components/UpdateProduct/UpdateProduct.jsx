@@ -55,9 +55,9 @@ export default function UpdateProduct() {
 
     const [errors, setErrors] = useState({})
 
-    const [imageMessage, setImageMessage] = useState(null)
+    // const [imageMessage, setImageMessage] = useState(null)
 
-    const [image, setImage] = useState("")
+    // const [image, setImage] = useState("")
 
     const [id, setID] = useState("")
 
@@ -96,8 +96,6 @@ export default function UpdateProduct() {
     function handleSubmit(e) {
         e.preventDefault(e);
         dispatch(putProduct(id, input))
-        console.log('auto: ', input)
-        console.log('id: ', id)
         alert("¡PRODUCTO ACTUALIZADO!")
         /* setInput({
             brand: "",
@@ -157,9 +155,6 @@ export default function UpdateProduct() {
             stock: selectedCar?.stock
         });
     }, [id])
-
-    console.log('SELECTED CAR: ', selectedCar)
-    console.log ('INPUT: ', input)
 
     /* const postDetails = (images) => {
         if (
