@@ -9,6 +9,7 @@ import image2 from '../image/imgcarousellandin/image2.jpg';
 import image3 from '../image/imgcarousellandin/image3.jpg';
 import Servi from '../LandingPage/Servicios/Servi'
 import Footer from '../LandingPage/Footer/Footer'
+import NavBar from '../NavBar/NavBar';
 
 export default function LandingPage({history}) {
 
@@ -25,17 +26,9 @@ return(
        <div className={stylesLanding.containergrid}>
            <header className={stylesLanding.header} class="header">
                <nav className={stylesLanding.containerdiv}>
+                   
                    <div>
-                       <img src={Nuevologo} alt="img" width="50px"/>
-                   </div>
-                   <div>
-                       <ul className={stylesLanding.ulli}>
-                            <li><a href="/">Inicio</a></li>
-                            <li><a href="/contactos">Contacto</a></li>
-                            <li><a href="/home/catalogo ">Catalogo</a></li>
-                            <li><a href="# ">Metodos de Pago</a></li>
-                            <li><a href='/user/login'>Iniciar Sesion</a></li>
-                        </ul>
+                       <NavBar />
                    </div>
                </nav>
            </header>

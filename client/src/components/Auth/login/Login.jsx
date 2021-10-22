@@ -7,17 +7,14 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCars, signin, userAdmin,googleSignin,forgotPassword } from '../../../actions';
-import ForgotPass from './forgotPass'
+import { getCars, signin, userAdmin,googleSignin } from '../../../actions';
 import { useEffect } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import { GoogleLogin } from 'react-google-login';
 
 
 const Login = () => {
     const [mail, setMail] = useState("")
-    
     const [user, setUser] = useState('')
     const history = useHistory()
     const [password, setPassword] = useState("")
@@ -26,71 +23,33 @@ const Login = () => {
     const [success, setSuccess] = useState('')
     const dispatch = useDispatch()
     const stateAdmin = useSelector((state) => state.userInfo)
-
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        const local = localStorage.getItem('userInfo')
+        if(local){
+            history.push('/')
+        }
         dispatch(signin(mail, password))
         dispatch(userAdmin(mail, password))
-    }
-    if(stateAdmin !== undefined){
-        history.push('/home/catalogo')
-    }
-    
+        }
+                    if(stateAdmin){
+                        console.log('ENTRO')
+                        handleSubmit()
+                    }
                     const responseSuccessGoogle = (response) => {
                         dispatch(googleSignin(response.tokenId))
-                        history.push('/home/catalogo')
+                        if(dispatch(googleSignin(response.tokenId))){
+                            history.push('/home/catalogo')
+                        }
+                        
                     }
                     
                     const responseErrorGoogle = (response) => {
                         console.log('ERR',response)
                     }
-                    const [modal, setModal] = useState(false);
-
-                    const toggle = () => setModal(!modal);
-
-                    const [modal1, setModal1] = useState(false);
-
-                    const toggle1 = () => setModal1(!modal1);
-
-                    // const [maill, setMaill] = useState('')
-                    //         const handleSubmitt = async (e) => {
-                    //             e.preventDefault();
-                    //             dispatch(forgotPassword(maill))
-                    //             console.log("mail enviado")
-                    //     }
+                    
                     return(
                         <div className={styles.loginContainer}>
-                            
-                            <Modal isOpen={modal} toggle={toggle}>
-                                <ModalHeader toggle={toggle}>Confirmar datos</ModalHeader>
-                                <ModalBody>
-                                <label>Recuperar contraseña</label>
-                                <br/>
-                                <ForgotPass/>
-                                {/* <input type="email" placeholder="Ingresa tu mail" onChange={(e) => setMaill(e.target.value)} value={maill}></input> */}
-                                </ModalBody>
-                                <ModalFooter>
-                                {/* <Button color="primary" onClick={(e)=> handleSubmitt(e),toggle1}>Enviar email</Button>{' '} */}
-                                <Button color="secondary" onClick={toggle}>Cancelar</Button>
-                                </ModalFooter>
-                            </Modal>
-                            
-                            
-                                <Modal isOpen={modal1} toggle={toggle1}>
-                                    <ModalHeader toggle={toggle1}>Confirmar datos</ModalHeader>
-                                    <ModalBody>
-                                    <label>Nueva contraseña</label>
-                                    <input type="password"></input>
-                                    <br/>
-                                    <hr/>
-                                    <label>Token</label>
-                                    <input type="text"></input>
-                                    </ModalBody>
-                                    <ModalFooter>
-                                    <Button color="primary" onClick={toggle1}>Enviar</Button>{' '}
-                                    <Button color="secondary" onClick={toggle1}>Cancelar</Button>
-                                    </ModalFooter>
-                                </Modal>
             <div className={styles.imgdivd}>
                 <img src={lg} alt="lg" width="500px" />
             </div>
@@ -124,8 +83,7 @@ const Login = () => {
             {loading && <Loading />}
             <Row className="py-3">
        <Col>
-      {/* <Link to="/user/forgotPass" >¿Has olvidado tu contraseña?</Link> */}
-      <Button color="danger" onClick={toggle}>¿Has olvidado tu contraseña?</Button>
+      <Link to="/user/forgotPass">¿Has olvidado tu contraseña?</Link>
        </Col>
             </Row>
                 <Row className="py-3">
@@ -137,6 +95,7 @@ const Login = () => {
                     <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
                 <div>
+                {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
                 <GoogleLogin
                     class="g-signin2"
                     buttonText="Login"
