@@ -38,7 +38,7 @@ return(
                     <button className={styleSearch.btnbuscar}><img src={busqueda} alt="buscar" width="50px"/></button>
                     <input className={styleSearch.inputbusqueda}
                     type ="text"
-                    placeholder ='Buscar'
+                    placeholder =' Buscar'
                     onChange ={e=> handleInputChange(e)}
                     value={name} 
                     />

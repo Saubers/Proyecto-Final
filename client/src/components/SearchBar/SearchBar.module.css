@@ -33,13 +33,19 @@
 .inputbusqueda{
   width: 500px;
   height: 50px;
-  border:none;
+  border: none;
+  border: 2px solid gray; 
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .divinput{
   display: flex;
 }
 .btnbuscar{
   border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .styleform{ 
     display: flex;
