@@ -20,7 +20,6 @@ export default function ReadProduct() {
             <NavBar />
             <div>
                 <h1>Autos</h1>
-                {/* <p>&nbsp;</p> */}
                 <hr />
                 {cars?.map((el) =>
                     <div>
