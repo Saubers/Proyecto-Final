@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { updateCategory, getCategories } from "../../../actions";
+import { updateCategory, getCategories } from "../../../actions/index"
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../NavBar/NavBar";
 import Styles from "./CategoryUpdate.module.css"

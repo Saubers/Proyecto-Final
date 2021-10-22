@@ -133,7 +133,7 @@ const SearchCars = async (req, res, next) => {
         const ProductBrand = await ProductsDB.filter((el) => el.brand.toLowerCase().includes(name.toLowerCase()));
         console.log(ProductDB)
         if (ProductDB !== null || ProductBrand !== null) {
-        const results= ProductDB.concat(ProductBrand);
+            const results = ProductDB.concat(ProductBrand);
             return res.status(200).send([...new Set(results)]);
         }
     } catch (error) {
@@ -166,6 +166,18 @@ const ModifiCar = async (req, res) => {
     }
 }
 
+/* const ModifiCategory = async (req, res) => {
+    const { id } = req.params;
+    const updates = req.body;
+    console.log(updates)
+    try {
+        await Categories.findByIdAndUpdate(id, updates)
+        res.send("Categoria actualizada correctamente");
+    } catch (error) {
+        console.log(error)
+    }
+}
+ */
 
 module.exports = {
     idCars,

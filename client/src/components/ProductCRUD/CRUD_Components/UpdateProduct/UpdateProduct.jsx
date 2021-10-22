@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import NavBar from "../../../NavBar/NavBar";
 
 
-function validate(input) {
+/* function validate(input) {
     var valoresAceptados = /^[0-9]+$/;
     let errors = {};
     if (!input.model.match(valoresAceptados)) {
@@ -35,7 +35,7 @@ function validate(input) {
     }
     return errors
 }
-
+ */
 
 export default function UpdateProduct() {
 
@@ -65,6 +65,7 @@ export default function UpdateProduct() {
         brand: "",
         name: "",
         model: "",
+        img: "",
         category: "",
         description: "",
         features_doors: "",
@@ -86,18 +87,19 @@ export default function UpdateProduct() {
             ...input,
             [e.target.name]: e.target.value
         })
-        setErrors(validate({
+        /* setErrors(validate({
             ...input,
             [e.target.name]: e.target.value
-        }))
+        })) */
     };
 
     function handleSubmit(e) {
-        console.log(input)
         e.preventDefault(e);
         dispatch(putProduct(id, input))
+        console.log('auto: ', input)
+        console.log('id: ', id)
         alert("¡PRODUCTO ACTUALIZADO!")
-        setInput({
+        /* setInput({
             brand: "",
             name: "",
             model: "",
@@ -115,7 +117,7 @@ export default function UpdateProduct() {
             features_mileage: "",
             price: "",
             stock: ""
-        })
+        }) */
     };
 
     function handleSelect(e) {
@@ -139,7 +141,7 @@ export default function UpdateProduct() {
             brand: selectedCar?.brand,
             name: selectedCar?.name,
             model: selectedCar?.model,
-            img: selectedCar?.img,
+            img: selectedCar?.img[0],
             category: selectedCar?.category.name,
             description: selectedCar?.description,
             features_doors: selectedCar?.features.doors,
@@ -156,7 +158,8 @@ export default function UpdateProduct() {
         });
     }, [id])
 
-    console.log('ID: ', id)
+    console.log('SELECTED CAR: ', selectedCar)
+    console.log ('INPUT: ', input)
 
     /* const postDetails = (images) => {
         if (
@@ -190,9 +193,11 @@ export default function UpdateProduct() {
             <NavBar />
             <h1>Actualiza la informacion del auto</h1>
             <div className={styleCrudUpdate.General}>
-                
+
                 <h2 className={styleCrudUpdate.subtitle}>Selecciona un auto</h2>
-                <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelectID(e)}>
+                <select required
+                    className={styleCrudUpdate.selectCategory}
+                    onChange={(e) => handleSelectID(e)}>
                     <option disabled selected>Autos</option>
                     {cars?.map((el) => (
                         <option value={el._id}>{el.name}</option>
@@ -261,8 +266,10 @@ export default function UpdateProduct() {
                         <label className={styleCrudUpdate.label}>Categoria: </label>
                         <div className={styleCrudUpdate.subDiv}>
                             {/* <h5 className={styleCrudUpdate.label}>Eliga una categoria</h5> */}
-                            <select required className={styleCrudUpdate.selectCategory} onChange={(e) => handleSelect(e)}>
-                            <option disabled selected>Categorias</option>
+                            <select required
+                                className={styleCrudUpdate.selectCategory}
+                                onChange={(e) => handleSelect(e)}>
+                                <option disabled selected>Categorias</option>
                                 {categories?.map((el) => (
                                     <option value={el._id}>{el.name}</option>
                                 ))}

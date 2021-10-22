@@ -118,13 +118,25 @@ export function postProduct(payload) {
 export function putProduct(id, payload) {
     
     return async function (dispatch) {
-        const json = await axios.put("http://localhost:3002/productsPut/:id" + id, payload);
+        const json = await axios.put("http://localhost:3002/productsPut/" + id, payload);
         return dispatch({
             type: 'PUT_PRODUCT',
             payload: json
         })
     }
 }
+
+/* export function updateCategory(id, payload) {
+
+    return async function (dispatch) {
+        const json = await axios.put("https://pf-car-shop.herokuapp.com/categories" + id, payload);
+        return dispatch({
+            type: 'UPDATE_CATEGORY',
+            payload: json
+        })
+    }
+} */
+
 
 export function putProductStock(payload) {
     
