@@ -126,6 +126,18 @@ export function putProduct(id, payload) {
     }
 }
 
+export function putProductStock(payload) {
+    
+    return async function (dispatch) {
+        const json = await axios.put("http://localhost:3002/productsPut/" + payload.id, payload);
+        return dispatch({
+            type: 'PUT_PRODUCT',
+            payload: json
+        })
+    }
+}
+
+
 export function postMg (payload){
     return async function (dispatch){
         const json = await axios.post("http://localhost:3002/checkout", payload);
@@ -164,6 +176,26 @@ export function userRegister(payload) {
         const json = await axios.post('http://localhost:3002/register', payload);
         return dispatch({
             type: 'USER_REGISTER',
+            payload: json
+        })
+    }
+}
+
+export function forgotPassword(mail) {
+    return async function (dispatch) {
+        const json = await axios.put('http://localhost:3002/forgotPassword', {mail});
+        return dispatch({
+            type: 'FORGOT_PASSWORD',
+            payload: json
+        })
+    }
+}
+
+export function resetPassword(payload) {
+    return async function (dispatch) {
+        const json = await axios.put('http://localhost:3002/resetPassword', payload);
+        return dispatch({
+            type: 'RESET_PASSWORD',
             payload: json
         })
     }

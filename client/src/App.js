@@ -28,6 +28,7 @@ import ProfileInfo from './components/UserInfo/UserInfo'
 import AdministracionAdmin from './components/AdministracionAdmin/AdministracionAdmin'
 import { useSelector } from 'react-redux';
 import OrderEdit from './components/OrderCars/OrderEdit/OrderEdit'
+import ForgotPass from './components/Auth/login/forgotPass';
 function App() {
   const history = useHistory()
   const stateAdmin = useSelector((state) => state.userInfo)
@@ -69,17 +70,17 @@ function App() {
           <Route exact path="/CategoryCRUD/CategoryDelete" component={CategoryDelete} />
           <Route exact path="/CategoryCRUD/CategoryRead" component={CategoryRead} /> */}
 
-
+          {!local && (<Route exact path='/user/forgotPass' component={ForgotPass} />)}
           {!local && (<Route exact path='/user/register' component={Register} />)}
           <Route exact path="/home/Catalogo" component={Catalogo} />
           {!local && (<Route exact path="/user/login" component={Login} />)}
           {(<Route exact path='/home/compra' component={Cart} />)}
-          <Route exact path='/home/ADMIN/orders' component={OrderCar} />
           {local && <Route exact path='/user/me' component={ProfileInfo} />}
           {isAdmin === '"admin"' &&<Route exact path='/home/ADMIN/edit/:id' component={OrderEdit} />}
           {isAdmin === '"admin"' &&<Route exact path='/home/ADMIN/orders/:id' component={OrderDetail} />}
           <Route exact path="/contactos" component={Contact} />
           <Route path="/pagos" component={Pagos} />
+          {isAdmin === '"admin"' &&  <Route exact path='/home/ADMIN/orders' component={OrderCar} />}
           {isAdmin === '"admin"' &&<Route exact path='/home/ADMIN/Administracion' component={AdministracionAdmin}/>}
         </Switch>
       </div>

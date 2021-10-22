@@ -91,7 +91,15 @@ function rootReducer(state = initialState, action) {
     return{
       ...state,
       orderDetail : action.payload
-    }
+    };
+    case "FORGOT_PASSWORD":
+      return {
+        ...state
+      };
+      case "RESET_PASSWORD":
+        return {
+          ...state
+        }
     case "USER_SIGNIN_REQUEST":
       return {
         ...state,

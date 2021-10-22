@@ -38,6 +38,9 @@ const Login = () => {
                     }
                     const responseSuccessGoogle = (response) => {
                         dispatch(googleSignin(response.tokenId))
+                        if(dispatch(googleSignin(response.tokenId))){
+                            history.push('/home/catalogo')
+                        }
                         
                     }
                     
@@ -78,6 +81,11 @@ const Login = () => {
                 {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
                 {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
             {loading && <Loading />}
+            <Row className="py-3">
+       <Col>
+      <Link to="/user/forgotPass">¿Has olvidado tu contraseña?</Link>
+       </Col>
+            </Row>
                 <Row className="py-3">
                     <Col>
                     Nuevo usuario? <Link to="/user/register">Registrate aqui</Link>

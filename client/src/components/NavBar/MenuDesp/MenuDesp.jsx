@@ -27,7 +27,7 @@ const logoutFunct = () => {
         {isAdmin === '"admin"' && <DropdownItem href="/CategoryCRUD">Administrar Categorias</DropdownItem>}
         {isAdmin === '"admin"' && <DropdownItem href="/home/ADMIN/Administracion">Administrar cuentas</DropdownItem>}
         {isAdmin === '"admin"' && <DropdownItem href="/home/ADMIN/orders">Ordenes de usuarios</DropdownItem>}
-        
+        {isAdmin === '"admin"' &&  <DropdownItem  href='/home/ADMIN/orders' >Administrar Ordenes</DropdownItem>}
         <DropdownItem href="/user/me">Mi Cuenta</DropdownItem>
         <DropdownItem href="/pagos">Ticket</DropdownItem>
         <DropdownItem onClick={() => logoutFunct()} href='/'>Cerrar Sesion</DropdownItem>
