@@ -11,7 +11,7 @@ export default function ReadProductDetail(props) {
 
     useEffect(() => {
         dispatch(getCarDetail(props.match.params.id));
-    },[dispatch])
+    },)
 
     const car = useSelector((state) => state.carDetail)
 
