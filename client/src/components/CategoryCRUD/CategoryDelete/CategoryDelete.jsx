@@ -23,8 +23,7 @@ function CategoryDelete() {
         )
     };
 
-    function handleSubmit(e) {
-        e.preventDefault(e);
+    function handleSubmit() {
         dispatch(deleteCategory(id))
         alert("Categoria eliminada")
         setID("")
