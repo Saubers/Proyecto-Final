@@ -81,13 +81,13 @@ export default function OrderCar(props) {
                     <th>{el.state}</th>
                     <div className={style.divbtn}>
                     <Link to={'/home/ADMIN/orders/' + el._id}>
-                        <img alt="not found" src={detalle}/>
+                        <img src={detalle} alt="ima"/>
                     </Link>
                     <Link to={'/home/ADMIN/edit/' + el._id}>
-                    <img alt="not found" src={editar}/>
+                    <img src={editar} alt="ima"/>
                     </Link>
                     <Link>
-                    <img alt="not found" src={borrar} cursor="selected" onClick={()=>handleDelete(el)}></img>
+                    <img src={borrar} cursor="selected" onClick={()=>handleDelete(el)} alt="ima"></img>
                     </Link>
                     </div>
                     </tr>
