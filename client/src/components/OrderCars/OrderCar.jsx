@@ -4,6 +4,9 @@ import {getOrder,DeleteCartId, filterStatus, searchId } from "../../actions";
 import {Link} from "react-router-dom";
 import style from '../OrderCars/OrderCar.module.css'
 import NavBar from '../NavBar/NavBar'
+import borrar from '../image/eliminar.png'
+import detalle from '../image/detalle.png'
+import editar from '../image/editar.png'
 export default function OrderCar(props) {
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -66,6 +69,7 @@ export default function OrderCar(props) {
             <button onClick = {(e) => handleClick(e)}>Confirma la ID</button>
             <button onClick = {(e) => handleGetAll(e)}>Mostrar todos</button>
             </div>
+            
             {OrderUser && OrderUser.map(el=>{
                 return(
                 <div className={style.ticket}>
@@ -75,13 +79,17 @@ export default function OrderCar(props) {
                     <th>{el.cantidad + ''}</th >
                     <th className={style.total}>{el.price}</th>
                     <th>{el.state}</th>
+                    <div className={style.divbtn}>
                     <Link to={'/home/ADMIN/orders/' + el._id}>
-                        <button>Detalle</button>
+                        <img src={detalle}/>
                     </Link>
                     <Link to={'/home/ADMIN/edit/' + el._id}>
-                        <button>Modificar</button>
+                    <img src={editar}/>
                     </Link>
-                    <button onClick={()=>handleDelete(el)}>Eliminar Ticket</button>
+                    <Link>
+                    <img src={borrar} cursor="selected" onClick={()=>handleDelete(el)}></img>
+                    </Link>
+                    </div>
                     </tr>
                     </table>
                     {/* <button onClick={()=>handleDelete(el)}>Eliminar ticket</button> */}

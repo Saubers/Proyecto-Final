@@ -4,6 +4,12 @@ body {
     font-size: 20px;
     margin: 3em;
     padding: 0;
+   
+  }
+  .divbtn{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
   }
   #register {
     width: 20em;
