@@ -15,7 +15,7 @@ const Review = (props) =>{
         dispatch(getCarDetail(props.publication.id));
         dispatch(getReview(props.publication.id))
         sumAverage()
-    },[dispatch]);
+    },[]);
 
     let infoReview = {
         id : user?._id,
@@ -23,7 +23,7 @@ const Review = (props) =>{
     }
     useEffect(() => {
        dispatch(getUserOrderStatus(infoReview))
-    },[dispatch])
+    },[])
 
     useEffect(()=>{
         OrdenState()
@@ -32,8 +32,6 @@ const Review = (props) =>{
 
     const userAllOrders = useSelector((state) => state.orders)
 
-    console.log('MyCar',MyCar)
-    console.log('allorders',userAllOrders)
     const [isReview,setIsReview] = useState(false)
     
     function OrdenState() {
@@ -46,7 +44,6 @@ const Review = (props) =>{
         }
     }
 }
-    console.log('is review',isReview)
 
 
     const review = useSelector((state) => state.review)
@@ -134,18 +131,19 @@ const Review = (props) =>{
             <hr />
            <div className={style.containerproduct}>
             {   
-                review && review.map(el=>(
-                    <div className={style.divcart}>
+                review && review.map(el=>{
+                    return (
+                        <div key={el._id} className={style.divcart}>
                     <h5 className={style.title}>{el.calification}★</h5>
                     <div>
                         <img src={IconUser} alt=''/>
-                        {el.user && el.user ? <h7 >{el.user?.fullname}</h7> : <h7 >Anonimo</h7>} <br />
+                        {el.user && el.user ? <h3 >{el.user?.fullname}</h3> : <h3 >Anonimo</h3>} <br />
                     </div>
                     <strong>{el.title}</strong>
                     <h6>{el.description}</h6>
                     <hr />
                     </div>
-             ))
+             )})
             }
            </div>
            {isReview && isReview ?

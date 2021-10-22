@@ -152,7 +152,7 @@ export default function UpdateProduct() {
             price: selectedCar?.price,
             stock: selectedCar?.stock
         });
-    },[id])
+    },[setInput, selectedCar])
 
     /* const postDetails = (images) => {
         if (

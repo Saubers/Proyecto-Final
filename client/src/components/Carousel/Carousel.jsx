@@ -8,7 +8,7 @@ export default function Component_Carousel( props ) {
       <div>
       <Carousel>
       {props.photos.map((p)=> {
-        return <img className={styles.image} src= {p} alt= "not found" />
+        return <img key={p} className={styles.image} src= {p} alt= "not found" />
       })}
         </Carousel>
         </div>
