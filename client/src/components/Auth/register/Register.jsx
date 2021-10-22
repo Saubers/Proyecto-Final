@@ -2,17 +2,13 @@ import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import {useDispatch, useSelector} from 'react-redux'
-import { Link, useHistory } from 'react-router-dom';
-import { userRegister } from '../../../actions';
-import NavBar from '../../NavBar/NavBar'
+import { Link} from 'react-router-dom';
 import ErrorMessage from '../login/ErrorMessage';
 import Loading from '../login/Loading';
 import styles from '../register/Register.module.css';
 import registre from '../../image/registre.jpg';
 
 export default function Register () {
-    const dispatch = useDispatch()
     
     const [fullname, setFullname] = useState("")
     const [mail, setMail] = useState("")
