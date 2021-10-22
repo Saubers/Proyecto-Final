@@ -20,11 +20,10 @@ const local = localStorage.getItem('userInfo')
             <div>
                 <img src={nuevologo} alt="logo" width="50px" />
             </div>
-            <ul>{ !local && (
-                <li><a href="/">Inicio</a></li>)}
-                <li><a href="/contactos">Contacto</a></li>
+            <ul>
+                <li><a href="/">Inicio</a></li>
+           {local && (<li><a href="/contactos">Contactos</a></li>)}
                 <li><a href="/home/catalogo ">Catalogo</a></li>
-                <li><a href="# ">Metodos de Pago</a></li>
 
            { local ? (
             <li>

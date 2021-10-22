@@ -9,6 +9,7 @@ import image2 from '../image/imgcarousellandin/image2.jpg';
 import image3 from '../image/imgcarousellandin/image3.jpg';
 import Servi from '../LandingPage/Servicios/Servi'
 import Footer from '../LandingPage/Footer/Footer'
+import NavBar from '../NavBar/NavBar';
 
 export default function LandingPage({history}) {
 
@@ -22,50 +23,26 @@ export default function LandingPage({history}) {
 
 return(
     
-       <div>
-           <header className={stylesLanding.header}>
+       <div className={stylesLanding.containergrid}>
+           <header className={stylesLanding.header} class="header">
                <nav className={stylesLanding.containerdiv}>
+                   
                    <div>
-                       <img src={Nuevologo} alt="img" width="50px"/>
+                       <NavBar />
                    </div>
-                   <div>
-                       <ul className={stylesLanding.ulli}>
-                            <li><a href="/">Inicio</a></li>
-                            <li><a href="/contactos">Contacto</a></li>
-                            <li><a href="/home/catalogo ">Catalogo</a></li>
-                            <li><a href="# ">Metodos de Pago</a></li>
-                            <li><a href='/user/login'>Iniciar Sesion</a></li>
-                        </ul>
-                   </div>
-                   {/* <div>
-                       <img src={usuario} alt="usuario" width="50px" />
-                   </div> */}
                </nav>
            </header>
-            <section>
+            <section class="section">
                 <Carousel>
                     <img src={image1} alt="img" height="700px"/>
                     <img src={image2} alt="img" height="700px"/>
                     <img src={image3} alt="img" height="700px"/>
                 </Carousel>
-                {/* <div className={stylesLanding.cajabotones}>
-                    <div className={stylesLanding.jj}>
-                        <h2 className={stylesLanding.h2sly}>We can help you to find your favourite car!</h2>
-                        <div>
-                            <Link to ='/user/login'>
-                                <button className={stylesLanding.btn}>LOGIN</button>
-                            </Link>
-                            <Link to='/user/register'>
-                                <button className={stylesLanding.btn}>REGISTER</button>
-                            </Link> 
-                        </div>
-                    </div>
-                </div> */}
             </section>
-            <section>
+            <section class="section2">
                 <Servi/>
             </section>
-            <footer>
+            <footer class="footer">
                 <Footer/>
             </footer>
        </div>

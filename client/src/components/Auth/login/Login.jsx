@@ -23,19 +23,25 @@ const Login = () => {
     const [success, setSuccess] = useState('')
     const dispatch = useDispatch()
     const stateAdmin = useSelector((state) => state.userInfo)
-
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        // e.preventDefault();
+        const local = localStorage.getItem('userInfo')
+        if(local){
+            history.push('/')
+        }
         dispatch(signin(mail, password))
         dispatch(userAdmin(mail, password))
-    }
-    if(stateAdmin !== undefined){
-        history.push('/home/catalogo')
-    }
-    
+        }
+                    if(stateAdmin){
+                        console.log('ENTRO')
+                        handleSubmit()
+                    }
                     const responseSuccessGoogle = (response) => {
                         dispatch(googleSignin(response.tokenId))
-                        history.push('/home/catalogo')
+                        if(dispatch(googleSignin(response.tokenId))){
+                            history.push('/home/catalogo')
+                        }
+                        
                     }
                     
                     const responseErrorGoogle = (response) => {
@@ -89,6 +95,7 @@ const Login = () => {
                     <Button className={styles.btnsubt}>Volver</Button>
                 </Link>
                 <div>
+                {/* <div class="g-signin2" data-onsuccess="onSignIn"></div> */}
                 <GoogleLogin
                     class="g-signin2"
                     buttonText="Login"
