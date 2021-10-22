@@ -326,7 +326,7 @@ export default function CreateProduct() {
                                 name="features_traction"
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Tipo de traccion'
-                                required className={styleCrudPost.selectCategory}
+                                className={styleCrudPost.selectCategory}
                             >
                                 <option defaultValue='AWD' hidden disabled selected> Traccion </option>
                                 <option value='AWD'> AWD</option>

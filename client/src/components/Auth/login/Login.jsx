@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Loading from "./Loading";
 import styles from "./Login.module.css";
 import ErrorMessage from "./ErrorMessage";
 import { Link, useHistory } from "react-router-dom";
@@ -16,8 +15,6 @@ const Login = () => {
   const history = useHistory();
   const [password, setPassword] = useState("");
   const error = useSelector((state)=> state.error)
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState("");
   const dispatch = useDispatch();
   const stateAdmin = useSelector((state) => state.userInfo);
   const handleSubmit = async (e) => {
@@ -87,8 +84,6 @@ const Login = () => {
         <div>
         </div>
         {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-        {success && <ErrorMessage variant="success">{success}</ErrorMessage>}
-        {loading && <Loading />}
           <GoogleLogin
             class="g-signin2"
             buttonText="Login with google"

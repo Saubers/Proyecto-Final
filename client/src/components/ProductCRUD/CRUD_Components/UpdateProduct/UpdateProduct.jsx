@@ -429,7 +429,7 @@ export default function UpdateProduct() {
                                 name="features_traction"
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Tipo de traccion'
-                                required className={styleCrudUpdate.selectCategory}
+                                className={styleCrudUpdate.selectCategory}
                             >
                                 <option defaultValue='AWD' hidden disabled selected> Traccion </option>
                                 <option value='AWD'> AWD</option>

@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import { Link} from 'react-router-dom';
+
 import ErrorMessage from '../login/ErrorMessage';
 import Loading from '../login/Loading';
 import styles from '../register/Register.module.css';
@@ -15,10 +16,7 @@ export default function Register () {
     const [password, setPassword] = useState("")
     const [confirm_password, setConfirmPassword] = useState("")
     const [phone, setPhone] = useState("")
-    const [isAdmin, setIsAdmin] = useState(false)
-
     const [message, setMessage] = useState(null)
-    const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     
    // const history = useHistory()
@@ -49,7 +47,6 @@ export default function Register () {
                             password,
                             confirm_password,
                             phone,
-                            isAdmin
                         }, config
                         );
                         setLoading(false);
@@ -68,7 +65,6 @@ export default function Register () {
                 <img src={registre} alt="img" width="500px" />
             </div>
         <div className={styles.login}>
-        {error && <ErrorMessage variant='danger'></ErrorMessage>}
         {message && <ErrorMessage variant="danger">{message}</ErrorMessage>}
         {loading && <Loading />}
             <form actions="/login" onSubmit={handleSubmit}>
