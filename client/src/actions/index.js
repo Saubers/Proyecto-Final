@@ -240,6 +240,7 @@ export function googleSignin(tokenId){
             dispatch({type:GOOGLE_SIGNIN, payload: data})
             localStorage.setItem('userInfo', JSON.stringify(data.token))
             localStorage.setItem('userInformacion', JSON.stringify(data.user))
+            localStorage.setItem('userAdmin', JSON.stringify(data.state))
         }catch(err){
             console.log(err)
         }
@@ -249,7 +250,6 @@ export function googleSignin(tokenId){
 
 
 export function deleteUser(id) {
-    console.log(id)
     return async function (dispatch) {
         try {
             let json = await axios.put("http://localhost:3002/delete_user/" + id)

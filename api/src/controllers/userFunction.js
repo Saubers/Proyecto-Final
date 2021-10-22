@@ -130,10 +130,11 @@ const googleLogin = async (req,res) =>{
                     }else{
                         if(user){
                             const token = jwt.sign({_id:user._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
-                            const {_id,fullname,mail}=user;
+                            const {_id,fullname,mail,state, phone, password}=user;
                             res.json({
                                 token,
-                                user:{_id,fullname,mail}
+                                user:{_id, fullname, mail, phone, password},
+                                state
                             })
                         }else{
                             const create = async function() {
@@ -143,13 +144,11 @@ const googleLogin = async (req,res) =>{
                                 })
                                 const token = jwt.sign({_id:googleUser._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
                                 await googleUser.save()
+                                const {_id,fullname,mail,state} = googleUser
                                 const obj = {
                                     token,
-                                    user:{
-                                        _id: googleUser._id,
-                                        fullname: googleUser.fullname,
-                                        mail: googleUser.mail
-                                    } 
+                                    user:{_id, fullname, mail},
+                                    state 
                                 }
                                 res.status(200).send(obj)
                             }
