@@ -13,10 +13,32 @@ const dispatch = useDispatch()
         e.preventDefault();
         dispatch(forgotPassword(mail))
  }
+ const [modal1, setModal1] = useState(false);
+
+ const toggle1 = () => setModal1(!modal1);
 
 
  return (
      <div>
+         <Modal isOpen={modal1} toggle={toggle1}>
+        <ModalHeader toggle={toggle1}>Confirmar datos</ModalHeader>
+        <ModalBody>
+          <label>Nueva contraseña</label>
+          <input type="password"></input>
+          <br />
+          <hr />
+          <label>Token</label>
+          <input type="text"></input>
+        </ModalBody>
+        <ModalFooter>
+          <Button color="primary" onClick={toggle1}>
+            Enviar
+          </Button>{" "}
+          <Button color="secondary" onClick={toggle1}>
+            Cancelar
+          </Button>
+        </ModalFooter>
+      </Modal>
             <form actions="/login" onSubmit={handleSubmit}>
                     <Form.Group controlId='formBasicEmail'>
                         <Form.Label>Recupera tu contraseña</Form.Label>
@@ -30,7 +52,7 @@ const dispatch = useDispatch()
                     </Form.Group>
                     
             </form>
-                    <Button type="submit" onClick={(e) => handleSubmit(e)} variant="success">Enviar mail</Button>
+                    <Button type="submit" onClick={(e) => handleSubmit(e),toggle1} variant="success">Enviar mail</Button>
                     <div>
                     <Link to ='/'>
                 <Button variant='danger'>Volver</Button>

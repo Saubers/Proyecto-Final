@@ -40,10 +40,7 @@ const Login = () => {
 
   const toggle = () => setModal(!modal);
 
-  const [modal1, setModal1] = useState(false);
-
-  const toggle1 = () => setModal1(!modal1);
-
+  
   
   return (
     <div className={styles.loginContainer}>
@@ -55,32 +52,7 @@ const Login = () => {
           <ForgotPass />
           {/* <input type="email" placeholder="Ingresa tu mail" onChange={(e) => setMaill(e.target.value)} value={maill}></input> */}
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle1}>Enviar email</Button>{' '}
-          <Button color="secondary" onClick={toggle}>
-            Cancelar
-          </Button>
-        </ModalFooter>
-      </Modal>
-
-      <Modal isOpen={modal1} toggle={toggle1}>
-        <ModalHeader toggle={toggle1}>Confirmar datos</ModalHeader>
-        <ModalBody>
-          <label>Nueva contraseña</label>
-          <input type="password"></input>
-          <br />
-          <hr />
-          <label>Token</label>
-          <input type="text"></input>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle1}>
-            Enviar
-          </Button>{" "}
-          <Button color="secondary" onClick={toggle1}>
-            Cancelar
-          </Button>
-        </ModalFooter>
+        
       </Modal>
       <div className={styles.imgdivd}>
         <img src={lg} alt="lg" width="500px" />
