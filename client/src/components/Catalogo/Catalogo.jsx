@@ -155,7 +155,7 @@ return (
                 :  ProductViewsXPage?.map(el => {
                     return(
                         
-                        <div className={styleCatalogo.containercar}>
+                        <div key={el._id} className={styleCatalogo.containercar}>
                         
                             <ProductCard
                                 name={el.name}

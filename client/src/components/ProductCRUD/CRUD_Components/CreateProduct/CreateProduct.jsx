@@ -80,8 +80,7 @@ export default function CreateProduct() {
         }))
     };
 
-    function handleSubmit(e) {
-        e.preventDefault(e);
+    function handleSubmit() {
         dispatch(postProduct(input))
         alert("¡PRODUCTO AÑADIDO!")
         setInput({
@@ -176,10 +175,12 @@ export default function CreateProduct() {
 
                         <label className={styleCrudPost.label}>Categoria: </label>
                         <div className={styleCrudPost.subDiv}>
-                            <select required className={styleCrudPost.selectCategory} onChange={(e) => handleSelect(e)}>
-                                <option disabled selected>Categorias</option>
+                            <select required
+                                className={styleCrudPost.selectCategory}
+                                onChange={(e) => handleSelect(e)}>
+                                <option defaultValue hidden disabled selected>Categorias</option>
                                 {categories?.map((el) => (
-                                    <option value={el._id}>{el.name}</option>
+                                    <option key={el._id} value={el._id}>{el.name}</option>
                                 ))}
                             </select>
                         </div>
@@ -217,13 +218,14 @@ export default function CreateProduct() {
                     </fieldset>
 
                     <fieldset>
-                        <h2 className={styleCrudPost.subtitle}>Caracteristicas</h2>
 
+                        <h2 className={styleCrudPost.subtitle}>Caracteristicas</h2>
                         <label className={styleCrudPost.label}>Puertas: </label>
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
                                 type="number"
+                                placeholder='Cantidad de puertas'
                                 value={input.features_doors}
                                 name="features_doors"
                                 onChange={(e) => handleChange(e)}
@@ -250,7 +252,8 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder="cv"
                                 value={input.features_engine_cv}
                                 name="features_engine_cv"
                                 onChange={(e) => handleChange(e)}
@@ -265,7 +268,8 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
+                                placeholder="Torque"
                                 value={input.features_engine_torque}
                                 name="features_engine_torque"
                                 onChange={(e) => handleChange(e)}
@@ -288,9 +292,9 @@ export default function CreateProduct() {
                             />
                         </div>
 
+                        <h2 className={styleCrudPost.subtitle}>Transmision</h2>
+                        <label className={styleCrudPost.label}>Manual: </label>
                         <div className={styleCrudPost.subDiv}>
-                            <h2 className={styleCrudPost.subtitle}>Transmision</h2>
-                            <label className={styleCrudPost.label}>Manual: </label>
                             <input
                                 required
                                 type="number"
@@ -302,8 +306,8 @@ export default function CreateProduct() {
                             />
                         </div>
 
+                        <label className={styleCrudPost.label}>Automatica: </label>
                         <div className={styleCrudPost.subDiv}>
-                            <label className={styleCrudPost.label}>Automatica: </label>
                             <input
                                 required
                                 type="number"
@@ -322,9 +326,9 @@ export default function CreateProduct() {
                                 name="features_traction"
                                 onChange={(e) => handleChange(e)}
                                 placeholder='Tipo de traccion'
-                                className={styleCrudPost.inputActivity}
+                                required className={styleCrudPost.selectCategory}
                             >
-                                <option defaultValue='AWD'> traccion </option>
+                                <option defaultValue='AWD' hidden disabled selected> Traccion </option>
                                 <option value='AWD'> AWD</option>
                                 <option value='RWD'> RWD</option>
                                 <option value='FWD'> FWD</option>
@@ -335,7 +339,7 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
                                 value={input.features_mileage}
                                 name="features_mileage"
                                 onChange={(e) => handleChange(e)}
@@ -350,7 +354,7 @@ export default function CreateProduct() {
                         <div className={styleCrudPost.subDiv}>
                             <input
                                 required
-                                type="text"
+                                type="number"
                                 value={input.stock}
                                 name="stock"
                                 onChange={(e) => handleChange(e)}

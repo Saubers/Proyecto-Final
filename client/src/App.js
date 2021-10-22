@@ -21,12 +21,10 @@ import CategoryUpdate from './components/CategoryCRUD/CategoryUpdate/CategoryUpd
 import CategoryDelete from './components/CategoryCRUD/CategoryDelete/CategoryDelete';
 import CategoryRead from './components/CategoryCRUD/CategoryRead/CategoryRead'
 import OrderCar from './components/OrderCars/OrderCar';
-import { useHistory } from 'react-router';
 import Pagos from './components/pagos/pagos'
 import OrderDetail from './components/OrderCars/OrderDetail/OrderDetail';
 import ProfileInfo from './components/UserInfo/UserInfo'
 import AdministracionAdmin from './components/AdministracionAdmin/AdministracionAdmin'
-import { useSelector } from 'react-redux';
 import OrderEdit from './components/OrderCars/OrderEdit/OrderEdit'
 import ForgotPass from './components/Auth/login/forgotPass';
 
