@@ -5,9 +5,16 @@ const initialState = {
   engine: [],
   kilometraje: [],
   users: [],
+  userInfo: [],
   allcategories: [],
   cart: [],
   orders: [],
+  allOrders: [],
+  orderDetail:[],
+  review: [],
+  userState: [],
+  MPLink: '',
+  usersAll:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -19,6 +26,11 @@ function rootReducer(state = initialState, action) {
         allCars: action.payload,
         kilometraje: action.payload,
       };
+    case "GET_USERS":
+      return{
+        ...state,
+        usersAll:action.payload
+      }
     case "GET_ENGINE":
       return {
         ...state,
@@ -29,18 +41,31 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: action.payload,
       };
-    case "GET_ORDERS":
+    case "GET_ALL_ORDERS_STATUS":
       return {
         ...state,
         orders: action.payload,
+        allOrders:action.payload
+      }
+      case "GET_ORDERS":
+        return {
+          ...state,
+          orders: action.payload,  
+          allOrders:action.payload
+
+        };
+      case "GET_ORDERS_USER_STATUS":
+        const ordersStatus = action.payload.map(element => element.publication[0])
+      return {
+        ...state,
+        orders: ordersStatus,
       };
     case "GET_ORDERS_BY_USUARIO":
-      return {
+    return {
         ...state,
         orders: action.payload,
       };
     case "LIST_CARD":
-      console.log("CART", action.payload);
       return {
         ...state,
         cart: action.payload,
@@ -55,28 +80,92 @@ function rootReducer(state = initialState, action) {
         ...state,
         carDetail: action.payload,
       };
+    case "GET_REVIEW":
+      return {
+        ...state,
+        review: action.payload,
+      };
+    case "GET_ORDERS_BY_ID":
+    return{
+      ...state,
+      orderDetail : action.payload
+    };
+    case "FORGOT_PASSWORD":
+      return {
+        ...state
+      };
+      case "RESET_PASSWORD":
+        return {
+          ...state
+        }
     case "USER_SIGNIN_REQUEST":
-      return { 
-          loading: true 
-        };
+      return {
+        ...state,
+        loading: true,
+      };
     case "USER_SIGNIN_SUCCESS":
       return {
-           loading: false, userInfo: action.payload 
+        ...state,
+        loading: false,
+        userInfo: action.payload,
+      };
+      case "USER_SIGNIN_FAIL":
+        return {
+          ...state,
+          loading: false,
+          error: action.payload,
         };
-    case "USER_SIGNIN_FAIL":
-      return {
-           loading: false, error: action.payload 
-        };
+      case 'GOOGLE_SIGNIN':
+          return{
+            ...state,
+            loading: false,
+            userInfo:action.payload.token
+          }
     case "USER_SIGNOUT":
-      return {};
+      return {
+
+      };
+      case 'DELETE_USER':
+        return{
+          userState: action.payload
+        }
+    case "USER_DETAILS_REQUEST":
+      return { 
+        ...state,
+        loading: true 
+      };
+    case "USER_DETAILS_SUCCESS":
+      return { 
+        ...state,
+        loading: false, usersUpdate: action.payload
+       };
+    case "USER_DETAILS_FAIL":
+      return { 
+        ...state,
+        loading: false, error: action.payload
+       };
+    case 'USER_UPDATE_PROFILE_RESET':
+      return {};  
     case "POST_PRODUCT":
       return {
         ...state,
       };
+    case "POST_REVIEW":
+      return{
+        ...state,
+      }
+    case "PUT_CART":
+        return{
+          ...state
+        }
     case "PUT_PRODUCT":
       return {
         ...state,
       };
+    case "PUT_ADMIN":
+      return{
+        ...state
+      }
     case "POST_CATEGORY":
       return {
         ...state,
@@ -85,41 +174,21 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
       };
+    case "POST_MG":
+      return {
+        ...state,
+        MPLink: action.payload
+      };
     case "USER_REGISTER":
       return {
         ...state,
         users: action.payload,
       };
-    case "FILTER_BY_ENGINE":
-      let filterEngine = [];
-      // console.log(action.payload)
-      // const engines = state.allCars.map(el => el.features.engine.map(el => el.name))
-      // const nameEngines = []
-      // engines.forEach(function(element) {
-      //    element.forEach(function(element2){
-      //     if (element2 !== undefined) {
-      //     nameEngines.push(element2)
-      // }})})
-      //     if(action.payload === 'All'){
-      filterEngine = state.allCars;
-      //    }
-      //    /////////////////////////////////
-      //    let i = 0
-      //     do {
-      //     if(nameEngines[i] === action.payload ){
-      //         filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
-      //     }
-      //     i++
-      //  while (nameEngines[i] !== action.payload){
-      //      if(nameEngines[i] === action.payload){
-      //          filterEngine = state.allCars.filter(el => el.features.engine.name === action.payload)
-      //     }
-      //     i = i+ 1
-      // }
-      return {
-        ...state,
-        cars: filterEngine,
-      };
+    case "SEARCH_ID_ORDER":
+        return {
+          ...state,
+          orders: action.payload.data
+        };
     case "FILTER_BY_KM":
       let km = [];
       if (action.payload === "All") {
@@ -189,16 +258,6 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: money,
       };
-
-    // if(action.payload === 'all'){
-    //     const price = state.cars
-    //     }
-    //     const price = action.payload === 'max' ? state.cars.sort((a,b) => a.price - b.price) :
-    //     state.cars.sort((a,b) => b.price - a.price)
-    //     return{
-    //         ...state,
-    //         cars: price
-    //     }
 
     case "FILTER_BY_TRACTION":
       let filterTraction = [];
@@ -277,6 +336,26 @@ function rootReducer(state = initialState, action) {
         ...state,
         cars: modelFilter,
       };
+    //filtrado OrderDetail
+    case 'FILTER_STATUS':
+    let filterStatus = []
+    console.log("State AllOrders",state.allOrders);
+    if (action.payload === "proceso") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "En proceso")
+    }
+    if (action.payload === "cancelada") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Cancelada")
+    }
+    if (action.payload === "completa") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Completa")
+    }
+    if (action.payload === "carrito") {
+      filterStatus = state.allOrders?.filter((el) => el.state === "Carrito")
+    }
+    return{
+      ...state,
+      orders:filterStatus
+    }
     case "GET_CATEGORIES":
       return {
         ...state,

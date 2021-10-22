@@ -17,7 +17,6 @@ export function useLocalStorage (key,initialValue){
 //     }
 //      borrar()  
     const setValue = value =>{
-        console.log('setvalu',value)
         try {
             setStoredValue(value)
             window.localStorage.setItem(key,JSON.stringify(value))
@@ -29,5 +28,5 @@ export function useLocalStorage (key,initialValue){
 }   
   export function borrarItem(item){
     window.localStorage.removeItem(item);
-    window.location.reload()
+    // window.location.reload()
   } 

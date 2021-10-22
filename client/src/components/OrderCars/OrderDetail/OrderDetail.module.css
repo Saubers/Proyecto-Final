@@ -1,0 +1,13 @@
+.divto{
+    display: flex;
+    padding: 50px;
+    flex-direction: column;
+}
+.btn{
+    padding: 5px 20px;
+    border: none;
+    transition:1s;
+}
+.btn:hover{
+    background-color:salmon;
+}

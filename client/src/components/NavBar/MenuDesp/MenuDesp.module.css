@@ -1,0 +1,10 @@
+.divbtn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.divname{
+    width: 100px;
+    display: contents;
+}
