@@ -130,10 +130,10 @@ const googleLogin = async (req,res) =>{
                     }else{
                         if(user){
                             const token = jwt.sign({_id:user._id}, process.env.JWT_SIGNIN_KEY, {expiresIn: '7d'})
-                            const {_id,name,mail}=user;
+                            const {_id,fullname,mail}=user;
                             res.json({
                                 token,
-                                user:{_id,name,mail}
+                                user:{_id,fullname,mail}
                             })
                         }else{
                             const create = async function() {
@@ -147,7 +147,7 @@ const googleLogin = async (req,res) =>{
                                     token,
                                     user:{
                                         _id: googleUser._id,
-                                        name: googleUser.fullname,
+                                        fullname: googleUser.fullname,
                                         mail: googleUser.mail
                                     } 
                                 }
