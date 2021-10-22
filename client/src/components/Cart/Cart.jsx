@@ -1,6 +1,6 @@
 import { useDispatch, useSelector  } from "react-redux";
 import { useEffect, useState } from "react";
-import { postCart,postMg ,getUserOrderStatus,putProductStock} from "../../actions";
+import { postCart,postMg, getUserOrderStatus,putProductStock} from "../../actions";
 import {useLocalStorage,borrarItem} from '../../useStorage/useLocalStorage';
 import {Link, useHistory} from "react-router-dom";
 import NavBar from '../NavBar/NavBar'
@@ -175,12 +175,12 @@ export default function Cart(props){
         alert('Selecciona el auto que quieres comprar')
     }
 
-    function handleCartDB(item){
-    //  setIdAuto(cartBD) 
-    //     window.location.reload()
-    //sumarCar(item)
+    // function handleCartDB(item){
+    // //  setIdAuto(cartBD) 
+    // //     window.location.reload()
+    // //sumarCar(item)
    
-    }
+    // }
 
     function goLogin() {
         history.push(`/user/login`)
@@ -202,7 +202,7 @@ export default function Cart(props){
                     <div className={stylecart.divcart}>
                     {idAuto === undefined  ? 
                     <div className={stylecart.vaciocart}>
-                        <img src="https://pedidos.mostazagreenburger.com/static/images/cart/empty_cart.png"/>
+                        <img alt="not found" src="https://pedidos.mostazagreenburger.com/static/images/cart/empty_cart.png"/>
                     </div>
                     :  idAuto.map(el => {
                     return(

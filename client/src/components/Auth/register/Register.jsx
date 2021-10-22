@@ -2,7 +2,9 @@ import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
+import {useDispatch} from 'react-redux'
 import { Link} from 'react-router-dom';
+
 import ErrorMessage from '../login/ErrorMessage';
 import Loading from '../login/Loading';
 import styles from '../register/Register.module.css';
