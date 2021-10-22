@@ -2,7 +2,8 @@ import { useDispatch, useSelector  } from "react-redux";
 import { useEffect } from "react";
 import {getOrderByID} from "../../../actions/index";
 import {Link} from "react-router-dom";
-
+import NavBar from '../../NavBar/NavBar'
+import Styledetai from '../OrderDetail/OrderDetail.module.css'
 
 export default function OrderDetail(props) {
     const dispatch = useDispatch()
@@ -13,10 +14,13 @@ export default function OrderDetail(props) {
 
     return(
     <div>
+        <NavBar />
+        
         {
             OrderDetail && OrderDetail?.map(el=>{
                     return(
-                        <div>
+                        <div className={Styledetai.divto}>
+                           
                             <h3>Informacion de usuario</h3>
                             <div>Nombre: {el.user?.fullname} Mail: {el.user?.mail} Tel: {el.user?.phone}</div>
                             <h3>Informacion de la publicacion: </h3>
@@ -24,10 +28,14 @@ export default function OrderDetail(props) {
                             <div>
                                 <p>Marca: {el1.brand} Nombre : {el1.name} Modelo : {el1.model} Precio unico:  {el1.price}</p>
                                 <Link to={'/home/Catalogo/' + el1._id}>
-                            <button>Detalle</button>
+                            <button className={Styledetai.btn}>Detalle</button>
+                            
                                 </Link>
+                                
                             </div>
+                            
                             )}  
+                            <br />
                             <h3>Cantidad Total: {el.cantidad}</h3>
                             </div>
                             <div>
@@ -37,7 +45,7 @@ export default function OrderDetail(props) {
                             <p> {el.date}</p>
                             <p>Order: {el._id}</p>
                             <Link to={'/home/ADMIN/orders'}>
-                            <button>Volver</button>
+                            <button className={Styledetai.btn}>Volver</button>
                                 </Link>
                         </div>
                     ) }      

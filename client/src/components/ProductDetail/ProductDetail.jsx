@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import NavBar from "../NavBar/NavBar";
 import ComponentCarousel from "../Carousel/Carousel";
 import { useLocalStorage } from '../../useStorage/useLocalStorage'
-import { getReview, getOrderByUsuario } from '../../actions/index'
+import { getReview, getUserOrderStatus } from '../../actions/index'
 
 
 import Review from '../Review/Review'
@@ -27,16 +27,12 @@ export default function Detail(props) {
     const userInformacion = localStorage.getItem("userInformacion")
     const user = JSON.parse(userInformacion)
 
-    useEffect(() => {
-        dispatch(getOrderByUsuario(user?._id))
-    }, [dispatch, user?._id])
-
-    const idPublication = useSelector((state) => state.ordersId)
     const MyCar = useSelector((state) => state.carDetail)
     // const [Isbotton,setIsButton]  = useState(false)
     //ar ternario = false
-    const verdadero = idPublication?.find(el => el === MyCar?.id)
+    //  const verdadero = idPublication?.find(el => el === MyCar?.id)
     let IdButton = props.match.params.id
+
 
     const [carrito, setCarrito] = useState({
         user: user?._id,
@@ -122,13 +118,11 @@ export default function Detail(props) {
                     </div>
 
                     <div className={styles.review}>
-                        {verdadero ?
-                            MyCar && MyCar ? <Review
+                            {MyCar && MyCar ? <Review
                                 publication={MyCar}
                             ></Review>
                                 : <div>Error</div>
-                            : <div> Solo puedes comentar cuando compras el auto</div>
-                        }
+                            }
                     </div>
                 </div>
                 <div className={styles.containerdetail}>

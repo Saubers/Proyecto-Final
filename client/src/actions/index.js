@@ -199,17 +199,19 @@ export const signin =(mail, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: {mail, password}})
     try {
         const { data } = await axios.post('http://localhost:3002/login', {mail, password})
-        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
-        localStorage.setItem('userInfo', JSON.stringify(data.token))
-        localStorage.setItem('userInformacion', JSON.stringify(data))
-        localStorage.setItem('userID', data._id)
+        if(data.error){
+            dispatch({
+            type: USER_SIGNIN_FAIL,
+            payload: data.error
+        })
+        }else {
+            dispatch({ type: USER_SIGNIN_SUCCESS, payload: data})
+            localStorage.setItem('userInfo', JSON.stringify(data.token))
+            localStorage.setItem('userInformacion', JSON.stringify(data))
+            localStorage.setItem('userID', data._id)
+        }
     } catch (error){
-        dispatch({
-        type: USER_SIGNIN_FAIL,
-        payload:
-        error.response && error.response.data.message
-        ? error.response.data.message : error.message,
-    })
+        console.log(error)
 }
 }
 
@@ -419,6 +421,7 @@ export function getAllOrderStatus(payload) {
     }
 }
 export function getUserOrderStatus(payload) {
+    console.log('payload',payload)
     return async function (dispatch) {
         var json = await axios.get("http://localhost:3002/users/"+payload.id+"/orders/?status="+ payload.status);
         return dispatch({

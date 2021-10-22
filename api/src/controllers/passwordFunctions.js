@@ -22,7 +22,7 @@ const forgotPassword = async (req, res, next) => {
             subject: 'Your password reset token (valid for 10 min)',
             message:`
             Please click on given link to reset your password:
-            ${process.env.CLIENT_URL}/resetpassword/${token}
+            COPY THIS TOKEN AND PASTE IT IN THE CAR SHOP: ${token}
             `
         });
         res.status(200).json({
