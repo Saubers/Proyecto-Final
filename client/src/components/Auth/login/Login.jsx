@@ -1,5 +1,4 @@
 import React,{ useState } from 'react';
-import axios from 'axios';
 import Loading from './Loading';
 import styles from './Login.module.css'
 import ErrorMessage from './ErrorMessage';
@@ -7,15 +6,12 @@ import { Link, useHistory } from 'react-router-dom'
 import { Form, Col, Row, Button } from 'react-bootstrap';
 import lg from '../../image/lg.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCars, signin, userAdmin,googleSignin } from '../../../actions';
-import { useEffect } from 'react';
-
+import {signin, userAdmin,googleSignin } from '../../../actions';
 import { GoogleLogin } from 'react-google-login';
 
 
 const Login = () => {
     const [mail, setMail] = useState("")
-    const [user, setUser] = useState('')
     const history = useHistory()
     const [password, setPassword] = useState("")
     const [error, setError] = useState(false)
@@ -24,32 +20,23 @@ const Login = () => {
     const dispatch = useDispatch()
     const stateAdmin = useSelector((state) => state.userInfo)
     const handleSubmit = async (e) => {
-        // e.preventDefault();
-        const local = localStorage.getItem('userInfo')
-        if(local){
-            history.push('/')
-        }
+        e.preventDefault();
         dispatch(signin(mail, password))
         dispatch(userAdmin(mail, password))
-        }
-                    if(stateAdmin){
-                        console.log('ENTRO')
-                        handleSubmit()
-                    }
-                    const responseSuccessGoogle = (response) => {
-                        dispatch(googleSignin(response.tokenId))
-                        if(dispatch(googleSignin(response.tokenId))){
-                            history.push('/home/catalogo')
-                        }
-                        
-                    }
+    }
+    if(stateAdmin){
+        history.push('/home/catalogo')
+    }
+     const responseSuccessGoogle = (response) => {
+        dispatch(googleSignin(response.tokenId))
+    }
                     
-                    const responseErrorGoogle = (response) => {
-                        console.log('ERR',response)
-                    }
+    const responseErrorGoogle = (response) => {
+        console.log('ERR',response)
+    }
                     
-                    return(
-                        <div className={styles.loginContainer}>
+    return(
+        <div className={styles.loginContainer}>
             <div className={styles.imgdivd}>
                 <img src={lg} alt="lg" width="500px" />
             </div>
