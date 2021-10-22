@@ -10,10 +10,6 @@ import NavBar from '../NavBar/NavBar';
 
 export default function LandingPage({history}) {
 
-    useEffect(() => {
-        const userInfo = localStorage.getItem("userInfo");
-    }, [history])
-
 return(
     
        <div className={stylesLanding.containergrid}>
