@@ -72,11 +72,6 @@ const ForgotPass = () => {
       >
         Enviar mail
       </Button>
-      <div>
-        <Link to="/">
-          <Button variant="danger">Volver</Button>
-        </Link>
-      </div>
     </div>
   );
 };
