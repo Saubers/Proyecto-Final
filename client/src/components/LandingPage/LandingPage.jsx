@@ -1,5 +1,5 @@
 import stylesLanding from '../LandingPage/LangingPage.module.css'
-import React, { useEffect } from 'react';
+import React from 'react';
 import Carousel from 'nuka-carousel';
 import image1 from '../image/imgcarousellandin/image1.jpg';
 import image2 from '../image/imgcarousellandin/image2.jpg';

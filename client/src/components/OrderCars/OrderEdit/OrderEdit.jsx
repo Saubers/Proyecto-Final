@@ -8,7 +8,7 @@ export default function OrderEdit(props) {
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getOrderByID(props.match.params.id))
-    },[dispatch],props.match.params.id)
+    })
     const OrderDetail = useSelector((state) => state.orderDetail)
     const userInformacion = localStorage.getItem("userInformacion");
     const usuario = JSON.parse(userInformacion)
