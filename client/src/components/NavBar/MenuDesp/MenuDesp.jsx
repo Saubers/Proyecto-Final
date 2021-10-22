@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import Ff from '../../image/usuariofotologin.png';
 import styledrop from '../MenuDesp/MenuDesp.module.css';
-const MenuDesp = (props) => {
+const MenuDesp = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userInformacion = localStorage.getItem("userInformacion");
   const usuario = JSON.parse(userInformacion)
-  const local = localStorage.getItem('userInfo')
   const isAdmin = localStorage.getItem('userAdmin')
   const toggle = () => setDropdownOpen(prevState => !prevState);
 

@@ -85,14 +85,12 @@ export default function CreateProduct() {
             ...input,
             [e.target.name]: e.target.value
         }))
-        console.log(input)
     };
 
     function handleSubmit(e) {
         e.preventDefault(e);
         dispatch(postProduct(input))
         alert("¡PRODUCTO AÑADIDO!")
-        console.log(input)
         /* setInput({
             brand: "",
             name: "",
@@ -147,7 +145,6 @@ export default function CreateProduct() {
         }
     } */
 
-    console.log('INPUT: ', input)
 
     return (
         <div>

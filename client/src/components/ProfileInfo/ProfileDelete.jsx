@@ -11,7 +11,7 @@ export default function UserDelete(){
 const dispatch = useDispatch()  
 const userState = useSelector((state) => state.userState)
 
-console.log(userState)
+
     const handleSubmit = async (e) => {
         e.preventDefault(e);
         dispatch(deleteUser(id))

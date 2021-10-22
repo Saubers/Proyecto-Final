@@ -22,7 +22,6 @@ export default function DeleteProduct() {
     }
 
     function handleSubmit(e) {
-        console.log(id)
         e.preventDefault(e);
         dispatch(DeleteCar(id))
         alert("Publicacion eliminada")

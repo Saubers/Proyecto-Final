@@ -2,17 +2,11 @@ import React from 'react';
 import styleNav from '../NavBar/NavBar.module.css';
 import logocarrito from '../image/carrito.png';
 import nuevologo from '../image/nuevologo.png';
-import { useSelector } from 'react-redux';
 import MenuDesp from './MenuDesp/MenuDesp';
 
 
 const NavBar = () => {
-  const userSignin = useSelector((state) => state.userInfo)
 const local = localStorage.getItem('userInfo')
-
-
-
-
 
   return (
         <div className={styleNav.container}>
