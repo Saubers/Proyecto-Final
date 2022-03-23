@@ -9,9 +9,9 @@ import {Link} from 'react-router-dom'
 
 
 export default function Pagos() {
-    const userInformacion = localStorage.getItem("userInformacion");
+    const userInformacion = localStorage.getItem("userInfo");
     const usuario = JSON.parse(userInformacion)
-    const ticket =useSelector((state) => state.orders)
+    const ticket =useSelector((state) => state?.orders)
     const dispatch = useDispatch()
     let filter = ticket?.filter(element => element.state !== "Carrito" && element.state !== "Cancelada" )
     let usuarioFiltrado = usuario
@@ -51,7 +51,7 @@ export default function Pagos() {
         <div>
             <NavBar />
             <div className={StylePagos.divcontainertotal}>
-                {filter && filter.map(el => (
+                {filter && filter.length > 1 && filter.map(el => (
                     <div className={StylePagos.divcontainer1}>
                         
                         <div className={StylePagos.divcontainerticket}> 
@@ -82,7 +82,7 @@ export default function Pagos() {
                             </div>
                             )}
                             <button  className={StylePagos.btndetalle} onClick={(e) => handleClick(e ,
-                            filter.map(el => el.publication._id) ,
+                            filter?.map(el => el.publication._id) ,
                             el._id ,
                             el.price ,
                             el.cantidad,

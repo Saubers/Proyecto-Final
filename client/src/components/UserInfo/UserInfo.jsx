@@ -6,6 +6,7 @@ import UserDelete from '../ProfileInfo/ProfileDelete';
 const UserInfo = () => {
     const userInformacion = localStorage.getItem("userInformacion");
     const usuario = JSON.parse(userInformacion)
+    console.log('asds', userInformacion);
     return (
         <div>
             <NavBar />
@@ -17,7 +18,7 @@ const UserInfo = () => {
                         <h6>Datos de la cuenta</h6>
                         <div className={Styleinfo.divinfo}>
                             <label>Usuario</label>
-                            <p>{usuario.fullname}</p>
+                            <p>{usuario.fullname? usuario.fullname : ''}</p>
                         </div>
                         <div className={Styleinfo.divinfo}>
                             <label>Email</label>

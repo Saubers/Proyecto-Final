@@ -205,7 +205,7 @@ export default function Cart(props){
                     </div>
                     :  idAuto.map(el => {
                     return(
-                            <div key={el.id} className={stylecart.containerproduct}>
+                            <div key={el.id} className={stylecart.containerproduct} >
                             
                                 <div className={stylecart.imgcont}>
                                     <img src={el.img?.[0]} alt='Erorr' width="150x" height="150px"></img>
@@ -243,7 +243,10 @@ export default function Cart(props){
 
                         </button>
                     </div>  
-                    :<div >
+                    : cartBD?.length < 1 ? 
+                    null
+                    :
+                        <div >
                     <h3>Historial de carrito del usuario: </h3>
                     <select onChange={(e) =>handleSelect(e)}>
                  { cartBD?.map((el) =>{

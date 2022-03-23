@@ -2,7 +2,7 @@ import Button from '@restart/ui/esm/Button';
 import axios from 'axios';
 import React, { useState} from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import { Link} from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 
 import ErrorMessage from '../login/ErrorMessage';
 import Loading from '../login/Loading';
@@ -18,9 +18,7 @@ export default function Register () {
     const [phone, setPhone] = useState("")
     const [message, setMessage] = useState(null)
     const [loading, setLoading] = useState(false)
-    
-   // const history = useHistory()
-   
+    const history = useHistory();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -51,6 +49,7 @@ export default function Register () {
                         );
                         setLoading(false);
                         localStorage.setItem("userInfo", JSON.stringify(data));
+                        history.push("/home/catalogo");
                     } catch (error) {
                         setMessage("You should check all fields");
                     }
