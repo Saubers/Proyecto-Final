@@ -14,7 +14,7 @@ export default function Cart(props){
     const dispatch = useDispatch()
     const [allAuto, setAllAuto] = useLocalStorage('Allauto')
     const [idAuto, setIdAuto] = useLocalStorage('auto')
-    const userInformacion = localStorage.getItem("userInformacion")
+    const userInformacion = localStorage.getItem("userInfo")
     const user = JSON.parse(userInformacion)
     const history = useHistory();
     const [cart,setCart] = useState({})

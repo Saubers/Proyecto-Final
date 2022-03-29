@@ -4,7 +4,7 @@ import Styleinfo from '../UserInfo/UserInfo.module.css';
 import UserDelete from '../ProfileInfo/ProfileDelete';
 
 const UserInfo = () => {
-    const userInformacion = localStorage.getItem("userInformacion");
+    const userInformacion = localStorage.getItem("userInfo");
     const usuario = JSON.parse(userInformacion)
     console.log('asds', userInformacion);
     return (
@@ -18,7 +18,7 @@ const UserInfo = () => {
                         <h6>Datos de la cuenta</h6>
                         <div className={Styleinfo.divinfo}>
                             <label>Usuario</label>
-                            <p>{usuario.fullname? usuario.fullname : ''}</p>
+                            <p>{usuario.fullname? usuario.fullname : "No aparece"}</p>
                         </div>
                         <div className={Styleinfo.divinfo}>
                             <label>Email</label>
